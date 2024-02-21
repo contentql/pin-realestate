@@ -15,7 +15,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Home v6 || Homez - Real Estate NextJS Template',
+  title: 'Home page',
 };
 
 const Home_V6 = () => {
