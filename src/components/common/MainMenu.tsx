@@ -67,31 +67,11 @@ const MainMenu = () => {
       {/* End homeItems */}
 
       <li className='megamenu_style dropitem'>
-        <a className='list-item' href='#'>
+        <a className='list-item' href='/properties'>
           <span className={topMenu == 'listing' ? 'title menuActive' : 'title'}>
-            Listing
+            Properties
           </span>
-          <span className='arrow'></span>
         </a>
-        <ul className='row dropdown-megamenu sub-menu'>
-          {listingItems.map((item, index) => (
-            <li className='col mega_menu_list' key={index}>
-              <h4 className='title'>{item.title}</h4>
-              <ul className='sub-menu'>
-                {item.submenu.map((submenuItem, subIndex) => (
-                  <li key={subIndex}>
-                    <Link
-                      className={`${handleActive(submenuItem.href)}`}
-                      href={submenuItem.href}
-                    >
-                      {submenuItem.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
       </li>
       {/* End listings */}
 

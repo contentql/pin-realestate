@@ -1,7 +1,7 @@
 import HomePage from '@/views/HomePageView';
 
 export const metadata = {
-  title: 'Home v6 || Homez - Real Estate NextJS Template',
+  title: 'Home Page',
 };
 
 export default function MainRoot() {
