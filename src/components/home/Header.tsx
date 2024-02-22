@@ -134,7 +134,7 @@ const Header = () => {
       {/* DesktopSidebarMenu */}
       <div
         className="offcanvas offcanvas-end"
-        tabIndex="-1"
+        tabIndex={-1}
         id="SidebarPanel"
         aria-labelledby="SidebarPanelLabel"
       >

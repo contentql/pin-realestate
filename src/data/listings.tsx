@@ -1,4 +1,4 @@
-module.exports = [
+const listings = [
   {
     id: 1,
     image: '/images/listings/g1-1.jpg',
@@ -750,3 +750,5 @@ module.exports = [
     ],
   },
 ];
+
+export default listings
