@@ -1,10 +1,11 @@
 'use client';
-import listings from '@/data/listings';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
+import listings from '../../../data/listings';
 
 const FeaturedListings = () => {
   return (
@@ -37,7 +38,7 @@ const FeaturedListings = () => {
           },
         }}
       >
-        {listings.slice(0, 5).map((listing: any) => (
+        {listings.slice(0, 5).map((listing) => (
           <SwiperSlide key={listing.id}>
             <div className='item'>
               <div className='listing-style1'>
@@ -63,9 +64,7 @@ const FeaturedListings = () => {
                 </div>
                 <div className='list-content'>
                   <h6 className='list-title'>
-                    <Link href={`/property/${listing.id}`}>
-                      {listing.title}
-                    </Link>
+                    <Link href='/properties'>{listing.title}</Link>
                   </h6>
                   <p className='list-text'>{listing.location}</p>
                   <div className='list-meta d-flex align-items-center'>
