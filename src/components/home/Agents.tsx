@@ -1,5 +1,5 @@
 "use client";
-import agents from "@/data/agents";
+import {agentsData} from "@/data/agents";
 import Image from "next/image";
 import Link from "next/link";
 import { Navigation, Pagination } from "swiper";
@@ -38,7 +38,7 @@ const Agents = () => {
         }}
         autoplay={{ delay: 3000 }} // Set the desired delay for autoplay
       >
-        {agents.slice(11, 18).map((agent, index) => (
+        {agentsData.slice(11, 18).map((agent, index) => (
           <SwiperSlide key={index}>
             <div className="item">
               <Link href={`/agent-single/${agent.id}`}>

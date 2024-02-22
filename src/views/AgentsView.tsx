@@ -1,37 +1,56 @@
-import Image from "next/image";
-import Link from "next/link";
+import DefaultHeader from "@/components/common/DefaultHeader";
+import Footer from "@/components/common/default-footer";
+import MobileMenu from "@/components/common/mobile-menu";
+import FilteringAgency from "@/components/property/FilteringAgency";
+import FilteringAgent from "@/components/property/FilteringAgent";
+
 import React from "react";
-import {agentsData} from "@/data/agents"
 
+export const metadata = {
+  title: "Agents || Homez - Real Estate NextJS Template",
+};
 
-const AgentsView = ({data} : any) => {
+const Agents = () => {
   return (
     <>
-      {agentsData.map((agent : any) => (
-        <div className="col" key={agent.id}>
-          <div className="feature-style2 mb30">
-            <div className="feature-img">
-              <Link  href={`/agent-single/${agent.id}`}>
-                <Image
-                  width={210}
-                  height={240}
-                  className="bdrs12 w-100 h-100 cover"
-                  src={agent.image}
-                  alt="agents"
-                />
-              </Link>
-            </div>
-            <div className="feature-content pt20">
-              <h6 className="title mb-1">
-                <Link href={`/agent-single/${agent.id}`}>{agent.name}</Link>
-              </h6>
-              <p className="text fz15">Broker</p>
+      {/* Main Header Nav */}
+      <DefaultHeader />
+      {/* End Main Header Nav */}
+
+      {/* Mobile Nav  */}
+      <MobileMenu />
+      {/* End Mobile Nav  */}
+
+      {/* Breadcumb Sections */}
+      <section className="breadcumb-section">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="breadcumb-style1">
+                <h2 className="title">Agents</h2>
+                <div className="breadcumb-list">
+                  <a href="#">Home</a>
+                  <a href="#">For Rent</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      ))}
+      </section>
+      {/* End Breadcumb Sections */}
+
+      {/* Agent Section Area */}
+      <FilteringAgent />
+      
+      {/* End Agent Section Area */}
+
+      {/* Start Our Footer */}
+      <section className="footer-style1 pt60 pb-0">
+        <Footer />
+      </section>
+      {/* End Our Footer */}
     </>
   );
 };
 
-export default AgentsView;
+export default Agents;

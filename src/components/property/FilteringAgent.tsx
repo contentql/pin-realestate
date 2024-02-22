@@ -2,29 +2,22 @@
 
 import React, { useEffect, useState } from 'react'
 import TopFilter from './TopFilter'
+import AllAgents from './agents/AllAgents';
+import {agentsData} from '@/data/agents';
 import PaginationTwo from '../listing/PaginationTwo';
-import {agencyData} from '@/data/agency';
-import AllAgents from './agency/AllAgency';
+export default function FilteringAgent() {
 
-export default function FilteringAgency() {
     const [filteredData, setFilteredData] = useState<any>([]);
-
     const [currentSortingOption, setCurrentSortingOption] = useState<any>('Newest')
-
     const [sortedFilteredData, setSortedFilteredData] = useState<any>([]);
-
-    const [pageNumber, setPageNumber] = useState<any>(1)
-
+        const [pageNumber, setPageNumber] = useState<any>(1)
     const [pageItems, setPageItems] = useState<any>([])
-
     const [pageContentTrac, setPageContentTrac] = useState<any>([])
-
-     const [searchQuery, setSearchQuery] = useState<any>('')
-
+    const [searchQuery, setSearchQuery] = useState<any>('')
     useEffect(() => {
       setPageItems(sortedFilteredData
-        .slice((pageNumber - 1) * 14, pageNumber * 14))
-        setPageContentTrac([((pageNumber - 1) * 14) + 1 ,pageNumber * 14,sortedFilteredData.length])
+        .slice((pageNumber - 1) * 15, pageNumber * 15))
+        setPageContentTrac([((pageNumber - 1) * 15) + 1 ,pageNumber * 15,sortedFilteredData.length])
     }, [pageNumber,sortedFilteredData])
     const [propertyTypes, setPropertyTypes] = useState<any>([])
     const [location, setLocation] = useState<any>('All Cities')
@@ -38,17 +31,17 @@ export default function FilteringAgency() {
   });
 
     }
-    const handlepropertyTypes =(elm : any)=>{
+    const handlepropertyTypes =(elm: any)=>{
 
       if (elm == 'All') {
         setPropertyTypes([])
         
       } else {
-        setPropertyTypes((pre :  any) =>pre.includes(elm) ? [...pre.filter((el : any)=>el!=elm)] : [...pre,elm])
+        setPropertyTypes((pre: any)=>pre.includes(elm) ? [...pre.filter((el : any)=>el!=elm)] : [...pre,elm])
       }
     }
   
-    const handlelocation =(elm : any)=>{
+    const handlelocation =(elm: any)=>{
       console.log(elm)
       setLocation(elm)
     }
@@ -71,27 +64,26 @@ export default function FilteringAgency() {
 
     useEffect(() => {
       
-        const refItems = agencyData.filter((elm : any) => {
+        const refItems = agentsData.filter((elm) => {
          return  elm
           });
       
           let filteredArrays : any = [];
       
           if (propertyTypes.length > 0) {
-            const filtered = refItems.filter((elm : any) =>
+            const filtered = refItems.filter((elm) =>
             propertyTypes.includes(elm.category)
             );
             filteredArrays = [...filteredArrays, filtered];
           }
-          filteredArrays = [...filteredArrays,refItems.filter(((el: any)=>el.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()) )) ];
+          filteredArrays = [...filteredArrays,refItems.filter((el=>el.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()) )) ];
          
-
           if (location != 'All Cities') {
-            filteredArrays = [...filteredArrays,refItems.filter(((el: any) =>el.city == location)) ];
+            filteredArrays = [...filteredArrays,refItems.filter((el=>el.city == location)) ];
           }
 
-          const commonItems = refItems.filter((item :any) =>
-            filteredArrays.every((array : any) => array.includes(item))
+          const commonItems = refItems.filter((item) =>
+            filteredArrays.every((array: any) => array.includes(item))
           );
           setFilteredData(commonItems);
     }, [
@@ -116,7 +108,7 @@ export default function FilteringAgency() {
           {/* End .row */}
 
           <div
-            className="row"
+            className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
             data-aos="fade-up"
             data-aos-delay="100"
           >
@@ -125,7 +117,7 @@ export default function FilteringAgency() {
           {/* End .row */}
 
           <div className="row justify-content-center mt20">
-            <PaginationTwo pageNumber={pageNumber} setPageNumber={setPageNumber} data={sortedFilteredData} pageCapacity={14}/>
+            <PaginationTwo pageNumber={pageNumber} setPageNumber={setPageNumber} data={sortedFilteredData} pageCapacity={15}/>
           </div>
         </div>
       </section>
