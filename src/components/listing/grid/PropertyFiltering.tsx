@@ -126,7 +126,7 @@ export default function PropertyFiltering() {
   };
 
   useEffect(() => {
-    const refItems = listings.filter((elm) => {
+    const refItems = listings.filter((elm: any) => {
       if (listingStatus == 'All') {
         return true;
       } else if (listingStatus == 'Buy') {
