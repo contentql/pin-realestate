@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import listings from "@/data/listings";
-import React, { useState, useEffect } from "react";
-import ListingSidebar from "../../sidebar";
-import TopFilterBar from "./TopFilterBar";
-import FeaturedListings from "./FeatuerdListings";
+import listings from '@/data/listings';
+import { useEffect, useState } from 'react';
+import ListingSidebar from '../sidebar';
+import FeaturedListings from './FeatuerdListings';
+import TopFilterBar from './TopFilterBar';
 
-import PaginationTwo from "../../PaginationTwo";
+import PaginationTwo from '../PaginationTwo';
 
 export default function PropertyFiltering() {
   const [filteredData, setFilteredData] = useState([]);
 
-  const [currentSortingOption, setCurrentSortingOption] = useState("Newest");
+  const [currentSortingOption, setCurrentSortingOption] = useState('Newest');
 
   const [sortedFilteredData, setSortedFilteredData] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
@@ -32,39 +32,39 @@ export default function PropertyFiltering() {
     ]);
   }, [pageNumber, sortedFilteredData]);
 
-  const [listingStatus, setListingStatus] = useState("All");
+  const [listingStatus, setListingStatus] = useState('All');
   const [propertyTypes, setPropertyTypes] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [bedrooms, setBedrooms] = useState(0);
   const [bathroms, setBathroms] = useState(0);
-  const [location, setLocation] = useState("All Cities");
+  const [location, setLocation] = useState('All Cities');
   const [squirefeet, setSquirefeet] = useState([]);
   const [yearBuild, setyearBuild] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const resetFilter = () => {
-    setListingStatus("All");
+    setListingStatus('All');
     setPropertyTypes([]);
     setPriceRange([0, 100000]);
     setBedrooms(0);
     setBathroms(0);
-    setLocation("All Cities");
+    setLocation('All Cities');
     setSquirefeet([]);
     setyearBuild([0, 2050]);
     setCategories([]);
-    setCurrentSortingOption("Newest");
-    document.querySelectorAll(".filterInput").forEach(function (element) {
+    setCurrentSortingOption('Newest');
+    document.querySelectorAll('.filterInput').forEach(function (element) {
       element.value = null;
     });
   };
 
   const handlelistingStatus = (elm) => {
-    setListingStatus((pre) => (pre == elm ? "All" : elm));
+    setListingStatus((pre) => (pre == elm ? 'All' : elm));
   };
 
   const handlepropertyTypes = (elm) => {
-    if (elm == "All") {
+    if (elm == 'All') {
       setPropertyTypes([]);
     } else {
       setPropertyTypes((pre) =>
@@ -92,7 +92,7 @@ export default function PropertyFiltering() {
     setyearBuild(elm);
   };
   const handlecategories = (elm) => {
-    if (elm == "All") {
+    if (elm == 'All') {
       setCategories([]);
     } else {
       setCategories((pre) =>
@@ -127,11 +127,11 @@ export default function PropertyFiltering() {
 
   useEffect(() => {
     const refItems = listings.filter((elm) => {
-      if (listingStatus == "All") {
+      if (listingStatus == 'All') {
         return true;
-      } else if (listingStatus == "Buy") {
+      } else if (listingStatus == 'Buy') {
         return !elm.forRent;
-      } else if (listingStatus == "Rent") {
+      } else if (listingStatus == 'Rent') {
         return elm.forRent;
       }
     });
@@ -166,7 +166,7 @@ export default function PropertyFiltering() {
             .toLocaleLowerCase()
             .includes(searchQuery.toLocaleLowerCase()) ||
           el.features
-            .join(" ")
+            .join(' ')
             .toLocaleLowerCase()
             .includes(searchQuery.toLocaleLowerCase())
       ),
@@ -181,7 +181,7 @@ export default function PropertyFiltering() {
           ),
     ];
 
-    if (location != "All Cities") {
+    if (location != 'All Cities') {
       filteredArrays = [
         ...filteredArrays,
         refItems.filter((el) => el.city == location),
@@ -191,9 +191,9 @@ export default function PropertyFiltering() {
     if (priceRange.length > 0) {
       const filtered = refItems.filter(
         (elm) =>
-          Number(elm.price.split("$")[1].split(",").join("")) >=
+          Number(elm.price.split('$')[1].split(',').join('')) >=
             priceRange[0] &&
-          Number(elm.price.split("$")[1].split(",").join("")) <= priceRange[1]
+          Number(elm.price.split('$')[1].split(',').join('')) <= priceRange[1]
       );
       filteredArrays = [...filteredArrays, filtered];
     }
@@ -235,23 +235,23 @@ export default function PropertyFiltering() {
 
   useEffect(() => {
     setPageNumber(1);
-    if (currentSortingOption == "Newest") {
+    if (currentSortingOption == 'Newest') {
       const sorted = [...filteredData].sort(
         (a, b) => a.yearBuilding - b.yearBuilding
       );
       setSortedFilteredData(sorted);
-    } else if (currentSortingOption.trim() == "Price Low") {
+    } else if (currentSortingOption.trim() == 'Price Low') {
       const sorted = [...filteredData].sort(
         (a, b) =>
-          a.price.split("$")[1].split(",").join("") -
-          b.price.split("$")[1].split(",").join("")
+          a.price.split('$')[1].split(',').join('') -
+          b.price.split('$')[1].split(',').join('')
       );
       setSortedFilteredData(sorted);
-    } else if (currentSortingOption.trim() == "Price High") {
+    } else if (currentSortingOption.trim() == 'Price High') {
       const sorted = [...filteredData].sort(
         (a, b) =>
-          b.price.split("$")[1].split(",").join("") -
-          a.price.split("$")[1].split(",").join("")
+          b.price.split('$')[1].split(',').join('') -
+          a.price.split('$')[1].split(',').join('')
       );
       setSortedFilteredData(sorted);
     } else {
@@ -260,40 +260,40 @@ export default function PropertyFiltering() {
   }, [filteredData, currentSortingOption]);
 
   return (
-    <section className="pt0 pb90 bgc-f7">
-      <div className="container">
-        <div className="row gx-xl-5">
-          <div className="col-lg-4 d-none d-lg-block">
+    <section className='pt0 pb90 bgc-f7'>
+      <div className='container'>
+        <div className='row gx-xl-5'>
+          <div className='col-lg-4 d-none d-lg-block'>
             <ListingSidebar filterFunctions={filterFunctions} />
           </div>
           {/* End .col-lg-4 */}
 
           {/* start mobile filter sidebar */}
           <div
-            class="offcanvas offcanvas-start p-0"
-            tabindex="-1"
-            id="listingSidebarFilter"
-            aria-labelledby="listingSidebarFilterLabel"
+            class='offcanvas offcanvas-start p-0'
+            tabindex='-1'
+            id='listingSidebarFilter'
+            aria-labelledby='listingSidebarFilterLabel'
           >
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="listingSidebarFilterLabel">
+            <div class='offcanvas-header'>
+              <h5 class='offcanvas-title' id='listingSidebarFilterLabel'>
                 Listing Filter
               </h5>
               <button
-                type="button"
-                class="btn-close text-reset"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
+                type='button'
+                class='btn-close text-reset'
+                data-bs-dismiss='offcanvas'
+                aria-label='Close'
               ></button>
             </div>
-            <div class="offcanvas-body p-0">
+            <div class='offcanvas-body p-0'>
               <ListingSidebar filterFunctions={filterFunctions} />
             </div>
           </div>
           {/* End mobile filter sidebar */}
 
-          <div className="col-lg-8">
-            <div className="row align-items-center mb20">
+          <div className='col-lg-8'>
+            <div className='row align-items-center mb20'>
               <TopFilterBar
                 pageContentTrac={pageContentTrac}
                 colstyle={colstyle}
@@ -303,12 +303,12 @@ export default function PropertyFiltering() {
             </div>
             {/* End TopFilterBar */}
 
-            <div className="row mt15">
+            <div className='row mt15'>
               <FeaturedListings colstyle={colstyle} data={pageItems} />
             </div>
             {/* End .row */}
 
-            <div className="row">
+            <div className='row'>
               <PaginationTwo
                 pageCapacity={8}
                 data={sortedFilteredData}

@@ -2,7 +2,7 @@ import DefaultHeader from '@/components/common/DefaultHeader';
 import Footer from '@/components/common/default-footer';
 import MobileMenu from '@/components/common/mobile-menu';
 
-import PropertyFiltering from '@/components/listing/grid-view/grid-default/PropertyFiltering';
+import PropertyFiltering from '@/components/listing/grid/PropertyFiltering';
 
 export const metadata = {
   title: 'Properties page',
