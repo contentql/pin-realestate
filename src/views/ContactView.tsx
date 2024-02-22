@@ -1,3 +1,5 @@
+'use client'
+
 import CallToActions from "@/components/common/CallToActions";
 import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
@@ -5,11 +7,8 @@ import MobileMenu from "@/components/common/mobile-menu";
 import Form from "@/components/pages/contact/Form";
 import Office from "@/components/pages/contact/Office";
 
-export const metadata = {
-  title: "Contact  || Homez - Real Estate NextJS Template",
-};
 
-const Contact = () => {
+export default function ContactPage() {
   return (
     <>
       {/* Main Header Nav */}
@@ -102,6 +101,4 @@ const Contact = () => {
       {/* End Our Footer */}
     </>
   );
-};
-
-export default Contact;
+}

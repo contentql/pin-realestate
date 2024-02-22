@@ -1,5 +1,5 @@
 
-import Home from '@/app/(nav)/home/page';
+import Home from '@/app/(marketing)/home/page';
 import Wrapper from '@/app/layout-wrapper/wrapper';
 
 
