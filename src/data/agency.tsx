@@ -2,7 +2,7 @@
 
 
 
-export const agentsData = [
+export const agencyData = [
     {
       id: 1,
       city:'New York',category: 'Office',

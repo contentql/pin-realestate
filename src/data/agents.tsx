@@ -1,4 +1,4 @@
-module.exports = [
+export const agentsData = [
   {
     id: 1,
     city: "New York",
