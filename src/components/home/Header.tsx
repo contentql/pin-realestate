@@ -1,11 +1,11 @@
 "use client";
 
 import MainMenu from "@/components/common/MainMenu";
-import SidebarPanel from "@/components/common/sidebar-panel";
 import LoginSignupModal from "@/components/common/login-signup-modal";
+import SidebarPanel from "@/components/common/sidebar-panel";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
@@ -82,7 +82,7 @@ const Header = () => {
                     Add Property
                     <i className="fal fa-arrow-right-long" />
                   </Link>
-                  <a
+                  {/* <a
                     className="sidemenu-btn filter-btn-right"
                     href="#"
                     data-bs-toggle="offcanvas"
@@ -104,7 +104,7 @@ const Header = () => {
                       src="/images/icon/nav-icon-dark.svg"
                       alt="humberger menu"
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
               {/* End .col-auto */}
