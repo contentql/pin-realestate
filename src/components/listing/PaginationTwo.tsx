@@ -22,7 +22,7 @@ const PaginationTwo = ({
     <div className='mbp_pagination text-center'>
       <ul className='page_navigation'>
         <li className='page-item'>
-          <span className='page-link pointer' href='#' onClick={handlePrevious}>
+          <span className='page-link pointer' onClick={handlePrevious}>
             <span className='fas fa-angle-left' />
           </span>
         </li>
@@ -30,7 +30,6 @@ const PaginationTwo = ({
         <li
           onClick={() => setPageNumber(1)}
           className={pageNumber == 1 ? 'active page-item' : 'page-item'}
-          href='#'
         >
           <span className='page-link pointer'>1</span>
         </li>
@@ -38,7 +37,6 @@ const PaginationTwo = ({
           <li
             onClick={() => setPageNumber(2)}
             className={pageNumber == 2 ? 'active page-item' : 'page-item'}
-            href='#'
           >
             <span className='page-link pointer'>2</span>
           </li>
@@ -49,7 +47,6 @@ const PaginationTwo = ({
           <li
             onClick={() => setPageNumber(3)}
             className={pageNumber == 3 ? 'active page-item' : 'page-item'}
-            href='#'
           >
             <span className='page-link pointer'>3</span>
           </li>
@@ -87,7 +84,7 @@ const PaginationTwo = ({
         )}
 
         <li className='page-item pointer'>
-          <span className='page-link' href='#' onClick={handleNext}>
+          <span className='page-link' onClick={handleNext}>
             <span className='fas fa-angle-right' />
           </span>
         </li>

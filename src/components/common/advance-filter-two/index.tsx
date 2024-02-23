@@ -167,7 +167,7 @@ const AdvanceFilterModal = ({ filterFunctions }: any) => {
                         onChange={(e) =>
                           filterFunctions?.handlesquirefeet([
                             e.target.value,
-                            document.getElementById('maxFeet3').value / 1,
+                            document.getElementById('maxFeet3')?.value / 1,
                           ])
                         }
                         placeholder='Min.'

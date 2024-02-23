@@ -23,7 +23,7 @@ const PriceRange = ({ filterFunctions }: any) => {
             min: filterFunctions?.priceRange[0],
             max: filterFunctions?.priceRange[1],
           }}
-          onChange={(value) => handleOnChange(value)}
+          onChange={(value: any) => handleOnChange(value)}
           id='slider'
         />
         <div className='d-flex align-items-center'>

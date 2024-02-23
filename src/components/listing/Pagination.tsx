@@ -30,11 +30,7 @@ const Pagination = () => {
       key={page}
       className={`page-item${page === currentPage ? ' active' : ''}`}
     >
-      <span
-        className='page-link pointer'
-        href='#'
-        onClick={() => handlePageClick(page)}
-      >
+      <span className='page-link pointer' onClick={() => handlePageClick(page)}>
         {page}
       </span>
     </li>
@@ -46,7 +42,6 @@ const Pagination = () => {
         <li className='page-item'>
           <span
             className='page-link pointer'
-            href='#'
             onClick={() => handlePageClick(currentPage - 1)}
           >
             <span className='fas fa-angle-left' />
@@ -55,7 +50,6 @@ const Pagination = () => {
         {renderPageNumbers}
         <li className='page-item pointer'>
           <span
-            href='#'
             className='page-link'
             onClick={() => handlePageClick(currentPage + 1)}
           >
