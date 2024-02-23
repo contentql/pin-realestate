@@ -75,7 +75,7 @@ const SingleReview = () => {
                     width={110}
                     height={90}
                   >
-                    {({ ref, open }) => (
+                    {({ ref, open }: any) => (
                       <Image
                         width={110}
                         height={90}

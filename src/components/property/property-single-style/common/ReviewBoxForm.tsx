@@ -11,7 +11,7 @@ const ReviewBoxForm = () => {
   ];
 
   const customStyles = {
-    option: (styles, { isFocused, isSelected, isHovered }) => {
+    option: (styles: any, { isFocused, isSelected, isHovered }: any) => {
       return {
         ...styles,
         backgroundColor: isSelected
@@ -25,7 +25,7 @@ const ReviewBoxForm = () => {
     },
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault(); // Prevents the default form submission behavior
     // Additional logic or API calls can be added here
   };

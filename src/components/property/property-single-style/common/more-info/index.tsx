@@ -12,7 +12,7 @@ const InfoWithForm = () => {
   ];
 
   const customStyles = {
-    option: (styles, { isFocused, isSelected, isHovered }) => {
+    option: (styles: any, { isFocused, isSelected, isHovered }: any) => {
       return {
         ...styles,
         backgroundColor: isSelected

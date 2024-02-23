@@ -82,7 +82,7 @@ const MortgageCalculator = () => {
                 <label className="fw600 ff-heading mb-2">
                   Loan Terms (Years)
                 </label>
-                <input type="text" className="form-control" placeholder={12} />
+                <input type="text" className="form-control" placeholder="12" />
                 required
               </div>
             </div>

@@ -2125,6 +2125,11 @@
   resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.55.2.tgz#6e5a1c257aeda3861a919a56fb9f369468e79e15"
   integrity sha512-JcTwzkxskR8DN/nnX96Pie3gGN3WHiPpuxzuQ9z3516o1bB243d8w8DHUJ8BohuzoT1o3HUFta2ns/mkZC8KRw==
 
+"@types/google.maps@^3.55.3":
+  version "3.55.3"
+  resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.55.3.tgz#15ec847b64d80fe3602fda77a5ab8dfff3a0dee1"
+  integrity sha512-UF1nfj8h/Vj4wEcdjv5v314HkDB6AWaN34Fr/u+6Oaj+GSRlG+k4c3DnJNKv7S23RvDdvIPt4ON6ONJpzNnarA==
+
 "@types/html-minifier-terser@^6.0.0":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz#4fc33a00c1d0c16987b1a20cf92d20614c55ac35"

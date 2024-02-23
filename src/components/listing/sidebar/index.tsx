@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import SearchBox from "./SearchBox";
@@ -12,7 +12,7 @@ import SquareFeet from "./SquareFeet";
 import YearBuilt from "./YearBuilt";
 import OtherFeatures from "./OtherFeatures";
 
-const ListingSidebar = ({filterFunctions}) => {
+const ListingSidebar = ({ filterFunctions }: any) => {
   return (
     <div className="list-sidebar-style1">
       <div className="widget-wrapper">
@@ -35,7 +35,7 @@ const ListingSidebar = ({filterFunctions}) => {
           <PropertyType filterFunctions={filterFunctions} />
         </div>
       </div>
-      
+
       {/* End .widget-wrapper */}
 
       <div className="widget-wrapper">
@@ -58,7 +58,7 @@ const ListingSidebar = ({filterFunctions}) => {
       <div className="widget-wrapper">
         <h6 className="list-title">Bathrooms</h6>
         <div className="d-flex">
-          <Bathroom filterFunctions={filterFunctions}  />
+          <Bathroom filterFunctions={filterFunctions} />
         </div>
       </div>
       {/* End .widget-wrapper */}
@@ -73,13 +73,13 @@ const ListingSidebar = ({filterFunctions}) => {
 
       <div className="widget-wrapper">
         <h6 className="list-title">Square Feet</h6>
-        <SquareFeet filterFunctions={filterFunctions}/>
+        <SquareFeet filterFunctions={filterFunctions} />
       </div>
       {/* End .widget-wrapper */}
 
       <div className="widget-wrapper">
         <h6 className="list-title">Year Built</h6>
-        <YearBuilt filterFunctions={filterFunctions}/>
+        <YearBuilt filterFunctions={filterFunctions} />
       </div>
       {/* End .widget-wrapper */}
 
@@ -126,7 +126,11 @@ const ListingSidebar = ({filterFunctions}) => {
       {/* End .widget-wrapper */}
 
       <div className="reset-area d-flex align-items-center justify-content-between">
-        <div onClick={()=>filterFunctions.resetFilter()} className="reset-button cursor" href="#">
+        <div
+          onClick={() => filterFunctions.resetFilter()}
+          className="reset-button cursor"
+          // href="#"
+        >
           <span className="flaticon-turn-back" />
           <u>Reset all filters</u>
         </div>

@@ -14,8 +14,8 @@ const images = [
   "/images/listings/listing-single-6-4.jpg",
 ];
 
-const PropertyGallery = ({ id }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+const PropertyGallery = ({ id }: { id: any }) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
 
   return (

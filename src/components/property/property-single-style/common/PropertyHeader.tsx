@@ -3,7 +3,7 @@
 import listings from "@/data/listings";
 import React from "react";
 
-const PropertyHeader = ({ id }) => {
+const PropertyHeader = ({ id }: { id: any }) => {
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   return (
     <>

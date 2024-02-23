@@ -90,7 +90,7 @@ const PropertyNearby = () => {
               role="tabpanel"
               aria-labelledby={`nav-item${index + 1}-tab`}
             >
-              {tab.details.map((detail, detailIndex) => (
+              {tab.details.map((detail: any, detailIndex) => (
                 <div
                   key={detailIndex}
                   className="nearby d-sm-flex align-items-center mb20"

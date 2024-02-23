@@ -64,7 +64,7 @@ const users = [
   },
 ];
 
-const UserItem = ({ user }) => {
+const UserItem = ({ user }: any) => {
   return (
     <div className="list-item">
       <a href="#">

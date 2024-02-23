@@ -29,7 +29,7 @@ const AdvanceFilterModal = () => {
   ];
 
   const customStyles = {
-    option: (styles, { isFocused, isSelected, isHovered }) => {
+    option: (styles: any, { isFocused, isSelected, isHovered }: any) => {
       return {
         ...styles,
         backgroundColor: isSelected
@@ -194,7 +194,12 @@ const AdvanceFilterModal = () => {
             <u>Reset all filters</u>
           </button>
           <div className="btn-area">
-            <button data-bs-dismiss="modal" type="submit" className="ud-btn btn-thm" onClick={() => router.push("/map-v1")} >
+            <button
+              data-bs-dismiss="modal"
+              type="submit"
+              className="ud-btn btn-thm"
+              onClick={() => router.push("/map-v1")}
+            >
               <span className="flaticon-search align-text-top pr10" />
               Search
             </button>

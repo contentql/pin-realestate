@@ -29,7 +29,7 @@ const SignIn = () => {
       <div className="checkbox-style1 d-block d-sm-flex align-items-center justify-content-between mb10">
         <label className="custom_checkbox fz14 ff-heading">
           Remember me
-          <input type="checkbox" defaultChecked="checked" />
+          <input type="checkbox" defaultChecked={false} />
           <span className="checkmark" />
         </label>
         <a className="fz14 ff-heading" href="#">

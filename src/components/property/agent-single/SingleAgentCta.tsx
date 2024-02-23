@@ -1,14 +1,9 @@
-import {agentsData} from "@/data/agents";
+import { agentsData } from "@/data/agents";
 import Image from "next/image";
 import React from "react";
 
-
-
-const SingleAgentCta = ({id}) => {
-
-  const data = agentsData.filter((elm) => elm.id == id)[0] || agents[0];
-
-
+const SingleAgentCta = ({ id }: { id: any }) => {
+  const data = agentsData.filter((elm) => elm.id == id)[0] || agentsData[0];
 
   const agentData = {
     name: data.name,
@@ -30,7 +25,7 @@ const SingleAgentCta = ({id}) => {
           <Image
             width={172}
             height={172}
-            style={{borderRadius:'50%',objectFit:'cover'}}
+            style={{ borderRadius: "50%", objectFit: "cover" }}
             src={data.image}
             alt="agents"
           />

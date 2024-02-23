@@ -56,7 +56,7 @@ const chatMessages = [
   },
 ];
 
-const ChatMessage = ({ message }) => {
+const ChatMessage = ({ message }: any) => {
   return (
     <li className={message.className}>
       <div
