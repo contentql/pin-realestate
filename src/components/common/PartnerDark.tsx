@@ -1,10 +1,10 @@
-"use client";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper.min.css";
+'use client';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.min.css';
 
 const PartnerDark = () => {
-  const partnerImages = ["7", "8", "9", "10", "11"];
+  const partnerImages = ['7', '8', '9', '10', '11'];
 
   return (
     <Swiper
@@ -29,17 +29,17 @@ const PartnerDark = () => {
         delay: 3000, // Adjust the autoplay delay (in milliseconds) as per your preference
         disableOnInteraction: false,
       }}
-      className="swiper-container"
+      className='swiper-container'
     >
       {partnerImages.map((imageName, index) => (
         <SwiperSlide key={index}>
-          <div className="item">
-            <div className="partner_item">
+          <div className='item'>
+            <div className='partner_item'>
               <Image
                 width={83}
                 height={20}
-                style={{ objectFit: "contain" }}
-                className="wa m-auto"
+                style={{ objectFit: 'contain' }}
+                className='wa m-auto'
                 src={`/images/partners/${imageName}.png`}
                 alt={imageName}
               />

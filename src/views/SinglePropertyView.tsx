@@ -1,36 +1,35 @@
 // "use client";
-import React from 'react';
-import DefaultHeader from '../../../../../components/common/DefaultHeader';
-import Footer from '../../../../../components/common/default-footer';
-import MobileMenu from '../../../../../components/common/mobile-menu';
-import EnergyClass from '../../../../../components/property/property-single-style/common/EnergyClass';
-import FloorPlans from '../../../../../components/property/property-single-style/common/FloorPlans';
-import HomeValueChart from '../../../../../components/property/property-single-style/common/HomeValueChart';
-import MortgageCalculator from '../../../../../components/property/property-single-style/common/MortgageCalculator';
-import NearbySimilarProperty from '../../../../../components/property/property-single-style/common/NearbySimilarProperty';
-import OverView from '../../../../../components/property/property-single-style/common/OverView';
-import PropertyAddress from '../../../../../components/property/property-single-style/common/PropertyAddress';
-import PropertyDetails from '../../../../../components/property/property-single-style/common/PropertyDetails';
-import PropertyFeaturesAminites from '../../../../../components/property/property-single-style/common/PropertyFeaturesAminites';
-import PropertyHeader from '../../../../../components/property/property-single-style/common/PropertyHeader';
-import PropertyNearby from '../../../../../components/property/property-single-style/common/PropertyNearby';
-import PropertyVideo from '../../../../../components/property/property-single-style/common/PropertyVideo';
-import ProperytyDescriptions from '../../../../../components/property/property-single-style/common/ProperytyDescriptions';
-import ReviewBoxForm from '../../../../../components/property/property-single-style/common/ReviewBoxForm';
-import VirtualTour360 from '../../../../../components/property/property-single-style/common/VirtualTour360';
-import WalkScore from '../../../../../components/property/property-single-style/common/WalkScore';
-import InfoWithForm from '../../../../../components/property/property-single-style/common/more-info';
-import PropertyViews from '../../../../../components/property/property-single-style/common/property-view';
-import AllReviews from '../../../../../components/property/property-single-style/common/reviews';
-import ContactWithAgent from '../../../../../components/property/property-single-style/sidebar/ContactWithAgent';
-import ScheduleTour from '../../../../../components/property/property-single-style/sidebar/ScheduleTour';
-import PropertyGallery from '../../../../../components/property/property-single-style/single-v6/PropertyGallery';
+import DefaultHeader from '@/components/common/DefaultHeader';
+import Footer from '@/components/common/default-footer';
+import MobileMenu from '@/components/common/mobile-menu';
+import EnergyClass from '@/components/property/property-single-style/common/EnergyClass';
+import FloorPlans from '@/components/property/property-single-style/common/FloorPlans';
+import HomeValueChart from '@/components/property/property-single-style/common/HomeValueChart';
+import MortgageCalculator from '@/components/property/property-single-style/common/MortgageCalculator';
+import NearbySimilarProperty from '@/components/property/property-single-style/common/NearbySimilarProperty';
+import OverView from '@/components/property/property-single-style/common/OverView';
+import PropertyAddress from '@/components/property/property-single-style/common/PropertyAddress';
+import PropertyDetails from '@/components/property/property-single-style/common/PropertyDetails';
+import PropertyFeaturesAminites from '@/components/property/property-single-style/common/PropertyFeaturesAminites';
+import PropertyHeader from '@/components/property/property-single-style/common/PropertyHeader';
+import PropertyNearby from '@/components/property/property-single-style/common/PropertyNearby';
+import PropertyVideo from '@/components/property/property-single-style/common/PropertyVideo';
+import ProperytyDescriptions from '@/components/property/property-single-style/common/ProperytyDescriptions';
+import ReviewBoxForm from '@/components/property/property-single-style/common/ReviewBoxForm';
+import VirtualTour360 from '@/components/property/property-single-style/common/VirtualTour360';
+import WalkScore from '@/components/property/property-single-style/common/WalkScore';
+import InfoWithForm from '@/components/property/property-single-style/common/more-info';
+import PropertyViews from '@/components/property/property-single-style/common/property-view';
+import AllReviews from '@/components/property/property-single-style/common/reviews';
+import ContactWithAgent from '@/components/property/property-single-style/sidebar/ContactWithAgent';
+import ScheduleTour from '@/components/property/property-single-style/sidebar/ScheduleTour';
+import PropertyGallery from '@/components/property/property-single-style/single-v6/PropertyGallery';
 
 export const metadata = {
   title: 'Property',
 };
 
-const Property = ({ params = 2 }) => {
+const Property = ({ params }: { params: any }) => {
   return (
     <>
       {/* Main Header Nav */}
@@ -55,7 +54,7 @@ const Property = ({ params = 2 }) => {
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Overview</h4>
                 <div className='row'>
-                  <OverView />
+                  <OverView id={params.id} />
                 </div>
               </div>
               {/* End .ps-widget */}

@@ -1,19 +1,16 @@
+'use client';
 
-'use client'
-
-import React from "react";
-
-const SearchBox = ({filterFunctions}) => {
+const SearchBox = ({ filterFunctions }: any) => {
   return (
-    <div className="search_area">
+    <div className='search_area'>
       <input
-        type="text"
-        className="form-control"
-        placeholder="What are you looking for?"
-        onChange={(e)=>filterFunctions?.setSearchQuery(e.target.value)}
+        type='text'
+        className='form-control'
+        placeholder='What are you looking for?'
+        onChange={(e) => filterFunctions?.setSearchQuery(e.target.value)}
       />
       <label>
-        <span className="flaticon-search" />
+        <span className='flaticon-search' />
       </label>
     </div>
   );

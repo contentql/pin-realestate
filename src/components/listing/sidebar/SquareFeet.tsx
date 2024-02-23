@@ -1,36 +1,36 @@
-"use client";
+'use client';
 
-const SquareFeet = ({ filterFunctions }) => {
+const SquareFeet = ({ filterFunctions }: any) => {
   return (
-    <div className="space-area">
-      <div className="d-flex align-items-center justify-content-between">
-        <div className="form-style1">
+    <div className='space-area'>
+      <div className='d-flex align-items-center justify-content-between'>
+        <div className='form-style1'>
           <input
-            type="number"
+            type='number'
             onChange={(e) =>
               filterFunctions?.handlesquirefeet([
                 e.target.value,
-                document.getElementById("maxFeet").value / 1,
+                document.getElementById('maxFeet').value / 1,
               ])
             }
-            className="form-control filterInput"
-            placeholder="Min."
-            id="minFeet"
+            className='form-control filterInput'
+            placeholder='Min.'
+            id='minFeet'
           />
         </div>
-        <span className="dark-color">-</span>
-        <div className="form-style1">
+        <span className='dark-color'>-</span>
+        <div className='form-style1'>
           <input
-            type="number"
-            id="maxFeet"
+            type='number'
+            id='maxFeet'
             onChange={(e) =>
               filterFunctions?.handlesquirefeet([
-                document.getElementById("minFeet").value / 1,
+                document.getElementById('minFeet').value / 1,
                 e.target.value,
               ])
             }
-            className="form-control filterInput"
-            placeholder="Max"
+            className='form-control filterInput'
+            placeholder='Max'
           />
         </div>
       </div>

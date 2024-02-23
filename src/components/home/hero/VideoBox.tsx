@@ -1,6 +1,6 @@
-"use client";
-import { useState } from "react";
-import ModalVideo from "react-modal-video";
+'use client';
+import { useState } from 'react';
+import ModalVideo from 'react-modal-video';
 
 const VideoBox = () => {
   const [isOpen, setOpen] = useState(false);
@@ -8,21 +8,21 @@ const VideoBox = () => {
   return (
     <>
       <ModalVideo
-        channel="youtube"
+        channel='youtube'
         autoplay
         isOpen={isOpen}
-        videoId="7EHnQ0VM4KY"
+        videoId='7EHnQ0VM4KY'
         onClose={() => setOpen(false)}
       />
 
       <button
-        style={{ border: "none", background: "transparent" }}
-        className="popup-iframe popup-youtube bounce-y d-flex align-items-center justify-content-start justify-content-xl-center fz14 fw600 ff-heading"
+        style={{ border: 'none', background: 'transparent' }}
+        className='popup-iframe popup-youtube bounce-y d-flex align-items-center justify-content-start justify-content-xl-center fz14 fw600 ff-heading'
       >
-        Watch Video{" "}
+        Watch Video{' '}
         <span
-          className="video-icon flaticon-play fz12 ml20"
-          role="button"
+          className='video-icon flaticon-play fz12 ml20'
+          role='button'
           onClick={() => setOpen(true)}
         ></span>
       </button>

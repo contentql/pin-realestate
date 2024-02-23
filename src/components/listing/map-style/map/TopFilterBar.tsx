@@ -39,6 +39,22 @@ const TopFilterBar = ({
               <option>Price High</option>
             </select>
           </div>
+          <div
+            className={`pl15 pr15 bdrl1 bdrr1 d-none d-md-block cursor  ${
+              !colstyle ? 'menuActive' : '#'
+            } `}
+            onClick={() => setColstyle(false)}
+          >
+            Grid
+          </div>
+          <div
+            className={`pl15 d-none d-md-block cursor  ${
+              colstyle ? 'menuActive' : '#'
+            }`}
+            onClick={() => setColstyle(true)}
+          >
+            List
+          </div>
         </div>
       </div>
       {/* End .col-sm-6 */}

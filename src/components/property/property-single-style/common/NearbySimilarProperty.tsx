@@ -1,10 +1,10 @@
-"use client";
-import listings from "@/data/listings";
-import Image from "next/image";
-import Link from "next/link";
-import { Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
+'use client';
+import listings from '@/data/listings';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.min.css';
 
 const NearbySimilarProperty = () => {
   return (
@@ -13,11 +13,11 @@ const NearbySimilarProperty = () => {
         spaceBetween={30}
         modules={[Navigation, Pagination]}
         navigation={{
-          nextEl: ".featured-next__active",
-          prevEl: ".featured-prev__active",
+          nextEl: '.featured-next__active',
+          prevEl: '.featured-prev__active',
         }}
         pagination={{
-          el: ".featured-pagination__active",
+          el: '.featured-pagination__active',
           clickable: true,
         }}
         slidesPerView={1}
@@ -38,56 +38,58 @@ const NearbySimilarProperty = () => {
       >
         {listings.slice(0, 5).map((listing) => (
           <SwiperSlide key={listing.id}>
-            <div className="item">
-              <div className="listing-style1">
-                <div className="list-thumb">
+            <div className='item'>
+              <div className='listing-style1'>
+                <div className='list-thumb'>
                   <Image
                     width={382}
                     height={248}
-                    className="w-100 h-100 cover"
+                    className='w-100 h-100 cover'
                     src={listing.image}
-                    alt="listings"
+                    alt='listings'
                   />
-                  <div className="sale-sticker-wrap">
+                  <div className='sale-sticker-wrap'>
                     {listing.forRent && (
-                      <div className="list-tag rounded-0 fz12">
-                        <span className="flaticon-electricity" />
+                      <div className='list-tag rounded-0 fz12'>
+                        <span className='flaticon-electricity' />
                         FEATURED
                       </div>
                     )}
                   </div>
-                  <div className="list-price">
+                  <div className='list-price'>
                     {listing.price} / <span>mo</span>
                   </div>
                 </div>
-                <div className="list-content">
-                  <h6 className="list-title">
-                    <Link href={`/single-v1/${listing.id}`}>{listing.title}</Link>
+                <div className='list-content'>
+                  <h6 className='list-title'>
+                    <Link href={`/property/${listing.id}`}>
+                      {listing.title}
+                    </Link>
                   </h6>
-                  <p className="list-text">{listing.location}</p>
-                  <div className="list-meta d-flex align-items-center">
-                    <a href="#">
-                      <span className="flaticon-bed" /> {listing.bed} bed
+                  <p className='list-text'>{listing.location}</p>
+                  <div className='list-meta d-flex align-items-center'>
+                    <a href='#'>
+                      <span className='flaticon-bed' /> {listing.bed} bed
                     </a>
-                    <a href="#">
-                      <span className="flaticon-shower" /> {listing.bath} bath
+                    <a href='#'>
+                      <span className='flaticon-shower' /> {listing.bath} bath
                     </a>
-                    <a href="#">
-                      <span className="flaticon-expand" /> {listing.sqft} sqft
+                    <a href='#'>
+                      <span className='flaticon-expand' /> {listing.sqft} sqft
                     </a>
                   </div>
-                  <hr className="mt-2 mb-2" />
-                  <div className="list-meta2 d-flex justify-content-between align-items-center">
-                    <span className="for-what">For Rent</span>
-                    <div className="icons d-flex align-items-center">
-                      <a href="#">
-                        <span className="flaticon-fullscreen" />
+                  <hr className='mt-2 mb-2' />
+                  <div className='list-meta2 d-flex justify-content-between align-items-center'>
+                    <span className='for-what'>For Rent</span>
+                    <div className='icons d-flex align-items-center'>
+                      <a href='#'>
+                        <span className='flaticon-fullscreen' />
                       </a>
-                      <a href="#">
-                        <span className="flaticon-new-tab" />
+                      <a href='#'>
+                        <span className='flaticon-new-tab' />
                       </a>
-                      <a href="#">
-                        <span className="flaticon-like" />
+                      <a href='#'>
+                        <span className='flaticon-like' />
                       </a>
                     </div>
                   </div>

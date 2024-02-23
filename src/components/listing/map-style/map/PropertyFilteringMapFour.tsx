@@ -2,32 +2,30 @@
 
 import listings from '@/data/listings';
 import { useEffect, useState } from 'react';
-import ListingSidebar from '../sidebar';
+import PaginationTwo from '../../PaginationTwo';
+import ListingSidebar from '../../sidebar';
+import ListingMap1 from '../ListingMap1';
 import FeaturedListings from './FeatuerdListings';
 import TopFilterBar from './TopFilterBar';
-
-import PaginationTwo from '../PaginationTwo';
-
-export default function PropertyFiltering() {
+export default function PropertyFilteringMapFour() {
   const [filteredData, setFilteredData] = useState<any>([]);
 
   const [currentSortingOption, setCurrentSortingOption] = useState('Newest');
 
   const [sortedFilteredData, setSortedFilteredData] = useState<any>([]);
-  const [pageNumber, setPageNumber] = useState(1);
 
+  const [pageNumber, setPageNumber] = useState(1);
   const [colstyle, setColstyle] = useState(false);
   const [pageItems, setPageItems] = useState<any>([]);
-
   const [pageContentTrac, setPageContentTrac] = useState<any>([]);
 
   useEffect(() => {
     setPageItems(
-      sortedFilteredData.slice((pageNumber - 1) * 8, pageNumber * 8)
+      sortedFilteredData.slice((pageNumber - 1) * 4, pageNumber * 4)
     );
     setPageContentTrac([
-      (pageNumber - 1) * 8 + 1,
-      pageNumber * 8,
+      (pageNumber - 1) * 4 + 1,
+      pageNumber * 4,
       sortedFilteredData.length,
     ]);
   }, [pageNumber, sortedFilteredData]);
@@ -38,10 +36,9 @@ export default function PropertyFiltering() {
   const [bedrooms, setBedrooms] = useState(0);
   const [bathroms, setBathroms] = useState(0);
   const [location, setLocation] = useState('All Cities');
-  const [squirefeet, setSquirefeet] = useState([]);
+  const [squirefeet, setSquirefeet] = useState<any>([]);
   const [yearBuild, setyearBuild] = useState<any>([]);
   const [categories, setCategories] = useState<any>([]);
-  const [searchQuery, setSearchQuery] = useState('');
 
   const resetFilter = () => {
     setListingStatus('All');
@@ -57,7 +54,12 @@ export default function PropertyFiltering() {
     document.querySelectorAll('.filterInput').forEach(function (element: any) {
       element.value = null;
     });
+
+    document.querySelectorAll('.filterSelect').forEach(function (element: any) {
+      element.value = 'All Cities';
+    });
   };
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handlelistingStatus = (elm: any) => {
     setListingStatus((pre) => (pre == elm ? 'All' : elm));
@@ -130,7 +132,7 @@ export default function PropertyFiltering() {
   };
 
   useEffect(() => {
-    const refItems = listings.filter((elm: any) => {
+    const refItems = listings.filter((elm) => {
       if (listingStatus == 'All') {
         return true;
       } else if (listingStatus == 'Buy') {
@@ -143,7 +145,7 @@ export default function PropertyFiltering() {
     let filteredArrays: any[] = [];
 
     if (propertyTypes.length > 0) {
-      const filtered = refItems.filter((elm: any) =>
+      const filtered = refItems.filter((elm) =>
         propertyTypes.includes(elm.propertyType)
       );
       filteredArrays = [...filteredArrays, filtered];
@@ -201,20 +203,16 @@ export default function PropertyFiltering() {
       );
       filteredArrays = [...filteredArrays, filtered];
     }
-
     if (squirefeet.length > 0 && squirefeet[1]) {
-      console.log(squirefeet);
       const filtered = refItems.filter(
-        (elm) =>
-          elm.sqft >= Number(squirefeet[0]) && elm.sqft <= Number(squirefeet[1])
+        (elm) => elm.sqft >= squirefeet[0] && elm.sqft <= squirefeet[1]
       );
       filteredArrays = [...filteredArrays, filtered];
     }
     if (yearBuild.length > 0) {
       const filtered = refItems.filter(
         (elm) =>
-          elm.yearBuilding >= Number(yearBuild[0]) &&
-          elm.yearBuilding <= Number(yearBuild[1])
+          elm.yearBuilding >= yearBuild[0] && elm.yearBuilding <= yearBuild[1]
       );
       filteredArrays = [...filteredArrays, filtered];
     }
@@ -262,71 +260,88 @@ export default function PropertyFiltering() {
       setSortedFilteredData(filteredData);
     }
   }, [filteredData, currentSortingOption]);
-
   return (
-    <section className='pt0 pb90 bgc-f7'>
-      <div className='container'>
-        <div className='row gx-xl-5'>
-          <div className='col-lg-4 d-none d-lg-block'>
-            <ListingSidebar filterFunctions={filterFunctions} />
-          </div>
-          {/* End .col-lg-4 */}
-
-          {/* start mobile filter sidebar */}
-          <div
-            className='offcanvas offcanvas-start p-0'
-            tabIndex={-1}
-            id='listingSidebarFilter'
-            aria-labelledby='listingSidebarFilterLabel'
-          >
-            <div className='offcanvas-header'>
-              <h5 className='offcanvas-title' id='listingSidebarFilterLabel'>
-                Listing Filter
-              </h5>
-              <button
-                type='button'
-                className='btn-close text-reset'
-                data-bs-dismiss='offcanvas'
-                aria-label='Close'
-              ></button>
-            </div>
-            <div className='offcanvas-body p-0'>
-              <ListingSidebar filterFunctions={filterFunctions} />
-            </div>
-          </div>
-          {/* End mobile filter sidebar */}
-
-          <div className='col-lg-8'>
-            <div className='row align-items-center mb20'>
-              <TopFilterBar
-                pageContentTrac={pageContentTrac}
-                colstyle={colstyle}
-                setColstyle={setColstyle}
-                setCurrentSortingOption={setCurrentSortingOption}
-              />
-            </div>
-            {/* End TopFilterBar */}
-
-            <div className='row mt15'>
-              <FeaturedListings colstyle={colstyle} data={pageItems} />
-            </div>
-            {/* End .row */}
-
-            <div className='row'>
-              <PaginationTwo
-                pageCapacity={8}
-                data={sortedFilteredData}
-                pageNumber={pageNumber}
-                setPageNumber={setPageNumber}
-              />
-            </div>
-            {/* End .row */}
-          </div>
-          {/* End .col-lg-8 */}
+    <>
+      <div
+        className='offcanvas offcanvas-start p-0'
+        tabIndex={-1}
+        id='listingSidebarFilter'
+        aria-labelledby='listingSidebarFilterLabel'
+      >
+        <div className='offcanvas-header'>
+          <h5 className='offcanvas-title' id='listingSidebarFilterLabel'>
+            Listing Filter
+          </h5>
+          <button
+            type='button'
+            className='btn-close text-reset'
+            data-bs-dismiss='offcanvas'
+            aria-label='Close'
+          ></button>
         </div>
-        {/* End .row */}
+        <div className='offcanvas-body p-0'>
+          <ListingSidebar filterFunctions={filterFunctions} />
+        </div>
       </div>
-      {/* End .container */}
-    </section>
+      {/* End  filter sidebar */}
+
+      {/* Property Filtering */}
+      <section className='p-0 bgc-f7'>
+        <div className='container-fluid'>
+          <div className='row' data-aos='fade-up' data-aos-duration='200'>
+            <div className='col-xl-5'>
+              <div className='half_map_area_content mt30'>
+                <h4 className='mb-1'>New York Homes for Sale</h4>
+
+                <div className='row align-items-center mb10'>
+                  <TopFilterBar
+                    pageContentTrac={pageContentTrac}
+                    colstyle={colstyle}
+                    setColstyle={setColstyle}
+                    setCurrentSortingOption={setCurrentSortingOption}
+                  />
+                </div>
+                <div className='row'>
+                  <FeaturedListings colstyle={colstyle} data={pageItems} />
+                </div>
+                {/* End .row */}
+
+                <div className='row text-center'>
+                  <PaginationTwo
+                    pageCapacity={4}
+                    data={sortedFilteredData}
+                    pageNumber={pageNumber}
+                    setPageNumber={setPageNumber}
+                  />
+                </div>
+                {/* End .row */}
+              </div>
+              {/* End .half_map_area_content */}
+            </div>
+            {/* End col-5 */}
+
+            <div className='col-xl-7 overflow-hidden position-relative'>
+              <div className='half_map_area'>
+                <a
+                  data-bs-toggle='offcanvas'
+                  href='#listingSidebarFilter'
+                  role='button'
+                  aria-controls='listingSidebarFilter'
+                  className='filter-btn-left mobile-filter-btn map-page bgc-dark text-white d-block'
+                >
+                  <span className='flaticon-settings'></span> Show Filter
+                </a>
+                <div className=' map-canvas half_style'>
+                  <ListingMap1 />
+                </div>
+              </div>
+            </div>
+            {/* End col-7 */}
+          </div>
+          {/* End TopFilterBar */}
+        </div>
+        {/* End .container */}
+      </section>
+    </>
   );
 }
