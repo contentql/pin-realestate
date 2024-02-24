@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { trpc } from '@/trpc/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { httpBatchLink } from '@trpc/client';
-import { PropsWithChildren, useState } from 'react';
+import { trpc } from "@/trpc/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { httpBatchLink } from "@trpc/client";
+import { PropsWithChildren, useState } from "react";
 
 const Providers = ({ children }: PropsWithChildren) => {
   const [queryClient] = useState(() => new QueryClient());
@@ -15,7 +15,7 @@ const Providers = ({ children }: PropsWithChildren) => {
           fetch(url, options) {
             return fetch(url, {
               ...options,
-              credentials: 'include',
+              credentials: "include",
             });
           },
         }),
