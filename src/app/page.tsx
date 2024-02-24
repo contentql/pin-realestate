@@ -1,7 +1,9 @@
-export default function Home() {
-  return (
-    <>
-      <div>This is home page</div>
-    </>
-  );
+import HomePage from '@/views/HomePageView';
+
+export const metadata = {
+  title: 'Home Page',
+};
+
+export default function MainRoot() {
+  return <HomePage />;
 }
