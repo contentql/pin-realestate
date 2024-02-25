@@ -85,7 +85,9 @@ export interface Feature {
   updatedAt: string;
   createdAt: string;
 }
-/* via the `definition` "media".
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
  */
 export interface Media {
   id: string;
