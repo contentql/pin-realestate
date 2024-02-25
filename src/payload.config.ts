@@ -1,26 +1,29 @@
-import { buildConfig } from 'payload/config';
-import { webpackBundler } from '@payloadcms/bundler-webpack';
-import { mongooseAdapter } from '@payloadcms/db-mongodb';
-import { slateEditor } from '@payloadcms/richtext-slate';
-import path from 'path';
-import Users from './collections/Users';
-import dotenv from 'dotenv';
+import { buildConfig } from "payload/config";
+import { webpackBundler } from "@payloadcms/bundler-webpack";
+import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { slateEditor } from "@payloadcms/richtext-slate";
+import path from "path";
+import Users from "./collections/Users";
+import dotenv from "dotenv";
+import Properties from "./collections/Properties";
+import Tags from "./collections/Tags";
+import Features from "./collections/Features";
 
 dotenv.config({
-  path: path.resolve(__dirname, '../.env'),
+  path: path.resolve(__dirname, "../.env"),
 });
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL!,
-  collections: [Users],
+  collections: [Users, Properties, Tags, Features],
   routes: {
-    admin: '/admin',
+    admin: "/admin",
   },
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
     meta: {
-      titleSuffix: '- ContentQL',
+      titleSuffix: "- ContentQL",
     },
   },
   rateLimit: {
@@ -31,7 +34,7 @@ export default buildConfig({
     url: process.env.MONGODB_URL!,
   }),
   typescript: {
-    outputFile: path.resolve(__dirname, 'payload-types.ts'),
+    outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
   cors: [process.env.NEXT_PUBLIC_SERVER_URL!].filter(Boolean),
   csrf: [process.env.NEXT_PUBLIC_SERVER_URL!].filter(Boolean),
