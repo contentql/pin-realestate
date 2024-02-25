@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'payload-in-next-production.up.railway.app', //TODO: update accordingly
+        hostname: 'pin-realestate-production.up.railway.app',
       },
     ],
   },
