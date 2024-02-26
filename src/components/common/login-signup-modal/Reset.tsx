@@ -40,6 +40,18 @@ const Reset = () => {
 
       console.error('Something went wrong. Please try again.');
     },
+    onSuccess: () => {
+      toast.success('Password reset succesfully!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    },
   });
 
   const onSubmit = ({ password }: any) => {

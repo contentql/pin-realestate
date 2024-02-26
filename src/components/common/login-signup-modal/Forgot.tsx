@@ -2,6 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { ZodError } from 'zod';
 
 import {
@@ -43,6 +44,18 @@ const Forgot = () => {
       }
 
       console.error('Something went wrong. Please try again.');
+    },
+    onSuccess: () => {
+      toast.success('E-mail sent!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     },
   });
 

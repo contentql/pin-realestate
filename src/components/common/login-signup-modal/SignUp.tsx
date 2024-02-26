@@ -7,6 +7,7 @@ import { trpc } from '@/trpc/client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const {
@@ -31,6 +32,18 @@ const SignUp = () => {
 
         return;
       }
+    },
+    onSuccess: () => {
+      toast.success('Created account successfully!', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     },
   });
 
