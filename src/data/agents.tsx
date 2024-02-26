@@ -4,7 +4,7 @@ export const agentsData = [
     city: "New York",
     category: "Office",
     name: "Arlene McCoy",
-    image: "/images/team/team-1.jpg",
+    image: "/images/team/agent-1.jpg",
   },
   {
     id: 2,

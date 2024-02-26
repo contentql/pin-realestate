@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import ContactMeta from "./ContactMeta";
+import Copyright from "./Copyright";
+import MenuWidget from "./MenuWidget";
 import Social from "./Social";
 import Subscribe from "./Subscribe";
-import MenuWidget from "./MenuWidget";
-import Copyright from "./Copyright";
 
 const Footer = () => {
   return (
