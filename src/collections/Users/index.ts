@@ -15,6 +15,14 @@ const Users: CollectionConfig = {
         return `<p>click on the <a href=${frontendUrl}?token=${token}>link</a> to verify</p>`;
       },
     },
+    forgotPassword: {
+      generateEmailHTML: ({ token }: any) => {
+        //console.log('Collection', req, token, user);
+        //TODO: Should replace the frontendURL
+        const frontendUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/reset-password`;
+        return `<p>click on the <a href=${frontendUrl}?token=${token}>link</a> to verify</p>`;
+      },
+    },
   },
   admin: {
     useAsTitle: 'email',
