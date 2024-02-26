@@ -1,25 +1,29 @@
-body{
-.menuActive{
+body {
+  .menuActive {
     text-decoration: none;
-    color:#eb6753 !important;
-}}
+    color: #eb6753 !important;
+  }
+}
 
-.listCustom{
-    &.listing-type{
-        display: flex;
-        .list-content{
-            flex: 1 !important;
-            .topFive{
-                top: 5px;
-            }
-        }
-        .list-thumb{
-            flex: 1 !important;
-        }
+.listCustom {
+  &.listing-type {
+    display: flex;
+    .list-content {
+      flex: 1 !important;
+      .topFive {
+        top: 5px;
+      }
     }
+    .list-thumb {
+      flex: 1 !important;
+    }
+  }
 }
-.cursor{
-    cursor: pointer;
+.cursor {
+  cursor: pointer;
 }
 
-
+.error {
+  text-decoration: none;
+  color: #eb6753 !important;
+}
