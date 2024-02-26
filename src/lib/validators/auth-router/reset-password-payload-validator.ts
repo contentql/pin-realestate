@@ -1,8 +1,6 @@
 import { z } from 'zod';
 
-export const AuthCredentialsValidator = z.object({
-  username: z.string(),
-  email: z.string().email('not a valid email'),
+export const ResetPasswordPayloadValidator = z.object({
   password: z
     .string()
     .regex(
@@ -19,8 +17,8 @@ export const AuthCredentialsValidator = z.object({
       'Must contain at least one special character'
     )
     .min(8, 'Must be at least 8 characters in length'),
+  token: z.string(),
 });
-
-export type TAuthCredentialsValidator = z.infer<
-  typeof AuthCredentialsValidator
+export type TResetPasswordPayloadValidator = z.infer<
+  typeof ResetPasswordPayloadValidator
 >;

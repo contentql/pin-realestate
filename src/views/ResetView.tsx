@@ -1,12 +1,12 @@
-import SignIn from '@/components/common/login-signup-modal/SignIn';
+import Reset from '@/components/common/login-signup-modal/Reset';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Login  || Homez - Real Estate NextJS Template',
+  title: 'Reset password',
 };
 
-const LoginView = () => {
+const ResetView = () => {
   return (
     <>
       {/* Our Compare Area */}
@@ -34,12 +34,10 @@ const LoginView = () => {
                       alt='logo'
                     />
                   </Link>
-                  <h2>Sign in</h2>
-                  <p className='text'>
-                    Sign in with this account across the following sites.
-                  </p>
+                  <h2>Reset Password</h2>
+                  <p className='text'>Reset your password</p>
                 </div>
-                <SignIn />
+                <Reset />
               </div>
             </div>
           </div>
@@ -49,4 +47,4 @@ const LoginView = () => {
   );
 };
 
-export default LoginView;
+export default ResetView;

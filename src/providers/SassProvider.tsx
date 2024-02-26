@@ -4,6 +4,8 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { DM_Sans, Poppins } from 'next/font/google';
 import { PropsWithChildren, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../../node_modules/react-modal-video/scss/modal-video.scss';
 import '../../public/scss/main.scss';
 
@@ -34,15 +36,27 @@ export default function SassProvider({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <html lang='en'>
-      <body
-        className={`body  ${poppins.className} ${dmSans.className}`}
-        cz-shortcut-listen='false'
-      >
-        <div className='wrapper ovh'>{children}</div>
+    <div
+      className={`body  ${poppins.className} ${dmSans.className}`}
+      cz-shortcut-listen='false'
+    >
+      <div className='wrapper ovh'>
+        <ToastContainer
+          position='bottom-right'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme='light'
+        />
+        {children}
+      </div>
 
-        <ScrollToTop />
-      </body>
-    </html>
+      <ScrollToTop />
+    </div>
   );
 }
