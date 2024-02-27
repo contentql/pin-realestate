@@ -1,15 +1,14 @@
 'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { ZodError } from 'zod';
-
 import {
   ForgotEmailValidator,
   TForgotEmailValidator,
 } from '@/lib/validators/auth-router/forgot-email-validator';
 import { trpc } from '@/trpc/client';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { ZodError } from 'zod';
 
 const Forgot = () => {
   const router = useRouter();
@@ -23,15 +22,8 @@ const Forgot = () => {
 
   const { mutate: forgotPassword } = trpc.auth.forgotPassword.useMutation({
     onError: (err) => {
-      if (err.data?.code === 'CONFLICT') {
-        // in toast
-        console.error('');
-
-        return;
-      }
       if (err.data?.code === 'UNAUTHORIZED') {
-        // in toast
-        console.error('email or password incorrect');
+        toast.error('E-mail does not exist');
 
         return;
       }
