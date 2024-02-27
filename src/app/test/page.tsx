@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { trpc } from "@/trpc/client";
+import { trpc } from '@/trpc/client';
 
 export default function Home() {
-  const input = { email: "akhil@contentql.io", password: "test" };
+  const input = { email: 'akhil@contentql.io', password: 'test' };
 
   const getData = trpc.anyApiRoute.useQuery();
   const addUser = trpc.auth.createUser.useMutation({
@@ -16,8 +16,6 @@ export default function Home() {
   const handleClick = async () => {
     await addUser.mutate(input);
   };
-
-  console.log("getData", getData.data);
 
   return (
     <>
