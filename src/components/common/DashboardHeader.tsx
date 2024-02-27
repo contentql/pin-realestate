@@ -2,11 +2,15 @@
 
 import MainMenu from '@/components/common/MainMenu';
 import SidebarPanel from '@/components/common/sidebar-panel';
+import { logout } from '@/query/auth/logout';
+import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const DashboardHeader = () => {
+  const router = useRouter();
   const pathname = usePathname();
 
   const menuItems = [
@@ -64,10 +68,41 @@ const DashboardHeader = () => {
           text: 'My Profile',
           href: '/dashboard-my-profile',
         },
-        { icon: 'flaticon-exit', text: 'Logout', href: '/login' },
+        //{ icon: 'flaticon-exit', text: 'Logout', href: '/login' },
       ],
     },
   ];
+
+  const {
+    isPending: isLogoutPending,
+    variables: logoutVariables,
+    mutate: logoutMutation,
+  } = useMutation({
+    mutationKey: ['/api/users/logout', 'post'],
+    mutationFn: () => logout(),
+    onSuccess: async () => {
+      router.push('/login');
+    },
+    onError: async (err: any) => {
+      if (err.message === 'CONFLICT') {
+        toast.error('User not found.', {
+          autoClose: 3000,
+          onClose: () => {
+            toast.info('Redirecting to login page...', {
+              autoClose: 2000,
+              onClose: () => router.push('/login'),
+            });
+          },
+        });
+      }
+
+      console.error('Something went wrong. Please try again.');
+    },
+  });
+
+  const handleLogout = () => {
+    logoutMutation();
+  };
 
   return (
     <>
@@ -166,6 +201,12 @@ const DashboardHeader = () => {
                                 ))}
                               </div>
                             ))}
+                            <div onClick={handleLogout}>
+                              <Link className='dropdown-item' href='#'>
+                                <i className='flaticon-exit' />
+                                Logout
+                              </Link>
+                            </div>
                           </div>
                         </div>
                       </div>

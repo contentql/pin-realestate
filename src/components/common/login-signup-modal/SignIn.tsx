@@ -2,12 +2,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { ZodError } from 'zod';
 
 import {
-  AuthCredentialsValidator,
-  TAuthCredentialsValidator,
-} from '@/lib/validators/auth-router/account-credentials-validator';
+  LoginCredentialsValidator,
+  TLoginCredentialsValidator,
+} from '@/lib/validators/auth-router/login-credentials-validator';
 import { trpc } from '@/trpc/client';
 import Link from 'next/link';
 
@@ -18,21 +19,20 @@ const SignIn = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TAuthCredentialsValidator>({
-    resolver: zodResolver(AuthCredentialsValidator),
+  } = useForm<TLoginCredentialsValidator>({
+    resolver: zodResolver(LoginCredentialsValidator),
   });
 
   const { mutate: loginUser } = trpc.auth.signIn.useMutation({
     onError: (err) => {
-      if (err.data?.code === 'CONFLICT') {
-        // in toast
-        console.error('');
+      if (err.data?.code === 'NOT_FOUND') {
+        toast.error('Account does not exist');
 
         return;
       }
       if (err.data?.code === 'UNAUTHORIZED') {
         // in toast
-        console.error('email or password incorrect');
+        toast.error('E-mail or Password incorrect');
 
         return;
       }
@@ -47,12 +47,23 @@ const SignIn = () => {
       console.error('Something went wrong. Please try again.');
     },
     onSuccess: () => {
+      toast.success('Login succcessfully', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
       router.push('/');
       //redirect('/');
     },
   });
 
-  const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
+  const onSubmit = ({ email, password }: TLoginCredentialsValidator) => {
     loginUser({ email, password });
   };
   return (

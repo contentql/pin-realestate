@@ -21,29 +21,13 @@ const SignUp = () => {
   const { mutate: registerUser } = trpc.auth.createUser.useMutation({
     onError: (err) => {
       if (err.data?.code === 'CONFLICT') {
-        // in toast
-        console.error('user already exist');
-
-        return;
-      }
-      if (err.data?.code === 'UNAUTHORIZED') {
-        // in toast
-        console.error('internal server error');
+        toast.error('user already exist');
 
         return;
       }
     },
     onSuccess: () => {
-      toast.success('Created account successfully!', {
-        position: 'bottom-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      toast.success('Created account successfully!');
     },
   });
 
