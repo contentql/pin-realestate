@@ -1,4 +1,4 @@
-import { propertiesRouter } from '@/routers/properties-router';
+import { propertiesRouter } from '../routers/properties-router';
 import { authRouter } from '../routers/auth-router';
 import { publicProcedure, router, userProcedure } from './trpc';
 
