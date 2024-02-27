@@ -34,15 +34,15 @@ export default function SassProvider({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    // <html lang='en'>
-    <div
-      className={`body  ${poppins.className} ${dmSans.className}`}
-      cz-shortcut-listen="false"
-    >
-      <div className="wrapper ovh">{children}</div>
+    <html lang="en">
+      <body
+        className={`body  ${poppins.className} ${dmSans.className}`}
+        cz-shortcut-listen="false"
+      >
+        <div className="wrapper ovh">{children}</div>
 
-      <ScrollToTop />
-    </div>
-    // </html>
+        <ScrollToTop />
+      </body>
+    </html>
   );
 }
