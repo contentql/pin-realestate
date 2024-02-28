@@ -10,6 +10,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    properties: Property;
+    tags: Tag;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -93,6 +95,42 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties".
+ */
+export interface Property {
+  id: string;
+  title?: string | null;
+  location?: string | null;
+  city?: string | null;
+  bed?: string | null;
+  bath?: string | null;
+  forRent?: boolean | null;
+  sqft?: number | null;
+  propertyType?: string | null;
+  price?: string | null;
+  featured?: boolean | null;
+  tags?:
+    | {
+        relationTo: 'tags';
+        value: string | Tag;
+      }[]
+    | null;
+  features?: ('office' | 'house')[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: string;
+  tag?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

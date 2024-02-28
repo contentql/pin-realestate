@@ -8,6 +8,8 @@ import dotenv from 'dotenv';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { s3StorageAdapter } from './plugins/s3';
 import { Media } from './collections/Media';
+import Properties from './collections/Properties';
+import Tags from './collections/Tags';
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -15,7 +17,7 @@ dotenv.config({
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL!,
-  collections: [Users, Media],
+  collections: [Users, Media, Properties, Tags],
   routes: {
     admin: '/admin',
   },
