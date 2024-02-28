@@ -4,7 +4,7 @@ import { getPayloadClient } from '../get-payload';
 import { AuthCredentialsValidator } from '../lib/validators/auth-router/account-credentials-validator';
 import { ForgotEmailValidator } from '../lib/validators/auth-router/forgot-email-validator';
 import { LoginCredentialsValidator } from '../lib/validators/auth-router/login-credentials-validator';
-import { ResetPasswordPayloadValidator } from '../lib/validators/auth-router/reset-password-payload-validator';
+import { ResetPasswordValidator } from '../lib/validators/auth-router/reset-password-validator';
 import { TokenValidator } from '../lib/validators/auth-router/token-validator';
 import { publicProcedure, router } from '../trpc/trpc';
 
@@ -92,9 +92,9 @@ export const authRouter = router({
     }),
 
   resetPassword: publicProcedure
-    .input(ResetPasswordPayloadValidator)
+    .input(ResetPasswordValidator)
     .mutation(async ({ input }) => {
-      const { password, token } = input;
+      const { password, token, confirmPassword } = input;
 
       const payload = await getPayloadClient();
 

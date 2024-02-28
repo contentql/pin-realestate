@@ -6,7 +6,13 @@ export const metadata = {
   title: 'Reset password',
 };
 
-const ResetView = () => {
+interface searchParamsProps {
+  searchParams: {
+    [key: string]: string | string[] | undefined;
+  };
+}
+
+const ResetView = ({ searchParams }: searchParamsProps) => {
   return (
     <>
       {/* Our Compare Area */}
@@ -37,7 +43,7 @@ const ResetView = () => {
                   <h2>Reset Password</h2>
                   <p className='text'>Reset your password</p>
                 </div>
-                <Reset />
+                <Reset searchParams={searchParams} />
               </div>
             </div>
           </div>

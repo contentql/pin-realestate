@@ -1,6 +1,6 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { ZodError } from 'zod';
@@ -13,7 +13,6 @@ import { trpc } from '@/trpc/client';
 import Link from 'next/link';
 
 const SignIn = () => {
-  const searchParams = useSearchParams();
   const router = useRouter();
   const {
     register,
@@ -47,19 +46,7 @@ const SignIn = () => {
       console.error('Something went wrong. Please try again.');
     },
     onSuccess: () => {
-      toast.success('Login succcessfully', {
-        position: 'bottom-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-
-      router.push('/');
-      //redirect('/');
+      toast.success('Login succcessfully', { onClose: () => router.push('/') });
     },
   });
 
