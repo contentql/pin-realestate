@@ -1,32 +1,40 @@
 'use client';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { ZodError } from 'zod';
 
+import {
+  ResetPasswordValidator,
+  TResetPasswordValidator,
+} from '@/lib/validators/auth-router/reset-password-validator';
 import { trpc } from '@/trpc/client';
+import { useRouter } from 'next/navigation';
 
-const Reset = () => {
+interface searchParamsProps {
+  searchParams: {
+    [key: string]: string | string[] | undefined;
+  };
+}
+
+const Reset = ({ searchParams }: searchParamsProps) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const token = searchParams.get('token');
-
+  const token = searchParams?.token as string;
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<TResetPasswordValidator>({
+    defaultValues: {
+      token: token,
+    },
+    resolver: zodResolver(ResetPasswordValidator),
+  });
 
   const { mutate: resetPassword } = trpc.auth.resetPassword.useMutation({
     onError: (err) => {
       if (err.data?.code === 'CONFLICT') {
-        // in toast
-        console.error('');
-
-        return;
-      }
-      if (err.data?.code === 'UNAUTHORIZED') {
-        // in toast
-        console.error('email or password incorrect');
+        toast.error('Failed to reset password');
 
         return;
       }
@@ -41,22 +49,21 @@ const Reset = () => {
       console.error('Something went wrong. Please try again.');
     },
     onSuccess: () => {
-      toast.success('Password reset succesfully!', {
-        position: 'bottom-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
+      toast.success('Reset Password successfully', {
+        onClose: () => {
+          router.push('/');
+        },
       });
     },
   });
 
-  const onSubmit = ({ password }: any) => {
-    console.log('triggered onSubmit', password, token);
-    resetPassword({ password, token });
+  const onSubmit = ({
+    password,
+    confirmPassword,
+    token,
+  }: TResetPasswordValidator) => {
+    //console.log('triggered onSubmit', password, token);
+    resetPassword({ password, confirmPassword, token });
   };
 
   return (
@@ -68,6 +75,7 @@ const Reset = () => {
           type='password'
           className='form-control'
           placeholder='Enter new Password'
+          id='password'
           required
         />
         {errors?.password && <p>{errors?.password.message}</p>}
@@ -79,9 +87,10 @@ const Reset = () => {
           type='password'
           className='form-control'
           placeholder='confirm password'
+          id='confirmPassword'
           required
         />
-        {errors?.password && <p>{errors?.password.message}</p>}
+        {errors?.confirmPassword && <p>{errors?.confirmPassword.message}</p>}
       </div>
       {/* End email */}
 

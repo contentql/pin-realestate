@@ -6,10 +6,12 @@ import {
 import { trpc } from '@/trpc/client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -27,7 +29,11 @@ const SignUp = () => {
       }
     },
     onSuccess: () => {
-      toast.success('Created account successfully!');
+      toast.success('verification link sent to your mail. Please verify it!', {
+        onClose: () => {
+          router.push('/login');
+        },
+      });
     },
   });
 
