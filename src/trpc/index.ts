@@ -1,3 +1,4 @@
+import { propertiesRouter } from '../routers/properties-router';
 import { authRouter } from '../routers/auth-router';
 import { publicProcedure, router, userProcedure } from './trpc';
 
@@ -7,6 +8,7 @@ export const appRouter = router({
   }),
 
   auth: authRouter,
+  properties: propertiesRouter,
 });
 
 export type AppRouter = typeof appRouter;

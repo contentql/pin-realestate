@@ -7,6 +7,8 @@ import FeaturedListings from './FeatuerdListings';
 import TopFilterBar from './TopFilterBar';
 
 import PaginationTwo from '../PaginationTwo';
+import { trpc } from '@/trpc/client';
+import { docHasTimestamps } from 'payload/types';
 
 export default function PropertyFiltering() {
   const [filteredData, setFilteredData] = useState<any>([]);
@@ -20,6 +22,9 @@ export default function PropertyFiltering() {
   const [pageItems, setPageItems] = useState<any>([]);
 
   const [pageContentTrac, setPageContentTrac] = useState<any>([]);
+
+  const { data: propertiesListData, isLoading } =
+    trpc.properties.getProperties.list.useQuery();
 
   useEffect(() => {
     setPageItems(
@@ -128,9 +133,10 @@ export default function PropertyFiltering() {
     setPropertyTypes,
     setSearchQuery,
   };
-
+  console.log('properties', propertiesListData);
   useEffect(() => {
-    const refItems = listings.filter((elm: any) => {
+    if (!propertiesListData) return;
+    const refItems = propertiesListData?.docs.filter((elm: any) => {
       if (listingStatus == 'All') {
         return true;
       } else if (listingStatus == 'Buy') {
@@ -159,7 +165,7 @@ export default function PropertyFiltering() {
     filteredArrays = [
       ...filteredArrays,
       refItems.filter(
-        (el) =>
+        (el: any) =>
           el.city
             .toLocaleLowerCase()
             .includes(searchQuery.toLocaleLowerCase()) ||
@@ -181,7 +187,7 @@ export default function PropertyFiltering() {
       !categories.length
         ? [...refItems]
         : refItems.filter((elm) =>
-            categories.every((elem: any) => elm.features.includes(elem))
+            categories.every((elem: any) => elm.features?.includes(elem))
           ),
     ];
 
@@ -194,7 +200,7 @@ export default function PropertyFiltering() {
 
     if (priceRange.length > 0) {
       const filtered = refItems.filter(
-        (elm) =>
+        (elm: any) =>
           Number(elm.price.split('$')[1].split(',').join('')) >=
             priceRange[0] &&
           Number(elm.price.split('$')[1].split(',').join('')) <= priceRange[1]
@@ -205,14 +211,14 @@ export default function PropertyFiltering() {
     if (squirefeet.length > 0 && squirefeet[1]) {
       console.log(squirefeet);
       const filtered = refItems.filter(
-        (elm) =>
+        (elm: any) =>
           elm.sqft >= Number(squirefeet[0]) && elm.sqft <= Number(squirefeet[1])
       );
       filteredArrays = [...filteredArrays, filtered];
     }
     if (yearBuild.length > 0) {
       const filtered = refItems.filter(
-        (elm) =>
+        (elm: any) =>
           elm.yearBuilding >= Number(yearBuild[0]) &&
           elm.yearBuilding <= Number(yearBuild[1])
       );
@@ -235,6 +241,7 @@ export default function PropertyFiltering() {
     yearBuild,
     categories,
     searchQuery,
+    propertiesListData,
   ]);
 
   useEffect(() => {
