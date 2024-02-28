@@ -1,4 +1,6 @@
 import { CollectionConfig } from 'payload/types';
+import { PrimaryActionResetPasswordEmailHtml } from '../../email-templates/forgotPassword';
+import { PrimaryActionWelcomeEmailHtml } from '../../email-templates/welcome';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -9,10 +11,18 @@ const Users: CollectionConfig = {
       // domain: process.env.PAYLOAD_COOKIE_DOMAIN,
     },
     verify: {
-      generateEmailHTML: ({ token }) => {
-        //TODO: Should replace the frontendURL
-        const frontendUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/test/auth/verify-email`;
-        return `<p>click on the <a href=${frontendUrl}?token=${token}>link</a> to verify</p>`;
+      generateEmailHTML: ({ token, user }) => {
+        const frontendUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/verify-email?token=${token}`;
+        return PrimaryActionWelcomeEmailHtml({ verificationLink: frontendUrl });
+      },
+    },
+    forgotPassword: {
+      generateEmailHTML: ({ token, user }: any) => {
+        const frontendUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/reset-password?token=${token}`;
+        return PrimaryActionResetPasswordEmailHtml({
+          resetPasswordLink: frontendUrl,
+          userFirstname: user.user_name,
+        });
       },
     },
   },
