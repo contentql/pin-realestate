@@ -1,15 +1,18 @@
 import { TRPCError } from '@trpc/server';
 
-import { publicProcedure, router } from '../trpc/trpc';
 import { getPayloadClient } from '../get-payload';
 import { AuthCredentialsValidator } from '../lib/validators/auth-router/account-credentials-validator';
+import { ForgotEmailValidator } from '../lib/validators/auth-router/forgot-email-validator';
+import { LoginCredentialsValidator } from '../lib/validators/auth-router/login-credentials-validator';
+import { ResetPasswordValidator } from '../lib/validators/auth-router/reset-password-validator';
 import { TokenValidator } from '../lib/validators/auth-router/token-validator';
+import { publicProcedure, router } from '../trpc/trpc';
 
 export const authRouter = router({
   createUser: publicProcedure
     .input(AuthCredentialsValidator)
     .mutation(async ({ input }) => {
-      const { email, password } = input;
+      const { email, password, username } = input;
 
       const payload = await getPayloadClient();
 
@@ -33,6 +36,7 @@ export const authRouter = router({
         data: {
           email,
           password,
+          user_name: username,
         },
       });
 
@@ -56,13 +60,76 @@ export const authRouter = router({
       return { success: true };
     }),
 
+  forgotPassword: publicProcedure
+    .input(ForgotEmailValidator)
+    .mutation(async ({ input }) => {
+      const { email } = input;
+
+      const payload = await getPayloadClient();
+
+      const { totalDocs: userExisted } = await payload.find({
+        collection: 'users',
+        where: {
+          email: {
+            equals: email,
+          },
+        },
+      });
+      if (!userExisted) {
+        throw new TRPCError({
+          code: 'UNAUTHORIZED',
+        });
+      }
+
+      const result = await payload.forgotPassword({
+        collection: 'users',
+        data: { email },
+      });
+
+      if (!result) throw new TRPCError({ code: 'UNAUTHORIZED' });
+
+      return { success: true };
+    }),
+
+  resetPassword: publicProcedure
+    .input(ResetPasswordValidator)
+    .mutation(async ({ input }) => {
+      const { password, token, confirmPassword } = input;
+
+      const payload = await getPayloadClient();
+
+      const result = await payload.resetPassword({
+        collection: 'users',
+        data: { token, password },
+        overrideAccess: true,
+      });
+
+      if (!result) throw new TRPCError({ code: 'UNAUTHORIZED' });
+
+      return { success: true };
+    }),
+
   signIn: publicProcedure
-    .input(AuthCredentialsValidator)
+    .input(LoginCredentialsValidator)
     .mutation(async ({ input, ctx }) => {
       const { email, password } = input;
       const { res } = ctx;
 
       const payload = await getPayloadClient();
+
+      const { totalDocs: userExisted } = await payload.find({
+        collection: 'users',
+        where: {
+          email: {
+            equals: email,
+          },
+        },
+      });
+      if (!userExisted) {
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+        });
+      }
 
       try {
         await payload.login({
