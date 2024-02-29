@@ -6,9 +6,11 @@ import { ForgotEmailValidator } from '../lib/validators/auth-router/forgot-email
 import { LoginCredentialsValidator } from '../lib/validators/auth-router/login-credentials-validator';
 import { ResetPasswordValidator } from '../lib/validators/auth-router/reset-password-validator';
 import { TokenValidator } from '../lib/validators/auth-router/token-validator';
-import { publicProcedure, router } from '../trpc/trpc';
+import { UserProfileValidator } from '../lib/validators/auth-router/user-profile-validator';
+import { publicProcedure, router, userProcedure } from '../trpc/trpc';
 
 export const authRouter = router({
+  // function for creating a user or signup
   createUser: publicProcedure
     .input(AuthCredentialsValidator)
     .mutation(async ({ input }) => {
@@ -42,7 +44,50 @@ export const authRouter = router({
 
       return { succuss: true, sentEmailTo: newUserEmail };
     }),
+  //function for updating the user profile except email and password fields
+  updateUserData: userProcedure
+    .input(UserProfileValidator)
+    .mutation(async ({ input, ctx }) => {
+      const { user } = ctx;
+      console.log('USER:', user);
+      const {
+        user_name,
+        first_name,
+        last_name,
+        company,
+        language,
+        phone_number,
+        tax_number,
+        position,
+        address,
+        about,
+      } = input;
 
+      const payload = await getPayloadClient();
+
+      //console.log('user: ' + input);
+
+      const {} = await payload.update({
+        collection: 'users',
+        id: user.id,
+        data: {
+          user_name: user_name,
+          first_name: first_name,
+          last_name: last_name,
+          company: company,
+          language: language,
+          phone_number: phone_number,
+          tax_number: tax_number,
+          position: position,
+          address: address,
+          about: about,
+        },
+      });
+
+      return { succuss: true };
+    }),
+
+  //function for verifying the user after signUp
   verifyEmail: publicProcedure
     .input(TokenValidator)
     .query(async ({ input }) => {
@@ -60,6 +105,7 @@ export const authRouter = router({
       return { success: true };
     }),
 
+  //function for forgot password which triggers email
   forgotPassword: publicProcedure
     .input(ForgotEmailValidator)
     .mutation(async ({ input }) => {
@@ -91,6 +137,7 @@ export const authRouter = router({
       return { success: true };
     }),
 
+  //function for reset password
   resetPassword: publicProcedure
     .input(ResetPasswordValidator)
     .mutation(async ({ input }) => {
@@ -109,6 +156,7 @@ export const authRouter = router({
       return { success: true };
     }),
 
+  //function for signIn
   signIn: publicProcedure
     .input(LoginCredentialsValidator)
     .mutation(async ({ input, ctx }) => {

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Login  || Homez - Real Estate NextJS Template',
+  title: 'Login',
 };
 
 const LoginView = () => {

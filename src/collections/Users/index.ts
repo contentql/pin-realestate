@@ -8,7 +8,6 @@ const Users: CollectionConfig = {
     cookies: {
       secure: true,
       sameSite: 'strict',
-      // domain: process.env.PAYLOAD_COOKIE_DOMAIN,
     },
     verify: {
       generateEmailHTML: ({ token, user }) => {
@@ -46,6 +45,52 @@ const Users: CollectionConfig = {
       defaultValue: ['user'],
       hasMany: true,
       saveToJWT: true,
+    },
+    {
+      name: 'phone_number',
+      type: 'text',
+      label: 'Phone Number',
+      unique: true,
+    },
+    {
+      name: 'first_name',
+      type: 'text',
+      label: 'first Name',
+    },
+    {
+      name: 'last_name',
+      type: 'text',
+      label: 'last Name',
+    },
+    {
+      name: 'position',
+      type: 'text',
+      label: 'position',
+    },
+    {
+      name: 'language',
+      type: 'text',
+      label: 'language',
+    },
+    {
+      name: 'company',
+      type: 'text',
+      label: 'company',
+    },
+    {
+      name: 'tax_number',
+      type: 'text',
+      label: 'tax number',
+    },
+    {
+      name: 'address',
+      type: 'textarea',
+      label: 'address',
+    },
+    {
+      name: 'about',
+      type: 'textarea',
+      label: 'About',
     },
   ],
 };
