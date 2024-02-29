@@ -25,6 +25,15 @@ export interface User {
   id: string;
   user_name?: string | null;
   roles?: ('admin' | 'user' | 'seller')[] | null;
+  phone_number?: string | null;
+  first_name?: string | null;
+  last_name?: string | null;
+  position?: string | null;
+  language?: string | null;
+  company?: string | null;
+  tax_number?: string | null;
+  address?: string | null;
+  about?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
