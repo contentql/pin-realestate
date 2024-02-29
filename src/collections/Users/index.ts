@@ -8,7 +8,6 @@ const Users: CollectionConfig = {
     cookies: {
       secure: true,
       sameSite: 'strict',
-      // domain: process.env.PAYLOAD_COOKIE_DOMAIN,
     },
     verify: {
       generateEmailHTML: ({ token, user }) => {
@@ -82,6 +81,16 @@ const Users: CollectionConfig = {
       name: 'tax_number',
       type: 'text',
       label: 'tax number',
+    },
+    {
+      name: 'address',
+      type: 'textarea',
+      label: 'address',
+    },
+    {
+      name: 'about',
+      type: 'textarea',
+      label: 'About',
     },
   ],
 };
