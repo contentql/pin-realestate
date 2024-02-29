@@ -1,4 +1,4 @@
-// "use client";
+'use client';
 import DefaultHeader from '@/components/common/DefaultHeader';
 import Footer from '@/components/common/default-footer';
 import MobileMenu from '@/components/common/mobile-menu';
@@ -24,12 +24,17 @@ import AllReviews from '@/components/property/property-single-style/common/revie
 import ContactWithAgent from '@/components/property/property-single-style/sidebar/ContactWithAgent';
 import ScheduleTour from '@/components/property/property-single-style/sidebar/ScheduleTour';
 import PropertyGallery from '@/components/property/property-single-style/single-v6/PropertyGallery';
+import { trpc } from '@/trpc/client';
 
 export const metadata = {
   title: 'Property',
 };
 
 const Property = ({ params }: { params: any }) => {
+  const { data: individualPropertyData } =
+    trpc.properties.byPropertyId.useQuery({ id: params.id });
+
+  console.log('data', individualPropertyData);
   return (
     <>
       {/* Main Header Nav */}

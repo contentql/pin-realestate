@@ -136,7 +136,7 @@ export default function PropertyFiltering() {
   console.log('properties', propertiesListData);
   useEffect(() => {
     if (!propertiesListData) return;
-    const refItems = propertiesListData?.docs.filter((elm: any) => {
+    const refItems = propertiesListData?.filter((elm: any) => {
       if (listingStatus == 'All') {
         return true;
       } else if (listingStatus == 'Buy') {
