@@ -47,6 +47,42 @@ const Users: CollectionConfig = {
       hasMany: true,
       saveToJWT: true,
     },
+    {
+      name: 'phone_number',
+      type: 'text',
+      label: 'Phone Number',
+      unique: true,
+    },
+    {
+      name: 'first_name',
+      type: 'text',
+      label: 'first Name',
+    },
+    {
+      name: 'last_name',
+      type: 'text',
+      label: 'last Name',
+    },
+    {
+      name: 'position',
+      type: 'text',
+      label: 'position',
+    },
+    {
+      name: 'language',
+      type: 'text',
+      label: 'language',
+    },
+    {
+      name: 'company',
+      type: 'text',
+      label: 'company',
+    },
+    {
+      name: 'tax_number',
+      type: 'text',
+      label: 'tax number',
+    },
   ],
 };
 
