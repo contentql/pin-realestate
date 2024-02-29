@@ -1,14 +1,12 @@
 'use client';
 
-import listings from '@/data/listings';
 import { useEffect, useState } from 'react';
 import ListingSidebar from '../sidebar';
 import FeaturedListings from './FeatuerdListings';
 import TopFilterBar from './TopFilterBar';
 
-import PaginationTwo from '../PaginationTwo';
 import { trpc } from '@/trpc/client';
-import { docHasTimestamps } from 'payload/types';
+import PaginationTwo from '../PaginationTwo';
 
 export default function PropertyFiltering() {
   const [filteredData, setFilteredData] = useState<any>([]);
@@ -201,9 +199,9 @@ export default function PropertyFiltering() {
     if (priceRange.length > 0) {
       const filtered = refItems.filter(
         (elm: any) =>
-          Number(elm.price.split('$')[1].split(',').join('')) >=
+          Number(elm.price.split('$')[1]?.split(',').join('')) >=
             priceRange[0] &&
-          Number(elm.price.split('$')[1].split(',').join('')) <= priceRange[1]
+          Number(elm.price.split('$')[1]?.split(',').join('')) <= priceRange[1]
       );
       filteredArrays = [...filteredArrays, filtered];
     }

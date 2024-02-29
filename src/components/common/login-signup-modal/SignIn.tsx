@@ -1,53 +1,22 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
+
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { ZodError } from 'zod';
 
 import {
   LoginCredentialsValidator,
   TLoginCredentialsValidator,
 } from '@/lib/validators/auth-router/login-credentials-validator';
-import { trpc } from '@/trpc/client';
+
 import Link from 'next/link';
 
-const SignIn = () => {
-  const router = useRouter();
+const SignIn = ({ loginUser }: any) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TLoginCredentialsValidator>({
     resolver: zodResolver(LoginCredentialsValidator),
-  });
-
-  const { mutate: loginUser } = trpc.auth.signIn.useMutation({
-    onError: (err) => {
-      if (err.data?.code === 'NOT_FOUND') {
-        toast.error('Account does not exist');
-
-        return;
-      }
-      if (err.data?.code === 'UNAUTHORIZED') {
-        // in toast
-        toast.error('E-mail or Password incorrect');
-
-        return;
-      }
-
-      if (err instanceof ZodError) {
-        // in toast
-        console.error(err.issues[0].message);
-
-        return;
-      }
-
-      console.error('Something went wrong. Please try again.');
-    },
-    onSuccess: () => {
-      toast.success('Login succcessfully', { onClose: () => router.push('/') });
-    },
   });
 
   const onSubmit = ({ email, password }: TLoginCredentialsValidator) => {

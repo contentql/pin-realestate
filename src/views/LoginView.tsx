@@ -1,12 +1,49 @@
+'use client';
 import SignIn from '@/components/common/login-signup-modal/SignIn';
+import { trpc } from '@/trpc/client';
+import Loading from '@/utilis/loading';
 import Image from 'next/image';
 import Link from 'next/link';
-
-export const metadata = {
-  title: 'Login  || Homez - Real Estate NextJS Template',
-};
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import { ZodError } from 'zod';
 
 const LoginView = () => {
+  const router = useRouter();
+  const { mutate: loginUser, isPending: loadingForSignIn } =
+    trpc.auth.signIn.useMutation({
+      onError: (err) => {
+        if (err.data?.code === 'NOT_FOUND') {
+          toast.error('Account does not exist');
+
+          return;
+        }
+        if (err.data?.code === 'UNAUTHORIZED') {
+          // in toast
+          toast.error('E-mail or Password incorrect');
+
+          return;
+        }
+
+        if (err instanceof ZodError) {
+          // in toast
+          console.error(err.issues[0].message);
+
+          return;
+        }
+
+        console.error('Something went wrong. Please try again.');
+      },
+      onSuccess: () => {
+        toast.success('Login succcessfully', {
+          onClose: () => router.push('/'),
+        });
+      },
+    });
+
+  if (loadingForSignIn) {
+    return <Loading />;
+  }
   return (
     <>
       {/* Our Compare Area */}
@@ -39,7 +76,7 @@ const LoginView = () => {
                     Sign in with this account across the following sites.
                   </p>
                 </div>
-                <SignIn />
+                <SignIn loginUser={loginUser} />
               </div>
             </div>
           </div>
