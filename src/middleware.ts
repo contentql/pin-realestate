@@ -9,5 +9,9 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SERVER_URL}/`);
   }
 
+  if (!user && nextUrl.pathname.startsWith('/dashboard-')) {
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_SERVER_URL}/login`);
+  }
+
   return NextResponse.next();
 }
