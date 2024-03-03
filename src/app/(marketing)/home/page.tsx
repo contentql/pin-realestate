@@ -1,5 +1,9 @@
 import Home from '@/views/HomePageView';
 
+export const metadata = {
+  title: 'Home page',
+};
+
 function HomePage() {
   return (
     <div>

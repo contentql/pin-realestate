@@ -46,7 +46,8 @@ const SignIn = () => {
       console.error('Something went wrong. Please try again.');
     },
     onSuccess: () => {
-      toast.success('Login succcessfully', { onClose: () => router.push('/') });
+      toast.success('Login succcessfully');
+      router.push('/');
     },
   });
 

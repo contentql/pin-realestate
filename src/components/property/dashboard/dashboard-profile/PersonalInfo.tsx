@@ -3,16 +3,50 @@ import {
   TUserProfileValidator,
   UserProfileValidator,
 } from '@/lib/validators/auth-router/user-profile-validator';
+import { useAuth } from '@/providers/Auth';
 import { trpc } from '@/trpc/client';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { ZodError } from 'zod';
 
 const PersonalInfo = () => {
-  const { register, handleSubmit } = useForm<TUserProfileValidator>({
+  const { user } = useAuth();
+  const { register, handleSubmit, setValue } = useForm<TUserProfileValidator>({
     resolver: zodResolver(UserProfileValidator),
   });
+
+  useEffect(() => {
+    console.log('email:', user?.email!);
+    setValue('user_name', user?.user_name!);
+    setValue('email', user?.email!);
+    user?.phone_number
+      ? setValue('phone_number', user?.phone_number)
+      : setValue('phone_number', '');
+    user?.first_name
+      ? setValue('first_name', user?.first_name)
+      : setValue('first_name', '');
+    user?.last_name
+      ? setValue('last_name', user?.last_name)
+      : setValue('last_name', '');
+    user?.position
+      ? setValue('position', user?.position)
+      : setValue('position', '');
+    user?.company
+      ? setValue('company', user?.company)
+      : setValue('company', '');
+    user?.about ? setValue('about', user?.about) : setValue('about', '');
+    user?.address
+      ? setValue('address', user?.address)
+      : setValue('address', '');
+    user?.language
+      ? setValue('language', user?.language)
+      : setValue('language', '');
+    user?.tax_number
+      ? setValue('tax_number', user?.tax_number)
+      : setValue('tax_number', '');
+  }, [user]);
 
   const { mutate: updateUserData } = trpc.auth.updateUserData.useMutation({
     onError: (err) => {
@@ -37,7 +71,7 @@ const PersonalInfo = () => {
   });
 
   const onSubmit = (data: TUserProfileValidator) => {
-    //console.log('onSubmit', data);
+    console.log('onSubmit', data);
     updateUserData(data);
   };
 
@@ -66,7 +100,9 @@ const PersonalInfo = () => {
             <input
               type='email'
               className='form-control'
+              defaultValue={user?.email}
               placeholder='Your E-mail Address'
+              disabled
               required
             />
           </div>

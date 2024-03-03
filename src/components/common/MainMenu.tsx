@@ -8,10 +8,14 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const MainMenu = () => {
+  //const token = cookie.get('payload-token');
+
   const pathname = usePathname();
   const [topMenu, setTopMenu] = useState('');
   const [submenu, setSubmenu] = useState('');
   const [activeLink, setActiveLink] = useState('');
+
+  //console.log('USeRRR', token);
 
   useEffect(() => {
     homeItems.forEach((elm) => {

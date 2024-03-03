@@ -1,9 +1,5 @@
-import { TRPCError } from '@trpc/server';
-
-import { publicProcedure, router } from '../trpc/trpc';
 import { getPayloadClient } from '../get-payload';
-import { AuthCredentialsValidator } from '../lib/validators/auth-router/account-credentials-validator';
-import { TokenValidator } from '../lib/validators/auth-router/token-validator';
+import { publicProcedure, router } from '../trpc/trpc';
 
 export const propertiesRouter = router({
   getProperties: {

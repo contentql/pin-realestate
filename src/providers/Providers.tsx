@@ -1,10 +1,12 @@
-"use client";
+'use client';
 
-import { trpc } from "@/trpc/client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { httpBatchLink } from "@trpc/client";
-import { PropsWithChildren, useState } from "react";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { trpc } from '@/trpc/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { httpBatchLink } from '@trpc/client';
+import { PropsWithChildren, useState } from 'react';
+import { AuthProvider } from './Auth';
+import SassProvider from './SassProvider';
 
 const Providers = ({ children }: PropsWithChildren) => {
   const [queryClient] = useState(() => new QueryClient());
@@ -16,7 +18,7 @@ const Providers = ({ children }: PropsWithChildren) => {
           fetch(url, options) {
             return fetch(url, {
               ...options,
-              credentials: "include",
+              credentials: 'include',
             });
           },
         }),
@@ -26,10 +28,12 @@ const Providers = ({ children }: PropsWithChildren) => {
 
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        {children}
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <SassProvider>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>{children}</AuthProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </SassProvider>
     </trpc.Provider>
   );
 };

@@ -69,15 +69,9 @@ const FeaturedListings = () => {
                   </h6>
                   <p className='list-text'>{listing.location}</p>
                   <div className='list-meta d-flex align-items-center'>
-                    <a href='#'>
-                      <span className='flaticon-bed' /> {listing.bed} bed
-                    </a>
-                    <a href='#'>
-                      <span className='flaticon-shower' /> {listing.bath} bath
-                    </a>
-                    <a href='#'>
-                      <span className='flaticon-expand' /> {listing.sqft} sqft
-                    </a>
+                    <span className='flaticon-bed' /> {listing.bed} bed
+                    <span className='flaticon-shower' /> {listing.bath} bath
+                    <span className='flaticon-expand' /> {listing.sqft} sqft
                   </div>
                   <hr className='mt-2 mb-2' />
                   <div className='list-meta2 d-flex justify-content-between align-items-center'>

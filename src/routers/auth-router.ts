@@ -49,7 +49,6 @@ export const authRouter = router({
     .input(UserProfileValidator)
     .mutation(async ({ input, ctx }) => {
       const { user } = ctx;
-      console.log('USER:', user);
       const {
         user_name,
         first_name,
@@ -67,24 +66,28 @@ export const authRouter = router({
 
       //console.log('user: ' + input);
 
-      const {} = await payload.update({
-        collection: 'users',
-        id: user.id,
-        data: {
-          user_name: user_name,
-          first_name: first_name,
-          last_name: last_name,
-          company: company,
-          language: language,
-          phone_number: phone_number,
-          tax_number: tax_number,
-          position: position,
-          address: address,
-          about: about,
-        },
-      });
+      try {
+        await payload.update({
+          collection: 'users',
+          id: user.id,
+          data: {
+            user_name: user_name,
+            first_name: first_name,
+            last_name: last_name,
+            company: company,
+            language: language,
+            phone_number: phone_number,
+            tax_number: tax_number,
+            position: position,
+            address: address,
+            about: about,
+          },
+        });
 
-      return { succuss: true };
+        return { succuss: true };
+      } catch (err) {
+        throw new TRPCError({ code: 'UNAUTHORIZED' });
+      }
     }),
 
   //function for verifying the user after signUp

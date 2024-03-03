@@ -56,15 +56,15 @@ const FeaturedListings = ({ data, colstyle }: any) => {
                   {listing.price} / <span>mo</span>
                 </div>
                 <div className='list-meta2 d-flex align-items-center'>
-                  <a href='#' className='mr10'>
+                  <div className='mr10'>
                     <span className='flaticon-bed mr5' /> {listing.bed}
-                  </a>
-                  <a href='#' className='mr10'>
+                  </div>
+                  <div className='mr10'>
                     <span className='flaticon-shower mr5' /> {listing.bath}
-                  </a>
-                  <a href='#'>
+                  </div>
+                  <div>
                     <span className='flaticon-expand' /> {listing.sqft}
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
