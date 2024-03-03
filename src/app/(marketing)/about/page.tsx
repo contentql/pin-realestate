@@ -1,10 +1,13 @@
-import AboutView from "@/views/AboutView";
+import AboutView from '@/views/AboutView';
 
 export const metadata = {
-  title: "About  || Homez - Real Estate NextJS Template",
+  title: 'About',
 };
 
-const About = () => {
+const About = async () => {
+  //const { user } = await getMeUser();
+  // console.log('user: ' + user);
+
   return <AboutView />;
 };
 
