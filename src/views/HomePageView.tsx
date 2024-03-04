@@ -1,7 +1,6 @@
 import MobileMenu from '@/components/common/mobile-menu';
 import About from '@/components/home/About';
 import Agents from '@/components/home/Agents';
-import Cta from '@/components/home/Cta';
 import ExploreCities from '@/components/home/ExploreCities';
 import FeaturedListings from '@/components/home/FeatuerdListings';
 import FeatureProperties from '@/components/home/FeatureProperties';
@@ -20,11 +19,9 @@ const Home = () => {
       {/* Main Header Nav */}
       <Header />
       {/* End Main Header Nav */}
-
       {/* Mobile Nav  */}
       <MobileMenu />
       {/* End Mobile Nav  */}
-
       {/* Home Banner Style V6 */}
       <section className='home-banner-style6 p0'>
         <div className='home-style1'>
@@ -39,7 +36,6 @@ const Home = () => {
         </div>
       </section>
       {/* End Home Banner Style V6 */}
-
       {/* Explore Apartment Home */}
       <section className='pb90 pb30-md'>
         <div className='container'>
@@ -79,7 +75,6 @@ const Home = () => {
         </div>
       </section>
       {/* Explore Apartment Home */}
-
       {/* Featured Listings */}
       <section className='pt-0 pb80 pb30-md'>
         <div className='container'>
@@ -135,7 +130,6 @@ const Home = () => {
         </div>
       </section>
       {/* End Featured Listings */}
-
       {/* Property Cities */}
       <section className='pt0 pb90 pb50-md'>
         <div className='container'>
@@ -191,7 +185,6 @@ const Home = () => {
         </div>
       </section>
       {/* End property cities */}
-
       {/* <!-- About Us --> */}
       <section className='pb40-md bgc-f7'>
         <div className='container'>
@@ -199,7 +192,6 @@ const Home = () => {
         </div>
       </section>
       {/*  <!-- End About Us --> */}
-
       {/* Our Testimonials */}
       <section className='our-testimonial'>
         <div className='container'>
@@ -233,7 +225,6 @@ const Home = () => {
           {/* End .row */}
         </div>
       </section>
-
       {/* Featured Properties */}
       <section className='our-testimonial pt-0'>
         <div className='container'>
@@ -259,7 +250,6 @@ const Home = () => {
         {/* End .container */}
       </section>
       {/* End Featured Properties */}
-
       {/* Pricing Section Area */}
       <section className='our-pricing pb90 pt-0'>
         <div className='container'>
@@ -276,7 +266,6 @@ const Home = () => {
         </div>
       </section>
       {/* Pricing Section Area */}
-
       {/* Exclusive Agents */}
       <section className='pt0 pb80 pb50-md'>
         <div className='container'>
@@ -330,12 +319,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* Exclusive Agents */}
-
-      {/* Our CTA */}
-      <Cta />
-      {/* Our CTA */}
-
       {/* Start Our Footer */}
       <section className='footer-style1 at-home6 pt60 pb-0'>
         <Footer />
