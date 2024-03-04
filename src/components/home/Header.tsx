@@ -142,7 +142,7 @@ const Header = () => {
 
               <div className='col-auto'>
                 <div className='d-flex align-items-center'>
-                  {status === 'loggedOut' ? (
+                  {status === 'loggedOut' && (
                     <a
                       href='/login'
                       className='login-info d-flex align-items-center'
@@ -151,64 +151,6 @@ const Header = () => {
                       <i className='far fa-user-circle fz16 me-2' />{' '}
                       <span>Login / Register</span>
                     </a>
-                  ) : (
-                    <>
-                      <div className='text-center text-lg-end header_right_widgets'>
-                        <ul className='mb0 d-flex justify-content-center justify-content-sm-end p-0'>
-                          <li className=' user_setting'>
-                            <div className='dropdown'>
-                              <a
-                                className='btn'
-                                href='#'
-                                data-bs-toggle='dropdown'
-                              >
-                                <Image
-                                  width={44}
-                                  height={44}
-                                  src='/images/resource/user.png'
-                                  alt='user.png'
-                                />
-                              </a>
-                              <div className='dropdown-menu'>
-                                <div className='user_setting_content'>
-                                  {menuItems.map((section, sectionIndex) => (
-                                    <div key={sectionIndex}>
-                                      <p
-                                        className={`fz15 fw400 ff-heading ${
-                                          sectionIndex === 0 ? 'mb20' : 'mt30'
-                                        }`}
-                                      >
-                                        {section.title}
-                                      </p>
-                                      {section.items.map((item, itemIndex) => (
-                                        <Link
-                                          key={itemIndex}
-                                          className={`dropdown-item ${
-                                            pathname == item.href
-                                              ? '-is-active'
-                                              : ''
-                                          } `}
-                                          href={item.href}
-                                        >
-                                          <i className={`${item.icon} mr10`} />
-                                          {item.text}
-                                        </Link>
-                                      ))}
-                                    </div>
-                                  ))}
-                                  <div onClick={handleLogout}>
-                                    <Link className='dropdown-item' href='#'>
-                                      <i className='flaticon-logout mr10' />
-                                      Logout
-                                    </Link>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </>
                   )}
                   <Link
                     className='ud-btn add-property menu-btn bdrs12 mx-2 mx-xl-4'
@@ -217,6 +159,63 @@ const Header = () => {
                     Add Property
                     <i className='fal fa-arrow-right-long' />
                   </Link>
+                  <>
+                    <div className='text-center text-lg-end header_right_widgets mr10'>
+                      <ul className='mb0 d-flex justify-content-center justify-content-sm-end p-0'>
+                        <li className=' user_setting'>
+                          <div className='dropdown'>
+                            <a
+                              className='btn'
+                              href='#'
+                              data-bs-toggle='dropdown'
+                            >
+                              <Image
+                                width={44}
+                                height={44}
+                                src='/images/resource/user.png'
+                                alt='user.png'
+                              />
+                            </a>
+                            <div className='dropdown-menu'>
+                              <div className='user_setting_content'>
+                                {menuItems.map((section, sectionIndex) => (
+                                  <div key={sectionIndex}>
+                                    <p
+                                      className={`fz15 fw400 ff-heading ${
+                                        sectionIndex === 0 ? 'mb20' : 'mt30'
+                                      }`}
+                                    >
+                                      {section.title}
+                                    </p>
+                                    {section.items.map((item, itemIndex) => (
+                                      <Link
+                                        key={itemIndex}
+                                        className={`dropdown-item ${
+                                          pathname == item.href
+                                            ? '-is-active'
+                                            : ''
+                                        } `}
+                                        href={item.href}
+                                      >
+                                        <i className={`${item.icon} mr10`} />
+                                        {item.text}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                ))}
+                                <div onClick={handleLogout}>
+                                  <Link className='dropdown-item' href='#'>
+                                    <i className='flaticon-logout mr10' />
+                                    Logout
+                                  </Link>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </>
                   <a
                     className='sidemenu-btn filter-btn-right'
                     href='#'
