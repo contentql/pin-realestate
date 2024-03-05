@@ -1,25 +1,26 @@
-import { buildConfig } from 'payload/config';
-import { webpackBundler } from '@payloadcms/bundler-webpack';
-import { mongooseAdapter } from '@payloadcms/db-mongodb';
-import { slateEditor } from '@payloadcms/richtext-slate';
-import path from 'path';
-import Users from './collections/Users';
-import dotenv from 'dotenv';
-import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
-import { s3StorageAdapter } from './plugins/s3';
-import { Media } from './collections/Media';
-import Properties from './collections/Properties';
-import Tags from './collections/Tags';
+import { buildConfig } from "payload/config";
+import { webpackBundler } from "@payloadcms/bundler-webpack";
+import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { slateEditor } from "@payloadcms/richtext-slate";
+import path from "path";
+import Users from "./collections/Users";
+import dotenv from "dotenv";
+import { cloudStorage } from "@payloadcms/plugin-cloud-storage";
+import { s3StorageAdapter } from "./plugins/s3";
+import { Media } from "./collections/Media";
+import Properties from "./collections/Properties";
+import Tags from "./collections/Tags";
+import PropertyType from "./collections/PropertyType";
 
 dotenv.config({
-  path: path.resolve(__dirname, '../.env'),
+  path: path.resolve(__dirname, "../.env"),
 });
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL!,
-  collections: [Users, Media, Properties, Tags],
+  collections: [Users, Media, Properties, Tags, PropertyType],
   routes: {
-    admin: '/admin',
+    admin: "/admin",
   },
   admin: {
     user: Users.slug,
@@ -34,7 +35,7 @@ export default buildConfig({
       return config;
     },
     meta: {
-      titleSuffix: '- ContentQL',
+      titleSuffix: "- ContentQL",
     },
   },
   rateLimit: {
@@ -54,7 +55,7 @@ export default buildConfig({
     }),
   ],
   typescript: {
-    outputFile: path.resolve(__dirname, 'payload-types.ts'),
+    outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
   cors: [process.env.NEXT_PUBLIC_SERVER_URL!].filter(Boolean),
   csrf: [process.env.NEXT_PUBLIC_SERVER_URL!].filter(Boolean),
