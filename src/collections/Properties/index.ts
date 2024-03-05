@@ -96,22 +96,21 @@ const Properties: CollectionConfig = {
                   name: 'address',
                   type: 'text',
                   required: true,
-                  minLength: 20,
-                  maxLength: 100,
                 },
                 {
                   name: 'maplocation',
                   type: 'text',
                   required: true,
-                  minLength: 40,
-                  maxLength: 160,
                 },
                 {
-                  name: 'location',
+                  name: 'country',
                   type: 'text',
                   required: true,
-                  minLength: 40,
-                  maxLength: 160,
+                },
+                {
+                  name: 'city',
+                  type: 'text',
+                  required: true,
                 },
                 {
                   name: 'locationPoints',
