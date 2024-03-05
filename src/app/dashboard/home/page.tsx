@@ -1,7 +1,9 @@
-import DashboardHomeView from "@/views/DashboardHomeView"
+import { getMeUser } from '@/utilis/getMeUser';
+import DashboardHomeView from '@/views/DashboardHomeView';
 
-const DashboardHome =  () => {
-    return <DashboardHomeView />
-}
+const DashboardHome = async () => {
+  await getMeUser({ nullUserRedirect: '/login' });
+  return <DashboardHomeView />;
+};
 
-export default DashboardHome
+export default DashboardHome;

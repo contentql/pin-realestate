@@ -2,70 +2,101 @@ import { CollectionConfig } from 'payload/types';
 
 const Properties: CollectionConfig = {
   slug: 'properties',
+  // fields: [
+  //   {
+  //     name: 'title',
+  //     type: 'text',
+  //     label: 'title',
+  //   },
+  //   {
+  //     name: 'location',
+  //     type: 'text',
+  //     label: 'location',
+  //   },
+  //   {
+  //     name: 'city',
+  //     type: 'text',
+  //     label: 'city',
+  //   },
+  //   {
+  //     name: 'bed',
+  //     type: 'text',
+  //     label: 'Bed Rooms',
+  //   },
+  //   {
+  //     name: 'bath',
+  //     type: 'text',
+  //     label: 'Bathrooms',
+  //   },
+  //   {
+  //     name: 'forRent',
+  //     type: 'checkbox',
+  //     label: 'Rentable',
+  //   },
+  //   {
+  //     name: 'sqft',
+  //     type: 'number',
+  //     label: 'Area',
+  //   },
+  //   {
+  //     name: 'propertyType',
+  //     type: 'text',
+  //     label: 'property',
+  //   },
+  //   {
+  //     name: 'price',
+  //     type: 'text',
+  //     label: 'Price',
+  //   },
+  //   {
+  //     name: 'featured',
+  //     type: 'checkbox',
+  //     label: 'Featured',
+  //   },
+  //   {
+  //     name: 'tags',
+  //     type: 'relationship',
+  //     relationTo: ['tags'],
+  //     hasMany: true,
+  //     label: 'Tag',
+  //   },
+  //   {
+  //     name: 'features',
+  //     type: 'select',
+  //     hasMany: true,
+  //     options: ['office', 'house'],
+  //     label: 'features',
+  //   },
+  // ],
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      label: 'title',
-    },
-    {
-      name: 'location',
-      type: 'text',
-      label: 'location',
-    },
-    {
-      name: 'city',
-      type: 'text',
-      label: 'city',
-    },
-    {
-      name: 'bed',
-      type: 'text',
-      label: 'Bed Rooms',
-    },
-    {
-      name: 'bath',
-      type: 'text',
-      label: 'Bathrooms',
-    },
-    {
-      name: 'forRent',
-      type: 'checkbox',
-      label: 'Rentable',
-    },
-    {
-      name: 'sqft',
-      type: 'number',
-      label: 'Area',
-    },
-    {
-      name: 'propertyType',
-      type: 'text',
-      label: 'property',
-    },
-    {
-      name: 'price',
-      type: 'text',
-      label: 'Price',
-    },
-    {
-      name: 'featured',
-      type: 'checkbox',
-      label: 'Featured',
-    },
-    {
-      name: 'tags',
-      type: 'relationship',
-      relationTo: ['tags'],
-      hasMany: true,
-      label: 'Tag',
-    },
-    {
-      name: 'features',
-      type: 'select',
-      hasMany: true,
-      options: ['office', 'house'],
-      label: 'features',
+      name: 'slider', // required
+      type: 'array', // required
+      label: 'Image Slider',
+      minRows: 2,
+      maxRows: 10,
+      interfaceName: 'CardSlider', // optional
+      labels: {
+        singular: 'Slide',
+        plural: 'Slides',
+      },
+      fields: [
+        // required
+        {
+          name: 'title',
+          type: 'text',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'caption',
+          type: 'text',
+        },
+      ],
     },
   ],
 };

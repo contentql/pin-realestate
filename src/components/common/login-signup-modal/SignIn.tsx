@@ -54,6 +54,7 @@ const SignIn = () => {
   const onSubmit = ({ email, password }: TLoginCredentialsValidator) => {
     loginUser({ email, password });
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className='form-style1'>
       <div className='mb25'>

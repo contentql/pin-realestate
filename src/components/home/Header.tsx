@@ -154,68 +154,70 @@ const Header = () => {
                   )}
                   <Link
                     className='ud-btn add-property menu-btn bdrs12 mx-2 mx-xl-4'
-                    href='/dashboard-add-property'
+                    href='/dashboard/add-property'
                   >
                     Add Property
                     <i className='fal fa-arrow-right-long' />
                   </Link>
-                  <>
-                    <div className='text-center text-lg-end header_right_widgets mr10'>
-                      <ul className='mb0 d-flex justify-content-center justify-content-sm-end p-0'>
-                        <li className=' user_setting'>
-                          <div className='dropdown'>
-                            <a
-                              className='btn'
-                              href='#'
-                              data-bs-toggle='dropdown'
-                            >
-                              <Image
-                                width={44}
-                                height={44}
-                                src='/images/resource/user.png'
-                                alt='user.png'
-                              />
-                            </a>
-                            <div className='dropdown-menu'>
-                              <div className='user_setting_content'>
-                                {menuItems.map((section, sectionIndex) => (
-                                  <div key={sectionIndex}>
-                                    <p
-                                      className={`fz15 fw400 ff-heading ${
-                                        sectionIndex === 0 ? 'mb20' : 'mt30'
-                                      }`}
-                                    >
-                                      {section.title}
-                                    </p>
-                                    {section.items.map((item, itemIndex) => (
-                                      <Link
-                                        key={itemIndex}
-                                        className={`dropdown-item ${
-                                          pathname == item.href
-                                            ? '-is-active'
-                                            : ''
-                                        } `}
-                                        href={item.href}
+                  {status === 'loggedIn' && (
+                    <>
+                      <div className='text-center text-lg-end header_right_widgets mr10'>
+                        <ul className='mb0 d-flex justify-content-center justify-content-sm-end p-0'>
+                          <li className=' user_setting'>
+                            <div className='dropdown'>
+                              <a
+                                className='btn'
+                                href='#'
+                                data-bs-toggle='dropdown'
+                              >
+                                <Image
+                                  width={44}
+                                  height={44}
+                                  src='/images/resource/user.png'
+                                  alt='user.png'
+                                />
+                              </a>
+                              <div className='dropdown-menu'>
+                                <div className='user_setting_content'>
+                                  {menuItems.map((section, sectionIndex) => (
+                                    <div key={sectionIndex}>
+                                      <p
+                                        className={`fz15 fw400 ff-heading ${
+                                          sectionIndex === 0 ? 'mb20' : 'mt30'
+                                        }`}
                                       >
-                                        <i className={`${item.icon} mr10`} />
-                                        {item.text}
-                                      </Link>
-                                    ))}
+                                        {section.title}
+                                      </p>
+                                      {section.items.map((item, itemIndex) => (
+                                        <Link
+                                          key={itemIndex}
+                                          className={`dropdown-item ${
+                                            pathname == item.href
+                                              ? '-is-active'
+                                              : ''
+                                          } `}
+                                          href={item.href}
+                                        >
+                                          <i className={`${item.icon} mr10`} />
+                                          {item.text}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  ))}
+                                  <div onClick={handleLogout}>
+                                    <Link className='dropdown-item' href='#'>
+                                      <i className='flaticon-logout mr10' />
+                                      Logout
+                                    </Link>
                                   </div>
-                                ))}
-                                <div onClick={handleLogout}>
-                                  <Link className='dropdown-item' href='#'>
-                                    <i className='flaticon-logout mr10' />
-                                    Logout
-                                  </Link>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </>
+                          </li>
+                        </ul>
+                      </div>
+                    </>
+                  )}
                   <a
                     className='sidemenu-btn filter-btn-right'
                     href='#'

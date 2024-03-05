@@ -6,12 +6,26 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardSlider".
+ */
+export type CardSlider =
+  | {
+      title?: string | null;
+      image: string | Media;
+      caption?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+
 export interface Config {
   collections: {
     users: User;
     media: Media;
     properties: Property;
     tags: Tag;
+    contact: Contact;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -111,23 +125,7 @@ export interface Media {
  */
 export interface Property {
   id: string;
-  title?: string | null;
-  location?: string | null;
-  city?: string | null;
-  bed?: string | null;
-  bath?: string | null;
-  forRent?: boolean | null;
-  sqft?: number | null;
-  propertyType?: string | null;
-  price?: string | null;
-  featured?: boolean | null;
-  tags?:
-    | {
-        relationTo: 'tags';
-        value: string | Tag;
-      }[]
-    | null;
-  features?: ('office' | 'house')[] | null;
+  slider?: CardSlider;
   updatedAt: string;
   createdAt: string;
 }
@@ -138,6 +136,19 @@ export interface Property {
 export interface Tag {
   id: string;
   tag?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact".
+ */
+export interface Contact {
+  id: string;
+  first_name?: string | null;
+  last_name?: string | null;
+  email?: string | null;
+  query?: string | null;
   updatedAt: string;
   createdAt: string;
 }
