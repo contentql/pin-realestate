@@ -1,41 +1,41 @@
-'use client';
+'use client'
 import {
   ForgotEmailValidator,
   TForgotEmailValidator,
-} from '@/lib/validators/auth-router/forgot-email-validator';
-import { trpc } from '@/trpc/client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { ZodError } from 'zod';
+} from '@/lib/validators/auth-router/forgot-email-validator'
+import { trpc } from '@/trpc/client'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { ZodError } from 'zod'
 
 const Forgot = () => {
-  const router = useRouter();
+  const router = useRouter()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TForgotEmailValidator>({
     resolver: zodResolver(ForgotEmailValidator),
-  });
+  })
 
   const { mutate: forgotPassword } = trpc.auth.forgotPassword.useMutation({
-    onError: (err) => {
+    onError: err => {
       if (err.data?.code === 'UNAUTHORIZED') {
-        toast.error('E-mail does not exist');
+        toast.error('E-mail does not exist')
 
-        return;
+        return
       }
 
       if (err instanceof ZodError) {
         // in toast
-        console.error(err.issues[0].message);
+        console.error(err.issues[0].message)
 
-        return;
+        return
       }
 
-      console.error('Something went wrong. Please try again.');
+      console.error('Something went wrong. Please try again.')
     },
     onSuccess: () => {
       toast.success('E-mail sent!', {
@@ -47,14 +47,14 @@ const Forgot = () => {
         draggable: true,
         progress: undefined,
         theme: 'light',
-      });
+      })
     },
-  });
+  })
 
   const onSubmit = ({ email }: TForgotEmailValidator) => {
     //console.log('triggered onSubmit', email);
-    forgotPassword({ email });
-  };
+    forgotPassword({ email })
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className='form-style1'>
       <div className='mb25'>
@@ -82,7 +82,7 @@ const Forgot = () => {
       </div>
       {/* End submit */}
     </form>
-  );
-};
+  )
+}
 
-export default Forgot;
+export default Forgot

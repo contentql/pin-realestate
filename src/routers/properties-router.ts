@@ -1,26 +1,36 @@
-import { getPayloadClient } from "../get-payload";
+import { Property } from '@/payload-types'
+import { getPayloadClient } from '../get-payload'
+import { TokenValidator } from '../lib/validators/property-router/token-validator'
 //import { PropertyByIdValidator } from '../lib/validators/property-router/property-id-validator';
-import { publicProcedure, router } from "../trpc/trpc";
+import { publicProcedure, router } from '../trpc/trpc'
 
 export const propertiesRouter = router({
   getProperties: {
     list: publicProcedure.query(async () => {
       // Retrieve users from a datasource, this is an imaginary database
-      const payload = await getPayloadClient();
+      const payload = await getPayloadClient()
 
-      const properties = await payload.find({ collection: "properties" });
+      const properties = await payload.find({ collection: 'properties' })
       //   const firstPageKeys = [{ name: 'title' }];
       const newProperties = properties.docs.map(
-        ({ id, propertiesDetails, location, details, amenities }: any) => {
+        ({
+          id,
+          propertiesDetails,
+          location,
+          details,
+          amenities,
+          floors,
+        }: Property) => {
           return {
             id,
             propertiesDetails,
             location: location.location,
             details: details.details,
             amenities: amenities.amenities,
-          };
-        }
-      );
+            floors: floors?.floors,
+          }
+        },
+      )
       // const newProperties = properties.docs.map(
       //   ({
       //     id
@@ -60,23 +70,24 @@ export const propertiesRouter = router({
       // );
 
       //    ^?
-      return newProperties;
+      return newProperties
     }),
   },
-  // byPropertyId: publicProcedure
-  //   .input(PropertyByIdValidator)
-  //   .query(async ({ input }) => {
-  //     const payload = await getPayloadClient();
+  byPropertyId: publicProcedure
+    .input(TokenValidator)
+    .query(async ({ input }) => {
+      const payload = await getPayloadClient()
+      const { token } = input
 
-  //     const propertyById = await payload.find({
-  //       collection: 'properties',
-  //       where: {
-  //         id: {
-  //           equals: input?.id,
-  //         },
-  //       },
-  //     });
+      const propertyById = await payload.find({
+        collection: 'properties',
+        where: {
+          id: {
+            equals: token,
+          },
+        },
+      })
 
-  //     return propertyById;
-  //   }),
-});
+      return propertyById?.docs[0]
+    }),
+})

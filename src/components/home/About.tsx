@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
 const About = () => {
   const featureList = [
     'Find excellent deals',
     'Friendly host & Fast support',
     'List your own property',
-  ];
+  ]
   return (
     <>
       <div className='row'>
@@ -81,7 +81,7 @@ const About = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default About;
+export default About

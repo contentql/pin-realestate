@@ -1,5 +1,3 @@
-const Pricing = () => {
-
-}
+const Pricing = () => {}
 
 export default Pricing

@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
 const ListingItems = ({ data }: any) => {
   return (
@@ -64,7 +64,7 @@ const ListingItems = ({ data }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default ListingItems;
+export default ListingItems

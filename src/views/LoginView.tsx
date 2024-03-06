@@ -1,10 +1,10 @@
-import SignIn from '@/components/common/login-signup-modal/SignIn';
-import Image from 'next/image';
-import Link from 'next/link';
+import SignIn from '@/components/common/login-signup-modal/SignIn'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Login',
-};
+}
 
 const LoginView = () => {
   return (
@@ -46,7 +46,7 @@ const LoginView = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default LoginView;
+export default LoginView

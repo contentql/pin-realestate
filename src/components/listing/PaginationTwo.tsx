@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 const PaginationTwo = ({
   pageNumber,
@@ -9,14 +9,14 @@ const PaginationTwo = ({
   const handlePrevious = () => {
     if (pageNumber == 1) {
     } else {
-      setPageNumber((pre: any) => pre - 1);
+      setPageNumber((pre: any) => pre - 1)
     }
-  };
+  }
   const handleNext = () => {
     if (Math.ceil(data.length / pageCapacity) > pageNumber) {
-      setPageNumber((pre: any) => pre + 1);
+      setPageNumber((pre: any) => pre + 1)
     }
-  };
+  }
 
   return (
     <div className='mbp_pagination text-center'>
@@ -95,7 +95,7 @@ const PaginationTwo = ({
         {data.length}+ property available
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default PaginationTwo;
+export default PaginationTwo

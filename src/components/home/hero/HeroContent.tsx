@@ -1,25 +1,25 @@
-'use client';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+'use client'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const HeroContent = () => {
-  const router = useRouter();
-  const [activeTab, setActiveTab] = useState('buy');
+  const router = useRouter()
+  const [activeTab, setActiveTab] = useState('buy')
 
   const handleTabClick = (tab: any) => {
-    setActiveTab(tab);
-  };
+    setActiveTab(tab)
+  }
 
   const tabs = [
     { id: 'buy', label: 'Buy' },
     { id: 'rent', label: 'Rent' },
     { id: 'sold', label: 'Sold' },
-  ];
+  ]
 
   return (
     <div className='advance-search-tab mt60 mt30-md mb25 animate-up-3'>
       <ul className='nav nav-tabs p-0 m-0'>
-        {tabs.map((tab) => (
+        {tabs.map(tab => (
           <li className='nav-item' key={tab.id}>
             <button
               className={`nav-link ${activeTab === tab.id ? 'active' : ''}`}
@@ -32,7 +32,7 @@ const HeroContent = () => {
       </ul>
 
       <div className='tab-content'>
-        {tabs.map((tab) => (
+        {tabs.map(tab => (
           <div
             className={`${activeTab === tab.id ? 'active' : ''} tab-pane`}
             key={tab.id}
@@ -81,7 +81,7 @@ const HeroContent = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HeroContent;
+export default HeroContent

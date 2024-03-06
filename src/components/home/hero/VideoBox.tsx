@@ -1,9 +1,9 @@
-'use client';
-import { useState } from 'react';
-import ModalVideo from 'react-modal-video';
+'use client'
+import { useState } from 'react'
+import ModalVideo from 'react-modal-video'
 
 const VideoBox = () => {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false)
 
   return (
     <>
@@ -27,7 +27,7 @@ const VideoBox = () => {
         ></span>
       </button>
     </>
-  );
-};
+  )
+}
 
-export default VideoBox;
+export default VideoBox

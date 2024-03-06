@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 const TopFilterBar = ({
   setCurrentSortingOption,
@@ -27,7 +27,7 @@ const TopFilterBar = ({
             <span style={{ minWidth: '60px' }}>Sort by</span>
             <select
               className='form-select'
-              onChange={(e) =>
+              onChange={e =>
                 setCurrentSortingOption &&
                 setCurrentSortingOption(e.target.value)
               }
@@ -43,7 +43,7 @@ const TopFilterBar = ({
       </div>
       {/* End .col-sm-6 */}
     </>
-  );
-};
+  )
+}
 
-export default TopFilterBar;
+export default TopFilterBar

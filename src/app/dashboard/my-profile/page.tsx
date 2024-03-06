@@ -1,7 +1,7 @@
-import DashboardMyProfileView from "@/views/DashboardMyProfileView"
+import DashboardMyProfileView from '@/views/DashboardMyProfileView'
 
-const DashboardMyProfile =  () => {
-    return <DashboardMyProfileView />
+const DashboardMyProfile = () => {
+  return <DashboardMyProfileView />
 }
 
 export default DashboardMyProfile

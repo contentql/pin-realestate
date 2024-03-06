@@ -1,22 +1,22 @@
-'use client';
-import listings from '@/data/listings';
-import Image from 'next/image';
-import 'photoswipe/dist/photoswipe.css';
-import { useState } from 'react';
-import { FreeMode, Navigation, Thumbs } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Map from './Map';
+'use client'
+import listings from '@/data/listings'
+import Image from 'next/image'
+import 'photoswipe/dist/photoswipe.css'
+import { useState } from 'react'
+import { FreeMode, Navigation, Thumbs } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import Map from './Map'
 
 const images = [
   '/images/listings/listing-single-6-1.jpg',
   '/images/listings/listing-single-6-2.jpg',
   '/images/listings/listing-single-6-3.jpg',
   '/images/listings/listing-single-6-4.jpg',
-];
+]
 
 const PropertyGallery = ({ id }: { id: any }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
+  const data = listings.filter(elm => elm.id == id)[0] || listings[0]
 
   return (
     <>
@@ -181,7 +181,7 @@ const PropertyGallery = ({ id }: { id: any }) => {
       </div>
       {/* End .row */}
     </>
-  );
-};
+  )
+}
 
-export default PropertyGallery;
+export default PropertyGallery

@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
 const ListingStatus = ({ filterFunctions }: any) => {
   const options = [
     { id: 'flexRadioDefault3', label: 'All', defaultChecked: true },
     { id: 'flexRadioDefault1', label: 'Buy' },
     { id: 'flexRadioDefault2', label: 'Rent' },
-  ];
+  ]
 
   return (
     <>
-      {options.map((option) => (
+      {options.map(option => (
         <div
           className='form-check d-flex align-items-center mb10'
           key={option.id}
@@ -26,7 +26,7 @@ const ListingStatus = ({ filterFunctions }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default ListingStatus;
+export default ListingStatus

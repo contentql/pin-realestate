@@ -1,59 +1,59 @@
-'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { ZodError } from 'zod';
+'use client'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { ZodError } from 'zod'
 
 import {
   LoginCredentialsValidator,
   TLoginCredentialsValidator,
-} from '@/lib/validators/auth-router/login-credentials-validator';
-import { trpc } from '@/trpc/client';
-import Link from 'next/link';
+} from '@/lib/validators/auth-router/login-credentials-validator'
+import { trpc } from '@/trpc/client'
+import Link from 'next/link'
 
 const SignIn = () => {
-  const router = useRouter();
+  const router = useRouter()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TLoginCredentialsValidator>({
     resolver: zodResolver(LoginCredentialsValidator),
-  });
+  })
 
   const { mutate: loginUser } = trpc.auth.signIn.useMutation({
-    onError: (err) => {
+    onError: err => {
       if (err.data?.code === 'NOT_FOUND') {
-        toast.error('Account does not exist');
+        toast.error('Account does not exist')
 
-        return;
+        return
       }
       if (err.data?.code === 'UNAUTHORIZED') {
         // in toast
-        toast.error('E-mail or Password incorrect');
+        toast.error('E-mail or Password incorrect')
 
-        return;
+        return
       }
 
       if (err instanceof ZodError) {
         // in toast
-        console.error(err.issues[0].message);
+        console.error(err.issues[0].message)
 
-        return;
+        return
       }
 
-      console.error('Something went wrong. Please try again.');
+      console.error('Something went wrong. Please try again.')
     },
     onSuccess: () => {
-      toast.success('Login succcessfully');
-      router.push('/');
+      toast.success('Login succcessfully')
+      router.push('/')
     },
-  });
+  })
 
   const onSubmit = ({ email, password }: TLoginCredentialsValidator) => {
-    loginUser({ email, password });
-  };
+    loginUser({ email, password })
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className='form-style1'>
@@ -122,7 +122,7 @@ const SignIn = () => {
         </Link>
       </p>
     </form>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

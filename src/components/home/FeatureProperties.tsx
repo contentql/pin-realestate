@@ -1,9 +1,9 @@
-'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
+'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.min.css'
 
 const properties = [
   {
@@ -54,7 +54,7 @@ const properties = [
     price: '$2,800 / mo',
     imageSrc: '/images/listings/property_slide_4.jpg',
   },
-];
+]
 
 const FeatureProperties = () => {
   return (
@@ -72,7 +72,7 @@ const FeatureProperties = () => {
         }}
         slidesPerView={1}
       >
-        {properties.map((property) => (
+        {properties.map(property => (
           <SwiperSlide key={property.id}>
             <div className='item'>
               <div className='listing-style11'>
@@ -218,7 +218,7 @@ const FeatureProperties = () => {
 
       {/* End .col for navigation and pagination */}
     </>
-  );
-};
+  )
+}
 
-export default FeatureProperties;
+export default FeatureProperties

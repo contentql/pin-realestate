@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 const Amenities = ({ filterFunctions }: any) => {
   const amenities = [
@@ -20,7 +20,7 @@ const Amenities = ({ filterFunctions }: any) => {
       { label: 'Front yard' },
       { label: 'Refrigerator' },
     ],
-  ];
+  ]
 
   return (
     <>
@@ -33,7 +33,7 @@ const Amenities = ({ filterFunctions }: any) => {
                   {amenity.label}
                   <input
                     checked={filterFunctions?.categories.includes(
-                      amenity.label
+                      amenity.label,
                     )}
                     onChange={() =>
                       filterFunctions?.handlecategories(amenity.label)
@@ -48,7 +48,7 @@ const Amenities = ({ filterFunctions }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Amenities;
+export default Amenities

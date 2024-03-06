@@ -1,10 +1,10 @@
-'use client';
-import { agentsData } from '@/data/agents';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
+'use client'
+import { agentsData } from '@/data/agents'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.min.css'
 
 const Agents = () => {
   return (
@@ -63,7 +63,7 @@ const Agents = () => {
         ))}
       </Swiper>
     </>
-  );
-};
+  )
+}
 
-export default Agents;
+export default Agents

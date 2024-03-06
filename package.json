@@ -12,7 +12,9 @@
     "build": "cross-env NODE_ENV=production yarn build:payload && yarn build:server && yarn copyfiles && yarn build:next",
     "start": "cross-env PAYLOAD_CONFIG_PATH=dist/payload.config.js NODE_ENV=production node dist/server.js",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier . --check",
+    "format:fix": "prettier . --write"
   },
   "resolutions": {
     "cliui": "7.0.2"
@@ -79,6 +81,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "nodemon": "^3.0.3",
+    "prettier": "3.2.5",
     "typescript": "^5"
   }
 }

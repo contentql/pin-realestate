@@ -1,9 +1,9 @@
-'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
+'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.min.css'
 
 const ExploreCities = () => {
   const cities = [
@@ -44,7 +44,7 @@ const ExploreCities = () => {
       number: 8,
     },
     // Add more cities if needed
-  ];
+  ]
 
   return (
     <>
@@ -74,7 +74,7 @@ const ExploreCities = () => {
           },
         }}
       >
-        {cities.map((city) => (
+        {cities.map(city => (
           <SwiperSlide key={city.id}>
             <div className='item'>
               <Link href='/map'>
@@ -99,7 +99,7 @@ const ExploreCities = () => {
         ))}
       </Swiper>
     </>
-  );
-};
+  )
+}
 
-export default ExploreCities;
+export default ExploreCities

@@ -1,9 +1,9 @@
 const PropertyAddress = ({ address }: any) => {
-  console.log('PropertyAddress', address);
+  console.log('PropertyAddress', address)
   const truncatedAddress =
     address?.location?.address && address?.location?.address.length > 50
       ? `${address?.location?.address.substring(0, 50)}...`
-      : address?.location?.address;
+      : address?.location?.address
 
   return (
     <>
@@ -35,7 +35,7 @@ const PropertyAddress = ({ address }: any) => {
       </div>
       {/* End col */}
     </>
-  );
-};
+  )
+}
 
-export default PropertyAddress;
+export default PropertyAddress

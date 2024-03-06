@@ -1,16 +1,16 @@
-import type { CollectionConfig } from "payload/types";
+import type { CollectionConfig } from 'payload/types'
 
 const Tags: CollectionConfig = {
   fields: [
     {
-      name: "tag",
-      type: "text",
+      name: 'tag',
+      type: 'text',
     },
   ],
-  slug: "tags",
+  slug: 'tags',
   admin: {
-    useAsTitle: "tag",
+    useAsTitle: 'tag',
   },
-};
+}
 
-export default Tags;
+export default Tags

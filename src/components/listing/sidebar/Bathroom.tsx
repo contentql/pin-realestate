@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 const Bathroom = ({ filterFunctions }: any) => {
   const options = [
@@ -8,11 +8,11 @@ const Bathroom = ({ filterFunctions }: any) => {
     { id: 'baththreeplus', label: '3+', value: 3 },
     { id: 'bathfourplus', label: '4+', value: 4 },
     { id: 'bathfiveplus', label: '5+', value: 5 },
-  ];
+  ]
 
   return (
     <>
-      {options.map((option) => (
+      {options.map(option => (
         <div className='selection' key={option.id}>
           <input
             id={option.id}
@@ -24,7 +24,7 @@ const Bathroom = ({ filterFunctions }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Bathroom;
+export default Bathroom

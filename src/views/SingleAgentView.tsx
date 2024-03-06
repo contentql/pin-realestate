@@ -1,19 +1,19 @@
-import DefaultHeader from '@/components/common/DefaultHeader';
-import Footer from '@/components/common/default-footer';
-import MobileMenu from '@/components/common/mobile-menu';
-import FormContact from '@/components/property/FormContact';
+import DefaultHeader from '@/components/common/DefaultHeader'
+import Footer from '@/components/common/default-footer'
+import MobileMenu from '@/components/common/mobile-menu'
+import FormContact from '@/components/property/FormContact'
 
-import ProfessionalInfo from '@/components/property/ProfessionalInfo';
-import ReviewBoxForm from '@/components/property/ReviewBoxForm';
-import ListingItemsContainer from '@/components/property/agency-single/ListingItems';
+import ProfessionalInfo from '@/components/property/ProfessionalInfo'
+import ReviewBoxForm from '@/components/property/ReviewBoxForm'
+import ListingItemsContainer from '@/components/property/agency-single/ListingItems'
 
-import SingleAgentCta from '@/components/property/agent-single/SingleAgentCta';
-import AllReviews from '@/components/property/reviews';
-import Image from 'next/image';
+import SingleAgentCta from '@/components/property/agent-single/SingleAgentCta'
+import AllReviews from '@/components/property/reviews'
+import Image from 'next/image'
 
 export const metadata = {
   title: 'Agent',
-};
+}
 
 const AgentSingle = ({ params }: any) => {
   return (
@@ -165,7 +165,7 @@ const AgentSingle = ({ params }: any) => {
       </section>
       {/* End Our Footer */}
     </>
-  );
-};
+  )
+}
 
-export default AgentSingle;
+export default AgentSingle

@@ -1,7 +1,7 @@
-import ForgotView from '@/views/ForgotView';
+import ForgotView from '@/views/ForgotView'
 
 const Login = () => {
-  return <ForgotView />;
-};
+  return <ForgotView />
+}
 
-export default Login;
+export default Login

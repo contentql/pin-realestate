@@ -1,7 +1,7 @@
-import DashboardMyFavouritesView from "@/views/DashboardMyFavouritesView"
+import DashboardMyFavouritesView from '@/views/DashboardMyFavouritesView'
 
-const DashboardMyFavourites =  () => {
-    return <DashboardMyFavouritesView />
+const DashboardMyFavourites = () => {
+  return <DashboardMyFavouritesView />
 }
 
 export default DashboardMyFavourites

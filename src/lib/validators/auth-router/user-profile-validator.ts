@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 export const UserProfileValidator = z.object({
   user_name: z.string(),
@@ -12,6 +12,6 @@ export const UserProfileValidator = z.object({
   tax_number: z.string(),
   address: z.string(),
   about: z.string(),
-});
+})
 
-export type TUserProfileValidator = z.infer<typeof UserProfileValidator>;
+export type TUserProfileValidator = z.infer<typeof UserProfileValidator>

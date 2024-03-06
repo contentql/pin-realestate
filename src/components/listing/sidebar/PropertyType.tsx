@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 const PropertyType = ({ filterFunctions }: any) => {
   const options = [
@@ -7,7 +7,7 @@ const PropertyType = ({ filterFunctions }: any) => {
     { label: 'Apartments', defaultChecked: true },
     { label: 'Office' },
     { label: 'Villa' },
-  ];
+  ]
 
   return (
     <>
@@ -16,8 +16,8 @@ const PropertyType = ({ filterFunctions }: any) => {
         <input
           type='checkbox'
           checked={!filterFunctions?.propertyTypes.length}
-          onChange={(e) => {
-            filterFunctions?.setPropertyTypes([]);
+          onChange={e => {
+            filterFunctions?.setPropertyTypes([])
           }}
         />
         <span className='checkmark' />
@@ -28,15 +28,15 @@ const PropertyType = ({ filterFunctions }: any) => {
           <input
             type='checkbox'
             checked={filterFunctions?.propertyTypes.includes(option.label)}
-            onChange={(e) => {
-              filterFunctions.handlepropertyTypes(option.label);
+            onChange={e => {
+              filterFunctions.handlepropertyTypes(option.label)
             }}
           />
           <span className='checkmark' />
         </label>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default PropertyType;
+export default PropertyType

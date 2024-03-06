@@ -1,7 +1,7 @@
-import FaqView from "@/views/FaqsView"
+import FaqView from '@/views/FaqsView'
 
 const Faqs = () => {
-    return <FaqView />
+  return <FaqView />
 }
 
 export default Faqs

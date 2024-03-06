@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 const Category = () => {
   const categories = [
@@ -6,7 +6,7 @@ const Category = () => {
     { icon: 'flaticon-corporation', text: 'Apartments' },
     { icon: 'flaticon-network', text: 'Office' },
     { icon: 'flaticon-garden', text: 'Villa' },
-  ];
+  ]
 
   return (
     <div className='home4-icon-style mt20 d-none d-sm-flex animate-up-4'>
@@ -20,7 +20,7 @@ const Category = () => {
         </Link>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default Category;
+export default Category

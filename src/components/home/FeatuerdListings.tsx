@@ -1,10 +1,10 @@
-'use client';
-import listings from '@/data/listings';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
+'use client'
+import listings from '@/data/listings'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.min.css'
 
 const FeaturedListings = () => {
   return (
@@ -95,7 +95,7 @@ const FeaturedListings = () => {
         ))}
       </Swiper>
     </>
-  );
-};
+  )
+}
 
-export default FeaturedListings;
+export default FeaturedListings

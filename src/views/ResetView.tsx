@@ -1,15 +1,15 @@
-import Reset from '@/components/common/login-signup-modal/Reset';
-import Image from 'next/image';
-import Link from 'next/link';
+import Reset from '@/components/common/login-signup-modal/Reset'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Reset password',
-};
+}
 
 interface searchParamsProps {
   searchParams: {
-    [key: string]: string | string[] | undefined;
-  };
+    [key: string]: string | string[] | undefined
+  }
 }
 
 const ResetView = ({ searchParams }: searchParamsProps) => {
@@ -50,7 +50,7 @@ const ResetView = ({ searchParams }: searchParamsProps) => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default ResetView;
+export default ResetView

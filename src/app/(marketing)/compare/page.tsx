@@ -1,9 +1,7 @@
-import CompareView from "@/views/CompareView"
+import CompareView from '@/views/CompareView'
 
 const Compare = () => {
-    return (
-        <CompareView />
-    )
+  return <CompareView />
 }
 
 export default Compare

@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 const Bedroom = ({ filterFunctions }: any) => {
   const bedOptions = [
@@ -8,7 +8,7 @@ const Bedroom = ({ filterFunctions }: any) => {
     { id: 'xthreeplus', label: '3+', value: 3 },
     { id: 'xfourplus', label: '4+', value: 4 },
     { id: 'xfiveplus', label: '5+', value: 5 },
-  ];
+  ]
 
   return (
     <>
@@ -17,14 +17,14 @@ const Bedroom = ({ filterFunctions }: any) => {
           <input
             id={option.id}
             type='radio'
-            onChange={(e) => filterFunctions?.handlebedrooms(option.value)}
+            onChange={e => filterFunctions?.handlebedrooms(option.value)}
             checked={filterFunctions?.bedrooms == option.value}
           />
           <label htmlFor={option.id}>{option.label}</label>
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Bedroom;
+export default Bedroom
