@@ -131,8 +131,6 @@ export default function PropertyFiltering() {
     setPropertyTypes,
     setSearchQuery,
   }
-  console.log('pageItems', pageItems)
-  console.log('sortedFilteredData', sortedFilteredData)
 
   useEffect(() => {
     if (!propertiesListData) return
