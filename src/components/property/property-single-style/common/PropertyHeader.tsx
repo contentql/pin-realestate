@@ -1,35 +1,36 @@
-'use client'
+'use client';
 
-import listings from '@/data/listings'
-import React from 'react'
+import { Property } from '@/payload-types';
 
-const PropertyHeader = ({ id }: { id: any }) => {
-  const data = listings.filter(elm => elm.id == id)[0] || listings[0]
+const PropertyHeader = ({ data }: { data: Property }) => {
+  const propertyType =
+    data?.propertiesDetails.status?.length == 0
+      ? data?.propertiesDetails?.status
+      : data?.propertiesDetails?.status &&
+        data?.propertiesDetails?.status.join(' and ');
+
   return (
     <>
       <div className='col-lg-8'>
         <div className='single-property-content mb30-md'>
-          <h2 className='sp-lg-title'>{data.title}</h2>
+          <h2 className='sp-lg-title'>{data?.propertiesDetails?.title}</h2>
           <div className='pd-meta mb15 d-md-flex align-items-center'>
-            <p className='text fz15 mb-0 bdrr1 pr10 bdrrn-sm'>
-              {data.location}
+            <p className='text fz15 mb-0 bdrr1 pr5 bdrrn-sm'>
+              {data?.location?.location?.address}
             </p>
             <a
               className='ff-heading text-thm fz15 bdrr1 pr10 ml0-sm ml10 bdrrn-sm'
               href='#'
             >
               <i className='fas fa-circle fz10 pe-2' />
-              For {data.forRent ? 'rent' : 'sale'}
+              {propertyType}
             </a>
-            <a
-              className='ff-heading bdrr1 fz15 pr10 ml10 ml0-sm bdrrn-sm'
-              href='#'
-            >
+            <div className='ff-heading bdrr1 fz15 pr10 ml10 ml0-sm bdrrn-sm'>
               <i className='far fa-clock pe-2' />
               {Number(new Date().getFullYear()) -
-                Number(data.yearBuilding)}{' '}
+                Number(data?.details?.details?.yearBuild)}{' '}
               years ago
-            </a>
+            </div>
             <a className='ff-heading ml10 ml0-sm fz15' href='#'>
               <i className='flaticon-fullscreen pe-2 align-text-top' />
               8721
@@ -38,15 +39,15 @@ const PropertyHeader = ({ id }: { id: any }) => {
           <div className='property-meta d-flex align-items-center'>
             <a className='text fz15' href='#'>
               <i className='flaticon-bed pe-2 align-text-top' />
-              {data.bed} bed
+              {data?.details?.details?.beds} bed
             </a>
             <a className='text ml20 fz15' href='#'>
               <i className='flaticon-shower pe-2 align-text-top' />
-              {data.bath} bath
+              {data?.details?.details?.baths} bath
             </a>
             <a className='text ml20 fz15' href='#'>
               <i className='flaticon-expand pe-2 align-text-top' />
-              {data.sqft} sqft
+              {data?.details?.details?.homearea} sqft
             </a>
           </div>
         </div>
@@ -70,11 +71,12 @@ const PropertyHeader = ({ id }: { id: any }) => {
                 <span className='flaticon-printer' />
               </a>
             </div>
-            <h3 className='price mb-0'>{data.price}</h3>
+            <h3 className='price mb-0'>{data?.propertiesDetails?.price}</h3>
             <p className='text space fz15'>
               $
               {(
-                Number(data.price.split('$')[1].split(',').join('')) / data.sqft
+                Number(data?.propertiesDetails?.price) /
+                data?.details?.details?.homearea
               ).toFixed(2)}
               /sq ft
             </p>
