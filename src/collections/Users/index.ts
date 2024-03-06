@@ -92,6 +92,12 @@ const Users: CollectionConfig = {
       type: 'textarea',
       label: 'About',
     },
+    {
+      name: 'profile_pic',
+      type: 'upload',
+      label: 'Profile picture',
+      relationTo: 'media',
+    },
   ],
 };
 

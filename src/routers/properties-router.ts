@@ -1,4 +1,5 @@
 import { getPayloadClient } from '../get-payload';
+//import { PropertyByIdValidator } from '../lib/validators/property-router/property-id-validator';
 import { publicProcedure, router } from '../trpc/trpc';
 
 export const propertiesRouter = router({
@@ -8,8 +9,61 @@ export const propertiesRouter = router({
       const payload = await getPayloadClient();
 
       const properties = await payload.find({ collection: 'properties' });
+      //   const firstPageKeys = [{ name: 'title' }];
+      // const newProperties = properties.docs.map(
+      //   ({
+      //     id,
+      //     title,
+      //     location,
+      //     city,
+      //     bed,
+      //     bath,
+      //     forRent,
+      //     sqft,
+      //     propertyType,
+      //     price,
+      //     featured,
+      //     tags,
+      //     features,
+      //     updatedAt,
+      //     createdAt,
+      //   }) => {
+      //     return {
+      //       id: id,
+      //       title: title,
+      //       location: location,
+      //       city: city,
+      //       bed: bed,
+      //       bath: bath,
+      //       forRent: forRent,
+      //       sqft: sqft,
+      //       propertyType: propertyType,
+      //       price: price,
+      //       featured: featured,
+      //       tags: tags,
+      //       features: features,
+      //       updatedAt: updatedAt,
+      //       createdAt: createdAt,
+      //     };
+      //   }
+      // );
+
       //    ^?
-      return properties;
+      return properties?.docs;
     }),
   },
+  byPropertyId: publicProcedure.query(async ({ input }) => {
+    const payload = await getPayloadClient();
+
+    const propertyById = await payload.find({
+      collection: 'properties',
+      where: {
+        id: {
+          equals: '65e6d31f54eec1a4395b2c45',
+        },
+      },
+    });
+
+    return propertyById?.docs[0];
+  }),
 });

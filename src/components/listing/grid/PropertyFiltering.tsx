@@ -1,14 +1,12 @@
 'use client';
 
-import listings from '@/data/listings';
 import { useEffect, useState } from 'react';
 import ListingSidebar from '../sidebar';
 import FeaturedListings from './FeatuerdListings';
 import TopFilterBar from './TopFilterBar';
 
-import PaginationTwo from '../PaginationTwo';
 import { trpc } from '@/trpc/client';
-import { docHasTimestamps } from 'payload/types';
+import PaginationTwo from '../PaginationTwo';
 
 export default function PropertyFiltering() {
   const [filteredData, setFilteredData] = useState<any>([]);
@@ -136,7 +134,7 @@ export default function PropertyFiltering() {
   console.log('properties', propertiesListData);
   useEffect(() => {
     if (!propertiesListData) return;
-    const refItems = propertiesListData?.docs.filter((elm: any) => {
+    const refItems = propertiesListData?.filter((elm: any) => {
       if (listingStatus == 'All') {
         return true;
       } else if (listingStatus == 'Buy') {
@@ -187,14 +185,14 @@ export default function PropertyFiltering() {
       !categories.length
         ? [...refItems]
         : refItems.filter((elm) =>
-            categories.every((elem: any) => elm.features?.includes(elem))
+            categories.every((elem: any) => elm?.features?.includes(elem))
           ),
     ];
 
     if (location != 'All Cities') {
       filteredArrays = [
         ...filteredArrays,
-        refItems.filter((el) => el.city == location),
+        refItems.filter((el: any) => el.city == location),
       ];
     }
 

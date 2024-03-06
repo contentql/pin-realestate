@@ -142,7 +142,7 @@ const Header = () => {
 
               <div className='col-auto'>
                 <div className='d-flex align-items-center'>
-                  {status === 'loggedOut' ? (
+                  {status === 'loggedOut' && (
                     <a
                       href='/login'
                       className='login-info d-flex align-items-center'
@@ -151,9 +151,17 @@ const Header = () => {
                       <i className='far fa-user-circle fz16 me-2' />{' '}
                       <span>Login / Register</span>
                     </a>
-                  ) : (
+                  )}
+                  <Link
+                    className='ud-btn add-property menu-btn bdrs12 mx-2 mx-xl-4'
+                    href='/dashboard/add-property'
+                  >
+                    Add Property
+                    <i className='fal fa-arrow-right-long' />
+                  </Link>
+                  {status === 'loggedIn' && (
                     <>
-                      <div className='text-center text-lg-end header_right_widgets'>
+                      <div className='text-center text-lg-end header_right_widgets mr10'>
                         <ul className='mb0 d-flex justify-content-center justify-content-sm-end p-0'>
                           <li className=' user_setting'>
                             <div className='dropdown'>
@@ -210,13 +218,6 @@ const Header = () => {
                       </div>
                     </>
                   )}
-                  <Link
-                    className='ud-btn add-property menu-btn bdrs12 mx-2 mx-xl-4'
-                    href='/dashboard-add-property'
-                  >
-                    Add Property
-                    <i className='fal fa-arrow-right-long' />
-                  </Link>
                   <a
                     className='sidemenu-btn filter-btn-right'
                     href='#'

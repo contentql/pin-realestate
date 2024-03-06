@@ -1,7 +1,10 @@
-import DashboardAddPropertyView from "@/views/DashboardAddPropertyView"
+import { getMeUser } from '@/utilis/getMeUser';
+import DashboardAddPropertyView from '@/views/DashboardAddPropertyView';
 
-const DashboardAddProperty =  () => {
-    return <DashboardAddPropertyView />
-}
+const DashboardAddProperty = async () => {
+  await getMeUser({ nullUserRedirect: '/login' });
 
-export default DashboardAddProperty
+  return <DashboardAddPropertyView />;
+};
+
+export default DashboardAddProperty;

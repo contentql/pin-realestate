@@ -1,39 +1,38 @@
-import listings from '@/data/listings';
-
-const OverView = ({ id }: any) => {
-  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+const OverView = ({ data, propertyType }: any) => {
+  console.log('Data: ' + data);
+  //const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   const overviewData = [
     {
       icon: 'flaticon-bed',
       label: 'Bedroom',
-      value: data.bed,
+      value: data?.bed,
     },
     {
       icon: 'flaticon-shower',
       label: 'Bath',
-      value: data.bath,
+      value: data?.baths,
     },
     {
       icon: 'flaticon-event',
       label: 'Year Built',
-      value: data.yearBuilding,
+      value: data?.yearBuilding,
     },
     {
       icon: 'flaticon-garage',
       label: 'Garage',
-      value: '2',
+      value: data?.garage,
       xs: true,
     },
     {
       icon: 'flaticon-expand',
       label: 'Sqft',
-      value: data.sqft,
+      value: data?.sqft,
       xs: true,
     },
     {
       icon: 'flaticon-home-1',
       label: 'Property Type',
-      value: data.propertyType,
+      value: propertyType,
     },
   ];
 

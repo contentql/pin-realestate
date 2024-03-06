@@ -20,12 +20,12 @@ const DashboardHeader = () => {
         {
           icon: 'flaticon-discovery',
           text: 'Dashboard',
-          href: '/dashboard-home',
+          href: '/dashboard/home',
         },
         {
           icon: 'flaticon-chat-1',
           text: 'Message',
-          href: '/dashboard-message',
+          href: '/dashboard/message',
         },
       ],
     },
@@ -35,24 +35,24 @@ const DashboardHeader = () => {
         {
           icon: 'flaticon-new-tab',
           text: 'Add New Property',
-          href: '/dashboard-add-property',
+          href: '/dashboard/add-property',
         },
         {
           icon: 'flaticon-home',
           text: 'My Properties',
-          href: '/dashboard-my-properties',
+          href: '/dashboard/my-properties',
         },
         {
           icon: 'flaticon-like',
           text: 'My Favorites',
-          href: '/dashboard-my-favourites',
+          href: '/dashboard/my-favourites',
         },
         {
           icon: 'flaticon-search-2',
           text: 'Saved Search',
-          href: '/dashboard-saved-search',
+          href: '/dashboard/saved-search',
         },
-        { icon: 'flaticon-review', text: 'Reviews', href: '/dashboard-review' },
+        { icon: 'flaticon-review', text: 'Reviews', href: '/dashboard/review' },
       ],
     },
     {
@@ -61,12 +61,12 @@ const DashboardHeader = () => {
         {
           icon: 'flaticon-protection',
           text: 'My Package',
-          href: '/dashboard-my-package',
+          href: '/dashboard/my-package',
         },
         {
           icon: 'flaticon-user',
           text: 'My Profile',
-          href: '/dashboard-my-profile',
+          href: '/dashboard/my-profile',
         },
         //{ icon: 'flaticon-exit', text: 'Logout', href: '/login' },
       ],

@@ -6,12 +6,20 @@ import SidebarPanel from '@/components/common/sidebar-panel';
 import { useAuth } from '@/providers/Auth';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const DefaultHeader = () => {
   const [navbar, setNavbar] = useState(false);
 
-  const { status } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const { status, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -27,6 +35,70 @@ const DefaultHeader = () => {
       window.removeEventListener('scroll', changeBackground);
     };
   }, []);
+
+  const menuItems = [
+    {
+      title: 'MAIN',
+      items: [
+        {
+          icon: 'flaticon-discovery',
+          text: 'Dashboard',
+          href: '/dashboard/home',
+        },
+        {
+          icon: 'flaticon-chat-1',
+          text: 'Message',
+          href: '/dashboard/message',
+        },
+      ],
+    },
+    {
+      title: 'MANAGE LISTINGS',
+      items: [
+        {
+          icon: 'flaticon-new-tab',
+          text: 'Add New Property',
+          href: '/dashboard/add-property',
+        },
+        {
+          icon: 'flaticon-home',
+          text: 'My Properties',
+          href: '/dashboard/my-properties',
+        },
+        {
+          icon: 'flaticon-like',
+          text: 'My Favorites',
+          href: '/dashboard/my-favourites',
+        },
+        {
+          icon: 'flaticon-search-2',
+          text: 'Saved Search',
+          href: '/dashboard/saved-search',
+        },
+        {
+          icon: 'flaticon-review',
+          text: 'Reviews',
+          href: '/dashboard/review',
+        },
+      ],
+    },
+    {
+      title: 'MANAGE ACCOUNT',
+      items: [
+        {
+          icon: 'flaticon-protection',
+          text: 'My Package',
+          href: '/dashboard/my-package',
+        },
+        {
+          icon: 'flaticon-user',
+          text: 'My Profile',
+          href: '/dashboard/my-profile',
+        },
+        //{ icon: 'flaticon-exit', text: 'Logout', href: '/login' },
+      ],
+    },
+  ];
 
   return (
     <>
@@ -87,6 +159,63 @@ const DefaultHeader = () => {
                     Add Property
                     <i className='fal fa-arrow-right-long' />
                   </Link>
+                  <>
+                    <div className='mr10 text-center text-lg-end header_right_widgets'>
+                      <ul className='mb0 d-flex justify-content-center justify-content-sm-end p-0'>
+                        <li className=' user_setting'>
+                          <div className='dropdown'>
+                            <a
+                              className='btn'
+                              href='#'
+                              data-bs-toggle='dropdown'
+                            >
+                              <Image
+                                width={44}
+                                height={44}
+                                src='/images/resource/user.png'
+                                alt='user.png'
+                              />
+                            </a>
+                            <div className='dropdown-menu'>
+                              <div className='user_setting_content'>
+                                {menuItems.map((section, sectionIndex) => (
+                                  <div key={sectionIndex}>
+                                    <p
+                                      className={`fz15 fw400 ff-heading ${
+                                        sectionIndex === 0 ? 'mb20' : 'mt30'
+                                      }`}
+                                    >
+                                      {section.title}
+                                    </p>
+                                    {section.items.map((item, itemIndex) => (
+                                      <Link
+                                        key={itemIndex}
+                                        className={`dropdown-item ${
+                                          pathname == item.href
+                                            ? '-is-active'
+                                            : ''
+                                        } `}
+                                        href={item.href}
+                                      >
+                                        <i className={`${item.icon} mr10`} />
+                                        {item.text}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                ))}
+                                <div onClick={handleLogout}>
+                                  <Link className='dropdown-item' href='#'>
+                                    <i className='flaticon-logout mr10' />
+                                    Logout
+                                  </Link>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </>
                   <a
                     className='sidemenu-btn filter-btn-right'
                     href='#'
