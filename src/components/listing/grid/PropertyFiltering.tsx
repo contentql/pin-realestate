@@ -1,29 +1,29 @@
 "use client";
-
+ 
 import { useEffect, useState } from "react";
 import ListingSidebar from "../sidebar";
 import FeaturedListings from "./FeatuerdListings";
 import TopFilterBar from "./TopFilterBar";
-
+ 
 import { trpc } from "@/trpc/client";
 import PaginationTwo from "../PaginationTwo";
-
+ 
 export default function PropertyFiltering() {
   const [filteredData, setFilteredData] = useState<any>([]);
-
+ 
   const [currentSortingOption, setCurrentSortingOption] = useState("Newest");
-
+ 
   const [sortedFilteredData, setSortedFilteredData] = useState<any>([]);
   const [pageNumber, setPageNumber] = useState(1);
-
+ 
   const [colstyle, setColstyle] = useState(false);
   const [pageItems, setPageItems] = useState<any>([]);
-
+ 
   const [pageContentTrac, setPageContentTrac] = useState<any>([]);
-
+ 
   const { data: propertiesListData, isLoading } =
     trpc.properties.getProperties.list.useQuery();
-
+ 
   useEffect(() => {
     setPageItems(
       sortedFilteredData.slice((pageNumber - 1) * 8, pageNumber * 8)
@@ -34,7 +34,7 @@ export default function PropertyFiltering() {
       sortedFilteredData.length,
     ]);
   }, [pageNumber, sortedFilteredData]);
-
+ 
   const [listingStatus, setListingStatus] = useState("All");
   const [propertyTypes, setPropertyTypes] = useState<any>([]);
   const [priceRange, setPriceRange] = useState([0, 100000]);
@@ -45,7 +45,7 @@ export default function PropertyFiltering() {
   const [yearBuild, setyearBuild] = useState<any>([]);
   const [categories, setCategories] = useState<any>([]);
   const [searchQuery, setSearchQuery] = useState("");
-
+ 
   const resetFilter = () => {
     setListingStatus("All");
     setPropertyTypes([]);
@@ -61,11 +61,11 @@ export default function PropertyFiltering() {
       element.value = null;
     });
   };
-
+ 
   const handlelistingStatus = (elm: any) => {
     setListingStatus((pre) => (pre == elm ? "All" : elm));
   };
-
+ 
   const handlepropertyTypes = (elm: any) => {
     if (elm == "All") {
       setPropertyTypes([]);
@@ -121,7 +121,7 @@ export default function PropertyFiltering() {
     listingStatus,
     propertyTypes,
     resetFilter,
-
+ 
     bedrooms,
     bathroms,
     location,
@@ -133,7 +133,7 @@ export default function PropertyFiltering() {
   };
   console.log("pageItems", pageItems);
   console.log("sortedFilteredData", sortedFilteredData);
-
+ 
   useEffect(() => {
     if (!propertiesListData) return;
     const refItems = propertiesListData?.filter((elm: any) => {
@@ -145,11 +145,11 @@ export default function PropertyFiltering() {
         return elm.propertiesDetails.status.includes("For sale");
       }
     });
-
+ 
     let filteredArrays: any[] = [];
-
+ 
     console.log("refItems", refItems); // working
-
+ 
     if (propertyTypes.length > 0) {
       const filtered = refItems.filter((elm: any) =>
         propertyTypes.includes(elm.propertiesDetails.propertyType.value.type)
@@ -183,7 +183,7 @@ export default function PropertyFiltering() {
             .includes(searchQuery.toLocaleLowerCase())
       ),
     ];
-
+ 
     filteredArrays = [
       ...filteredArrays,
       !categories.length
@@ -192,14 +192,14 @@ export default function PropertyFiltering() {
             categories.every((elem: any) => elm.amenities?.includes(elem))
           ),
     ];
-
+ 
     if (location != "All Cities") {
       filteredArrays = [
         ...filteredArrays,
         refItems.filter((el) => el.location.city == location),
       ];
     }
-
+ 
     if (priceRange.length > 0) {
       const filtered = refItems.filter(
         (elm: any) =>
@@ -208,7 +208,7 @@ export default function PropertyFiltering() {
       );
       filteredArrays = [...filteredArrays, filtered];
     }
-
+ 
     if (squirefeet.length > 0 && squirefeet[1]) {
       const filtered = refItems.filter(
         (elm: any) =>
@@ -225,13 +225,13 @@ export default function PropertyFiltering() {
       );
       filteredArrays = [...filteredArrays, filtered];
     }
-
+ 
     const commonItems = refItems.filter((item) =>
       filteredArrays.every((array) => array.includes(item))
     );
-
+ 
     console.log("commonItems", commonItems);
-
+ 
     setFilteredData(commonItems);
   }, [
     listingStatus,
@@ -246,7 +246,7 @@ export default function PropertyFiltering() {
     searchQuery,
     propertiesListData,
   ]);
-
+ 
   useEffect(() => {
     setPageNumber(1);
     if (currentSortingOption == "Newest") {
@@ -272,7 +272,7 @@ export default function PropertyFiltering() {
       setSortedFilteredData(filteredData);
     }
   }, [filteredData, currentSortingOption]);
-
+ 
   return (
     <section className="pt0 pb90 bgc-f7">
       <div className="container">
@@ -281,7 +281,7 @@ export default function PropertyFiltering() {
             <ListingSidebar filterFunctions={filterFunctions} />
           </div>
           {/* End .col-lg-4 */}
-
+ 
           {/* start mobile filter sidebar */}
           <div
             className="offcanvas offcanvas-start p-0"
@@ -305,7 +305,7 @@ export default function PropertyFiltering() {
             </div>
           </div>
           {/* End mobile filter sidebar */}
-
+ 
           <div className="col-lg-8">
             <div className="row align-items-center mb20">
               <TopFilterBar
@@ -316,12 +316,12 @@ export default function PropertyFiltering() {
               />
             </div>
             {/* End TopFilterBar */}
-
+ 
             <div className="row mt15">
               <FeaturedListings colstyle={colstyle} data={pageItems} />
             </div>
             {/* End .row */}
-
+ 
             <div className="row">
               <PaginationTwo
                 pageCapacity={8}
