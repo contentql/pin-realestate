@@ -1,7 +1,7 @@
-import LoginView from "@/views/LoginView"
+import LoginView from '@/views/LoginView'
 
-const Login  = () => {
-    return <LoginView />
+const Login = () => {
+  return <LoginView />
 }
 
 export default Login

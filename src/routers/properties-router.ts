@@ -1,14 +1,14 @@
-import { getPayloadClient } from "../get-payload";
+import { getPayloadClient } from '../get-payload'
 //import { PropertyByIdValidator } from '../lib/validators/property-router/property-id-validator';
-import { publicProcedure, router } from "../trpc/trpc";
+import { publicProcedure, router } from '../trpc/trpc'
 
 export const propertiesRouter = router({
   getProperties: {
     list: publicProcedure.query(async () => {
       // Retrieve users from a datasource, this is an imaginary database
-      const payload = await getPayloadClient();
+      const payload = await getPayloadClient()
 
-      const properties = await payload.find({ collection: "properties" });
+      const properties = await payload.find({ collection: 'properties' })
       //   const firstPageKeys = [{ name: 'title' }];
       const newProperties = properties.docs.map(
         ({ id, propertiesDetails, location, details, amenities }: any) => {
@@ -18,9 +18,9 @@ export const propertiesRouter = router({
             location: location.location,
             details: details.details,
             amenities: amenities.amenities,
-          };
-        }
-      );
+          }
+        },
+      )
       // const newProperties = properties.docs.map(
       //   ({
       //     id
@@ -60,7 +60,7 @@ export const propertiesRouter = router({
       // );
 
       //    ^?
-      return newProperties;
+      return newProperties
     }),
   },
   // byPropertyId: publicProcedure
@@ -79,4 +79,4 @@ export const propertiesRouter = router({
 
   //     return propertyById;
   //   }),
-});
+})

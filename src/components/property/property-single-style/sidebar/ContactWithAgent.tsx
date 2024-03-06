@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
 const ContactWithAgent = () => {
   return (
@@ -36,7 +36,7 @@ const ContactWithAgent = () => {
         </Link>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ContactWithAgent;
+export default ContactWithAgent

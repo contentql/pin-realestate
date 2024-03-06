@@ -1,14 +1,14 @@
-import { getPayloadClient } from '../get-payload';
-import { ContactFormValidator } from '../lib/validators/auth-router/contact-form-validator';
-import { router, userProcedure } from '../trpc/trpc';
+import { getPayloadClient } from '../get-payload'
+import { ContactFormValidator } from '../lib/validators/auth-router/contact-form-validator'
+import { router, userProcedure } from '../trpc/trpc'
 
 export const ContactRouter = router({
   createNewContact: userProcedure
     .input(ContactFormValidator)
     .mutation(async ({ ctx, input }) => {
-      const { first_name, last_name, query } = input;
-      const { user } = ctx;
-      const payload = await getPayloadClient();
+      const { first_name, last_name, query } = input
+      const { user } = ctx
+      const payload = await getPayloadClient()
 
       await payload.create({
         collection: 'contact',
@@ -18,8 +18,8 @@ export const ContactRouter = router({
           last_name: last_name,
           query: query,
         },
-      });
+      })
 
-      return { succuss: true };
+      return { succuss: true }
     }),
-});
+})

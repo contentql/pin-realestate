@@ -1,5 +1,5 @@
 const OverView = ({ data, propertyType }: any) => {
-  console.log('Data: ' + data);
+  console.log('Data: ' + data)
   //const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   const overviewData = [
     {
@@ -34,7 +34,7 @@ const OverView = ({ data, propertyType }: any) => {
       label: 'Property Type',
       value: propertyType,
     },
-  ];
+  ]
 
   return (
     <>
@@ -53,7 +53,7 @@ const OverView = ({ data, propertyType }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default OverView;
+export default OverView

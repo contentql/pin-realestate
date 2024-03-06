@@ -1,10 +1,10 @@
-'use client';
-import listings from '@/data/listings';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
+'use client'
+import listings from '@/data/listings'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.min.css'
 
 const NearbySimilarProperty = () => {
   return (
@@ -36,7 +36,7 @@ const NearbySimilarProperty = () => {
           },
         }}
       >
-        {listings.slice(0, 5).map((listing) => (
+        {listings.slice(0, 5).map(listing => (
           <SwiperSlide key={listing.id}>
             <div className='item'>
               <div className='listing-style1'>
@@ -100,7 +100,7 @@ const NearbySimilarProperty = () => {
         ))}
       </Swiper>
     </>
-  );
-};
+  )
+}
 
-export default NearbySimilarProperty;
+export default NearbySimilarProperty

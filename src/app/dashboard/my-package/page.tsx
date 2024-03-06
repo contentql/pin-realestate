@@ -1,7 +1,7 @@
-import DashboardMyPackageView from "@/views/DashboardMyPackage"
+import DashboardMyPackageView from '@/views/DashboardMyPackage'
 
-const DashboardMyPackage =  () => {
-    return <DashboardMyPackageView />
+const DashboardMyPackage = () => {
+  return <DashboardMyPackageView />
 }
 
 export default DashboardMyPackage

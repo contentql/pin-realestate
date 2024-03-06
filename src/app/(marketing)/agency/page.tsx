@@ -1,7 +1,7 @@
-import AgencyView from "@/views/AgencyView"
+import AgencyView from '@/views/AgencyView'
 
 const Agency = () => {
-    return <AgencyView />
+  return <AgencyView />
 }
 
 export default Agency

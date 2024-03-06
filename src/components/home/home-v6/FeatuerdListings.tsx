@@ -1,11 +1,11 @@
-'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
-import listings from '../../../data/listings';
+'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.min.css'
+import listings from '../../../data/listings'
 
 const FeaturedListings = () => {
   return (
@@ -38,7 +38,7 @@ const FeaturedListings = () => {
           },
         }}
       >
-        {listings.slice(0, 5).map((listing) => (
+        {listings.slice(0, 5).map(listing => (
           <SwiperSlide key={listing.id}>
             <div className='item'>
               <div className='listing-style1'>
@@ -100,7 +100,7 @@ const FeaturedListings = () => {
         ))}
       </Swiper>
     </>
-  );
-};
+  )
+}
 
-export default FeaturedListings;
+export default FeaturedListings

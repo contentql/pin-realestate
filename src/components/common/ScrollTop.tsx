@@ -1,40 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 
 export default function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
-    });
-  };
+      behavior: 'smooth',
+    })
+  }
 
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.pageYOffset > 100) {
-        setIsVisible(true);
+        setIsVisible(true)
       } else {
-        setIsVisible(false);
+        setIsVisible(false)
       }
-    };
+    }
 
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility)
 
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
+    return () => window.removeEventListener('scroll', toggleVisibility)
+  }, [])
 
   return (
     <>
       {isVisible && (
         <div
-          className="scrollToHome"
-          style={{ cursor: "pointer" }}
+          className='scrollToHome'
+          style={{ cursor: 'pointer' }}
           onClick={scrollToTop}
         >
-          <i className="fas fa-angle-up"></i>
+          <i className='fas fa-angle-up'></i>
         </div>
       )}
     </>
-  );
+  )
 }

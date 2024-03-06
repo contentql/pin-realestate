@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
 // const floorPlanData = [
 //   {
@@ -31,7 +31,7 @@ import Image from 'next/image';
 // ];
 
 const FloorPlans = ({ floorPlanData }: any) => {
-  console.log('floorPlans', floorPlanData);
+  console.log('floorPlans', floorPlanData)
 
   return (
     <div className='accordion' id='accordionExample'>
@@ -93,7 +93,7 @@ const FloorPlans = ({ floorPlanData }: any) => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default FloorPlans;
+export default FloorPlans

@@ -1,13 +1,13 @@
-import ResetView from '@/views/ResetView';
+import ResetView from '@/views/ResetView'
 
 interface searchParamsProps {
   searchParams: {
-    [key: string]: string | string[] | undefined;
-  };
+    [key: string]: string | string[] | undefined
+  }
 }
 
 function Reset({ searchParams }: searchParamsProps) {
-  return <ResetView searchParams={searchParams} />;
+  return <ResetView searchParams={searchParams} />
 }
 
-export default Reset;
+export default Reset

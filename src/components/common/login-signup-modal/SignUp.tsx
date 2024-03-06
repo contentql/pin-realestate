@@ -1,49 +1,49 @@
-'use client';
+'use client'
 import {
   AuthCredentialsValidator,
   TAuthCredentialsValidator,
-} from '@/lib/validators/auth-router/account-credentials-validator';
-import { trpc } from '@/trpc/client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+} from '@/lib/validators/auth-router/account-credentials-validator'
+import { trpc } from '@/trpc/client'
+import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 const SignUp = () => {
-  const router = useRouter();
+  const router = useRouter()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TAuthCredentialsValidator>({
     resolver: zodResolver(AuthCredentialsValidator),
-  });
+  })
 
   const { mutate: registerUser } = trpc.auth.createUser.useMutation({
-    onError: (err) => {
+    onError: err => {
       if (err.data?.code === 'CONFLICT') {
-        toast.error('user already exist');
+        toast.error('user already exist')
 
-        return;
+        return
       }
     },
     onSuccess: () => {
       toast.success('verification link sent to your mail. Please verify it!', {
         onClose: () => {
-          router.push('/login');
+          router.push('/login')
         },
-      });
+      })
     },
-  });
+  })
 
   const onSubmit = ({
     email,
     password,
     username,
   }: TAuthCredentialsValidator) => {
-    registerUser({ email, password, username });
-  };
+    registerUser({ email, password, username })
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='form-style1'>
@@ -116,7 +116,7 @@ const SignUp = () => {
         </Link>
       </p>
     </form>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

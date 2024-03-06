@@ -3,54 +3,54 @@ import {
   homeItems,
   listingItems,
   propertyItems,
-} from '@/data/navItems';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+} from '@/data/navItems'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 const MainMenu = () => {
   //const token = cookie.get('payload-token');
 
-  const pathname = usePathname();
-  const [topMenu, setTopMenu] = useState('');
-  const [submenu, setSubmenu] = useState('');
-  const [activeLink, setActiveLink] = useState('');
+  const pathname = usePathname()
+  const [topMenu, setTopMenu] = useState('')
+  const [submenu, setSubmenu] = useState('')
+  const [activeLink, setActiveLink] = useState('')
 
   //console.log('USeRRR', token);
 
   useEffect(() => {
-    homeItems.forEach((elm) => {
+    homeItems.forEach(elm => {
       if (elm.href.split('/')[1] == pathname.split('/')[1]) {
-        setTopMenu('home');
+        setTopMenu('home')
       }
-    });
-    blogItems.forEach((elm) => {
+    })
+    blogItems.forEach(elm => {
       if (elm.href.split('/')[1] == pathname.split('/')[1]) {
-        setTopMenu('blog');
+        setTopMenu('blog')
       }
-    });
-    propertyItems.forEach((item) =>
-      item.subMenuItems.forEach((elm) => {
+    })
+    propertyItems.forEach(item =>
+      item.subMenuItems.forEach(elm => {
         if (elm.href.split('/')[1] == pathname.split('/')[1]) {
-          setTopMenu('property');
-          setSubmenu(item.label);
+          setTopMenu('property')
+          setSubmenu(item.label)
         }
-      })
-    );
-    listingItems.forEach((item) =>
-      item.submenu.forEach((elm) => {
+      }),
+    )
+    listingItems.forEach(item =>
+      item.submenu.forEach(elm => {
         if (elm.href.split('/')[1] == pathname.split('/')[1]) {
-          setTopMenu('listing');
-          setSubmenu(item.title);
+          setTopMenu('listing')
+          setSubmenu(item.title)
         }
-      })
-    );
-  }, [pathname]);
+      }),
+    )
+  }, [pathname])
 
   const handleActive = (link: any) => {
     if (link.split('/')[1] == pathname.split('/')[1]) {
-      return 'menuActive';
+      return 'menuActive'
     }
-  };
+  }
   return (
     <ul className='ace-responsive-menu'>
       <li className='visible_list dropitem'>
@@ -126,7 +126,7 @@ const MainMenu = () => {
       </li> */}
       {/* End pages Items */}
     </ul>
-  );
-};
+  )
+}
 
-export default MainMenu;
+export default MainMenu

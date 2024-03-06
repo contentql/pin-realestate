@@ -1,38 +1,38 @@
-'use client';
+'use client'
 
-import MainMenu from '@/components/common/MainMenu';
-import LoginSignupModal from '@/components/common/login-signup-modal';
-import SidebarPanel from '@/components/common/sidebar-panel';
-import { useAuth } from '@/providers/Auth';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import MainMenu from '@/components/common/MainMenu'
+import LoginSignupModal from '@/components/common/login-signup-modal'
+import SidebarPanel from '@/components/common/sidebar-panel'
+import { useAuth } from '@/providers/Auth'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 const Header = () => {
-  const [navbar, setNavbar] = useState(false);
+  const [navbar, setNavbar] = useState(false)
 
-  const { logout } = useAuth();
+  const { logout } = useAuth()
 
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useRouter()
+  const pathname = usePathname()
 
-  const { status } = useAuth();
+  const { status } = useAuth()
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
-      setNavbar(true);
+      setNavbar(true)
     } else {
-      setNavbar(false);
+      setNavbar(false)
     }
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener('scroll', changeBackground);
+    window.addEventListener('scroll', changeBackground)
     return () => {
-      window.removeEventListener('scroll', changeBackground);
-    };
-  }, []);
+      window.removeEventListener('scroll', changeBackground)
+    }
+  }, [])
 
   const menuItems = [
     {
@@ -96,11 +96,11 @@ const Header = () => {
         //{ icon: 'flaticon-exit', text: 'Logout', href: '/login' },
       ],
     },
-  ];
+  ]
 
   const handleLogout = () => {
-    logout();
-  };
+    logout()
+  }
 
   return (
     <>
@@ -278,7 +278,7 @@ const Header = () => {
       </div>
       {/* Sidebar Panel End */}
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

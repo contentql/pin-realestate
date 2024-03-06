@@ -1,76 +1,76 @@
-"use client";
-import React from "react";
-import Select from "react-select";
+'use client'
+import React from 'react'
+import Select from 'react-select'
 
 const options = {
   countries: [
-    "Belgium",
-    "France",
-    "Kuwait",
-    "Qatar",
-    "Netherlands",
-    "Germany",
-    "Turkey",
-    "UK",
-    "USA",
+    'Belgium',
+    'France',
+    'Kuwait',
+    'Qatar',
+    'Netherlands',
+    'Germany',
+    'Turkey',
+    'UK',
+    'USA',
   ],
   cities: [
-    "California",
-    "Chicago",
-    "Los Angeles",
-    "Manhattan",
-    "New Jersey",
-    "New York",
-    "San Diego",
-    "San Francisco",
-    "Texas",
+    'California',
+    'Chicago',
+    'Los Angeles',
+    'Manhattan',
+    'New Jersey',
+    'New York',
+    'San Diego',
+    'San Francisco',
+    'Texas',
   ],
   additionalCountries: [
-    "Belgium",
-    "France",
-    "Kuwait",
-    "Qatar",
-    "Netherlands",
-    "Germany",
-    "Turkey",
-    "UK",
-    "USA",
+    'Belgium',
+    'France',
+    'Kuwait',
+    'Qatar',
+    'Netherlands',
+    'Germany',
+    'Turkey',
+    'UK',
+    'USA',
   ],
-};
+}
 
 const customStyles = {
-  option: (styles : any, { isFocused, isSelected, isHovered } : any) => {
+  option: (styles: any, { isFocused, isSelected, isHovered }: any) => {
     return {
       ...styles,
       backgroundColor: isSelected
-        ? "#eb6753"
+        ? '#eb6753'
         : isHovered
-        ? "#eb675312"
-        : isFocused
-        ? "#eb675312"
-        : undefined,
-    };
+          ? '#eb675312'
+          : isFocused
+            ? '#eb675312'
+            : undefined,
+    }
   },
-};
+}
 
 const SelectMultiField = () => {
-  const fieldTitles = ["Country / State", "City", "Country"];
+  const fieldTitles = ['Country / State', 'City', 'Country']
   return (
     <>
       {Object.keys(options).map((key, index) => (
-        <div className="col-sm-6 col-xl-4" key={index}>
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
+        <div className='col-sm-6 col-xl-4' key={index}>
+          <div className='mb20'>
+            <label className='heading-color ff-heading fw600 mb10'>
               {fieldTitles[index]}
             </label>
-            <div className="location-area">
+            <div className='location-area'>
               <Select
                 styles={customStyles}
-                className="select-custom pl-0"
-                classNamePrefix="select"
+                className='select-custom pl-0'
+                classNamePrefix='select'
                 required
                 isMulti
-                options={options[key as keyof typeof options].map((item) => ({
+                options={options[key as keyof typeof options].map(item => ({
                   value: item,
                   label: item,
                 }))}
@@ -80,7 +80,7 @@ const SelectMultiField = () => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default SelectMultiField;
+export default SelectMultiField

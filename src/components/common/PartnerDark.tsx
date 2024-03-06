@@ -1,10 +1,10 @@
-'use client';
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper.min.css';
+'use client'
+import Image from 'next/image'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper.min.css'
 
 const PartnerDark = () => {
-  const partnerImages = ['7', '8', '9', '10', '11'];
+  const partnerImages = ['7', '8', '9', '10', '11']
 
   return (
     <Swiper
@@ -48,7 +48,7 @@ const PartnerDark = () => {
         </SwiperSlide>
       ))}
     </Swiper>
-  );
-};
+  )
+}
 
-export default PartnerDark;
+export default PartnerDark

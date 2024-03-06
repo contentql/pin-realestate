@@ -1,10 +1,10 @@
-import Forgot from '@/components/common/login-signup-modal/Forgot';
-import Image from 'next/image';
-import Link from 'next/link';
+import Forgot from '@/components/common/login-signup-modal/Forgot'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Forgt password',
-};
+}
 
 const ForgotView = () => {
   return (
@@ -44,7 +44,7 @@ const ForgotView = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default ForgotView;
+export default ForgotView

@@ -1,12 +1,12 @@
-import mobileMenuItems from '@/data/mobileMenuItems';
-import { isParentActive } from '@/utilis/isMenuActive';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import mobileMenuItems from '@/data/mobileMenuItems'
+import { isParentActive } from '@/utilis/isMenuActive'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-import { Menu, MenuItem, Sidebar, SubMenu } from 'react-pro-sidebar';
+import { Menu, MenuItem, Sidebar, SubMenu } from 'react-pro-sidebar'
 
 const ProSidebarContent = () => {
-  const path = usePathname();
+  const path = usePathname()
 
   return (
     <Sidebar width='100%' backgroundColor='#fff' className='my-custom-class'>
@@ -52,13 +52,13 @@ const ProSidebarContent = () => {
                 >
                   {subItem.label}
                 </MenuItem>
-              )
+              ),
             )}
           </SubMenu>
         ))}
       </Menu>
     </Sidebar>
-  );
-};
+  )
+}
 
-export default ProSidebarContent;
+export default ProSidebarContent

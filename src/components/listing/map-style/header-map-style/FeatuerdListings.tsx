@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
 const FeaturedListings = ({ data, colstyle }: any) => {
   return (
@@ -56,7 +56,7 @@ const FeaturedListings = ({ data, colstyle }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default FeaturedListings;
+export default FeaturedListings

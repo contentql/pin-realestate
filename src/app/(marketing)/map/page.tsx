@@ -1,7 +1,7 @@
-import Map from '@/views/MapView';
+import Map from '@/views/MapView'
 
 function MapPage() {
-  return <Map />;
+  return <Map />
 }
 
-export default MapPage;
+export default MapPage

@@ -1,11 +1,11 @@
-import { agentsData } from '@/data/agents';
-import Image from 'next/image';
-import Link from 'next/link';
+import { agentsData } from '@/data/agents'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const AvailableAgent = () => {
   return (
     <>
-      {agentsData.slice(23, 26).map((agent) => (
+      {agentsData.slice(23, 26).map(agent => (
         <div className='col-sm-6 col-md-4' key={agent.id}>
           <div className='feature-style2 mb30'>
             <div className='feature-img'>
@@ -29,7 +29,7 @@ const AvailableAgent = () => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default AvailableAgent;
+export default AvailableAgent

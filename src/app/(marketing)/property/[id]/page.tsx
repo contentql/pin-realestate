@@ -1,6 +1,6 @@
-import Property from '@/views/SinglePropertyView';
+import Property from '@/views/SinglePropertyView'
 function SingleProperty({ params }: any) {
-  return <Property params={params} />;
+  return <Property params={params} />
 }
 
-export default SingleProperty;
+export default SingleProperty

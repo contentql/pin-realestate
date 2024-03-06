@@ -1,5 +1,5 @@
-import { slateEditor } from '@payloadcms/richtext-slate';
-import { CollectionConfig } from 'payload/types';
+import { slateEditor } from '@payloadcms/richtext-slate'
+import { CollectionConfig } from 'payload/types'
 
 const Properties: CollectionConfig = {
   slug: 'properties',
@@ -110,25 +110,21 @@ const Properties: CollectionConfig = {
                   required: true,
                 },
                 {
-
                   name: 'state',
                   type: 'text',
                   required: true,
                 },
                 {
-
                   name: 'city',
                   type: 'text',
                   required: true,
                 },
                 {
-
                   name: 'zipcode',
                   type: 'text',
                   required: true,
                 },
                 {
-
                   name: 'locationPoints',
                   type: 'point',
                   label: 'Location',
@@ -158,7 +154,6 @@ const Properties: CollectionConfig = {
                   label: 'Label',
                 },
                 {
-
                   name: 'yearBuild',
 
                   type: 'number',
@@ -178,7 +173,6 @@ const Properties: CollectionConfig = {
                   label: 'Baths',
                 },
                 {
-
                   name: 'beds',
 
                   type: 'number',
@@ -186,7 +180,6 @@ const Properties: CollectionConfig = {
                   label: 'Beds',
                 },
                 {
-
                   name: 'garages',
 
                   type: 'number',
@@ -194,7 +187,6 @@ const Properties: CollectionConfig = {
                   label: 'Garages',
                 },
                 {
-
                   name: 'homearea',
 
                   type: 'number',
@@ -248,7 +240,6 @@ const Properties: CollectionConfig = {
               fields: [
                 // required
                 {
-
                   name: 'title',
 
                   type: 'text',
@@ -256,14 +247,12 @@ const Properties: CollectionConfig = {
                   required: true,
                 },
                 {
-
                   name: 'imageSrc',
                   type: 'upload',
                   label: 'Floor Image',
                   relationTo: 'media',
                 },
                 {
-
                   name: 'rooms',
                   type: 'number',
                   label: 'Rooms',
@@ -276,7 +265,6 @@ const Properties: CollectionConfig = {
                   required: true,
                 },
                 {
-
                   name: 'bedrooms',
                   type: 'number',
                   label: 'Bedrooms',
@@ -289,7 +277,6 @@ const Properties: CollectionConfig = {
                   required: true,
                 },
                 {
-
                   name: 'size',
                   type: 'number',
                   label: 'Size',
@@ -370,6 +357,6 @@ const Properties: CollectionConfig = {
       ],
     },
   ],
-};
+}
 
-export default Properties;
+export default Properties

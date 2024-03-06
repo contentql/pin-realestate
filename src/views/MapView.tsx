@@ -1,11 +1,11 @@
-import DefaultHeader from '@/components/common/DefaultHeader';
-import MobileMenu from '@/components/common/mobile-menu';
+import DefaultHeader from '@/components/common/DefaultHeader'
+import MobileMenu from '@/components/common/mobile-menu'
 
-import PropertyFilteringMapFour from '@/components/listing/map-style/map/PropertyFilteringMapFour';
+import PropertyFilteringMapFour from '@/components/listing/map-style/map/PropertyFilteringMapFour'
 
 export const metadata = {
   title: 'Map',
-};
+}
 
 const Map = () => {
   return (
@@ -23,7 +23,7 @@ const Map = () => {
 
       {/* Property Filtering */}
     </>
-  );
-};
+  )
+}
 
-export default Map;
+export default Map

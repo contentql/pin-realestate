@@ -1,25 +1,25 @@
-'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { ZodError } from 'zod';
+'use client'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { ZodError } from 'zod'
 
 import {
   ResetPasswordValidator,
   TResetPasswordValidator,
-} from '@/lib/validators/auth-router/reset-password-validator';
-import { trpc } from '@/trpc/client';
-import { useRouter } from 'next/navigation';
+} from '@/lib/validators/auth-router/reset-password-validator'
+import { trpc } from '@/trpc/client'
+import { useRouter } from 'next/navigation'
 
 interface searchParamsProps {
   searchParams: {
-    [key: string]: string | string[] | undefined;
-  };
+    [key: string]: string | string[] | undefined
+  }
 }
 
 const Reset = ({ searchParams }: searchParamsProps) => {
-  const router = useRouter();
-  const token = searchParams?.token as string;
+  const router = useRouter()
+  const token = searchParams?.token as string
   const {
     register,
     handleSubmit,
@@ -29,33 +29,33 @@ const Reset = ({ searchParams }: searchParamsProps) => {
       token: token,
     },
     resolver: zodResolver(ResetPasswordValidator),
-  });
+  })
 
   const { mutate: resetPassword } = trpc.auth.resetPassword.useMutation({
-    onError: (err) => {
+    onError: err => {
       if (err.data?.code === 'CONFLICT') {
-        toast.error('Failed to reset password');
+        toast.error('Failed to reset password')
 
-        return;
+        return
       }
 
       if (err instanceof ZodError) {
         // in toast
-        console.error(err.issues[0].message);
+        console.error(err.issues[0].message)
 
-        return;
+        return
       }
 
-      console.error('Something went wrong. Please try again.');
+      console.error('Something went wrong. Please try again.')
     },
     onSuccess: () => {
       toast.success('Reset Password successfully', {
         onClose: () => {
-          router.push('/');
+          router.push('/')
         },
-      });
+      })
     },
-  });
+  })
 
   const onSubmit = ({
     password,
@@ -63,8 +63,8 @@ const Reset = ({ searchParams }: searchParamsProps) => {
     token,
   }: TResetPasswordValidator) => {
     //console.log('triggered onSubmit', password, token);
-    resetPassword({ password, confirmPassword, token });
-  };
+    resetPassword({ password, confirmPassword, token })
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className='form-style1'>
@@ -105,7 +105,7 @@ const Reset = ({ searchParams }: searchParamsProps) => {
       </div>
       {/* End submit */}
     </form>
-  );
-};
+  )
+}
 
-export default Reset;
+export default Reset

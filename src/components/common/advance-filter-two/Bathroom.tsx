@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 const Bathroom = ({ filterFunctions }: any) => {
   const bathOptions = [
@@ -8,7 +8,7 @@ const Bathroom = ({ filterFunctions }: any) => {
     { id: 'ythreeplus', label: '3+', value: 3 },
     { id: 'yfourplus', label: '4+', value: 4 },
     { id: 'yfiveplus', label: '5+', value: 5 },
-  ];
+  ]
 
   return (
     <>
@@ -24,7 +24,7 @@ const Bathroom = ({ filterFunctions }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Bathroom;
+export default Bathroom

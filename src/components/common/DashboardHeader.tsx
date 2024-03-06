@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
-import MainMenu from '@/components/common/MainMenu';
-import SidebarPanel from '@/components/common/sidebar-panel';
-import { logout } from '@/query/auth/logout';
-import { useMutation } from '@tanstack/react-query';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
+import MainMenu from '@/components/common/MainMenu'
+import SidebarPanel from '@/components/common/sidebar-panel'
+import { logout } from '@/query/auth/logout'
+import { useMutation } from '@tanstack/react-query'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 
 const DashboardHeader = () => {
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useRouter()
+  const pathname = usePathname()
 
   const menuItems = [
     {
@@ -71,7 +71,7 @@ const DashboardHeader = () => {
         //{ icon: 'flaticon-exit', text: 'Logout', href: '/login' },
       ],
     },
-  ];
+  ]
 
   const {
     isPending: isLogoutPending,
@@ -81,7 +81,7 @@ const DashboardHeader = () => {
     mutationKey: ['/api/users/logout', 'post'],
     mutationFn: () => logout(),
     onSuccess: async () => {
-      router.push('/login');
+      router.push('/login')
     },
     onError: async (err: any) => {
       if (err.message === 'CONFLICT') {
@@ -91,18 +91,18 @@ const DashboardHeader = () => {
             toast.info('Redirecting to login page...', {
               autoClose: 2000,
               onClose: () => router.push('/login'),
-            });
+            })
           },
-        });
+        })
       }
 
-      console.error('Something went wrong. Please try again.');
+      console.error('Something went wrong. Please try again.')
     },
-  });
+  })
 
   const handleLogout = () => {
-    logoutMutation();
-  };
+    logoutMutation()
+  }
 
   return (
     <>
@@ -233,7 +233,7 @@ const DashboardHeader = () => {
       </div>
       {/* Sidebar Panel End */}
     </>
-  );
-};
+  )
+}
 
-export default DashboardHeader;
+export default DashboardHeader

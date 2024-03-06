@@ -1,4 +1,4 @@
-export const homeItems = [{ href: '/', label: 'Home' }];
+export const homeItems = [{ href: '/', label: 'Home' }]
 
 export const listingItems = [
   {
@@ -40,7 +40,7 @@ export const listingItems = [
       { label: 'List All Style', href: '/list-all-style' },
     ],
   },
-];
+]
 
 export const propertyItems = [
   {
@@ -82,14 +82,14 @@ export const propertyItems = [
       { label: 'My Profile', href: '/dashboard-my-profile' },
     ],
   },
-];
+]
 
 export const blogItems = [
   { href: '/blog-list-v1', label: 'Blog List V1' },
   { href: '/blog-list-v2', label: 'Blog List V2' },
   { href: '/blog-list-v3', label: 'Blog List V3' },
   { href: '/blogs/2', label: 'Blog Single' },
-];
+]
 
 export const pageItems = [
   { href: '/about', label: 'About' },
@@ -101,4 +101,4 @@ export const pageItems = [
   { href: '/register', label: 'Register' },
   { href: '/not-found', label: '404' },
   { href: '/invoice', label: 'Invoice' },
-];
+]

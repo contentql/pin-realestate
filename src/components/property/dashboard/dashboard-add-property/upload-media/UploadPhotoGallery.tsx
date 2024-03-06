@@ -1,35 +1,35 @@
-'use client';
-import Image from 'next/image';
-import { useRef, useState } from 'react';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
+'use client'
+import Image from 'next/image'
+import { useRef, useState } from 'react'
+import { Tooltip as ReactTooltip } from 'react-tooltip'
 
 const UploadPhotoGallery = () => {
-  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
-  const fileInputRef = useRef(null);
+  const [uploadedImages, setUploadedImages] = useState<string[]>([])
+  const fileInputRef = useRef(null)
 
   const handleUpload = (files: any) => {
-    console.log('Uploading', uploadedImages);
-    const newImages = [...uploadedImages];
+    console.log('Uploading', uploadedImages)
+    const newImages = [...uploadedImages]
 
     for (const file of files) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = (e: any) => {
-        newImages.push(e.target.result);
-        setUploadedImages(newImages);
-      };
-      reader.readAsDataURL(file);
+        newImages.push(e.target.result)
+        setUploadedImages(newImages)
+      }
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
   const handleDrop = (event: any) => {
-    event.preventDefault();
-    const files = event.dataTransfer.files;
-    handleUpload(files);
-  };
+    event.preventDefault()
+    const files = event.dataTransfer.files
+    handleUpload(files)
+  }
 
   const handleDragOver = (event: any) => {
-    event.preventDefault();
-  };
+    event.preventDefault()
+  }
 
   // const handleButtonClick = () => {
   //   // Programmatically trigger the hidden file input
@@ -37,10 +37,10 @@ const UploadPhotoGallery = () => {
   // };
 
   const handleDelete = (index: any) => {
-    const newImages = [...uploadedImages];
-    newImages.splice(index, 1);
-    setUploadedImages(newImages);
-  };
+    const newImages = [...uploadedImages]
+    newImages.splice(index, 1)
+    setUploadedImages(newImages)
+  }
 
   return (
     <>
@@ -64,7 +64,7 @@ const UploadPhotoGallery = () => {
             type='file'
             multiple
             className='ud-btn btn-white'
-            onChange={(e) => handleUpload(e.target.files)}
+            onChange={e => handleUpload(e.target.files)}
             style={{ display: 'none' }}
           />
         </label>
@@ -103,7 +103,7 @@ const UploadPhotoGallery = () => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default UploadPhotoGallery;
+export default UploadPhotoGallery

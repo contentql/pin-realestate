@@ -1,39 +1,39 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-
-
-
-const AllAgents = ({data} : any) => {
+const AllAgents = ({ data }: any) => {
   return (
     <>
-      {data.map((agent : any) => (
-        <div key={agent.id} className="col-md-6 col-lg-4">
-          <div className="agency-style1 p30 bdrs12 bdr1 mb30">
-            <div className="agency-img">
+      {data.map((agent: any) => (
+        <div key={agent.id} className='col-md-6 col-lg-4'>
+          <div className='agency-style1 p30 bdrs12 bdr1 mb30'>
+            <div className='agency-img'>
               <Image
                 width={324}
                 height={209}
-                className="w-100 contain"
+                className='w-100 contain'
                 src={agent.imgSrc}
-                alt="agency"
+                alt='agency'
               />
-              <div className="tag">{agent.propertiesCount}</div>
+              <div className='tag'>{agent.propertiesCount}</div>
             </div>
-            <div className="agency-details pt40">
-              <h6 className="fw400">
-                <i className="fas fa-star review-color2 pr10 fz10" />
+            <div className='agency-details pt40'>
+              <h6 className='fw400'>
+                <i className='fas fa-star review-color2 pr10 fz10' />
                 {agent.starRating}
               </h6>
-              <h6 className="agency-title mb-1">{agent.agencyTitle}</h6>
-              <p className="fz15">{agent.address}</p>
-              <div className="d-grid">
-                <Link href={`/agency-single/${agent.id}`} className="ud-btn btn-white2">
+              <h6 className='agency-title mb-1'>{agent.agencyTitle}</h6>
+              <p className='fz15'>{agent.address}</p>
+              <div className='d-grid'>
+                <Link
+                  href={`/agency-single/${agent.id}`}
+                  className='ud-btn btn-white2'
+                >
                   View Listings
-                  <i className="fal fa-arrow-right-long" />
+                  <i className='fal fa-arrow-right-long' />
                 </Link>
               </div>
             </div>
@@ -41,7 +41,7 @@ const AllAgents = ({data} : any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default AllAgents;
+export default AllAgents

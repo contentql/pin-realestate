@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types';
+import { CollectionConfig } from 'payload/types'
 
 const Contact: CollectionConfig = {
   slug: 'contact',
@@ -10,7 +10,7 @@ const Contact: CollectionConfig = {
             to: doc.email,
             from: 'sender@example.com',
             subject: 'Thanks for signing up!',
-          });
+          })
         }
       },
     ],
@@ -37,6 +37,6 @@ const Contact: CollectionConfig = {
       label: 'query',
     },
   ],
-};
+}
 
-export default Contact;
+export default Contact

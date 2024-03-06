@@ -1,17 +1,17 @@
-import MobileMenu from '@/components/common/mobile-menu';
-import About from '@/components/home/About';
-import Agents from '@/components/home/Agents';
-import ExploreCities from '@/components/home/ExploreCities';
-import FeaturedListings from '@/components/home/FeatuerdListings';
-import FeatureProperties from '@/components/home/FeatureProperties';
-import FindHomeBlock from '@/components/home/FindHomeBlock';
-import Header from '@/components/home/Header';
-import Pricing from '@/components/home/Pricing';
-import Testimonial from '@/components/home/Testimonial';
-import Footer from '@/components/home/footer';
-import Hero from '@/components/home/hero';
-import Image from 'next/image';
-import Link from 'next/link';
+import MobileMenu from '@/components/common/mobile-menu'
+import About from '@/components/home/About'
+import Agents from '@/components/home/Agents'
+import ExploreCities from '@/components/home/ExploreCities'
+import FeaturedListings from '@/components/home/FeatuerdListings'
+import FeatureProperties from '@/components/home/FeatureProperties'
+import FindHomeBlock from '@/components/home/FindHomeBlock'
+import Header from '@/components/home/Header'
+import Pricing from '@/components/home/Pricing'
+import Testimonial from '@/components/home/Testimonial'
+import Footer from '@/components/home/footer'
+import Hero from '@/components/home/hero'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const Home = () => {
   return (
@@ -325,7 +325,7 @@ const Home = () => {
       </section>
       {/* End Our Footer */}
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

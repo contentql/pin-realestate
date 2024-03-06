@@ -1,7 +1,7 @@
-'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
+'use client'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Tooltip as ReactTooltip } from 'react-tooltip'
 
 const propertyData = [
   {
@@ -49,20 +49,20 @@ const propertyData = [
     datePublished: 'December 31, 2022',
     status: 'Published',
   },
-];
+]
 
 const getStatusStyle = (status: any) => {
   switch (status) {
     case 'Pending':
-      return 'pending-style style1';
+      return 'pending-style style1'
     case 'Published':
-      return 'pending-style style2';
+      return 'pending-style style2'
     case 'Processing':
-      return 'pending-style style3';
+      return 'pending-style style3'
     default:
-      return '';
+      return ''
   }
-};
+}
 
 const PropertyDataTable = () => {
   return (
@@ -77,7 +77,7 @@ const PropertyDataTable = () => {
         </tr>
       </thead>
       <tbody className='t-body'>
-        {propertyData.map((property) => (
+        {propertyData.map(property => (
           <tr key={property.id}>
             <th scope='row'>
               <div className='listing-style1 dashboard-style d-xxl-flex align-items-center mb-0'>
@@ -143,7 +143,7 @@ const PropertyDataTable = () => {
         ))}
       </tbody>
     </table>
-  );
-};
+  )
+}
 
-export default PropertyDataTable;
+export default PropertyDataTable

@@ -1,13 +1,13 @@
-import DefaultHeader from "@/components/common/DefaultHeader";
-import Footer from "@/components/common/default-footer";
-import MobileMenu from "@/components/common/mobile-menu";
-import FilteringAgency from "@/components/property/FilteringAgency";
+import DefaultHeader from '@/components/common/DefaultHeader'
+import Footer from '@/components/common/default-footer'
+import MobileMenu from '@/components/common/mobile-menu'
+import FilteringAgency from '@/components/property/FilteringAgency'
 
-import React from "react";
+import React from 'react'
 
 export const metadata = {
-  title: "Agency || Homez - Real Estate NextJS Template",
-};
+  title: 'Agency || Homez - Real Estate NextJS Template',
+}
 
 const AgencyView = () => {
   return (
@@ -21,15 +21,15 @@ const AgencyView = () => {
       {/* End Mobile Nav  */}
 
       {/* Breadcumb Sections */}
-      <section className="breadcumb-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcumb-style1">
-                <h2 className="title">Agencies</h2>
-                <div className="breadcumb-list">
-                  <a href="#">Home</a>
-                  <a href="#">For Rent</a>
+      <section className='breadcumb-section'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-lg-12'>
+              <div className='breadcumb-style1'>
+                <h2 className='title'>Agencies</h2>
+                <div className='breadcumb-list'>
+                  <a href='#'>Home</a>
+                  <a href='#'>For Rent</a>
                 </div>
               </div>
             </div>
@@ -39,17 +39,17 @@ const AgencyView = () => {
       {/* End Breadcumb Sections */}
 
       {/* Agent Section Area */}
-      <FilteringAgency/>
+      <FilteringAgency />
 
       {/* End Agent Section Area */}
 
       {/* Start Our Footer */}
-      <section className="footer-style1 pt60 pb-0">
+      <section className='footer-style1 pt60 pb-0'>
         <Footer />
       </section>
       {/* End Our Footer */}
     </>
-  );
-};
+  )
+}
 
-export default AgencyView;
+export default AgencyView

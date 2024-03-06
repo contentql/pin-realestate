@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import Bathroom from '../../sidebar/Bathroom';
-import Bedroom from '../../sidebar/Bedroom';
-import ListingStatus from '../../sidebar/ListingStatus';
-import PriceRange from '../../sidebar/PriceRange';
-import PropertyType from '../../sidebar/PropertyType';
+import Bathroom from '../../sidebar/Bathroom'
+import Bedroom from '../../sidebar/Bedroom'
+import ListingStatus from '../../sidebar/ListingStatus'
+import PriceRange from '../../sidebar/PriceRange'
+import PropertyType from '../../sidebar/PropertyType'
 
 const TopFilterBar2 = ({ filterFunctions }: any) => {
   return (
@@ -14,7 +14,7 @@ const TopFilterBar2 = ({ filterFunctions }: any) => {
           type='text'
           className='form-control search-field'
           placeholder='Enter an address, neighborhood, city, or ZIP code'
-          onChange={(e) =>
+          onChange={e =>
             filterFunctions && filterFunctions.setSearchQuery(e.target.value)
           }
         />
@@ -143,7 +143,7 @@ const TopFilterBar2 = ({ filterFunctions }: any) => {
         </button>
       </li>
     </>
-  );
-};
+  )
+}
 
-export default TopFilterBar2;
+export default TopFilterBar2

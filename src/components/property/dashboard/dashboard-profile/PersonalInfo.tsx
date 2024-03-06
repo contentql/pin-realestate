@@ -1,79 +1,75 @@
-'use client';
+'use client'
 import {
   TUserProfileValidator,
   UserProfileValidator,
-} from '@/lib/validators/auth-router/user-profile-validator';
-import { useAuth } from '@/providers/Auth';
-import { trpc } from '@/trpc/client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { ZodError } from 'zod';
+} from '@/lib/validators/auth-router/user-profile-validator'
+import { useAuth } from '@/providers/Auth'
+import { trpc } from '@/trpc/client'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { ZodError } from 'zod'
 
 const PersonalInfo = () => {
-  const { user } = useAuth();
+  const { user } = useAuth()
   const { register, handleSubmit, setValue } = useForm<TUserProfileValidator>({
     resolver: zodResolver(UserProfileValidator),
-  });
+  })
 
   useEffect(() => {
-    console.log('email:', user?.email!);
-    setValue('user_name', user?.user_name!);
-    setValue('email', user?.email!);
+    console.log('email:', user?.email!)
+    setValue('user_name', user?.user_name!)
+    setValue('email', user?.email!)
     user?.phone_number
       ? setValue('phone_number', user?.phone_number)
-      : setValue('phone_number', '');
+      : setValue('phone_number', '')
     user?.first_name
       ? setValue('first_name', user?.first_name)
-      : setValue('first_name', '');
+      : setValue('first_name', '')
     user?.last_name
       ? setValue('last_name', user?.last_name)
-      : setValue('last_name', '');
+      : setValue('last_name', '')
     user?.position
       ? setValue('position', user?.position)
-      : setValue('position', '');
-    user?.company
-      ? setValue('company', user?.company)
-      : setValue('company', '');
-    user?.about ? setValue('about', user?.about) : setValue('about', '');
-    user?.address
-      ? setValue('address', user?.address)
-      : setValue('address', '');
+      : setValue('position', '')
+    user?.company ? setValue('company', user?.company) : setValue('company', '')
+    user?.about ? setValue('about', user?.about) : setValue('about', '')
+    user?.address ? setValue('address', user?.address) : setValue('address', '')
     user?.language
       ? setValue('language', user?.language)
-      : setValue('language', '');
+      : setValue('language', '')
     user?.tax_number
       ? setValue('tax_number', user?.tax_number)
-      : setValue('tax_number', '');
-  }, [user]);
+      : setValue('tax_number', '')
+  }, [user])
 
   const { mutate: updateUserData } = trpc.auth.updateUserData.useMutation({
-    onError: (err) => {
+    onError: err => {
       if (err.data?.code === 'NOT_FOUND') {
-        toast.error('Account does not exist');
+        toast.error('Account does not exist')
 
-        return;
+        return
       }
 
       if (err instanceof ZodError) {
         // in toast
-        console.error(err.issues[0].message);
+        console.error(err.issues[0].message)
 
-        return;
+        return
       }
 
-      console.error('Something went wrong. Please try again.');
+      console.error('Something went wrong. Please try again.')
     },
     onSuccess: () => {
-      toast.success('Details updated');
+      toast.success('Details updated')
     },
-  });
+  })
 
   const onSubmit = (data: TUserProfileValidator) => {
-    console.log('onSubmit', data);
-    updateUserData(data);
-  };
+    console.log('onSubmit', data)
+    updateUserData(data)
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='form-style1'>
@@ -262,7 +258,7 @@ const PersonalInfo = () => {
         {/* End .col */}
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default PersonalInfo;
+export default PersonalInfo

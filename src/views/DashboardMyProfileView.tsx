@@ -1,14 +1,14 @@
-import DashboardHeader from '@/components/common/DashboardHeader';
-import MobileMenu from '@/components/common/mobile-menu';
-import DboardMobileNavigation from '@/components/property/dashboard/DboardMobileNavigation';
-import Footer from '@/components/property/dashboard/Footer';
-import SidebarDashboard from '@/components/property/dashboard/SidebarDashboard';
-import PersonalInfo from '@/components/property/dashboard/dashboard-profile/PersonalInfo';
-import ProfileBox from '@/components/property/dashboard/dashboard-profile/ProfileBox';
+import DashboardHeader from '@/components/common/DashboardHeader'
+import MobileMenu from '@/components/common/mobile-menu'
+import DboardMobileNavigation from '@/components/property/dashboard/DboardMobileNavigation'
+import Footer from '@/components/property/dashboard/Footer'
+import SidebarDashboard from '@/components/property/dashboard/SidebarDashboard'
+import PersonalInfo from '@/components/property/dashboard/dashboard-profile/PersonalInfo'
+import ProfileBox from '@/components/property/dashboard/dashboard-profile/ProfileBox'
 
 export const metadata = {
   title: 'Dashboard My Profile || Homez - Real Estate NextJS Template',
-};
+}
 
 const DashboardMyProfileView = () => {
   return (
@@ -74,7 +74,7 @@ const DashboardMyProfileView = () => {
       </div>
       {/* dashboard_content_wrapper */}
     </>
-  );
-};
+  )
+}
 
-export default DashboardMyProfileView;
+export default DashboardMyProfileView

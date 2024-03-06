@@ -1,28 +1,26 @@
-'use client';
-import listings from '@/data/listings';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
+'use client'
+import listings from '@/data/listings'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
+import { Tooltip as ReactTooltip } from 'react-tooltip'
 
 const ListingsFavourites = () => {
-  const [favoriteListings, setFavoriteListings] = useState(
-    listings.slice(0, 8)
-  );
+  const [favoriteListings, setFavoriteListings] = useState(listings.slice(0, 8))
 
   const handleDeleteListing = (id: any) => {
     const updatedListings = favoriteListings.filter(
-      (listing) => listing.id !== id
-    );
-    setFavoriteListings(updatedListings);
-  };
+      listing => listing.id !== id,
+    )
+    setFavoriteListings(updatedListings)
+  }
 
   return (
     <>
       {favoriteListings.length === 0 ? (
         <h3>No items available.</h3>
       ) : (
-        favoriteListings.map((listing) => (
+        favoriteListings.map(listing => (
           <div className='col-md-6 col-lg-4 col-xl-3' key={listing.id}>
             <div className='listing-style1 style2'>
               <div className='list-thumb'>
@@ -91,7 +89,7 @@ const ListingsFavourites = () => {
         ))
       )}
     </>
-  );
-};
+  )
+}
 
-export default ListingsFavourites;
+export default ListingsFavourites

@@ -1,61 +1,61 @@
-'use client';
+'use client'
 import {
   ContactFormValidator,
   TContactFormValidator,
-} from '@/lib/validators/auth-router/contact-form-validator';
-import { useAuth } from '@/providers/Auth';
-import { trpc } from '@/trpc/client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { ZodError } from 'zod';
+} from '@/lib/validators/auth-router/contact-form-validator'
+import { useAuth } from '@/providers/Auth'
+import { trpc } from '@/trpc/client'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { ZodError } from 'zod'
 
 const Form = () => {
-  const { user } = useAuth();
+  const { user } = useAuth()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TContactFormValidator>({
     resolver: zodResolver(ContactFormValidator),
-  });
+  })
 
   const { mutate: newContact } = trpc.contact.createNewContact.useMutation({
-    onError: (err) => {
+    onError: err => {
       if (err.data?.code === 'NOT_FOUND') {
-        toast.error('Account does not exist');
+        toast.error('Account does not exist')
 
-        return;
+        return
       }
       if (err.data?.code === 'UNAUTHORIZED') {
         // in toast
-        toast.error('E-mail or Password incorrect');
+        toast.error('E-mail or Password incorrect')
 
-        return;
+        return
       }
 
       if (err instanceof ZodError) {
         // in toast
-        console.error(err.issues[0].message);
+        console.error(err.issues[0].message)
 
-        return;
+        return
       }
 
-      console.error('Something went wrong. Please try again.');
+      console.error('Something went wrong. Please try again.')
     },
     onSuccess: () => {
-      toast.success('Thank you for contacting us. our team will reach you!');
+      toast.success('Thank you for contacting us. our team will reach you!')
     },
-  });
+  })
 
   const onSubmit = ({
     first_name,
     last_name,
     query,
   }: TContactFormValidator) => {
-    console.log(`onSubmit:`, first_name, last_name, query);
-    newContact({ first_name, last_name, query });
-  };
+    console.log(`onSubmit:`, first_name, last_name, query)
+    newContact({ first_name, last_name, query })
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className='form-style1'>
@@ -124,7 +124,7 @@ const Form = () => {
         </div>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default Form;
+export default Form

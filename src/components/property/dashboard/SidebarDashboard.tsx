@@ -1,9 +1,9 @@
-'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const SidebarDashboard = () => {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   const sidebarItems = [
     {
@@ -71,7 +71,7 @@ const SidebarDashboard = () => {
         },
       ],
     },
-  ];
+  ]
 
   return (
     <div className='dashboard__sidebar d-none d-lg-block'>
@@ -102,7 +102,7 @@ const SidebarDashboard = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SidebarDashboard;
+export default SidebarDashboard

@@ -5,8 +5,8 @@ const PropertyFeaturesAminites = ({ featuresAmenitiesData }: any) => {
     {
       length: Math.ceil(featuresAmenitiesData?.length / 4),
     },
-    (_, index) => featuresAmenitiesData?.slice(index * 4, (index + 1) * 4)
-  );
+    (_, index) => featuresAmenitiesData?.slice(index * 4, (index + 1) * 4),
+  )
 
   //console.log('Result: ' + result);
 
@@ -25,7 +25,7 @@ const PropertyFeaturesAminites = ({ featuresAmenitiesData }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default PropertyFeaturesAminites;
+export default PropertyFeaturesAminites

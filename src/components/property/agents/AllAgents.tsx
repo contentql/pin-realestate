@@ -1,6 +1,6 @@
-import { agentsData } from '@/data/agents';
-import Image from 'next/image';
-import Link from 'next/link';
+import { agentsData } from '@/data/agents'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const AllAgents = ({ data }: any) => {
   return (
@@ -29,7 +29,7 @@ const AllAgents = ({ data }: any) => {
         </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default AllAgents;
+export default AllAgents

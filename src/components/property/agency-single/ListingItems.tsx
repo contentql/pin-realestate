@@ -1,31 +1,31 @@
-'use client';
+'use client'
 
-import listings from '@/data/listings';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import ListingItems from '../ListingItems';
+import listings from '@/data/listings'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import ListingItems from '../ListingItems'
 export default function ListingItemsContainer() {
-  const [currentCategory, setCurrentCategory] = useState('All');
-  const [pageData, setPageData] = useState<any>([]);
+  const [currentCategory, setCurrentCategory] = useState('All')
+  const [pageData, setPageData] = useState<any>([])
   useEffect(() => {
     switch (currentCategory) {
       case 'All':
-        setPageData(listings.slice(0, 4));
+        setPageData(listings.slice(0, 4))
 
-        break;
+        break
       case 'rent':
-        setPageData(listings.filter((elm: any) => elm.forRent).slice(0, 4));
+        setPageData(listings.filter((elm: any) => elm.forRent).slice(0, 4))
 
-        break;
+        break
       case 'sale':
-        setPageData(listings.filter((elm: any) => !elm.forRent).slice(0, 4));
+        setPageData(listings.filter((elm: any) => !elm.forRent).slice(0, 4))
 
-        break;
+        break
 
       default:
-        break;
+        break
     }
-  }, [currentCategory]);
+  }, [currentCategory])
 
   return (
     <div className='row align-items-center mt20'>
@@ -104,5 +104,5 @@ export default function ListingItemsContainer() {
         </div>
       </div>
     </div>
-  );
+  )
 }
