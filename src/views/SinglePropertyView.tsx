@@ -24,18 +24,37 @@ import AllReviews from '@/components/property/property-single-style/common/revie
 import ContactWithAgent from '@/components/property/property-single-style/sidebar/ContactWithAgent';
 import ScheduleTour from '@/components/property/property-single-style/sidebar/ScheduleTour';
 import PropertyGallery from '@/components/property/property-single-style/single-v6/PropertyGallery';
+import { Property, PropertyType } from '@/payload-types';
 import { trpc } from '@/trpc/client';
 
 // export const metadata = {
 //   title: 'Property',
 // };
 
-const Property = ({ params }: { params: any }) => {
+interface PropertyData extends Property {
+  propertiesDetails: {
+    title?: string | null;
+    Description?:
+      | {
+          [k: string]: unknown;
+        }[]
+      | null;
+    propertyType?: {
+      relationTo: 'propertyType';
+      value: PropertyType;
+    } | null;
+    status?: ('For sale' | 'For rent')[] | null;
+    price?: number | null;
+  };
+}
+
+const PropertyById = ({ params }: { params: any }) => {
+  console.log(params);
   const { data: propertiesListData, isLoading } =
-    trpc.properties.byPropertyId.useQuery();
+    trpc.properties.byPropertyId.useQuery({ token: params.id });
 
   const propertyType =
-    propertiesListData?.propertiesDetails?.status?.length === 1
+    propertiesListData?.propertiesDetails.status?.length == 0
       ? propertiesListData?.propertiesDetails?.status[0]
       : propertiesListData?.propertiesDetails?.status &&
         propertiesListData?.propertiesDetails?.status.join(' and ');
@@ -55,7 +74,7 @@ const Property = ({ params }: { params: any }) => {
       <section className='pt60 pb90 bgc-f7'>
         <div className='container'>
           <div className='row'>
-            <PropertyHeader id={params.id} />
+            <PropertyHeader data={propertiesListData!} />
           </div>
           {/* End .row */}
 
@@ -66,8 +85,8 @@ const Property = ({ params }: { params: any }) => {
                 <h4 className='title fz17 mb30'>Overview</h4>
                 <div className='row'>
                   <OverView
-                    data={propertiesListData?.details?.details}
-                    propertyType={propertyType}
+                    data={propertiesListData?.details?.details!}
+                    propertyType={propertyType!}
                   />
                 </div>
               </div>
@@ -80,7 +99,7 @@ const Property = ({ params }: { params: any }) => {
 
                 <h4 className='title fz17 mb30 mt50'>Property Details</h4>
                 <div className='row'>
-                  <PropertyDetails />
+                  <PropertyDetails data={propertiesListData as PropertyData} />
                 </div>
               </div>
               {/* End .ps-widget */}
@@ -291,4 +310,4 @@ const Property = ({ params }: { params: any }) => {
   );
 };
 
-export default Property;
+export default PropertyById;

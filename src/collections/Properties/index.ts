@@ -46,23 +46,136 @@ const Properties: CollectionConfig = {
               }),
             },
             {
-              name: 'propertyType',
-              type: 'relationship',
-              relationTo: ['propertyType'],
-              hasMany: false,
-              label: 'Type',
+              type: 'row',
+              fields: [
+                {
+                  name: 'propertyType',
+                  type: 'relationship',
+                  relationTo: ['propertyType'],
+                  hasMany: false,
+                  label: 'Type',
+                },
+                {
+                  name: 'status',
+                  type: 'select',
+                  hasMany: true,
+                  options: ['For sale', 'For rent'],
+                  label: 'status',
+                },
+                {
+                  name: 'price',
+                  type: 'number',
+                  label: 'Price',
+                },
+              ],
             },
+          ],
+        },
+        //
+        {
+          name: 'Nearby_places',
+          label: 'Nearby places', // required
+          description: 'This will appear within the tab above the fields.',
+          fields: [
             {
-              name: 'status',
-              type: 'select',
-              hasMany: true,
-              options: ['For sale', 'For rent'],
-              label: 'status',
-            },
-            {
-              name: 'price',
-              type: 'number',
-              label: 'Price',
+              type: 'tabs',
+              tabs: [
+                {
+                  name: 'education',
+                  label: 'education places', // required
+                  description:
+                    'This will appear within the tab above the fields.',
+                  fields: [
+                    {
+                      name: 'education',
+                      type: 'array',
+                      fields: [
+                        {
+                          type: 'row',
+                          fields: [
+                            {
+                              name: 'name',
+                              type: 'text',
+                              label: 'Property Title',
+                            },
+
+                            {
+                              name: 'grades',
+                              type: 'text',
+                              label: 'grades',
+                            },
+                            {
+                              name: 'Distance',
+                              type: 'text',
+                              label: 'distance',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'medical',
+                  label: 'Hospital/medical', // required
+                  description:
+                    'This will appear within the tab above the fields.',
+                  fields: [
+                    {
+                      name: 'medical',
+                      type: 'array',
+                      fields: [
+                        {
+                          type: 'row',
+                          fields: [
+                            {
+                              name: 'name',
+                              type: 'text',
+                              label: 'Hospital/medical name',
+                            },
+
+                            {
+                              name: 'Distance',
+                              type: 'text',
+                              label: 'distance',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'transportation',
+                  label: 'Transportation', // required
+                  description:
+                    'This will appear within the tab above the fields.',
+                  fields: [
+                    {
+                      name: 'transportation',
+                      type: 'array',
+                      fields: [
+                        {
+                          type: 'row',
+                          fields: [
+                            {
+                              name: 'name',
+                              type: 'text',
+                              label: 'tansportion name',
+                            },
+
+                            {
+                              name: 'Distance',
+                              type: 'text',
+                              label: 'distance',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -105,30 +218,32 @@ const Properties: CollectionConfig = {
                   required: true,
                 },
                 {
-                  name: 'country',
-                  type: 'text',
-                  required: true,
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'city',
+                      type: 'text',
+                      required: true,
+                    },
+                    {
+                      name: 'state',
+                      type: 'text',
+                      required: true,
+                    },
+                    {
+                      name: 'country',
+                      type: 'text',
+                      required: true,
+                    },
+
+                    {
+                      name: 'zipcode',
+                      type: 'text',
+                      required: true,
+                    },
+                  ],
                 },
                 {
-
-                  name: 'state',
-                  type: 'text',
-                  required: true,
-                },
-                {
-
-                  name: 'city',
-                  type: 'text',
-                  required: true,
-                },
-                {
-
-                  name: 'zipcode',
-                  type: 'text',
-                  required: true,
-                },
-                {
-
                   name: 'locationPoints',
                   type: 'point',
                   label: 'Location',
@@ -158,60 +273,66 @@ const Properties: CollectionConfig = {
                   label: 'Label',
                 },
                 {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'yearBuild',
 
-                  name: 'yearBuild',
-
-                  type: 'number',
-                  required: true,
-                  label: 'Year Built',
+                      type: 'number',
+                      required: true,
+                      label: 'Year Built',
+                    },
+                    {
+                      name: 'rooms',
+                      type: 'number',
+                      required: true,
+                      label: 'Rooms',
+                    },
+                    {
+                      name: 'baths',
+                      type: 'number',
+                      required: true,
+                      label: 'Baths',
+                    },
+                    {
+                      name: 'beds',
+                      type: 'number',
+                      required: true,
+                      label: 'Beds',
+                    },
+                  ],
                 },
-                {
-                  name: 'rooms',
-                  type: 'number',
-                  required: true,
-                  label: 'Rooms',
-                },
-                {
-                  name: 'baths',
-                  type: 'number',
-                  required: true,
-                  label: 'Baths',
-                },
-                {
 
-                  name: 'beds',
-
-                  type: 'number',
-                  required: true,
-                  label: 'Beds',
-                },
                 {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'garages',
 
-                  name: 'garages',
+                      type: 'number',
+                      required: true,
+                      label: 'Garages',
+                    },
+                    {
+                      name: 'homearea',
 
-                  type: 'number',
-                  required: true,
-                  label: 'Garages',
-                },
-                {
-
-                  name: 'homearea',
-
-                  type: 'number',
-                  required: true,
-                  label: 'Home Area',
-                },
-                {
-                  name: 'lotarea',
-                  type: 'number',
-                  required: true,
-                  label: 'Lot Area',
-                },
-                {
-                  name: 'lotdimenstions',
-                  type: 'text',
-                  required: true,
-                  label: 'Lot Dimenstions',
+                      type: 'number',
+                      required: true,
+                      label: 'Home Area',
+                    },
+                    {
+                      name: 'lotarea',
+                      type: 'number',
+                      required: true,
+                      label: 'Lot Area',
+                    },
+                    {
+                      name: 'lotdimenstions',
+                      type: 'text',
+                      required: true,
+                      label: 'Lot Dimenstions',
+                    },
+                  ],
                 },
                 {
                   name: 'material',
@@ -248,52 +369,51 @@ const Properties: CollectionConfig = {
               fields: [
                 // required
                 {
-
-                  name: 'title',
-
-                  type: 'text',
-                  label: 'Name',
-                  required: true,
-                },
-                {
-
                   name: 'imageSrc',
+                  label: 'Floor image',
                   type: 'upload',
-                  label: 'Floor Image',
                   relationTo: 'media',
                 },
-                {
 
-                  name: 'rooms',
-                  type: 'number',
-                  label: 'Rooms',
-                  required: true,
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'rooms',
+                      type: 'number',
+                      label: 'Rooms',
+                      required: true,
+                    },
+                    {
+                      name: 'baths',
+                      type: 'number',
+                      label: 'Baths',
+                      required: true,
+                    },
+                    {
+                      name: 'bedrooms',
+                      type: 'number',
+                      label: 'Bedrooms',
+                      required: true,
+                    },
+                  ],
                 },
                 {
-                  name: 'baths',
-                  type: 'number',
-                  label: 'Baths',
-                  required: true,
-                },
-                {
-
-                  name: 'bedrooms',
-                  type: 'number',
-                  label: 'Bedrooms',
-                  required: true,
-                },
-                {
-                  name: 'price',
-                  type: 'number',
-                  label: 'Price',
-                  required: true,
-                },
-                {
-
-                  name: 'size',
-                  type: 'number',
-                  label: 'Size',
-                  required: true,
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'price',
+                      type: 'number',
+                      label: 'Price',
+                      required: true,
+                    },
+                    {
+                      name: 'size',
+                      type: 'number',
+                      label: 'Size',
+                      required: true,
+                    },
+                  ],
                 },
                 {
                   name: 'content',
@@ -354,14 +474,19 @@ const Properties: CollectionConfig = {
               fields: [
                 // required
                 {
-                  name: 'title',
-                  type: 'text',
-                  label: 'Key',
-                },
-                {
-                  name: 'value',
-                  type: 'text',
-                  label: 'Value',
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'title',
+                      type: 'text',
+                      label: 'Key',
+                    },
+                    {
+                      name: 'value',
+                      type: 'text',
+                      label: 'Value',
+                    },
+                  ],
                 },
               ],
             },
