@@ -1,11 +1,19 @@
-const OverView = ({ data, propertyType }: any) => {
+import { Details } from '@/payload-types';
+
+const OverView = ({
+  data,
+  propertyType,
+}: {
+  data: Details;
+  propertyType: string;
+}) => {
   console.log('Data: ' + data);
   //const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   const overviewData = [
     {
       icon: 'flaticon-bed',
       label: 'Bedroom',
-      value: data?.bed,
+      value: data?.beds,
     },
     {
       icon: 'flaticon-shower',
@@ -15,18 +23,18 @@ const OverView = ({ data, propertyType }: any) => {
     {
       icon: 'flaticon-event',
       label: 'Year Built',
-      value: data?.yearBuilding,
+      value: data?.yearBuild,
     },
     {
       icon: 'flaticon-garage',
       label: 'Garage',
-      value: data?.garage,
+      value: data?.garages,
       xs: true,
     },
     {
       icon: 'flaticon-expand',
       label: 'Sqft',
-      value: data?.sqft,
+      value: data?.homearea,
       xs: true,
     },
     {

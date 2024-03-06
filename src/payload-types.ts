@@ -140,6 +140,36 @@ export interface Property {
     status?: ('For sale' | 'For rent')[] | null;
     price?: number | null;
   };
+  Nearby_places: {
+    education: {
+      education?:
+        | {
+            name?: string | null;
+            grades?: string | null;
+            Distance?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    medical: {
+      medical?:
+        | {
+            name?: string | null;
+            Distance?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    transportation: {
+      transportation?:
+        | {
+            name?: string | null;
+            Distance?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
   Media: {
     numberField: number;
   };
@@ -192,9 +222,9 @@ export interface PropertyType {
 export interface Location {
   address: string;
   maplocation: string;
-  country: string;
-  state: string;
   city: string;
+  state: string;
+  country: string;
   zipcode: string;
   /**
    * @minItems 2
