@@ -287,7 +287,8 @@ export default function PropertyFiltering() {
             className='offcanvas offcanvas-start p-0'
             tabIndex={-1}
             id='listingSidebarFilter'
-            aria-labelledby='listingSidebarFilterLabel'>
+            aria-labelledby='listingSidebarFilterLabel'
+          >
             <div className='offcanvas-header'>
               <h5 className='offcanvas-title' id='listingSidebarFilterLabel'>
                 Listing Filter
@@ -296,7 +297,8 @@ export default function PropertyFiltering() {
                 type='button'
                 className='btn-close text-reset'
                 data-bs-dismiss='offcanvas'
-                aria-label='Close'></button>
+                aria-label='Close'
+              ></button>
             </div>
             <div className='offcanvas-body p-0'>
               <ListingSidebar filterFunctions={filterFunctions} />

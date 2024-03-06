@@ -134,42 +134,42 @@ export interface Property {
         }[]
       | null
     propertyType?: {
-      relationTo: 'propertyType';
-      value: string | PropertyType;
-    } | null;
-    status?: ('For sale' | 'For rent')[] | null;
-    price?: number | null;
-  };
+      relationTo: 'propertyType'
+      value: string | PropertyType
+    } | null
+    status?: ('For sale' | 'For rent')[] | null
+    price?: number | null
+  }
   Nearby_places: {
     education: {
       education?:
         | {
-            name?: string | null;
-            grades?: string | null;
-            Distance?: string | null;
-            id?: string | null;
+            name?: string | null
+            grades?: string | null
+            Distance?: string | null
+            id?: string | null
           }[]
-        | null;
-    };
+        | null
+    }
     medical: {
       medical?:
         | {
-            name?: string | null;
-            Distance?: string | null;
-            id?: string | null;
+            name?: string | null
+            Distance?: string | null
+            id?: string | null
           }[]
-        | null;
-    };
+        | null
+    }
     transportation: {
       transportation?:
         | {
-            name?: string | null;
-            Distance?: string | null;
-            id?: string | null;
+            name?: string | null
+            Distance?: string | null
+            id?: string | null
           }[]
-        | null;
-    };
-  };
+        | null
+    }
+  }
   Media: {
     numberField: number
   }
@@ -220,12 +220,12 @@ export interface PropertyType {
  * via the `definition` "Location".
  */
 export interface Location {
-  address: string;
-  maplocation: string;
-  city: string;
-  state: string;
-  country: string;
-  zipcode: string;
+  address: string
+  maplocation: string
+  city: string
+  state: string
+  country: string
+  zipcode: string
   /**
    * @minItems 2
    * @maxItems 2

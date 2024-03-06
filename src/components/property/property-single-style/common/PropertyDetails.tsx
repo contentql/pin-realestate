@@ -80,7 +80,8 @@ const PropertyDetails = ({ data }: { data: PropertyData }) => {
           key={columnIndex}
           className={`col-md-6 col-xl-4${
             columnIndex === 1 ? ' offset-xl-2' : ''
-          }`}>
+          }`}
+        >
           {column.map((detail, index) => (
             <div key={index} className='d-flex justify-content-between'>
               <div className='pd-list'>

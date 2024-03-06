@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import { Property } from '@/payload-types';
+import { Property } from '@/payload-types'
 
 const PropertyHeader = ({ data }: { data: Property }) => {
   const propertyType =
     data?.propertiesDetails.status?.length == 0
       ? data?.propertiesDetails?.status
       : data?.propertiesDetails?.status &&
-        data?.propertiesDetails?.status.join(' and ');
+        data?.propertiesDetails?.status.join(' and ')
 
   return (
     <>

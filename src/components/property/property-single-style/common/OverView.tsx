@@ -1,13 +1,13 @@
-import { Details } from '@/payload-types';
+import { Details } from '@/payload-types'
 
 const OverView = ({
   data,
   propertyType,
 }: {
-  data: Details;
-  propertyType: string;
+  data: Details
+  propertyType: string
 }) => {
-  console.log('Data: ' + data);
+  console.log('Data: ' + data)
   //const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   const overviewData = [
     {
