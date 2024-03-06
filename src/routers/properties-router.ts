@@ -52,20 +52,18 @@ export const propertiesRouter = router({
       return properties?.docs;
     }),
   },
-  // byPropertyId: publicProcedure
-  //   .input(PropertyByIdValidator)
-  //   .query(async ({ input }) => {
-  //     const payload = await getPayloadClient();
+  byPropertyId: publicProcedure.query(async ({ input }) => {
+    const payload = await getPayloadClient();
 
-  //     const propertyById = await payload.find({
-  //       collection: 'properties',
-  //       where: {
-  //         id: {
-  //           equals: input?.id,
-  //         },
-  //       },
-  //     });
+    const propertyById = await payload.find({
+      collection: 'properties',
+      where: {
+        id: {
+          equals: '65e6d31f54eec1a4395b2c45',
+        },
+      },
+    });
 
-  //     return propertyById;
-  //   }),
+    return propertyById?.docs[0];
+  }),
 });

@@ -185,14 +185,14 @@ export default function PropertyFiltering() {
       !categories.length
         ? [...refItems]
         : refItems.filter((elm) =>
-            categories.every((elem: any) => elm.features?.includes(elem))
+            categories.every((elem: any) => elm?.features?.includes(elem))
           ),
     ];
 
     if (location != 'All Cities') {
       filteredArrays = [
         ...filteredArrays,
-        refItems.filter((el) => el.city == location),
+        refItems.filter((el: any) => el.city == location),
       ];
     }
 

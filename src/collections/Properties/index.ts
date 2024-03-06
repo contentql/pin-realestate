@@ -69,7 +69,7 @@ const Properties: CollectionConfig = {
         // Media Details
         {
           name: 'Media',
-          label: 'Tab Two Label', // required
+          label: 'property images', // required
           interfaceName: 'TabTwo', // optional (`name` must be present)
           fields: [
             // required
@@ -108,7 +108,17 @@ const Properties: CollectionConfig = {
                   required: true,
                 },
                 {
+                  name: 'state',
+                  type: 'text',
+                  required: true,
+                },
+                {
                   name: 'city',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'zipcode',
                   type: 'text',
                   required: true,
                 },
@@ -142,7 +152,7 @@ const Properties: CollectionConfig = {
                   label: 'Label',
                 },
                 {
-                  name: 'yearBuild',
+                  name: 'yearBuilding',
                   type: 'number',
                   required: true,
                   label: 'Year Built',
@@ -160,19 +170,19 @@ const Properties: CollectionConfig = {
                   label: 'Baths',
                 },
                 {
-                  name: 'beds',
+                  name: 'bed',
                   type: 'number',
                   required: true,
                   label: 'Beds',
                 },
                 {
-                  name: 'garages',
+                  name: 'garage',
                   type: 'number',
                   required: true,
                   label: 'Garages',
                 },
                 {
-                  name: 'homearea',
+                  name: 'sqft',
                   type: 'number',
                   required: true,
                   label: 'Home Area',
@@ -224,10 +234,16 @@ const Properties: CollectionConfig = {
               fields: [
                 // required
                 {
-                  name: 'name',
+                  name: 'title',
                   type: 'text',
                   label: 'Name',
                   required: true,
+                },
+                {
+                  name: 'imageSrc',
+                  type: 'upload',
+                  label: 'Floor Image',
+                  relationTo: 'media',
                 },
                 {
                   name: 'rooms',
@@ -239,6 +255,18 @@ const Properties: CollectionConfig = {
                   name: 'baths',
                   type: 'number',
                   label: 'Baths',
+                  required: true,
+                },
+                {
+                  name: 'bedrooms',
+                  type: 'number',
+                  label: 'Bedrooms',
+                  required: true,
+                },
+                {
+                  name: 'price',
+                  type: 'number',
+                  label: 'Price',
                   required: true,
                 },
                 {

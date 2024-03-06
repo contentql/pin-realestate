@@ -1,4 +1,4 @@
-// "use client";
+'use client';
 import DefaultHeader from '@/components/common/DefaultHeader';
 import Footer from '@/components/common/default-footer';
 import MobileMenu from '@/components/common/mobile-menu';
@@ -24,12 +24,23 @@ import AllReviews from '@/components/property/property-single-style/common/revie
 import ContactWithAgent from '@/components/property/property-single-style/sidebar/ContactWithAgent';
 import ScheduleTour from '@/components/property/property-single-style/sidebar/ScheduleTour';
 import PropertyGallery from '@/components/property/property-single-style/single-v6/PropertyGallery';
+import { trpc } from '@/trpc/client';
 
-export const metadata = {
-  title: 'Property',
-};
+// export const metadata = {
+//   title: 'Property',
+// };
 
 const Property = ({ params }: { params: any }) => {
+  const { data: propertiesListData, isLoading } =
+    trpc.properties.byPropertyId.useQuery();
+
+  const propertyType =
+    propertiesListData?.propertiesDetails?.status?.length === 1
+      ? propertiesListData?.propertiesDetails?.status[0]
+      : propertiesListData?.propertiesDetails?.status &&
+        propertiesListData?.propertiesDetails?.status.join(' and ');
+
+  console.log('In single product: ', propertiesListData);
   return (
     <>
       {/* Main Header Nav */}
@@ -54,7 +65,10 @@ const Property = ({ params }: { params: any }) => {
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Overview</h4>
                 <div className='row'>
-                  <OverView id={params.id} />
+                  <OverView
+                    data={propertiesListData?.details?.details}
+                    propertyType={propertyType}
+                  />
                 </div>
               </div>
               {/* End .ps-widget */}
@@ -74,7 +88,7 @@ const Property = ({ params }: { params: any }) => {
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30 mt30'>Address</h4>
                 <div className='row'>
-                  <PropertyAddress />
+                  <PropertyAddress address={propertiesListData?.location} />
                 </div>
               </div>
               {/* End .ps-widget */}
@@ -82,7 +96,11 @@ const Property = ({ params }: { params: any }) => {
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Features &amp; Amenities</h4>
                 <div className='row'>
-                  <PropertyFeaturesAminites />
+                  <PropertyFeaturesAminites
+                    featuresAmenitiesData={
+                      propertiesListData?.amenities?.amenities
+                    }
+                  />
                 </div>
               </div>
               {/* End .ps-widget */}
@@ -100,7 +118,9 @@ const Property = ({ params }: { params: any }) => {
                 <div className='row'>
                   <div className='col-md-12'>
                     <div className='accordion-style1 style2'>
-                      <FloorPlans />
+                      <FloorPlans
+                        floorPlanData={propertiesListData?.floors?.floors}
+                      />
                     </div>
                   </div>
                 </div>

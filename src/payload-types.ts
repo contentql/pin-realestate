@@ -13,8 +13,7 @@
 export type CardSlider =
   | {
       title?: string | null;
-      image: string | Media;
-      caption?: string | null;
+      value?: string | null;
       id?: string | null;
     }[]
   | null;
@@ -26,6 +25,7 @@ export interface Config {
     properties: Property;
     tags: Tag;
     contact: Contact;
+    propertyType: PropertyType;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -125,9 +125,95 @@ export interface Media {
  */
 export interface Property {
   id: string;
-  slider?: CardSlider;
+  propertiesDetails: {
+    title?: string | null;
+    Description?:
+      | {
+          [k: string]: unknown;
+        }[]
+      | null;
+    propertyType?: {
+      relationTo: 'propertyType';
+      value: string | PropertyType;
+    } | null;
+    status?: ('For sale' | 'For rent')[] | null;
+    price?: number | null;
+  };
+  Media: {
+    numberField: number;
+  };
+  location: {
+    location: Location;
+  };
+  details: {
+    details: Details;
+  };
+  floors: {
+    floors?: CardSlider;
+  };
+  amenities: {
+    amenities?:
+      | (
+          | 'Air Conditioning'
+          | 'Bar'
+          | 'Bathtub'
+          | 'Barbeque'
+          | 'Dryer'
+          | 'Gym'
+          | 'Lawn'
+          | 'Microwave'
+          | 'Swimming Pool'
+          | 'Washer'
+          | 'Wifi'
+        )[]
+      | null;
+  };
+  facilities: {
+    facilities?: CardSlider;
+  };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "propertyType".
+ */
+export interface PropertyType {
+  id: string;
+  type?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Location".
+ */
+export interface Location {
+  address: string;
+  maplocation: string;
+  country: string;
+  city: string;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  locationPoints?: [number, number] | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Details".
+ */
+export interface Details {
+  label?: ('Rented' | 'Sold') | null;
+  yearBuilding: number;
+  rooms: number;
+  baths: number;
+  bed: number;
+  garage: number;
+  sqft: number;
+  lotarea: number;
+  lotdimenstions: string;
+  material: 'Wood' | 'Block' | 'Brick' | 'Rock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
