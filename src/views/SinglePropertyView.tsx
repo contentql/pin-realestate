@@ -94,7 +94,9 @@ const PropertyById = ({ params }: { params: any }) => {
 
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Property Description</h4>
-                <ProperytyDescriptions />
+                <ProperytyDescriptions
+                  data={propertiesListData?.propertiesDetails.description}
+                />
                 {/* End property description */}
 
                 <h4 className='title fz17 mb30 mt50'>Property Details</h4>
@@ -165,12 +167,12 @@ const PropertyById = ({ params }: { params: any }) => {
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>What&apos;s Nearby?</h4>
                 <div className='row'>
-                  <PropertyNearby />
+                  <PropertyNearby data={propertiesListData} />
                 </div>
               </div>
               {/* End .ps-widget */}
 
-              <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
+              {/* <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Walkscore</h4>
                 <div className='row'>
                   <div className='col-md-12'>
@@ -180,7 +182,7 @@ const PropertyById = ({ params }: { params: any }) => {
                     <WalkScore />
                   </div>
                 </div>
-              </div>
+              </div> */}
               {/* End .ps-widget */}
 
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
