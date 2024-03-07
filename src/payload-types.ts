@@ -173,6 +173,14 @@ export interface Property {
   details: {
     details?: Details;
   };
+  owner: {
+    userDetails?: {
+      userName?: string | null;
+      phoneNumber?: string | null;
+      whatsAppNumber?: string | null;
+      userEmail?: string | null;
+    };
+  };
   floors: {
     floors?: CardSlider;
   };

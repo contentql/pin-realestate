@@ -119,6 +119,14 @@ export const propertiesRouter = router({
               label: input.label as Details['label'],
             },
           },
+          owner: {
+            userDetails: {
+              userName: input.ownerName,
+              phoneNumber: input.ownerPhoneNumber,
+              whatsAppNumber: input.ownerWhatsApp,
+              userEmail: input.ownerEmail,
+            },
+          },
           floors: {
             floors: [
               {
