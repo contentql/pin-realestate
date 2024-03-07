@@ -1,5 +1,10 @@
 'use client'
+import { PropertyValidator, TPropertyValidator } from '@/lib/validators/property-router/property-validator'
+import { trpc } from '@/trpc/client'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { ZodError } from 'zod'
 import Amenities from './Amenities'
 import LocationField from './LocationField'
 import DetailsFiled from './details-field'
@@ -10,10 +15,44 @@ const AddPropertyTabContent = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm()
-  const onSubmit = (data: any) => {}
+  } = useForm<TPropertyValidator>({
+    resolver: zodResolver(PropertyValidator),
+  })
+
+
+    const { mutate: addProperty } = trpc.properties.addProperty.useMutation({
+    onError: err => {
+      if (err.data?.code === 'NOT_FOUND') {
+        toast.error('Account does not exist')
+
+        return
+      }
+      if (err.data?.code === 'UNAUTHORIZED') {
+        // in toast
+        toast.error('E-mail or Password incorrect')
+
+        return
+      }
+
+      if (err instanceof ZodError) {
+        // in toast
+        console.error(err.issues[0].message)
+
+        return
+      }
+
+      console.error('Something went wrong. Please try again.')
+    },
+    onSuccess: () => {
+      toast.success('Login succcessfully')
+    },
+  })
+
+
+  const onSubmit = (data: TPropertyValidator) => {
+    addProperty(data)
+  }
   return (
     <>
       <nav>

@@ -6,18 +6,6 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardSlider".
- */
-export type CardSlider =
-  | {
-      title?: string | null
-      value?: string | null
-      id?: string | null
-    }[]
-  | null
-
 export interface Config {
   collections: {
     users: User
@@ -128,90 +116,44 @@ export interface Property {
   id: string
   propertiesDetails: {
     title?: string | null
-    Description?:
-      | {
-          [k: string]: unknown
-        }[]
-      | null
-    propertyType?: {
-      relationTo: 'propertyType'
-      value: string | PropertyType
-    } | null
+    description?: string | null
+    propertyType?: ('For sale' | 'For rent') | null
     status?: ('For sale' | 'For rent')[] | null
     price?: number | null
   }
-  Nearby_places: {
-    education: {
-      education?:
-        | {
-            name?: string | null
-            grades?: string | null
-            Distance?: string | null
-            id?: string | null
-          }[]
-        | null
-    }
-    medical: {
-      medical?:
-        | {
-            name?: string | null
-            Distance?: string | null
-            id?: string | null
-          }[]
-        | null
-    }
-    transportation: {
-      transportation?:
-        | {
-            name?: string | null
-            Distance?: string | null
-            id?: string | null
-          }[]
-        | null
-    }
-  }
-  Media: {
-    numberField: number
-  }
   location: {
-    location: Location
+    location?: Location
   }
   details: {
-    details: Details
-  }
-  floors: {
-    floors?: CardSlider
+    details?: Details
   }
   amenities: {
     amenities?:
       | (
+          | 'Attic'
+          | 'Basketball court'
           | 'Air Conditioning'
-          | 'Bar'
-          | 'Bathtub'
-          | 'Barbeque'
-          | 'Dryer'
-          | 'Gym'
           | 'Lawn'
-          | 'Microwave'
           | 'Swimming Pool'
+          | 'Barbeque'
+          | 'Microwave'
+          | 'TV Cable'
+          | 'Dryer'
+          | 'Outdoor Shower'
           | 'Washer'
-          | 'Wifi'
+          | 'Gym'
+          | 'Ocean view'
+          | 'Private space'
+          | 'Lake view'
+          | 'Wine cellar'
+          | 'Front yard'
+          | 'Refrigerator'
+          | 'WiFi'
+          | 'Laundry'
+          | 'Sauna'
         )[]
       | null
   }
-  facilities: {
-    facilities?: CardSlider
-  }
-  updatedAt: string
-  createdAt: string
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "propertyType".
- */
-export interface PropertyType {
-  id: string
-  type?: string | null
   updatedAt: string
   createdAt: string
 }
@@ -220,12 +162,12 @@ export interface PropertyType {
  * via the `definition` "Location".
  */
 export interface Location {
-  address: string
-  maplocation: string
-  city: string
-  state: string
-  country: string
-  zipcode: string
+  address?: string | null
+  maplocation?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  zipcode?: string | null
   /**
    * @minItems 2
    * @maxItems 2
@@ -238,15 +180,15 @@ export interface Location {
  */
 export interface Details {
   label?: ('Rented' | 'Sold') | null
-  yearBuild: number
-  rooms: number
-  baths: number
-  beds: number
-  garages: number
-  homearea: number
-  lotarea: number
-  lotdimenstions: string
-  material: 'Wood' | 'Block' | 'Brick' | 'Rock'
+  yearBuild?: number | null
+  rooms?: number | null
+  baths?: number | null
+  beds?: number | null
+  garages?: number | null
+  garagesSize?: number | null
+  homearea?: number | null
+  lotarea?: number | null
+  material?: ('Wood' | 'Block' | 'Brick' | 'Rock') | null
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -268,6 +210,16 @@ export interface Contact {
   last_name?: string | null
   email?: string | null
   query?: string | null
+  updatedAt: string
+  createdAt: string
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "propertyType".
+ */
+export interface PropertyType {
+  id: string
+  type?: string | null
   updatedAt: string
   createdAt: string
 }

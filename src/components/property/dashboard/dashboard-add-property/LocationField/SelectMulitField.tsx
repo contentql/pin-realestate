@@ -60,7 +60,7 @@ const customStyles = {
 }
 
 const SelectMultiField = ({ register }: any) => {
-  const fieldTitles = ['Country / State', 'City', 'Country']
+  const fieldTitles = ['state', 'City', 'Country']
   return (
     <>
       {Object.keys(options).map((key: string, index: number) => (

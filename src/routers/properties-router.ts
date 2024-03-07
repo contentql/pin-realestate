@@ -1,8 +1,11 @@
-import { Property } from '@/payload-types'
+import { Details, Property } from '@/payload-types'
 import { getPayloadClient } from '../get-payload'
 import { TokenValidator } from '../lib/validators/property-router/token-validator'
 //import { PropertyByIdValidator } from '../lib/validators/property-router/property-id-validator';
-import { publicProcedure, router } from '../trpc/trpc'
+import { PropertyValidator } from '../lib/validators/property-router/property-validator'
+import { publicProcedure, router, userProcedure } from '../trpc/trpc'
+
+type Status = 'For Sale' | 'For Rent'
 
 export const propertiesRouter = router({
   getProperties: {
@@ -13,21 +16,13 @@ export const propertiesRouter = router({
       const properties = await payload.find({ collection: 'properties' })
       //   const firstPageKeys = [{ name: 'title' }];
       const newProperties = properties.docs.map(
-        ({
-          id,
-          propertiesDetails,
-          location,
-          details,
-          amenities,
-          floors,
-        }: Property) => {
+        ({ id, propertiesDetails, location, details, amenities }: Property) => {
           return {
             id,
             propertiesDetails,
             location: location.location,
             details: details.details,
             amenities: amenities.amenities,
-            floors: floors?.floors,
           }
         },
       )
@@ -89,5 +84,56 @@ export const propertiesRouter = router({
       })
 
       return propertyById?.docs[0]
+    }),
+  // Function for adding property
+  addProperty: userProcedure
+    .input(PropertyValidator)
+    .mutation(async ({ input }) => {
+      const payload = await getPayloadClient()
+
+      const newProperty = await payload.create({
+        collection: 'properties',
+        data: {
+          propertiesDetails: {
+            title: input.title,
+            description: input.description,
+            price: Number(input.price),
+            propertyType: 'For rent',
+            status: ['For rent'],
+          },
+          amenities: { amenities: input.amenity as any },
+          details: {
+            details: {
+              baths: Number(input.baths),
+              beds: Number(input.beds),
+              garages: Number(input.garages),
+              garagesSize: Number(input.garagesSize),
+              homearea: Number(input.homearea),
+              lotarea: Number(input.lotarea),
+              material: input.material as Details['material'],
+              rooms: Number(input.rooms),
+              yearBuild: Number(input.yearBuild),
+              label: input.label as Details['label'],
+            },
+          },
+          location: {
+            location: {
+              address: input.address,
+              city: input.City,
+              state: input.state,
+              country: input.Country,
+              zipcode: input.zipcode,
+              maplocation: input.mapLocation,
+              locationPoints: [
+                Number(input.longitude),
+                Number(input.latitude),
+              ] as [number, number],
+            },
+          },
+        },
+        overrideAccess: true,
+      })
+
+      return newProperty
     }),
 })
