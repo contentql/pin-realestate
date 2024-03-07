@@ -39,6 +39,10 @@ export const PropertyValidator = z.object({
   floorPrice: z.string(),
   floorSize: z.string(),
   content: z.string(),
+  ownerName: z.string(),
+  ownerPhoneNumber: z.string(),
+  ownerWhatsApp: z.string(),
+  ownerEmail: z.string(),
   educations: z.array(
     z.object({
       name: z.string(),

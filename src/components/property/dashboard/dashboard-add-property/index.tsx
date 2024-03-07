@@ -15,6 +15,7 @@ import Floors from './floors-field/Floors'
 import PropertyDescription from './property-description'
 import UploadMedia from './upload-media'
 import NearByPlace from './near-by-places'
+import OwnerFeilds from './owner-details'
 
 const AddPropertyTabContent = () => {
   const {
@@ -60,7 +61,7 @@ const AddPropertyTabContent = () => {
       }
       if (err.data?.code === 'UNAUTHORIZED') {
         // in toast
-        toast.error('E-mail or Password incorrect')
+        toast.error('You are not authorized')
 
         return
       }
@@ -75,7 +76,7 @@ const AddPropertyTabContent = () => {
       console.error('Something went wrong. Please try again.')
     },
     onSuccess: () => {
-      toast.success('Login succcessfully')
+      toast.success('Added succcessfully')
     },
   })
 
@@ -142,6 +143,17 @@ const AddPropertyTabContent = () => {
             aria-controls='nav-item6'
             aria-selected='false'>
             5. Floors
+          </button>
+          <button
+            className='nav-link fw600'
+            id='nav-item8tab'
+            data-bs-toggle='tab'
+            data-bs-target='#nav-item8'
+            type='button'
+            role='tab'
+            aria-controls='nav-item8'
+            aria-selected='false'>
+            5. Owner Details
           </button>
           <button
             className='nav-link fw600'
@@ -224,6 +236,17 @@ const AddPropertyTabContent = () => {
             <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
               <h4 className='title fz17 mb30'>Listing Details</h4>
               <Floors register={register} />
+            </div>
+          </div>
+
+          <div
+            className='tab-pane fade'
+            id='nav-item8'
+            role='tabpanel'
+            aria-labelledby='nav-item8-tab'>
+            <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
+              <h4 className='title fz17 mb30'>Listing Details</h4>
+              <OwnerFeilds register={register} />
             </div>
           </div>
 

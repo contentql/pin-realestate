@@ -326,6 +326,53 @@ const Properties: CollectionConfig = {
           ],
         },
 
+        // User Details
+
+        {
+          name: 'owner',
+          label: 'Owner Details', // required
+          // optional (`name` must be present)
+          fields: [
+            // required
+            {
+              name: 'userDetails',
+              type: 'group',
+              fields: [
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'userName',
+
+                      type: 'text',
+
+                      label: 'Name',
+                    },
+                    {
+                      name: 'phoneNumber',
+                      type: 'text',
+
+                      label: 'Phone Number',
+                    },
+                    {
+                      name: 'whatsAppNumber',
+                      type: 'text',
+
+                      label: 'Whats App',
+                    },
+                    {
+                      name: 'userEmail',
+                      type: 'text',
+
+                      label: 'Email',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+
         //Floors
 
         {
