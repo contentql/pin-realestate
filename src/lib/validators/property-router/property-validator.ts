@@ -2,6 +2,12 @@ import { z } from 'zod'
 
 const AmenitySchema = z.array(z.string())
 
+const Nearby_places = {
+  name: z.string(),
+  distance: z.number(),
+  rating: z.number(),
+}
+
 export const PropertyValidator = z.object({
   City: z.string(),
   Country: z.string(),
@@ -33,6 +39,24 @@ export const PropertyValidator = z.object({
   floorPrice: z.string(),
   floorSize: z.string(),
   content: z.string(),
+  educations: z.array(
+    z.object({
+      name: z.string(),
+      distance: z.string(),
+    }),
+  ),
+  medicals: z.array(
+    z.object({
+      name: z.string(),
+      distance: z.string(),
+    }),
+  ),
+  transportations: z.array(
+    z.object({
+      name: z.string(),
+      distance: z.string(),
+    }),
+  ),
   // floorImage: z.string(),
 })
 

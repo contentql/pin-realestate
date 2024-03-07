@@ -5,7 +5,7 @@ import {
 } from '@/lib/validators/property-router/property-validator'
 import { trpc } from '@/trpc/client'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { useForm, useFieldArray } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { ZodError } from 'zod'
 import Amenities from './Amenities'
@@ -14,14 +14,41 @@ import DetailsFiled from './details-field'
 import Floors from './floors-field/Floors'
 import PropertyDescription from './property-description'
 import UploadMedia from './upload-media'
+import NearByPlace from './near-by-places'
 
 const AddPropertyTabContent = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<TPropertyValidator>({
     resolver: zodResolver(PropertyValidator),
+  })
+
+  const {
+    fields: educationFields,
+    append: appendEducation,
+    remove: removeEducation,
+  } = useFieldArray({
+    control,
+    name: 'educations',
+  })
+  const {
+    fields: medicalFields,
+    append: appendMedical,
+    remove: removeMedical,
+  } = useFieldArray({
+    control,
+    name: 'medicals',
+  })
+  const {
+    fields: transportationFields,
+    append: appendTransportation,
+    remove: removeTransportation,
+  } = useFieldArray({
+    control,
+    name: 'transportations',
   })
 
   const { mutate: addProperty } = trpc.properties.addProperty.useMutation({
@@ -52,8 +79,9 @@ const AddPropertyTabContent = () => {
     },
   })
 
-  const onSubmit = (data: TPropertyValidator) => {
+  const onSubmit = (data: TPropertyValidator, error: any) => {
     console.log('Form Data: ', data)
+    console.log('error', error)
     addProperty(data)
   }
   return (
@@ -199,6 +227,7 @@ const AddPropertyTabContent = () => {
             </div>
           </div>
 
+          {/* Start tab for Near Places Details */}
           <div
             className='tab-pane fade'
             id='nav-item7'
@@ -206,7 +235,88 @@ const AddPropertyTabContent = () => {
             aria-labelledby='nav-item7-tab'>
             <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
               <h4 className='title fz17 mb30'>Listing Details</h4>
-              <Floors register={register} />
+              <div>
+                <div>
+                  <h2>Education</h2>
+                  {educationFields.map((field: any, index: number) => (
+                    <div key={field.id}>
+                      <input
+                        {...register(`educations.${index}.name` as const)}
+                      />
+                      <input
+                        {...register(`educations.${index}.distance` as const)}
+                      />
+
+                      <button
+                        type='button'
+                        onClick={() => removeEducation(index)}>
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type='button'
+                    onClick={() => appendEducation({ name: '', distance: '' })}>
+                    Add Education
+                  </button>
+                </div>
+
+                <div>
+                  <h2>Medical</h2>
+                  {medicalFields.map((field: any, index: number) => (
+                    <div key={field.id}>
+                      <input {...register(`medicals.${index}.name` as const)} />
+                      <input
+                        {...register(`medicals.${index}.distance` as const)}
+                      />
+                      <button
+                        type='button'
+                        onClick={() => removeMedical(index)}>
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type='button'
+                    onClick={() =>
+                      appendMedical({
+                        name: '',
+                        distance: '',
+                      })
+                    }>
+                    Add Medical
+                  </button>
+                </div>
+
+                <div>
+                  <h2>Transportation</h2>
+                  {transportationFields.map((field: any, index: number) => (
+                    <div key={field.id}>
+                      <input
+                        {...register(`transportations.${index}.name` as const)}
+                      />
+                      <input
+                        {...register(
+                          `transportations.${index}.distance` as const,
+                        )}
+                      />
+
+                      <button
+                        type='button'
+                        onClick={() => removeTransportation(index)}>
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type='button'
+                    onClick={() =>
+                      appendTransportation({ name: '', distance: '' })
+                    }>
+                    Add Transportation
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 

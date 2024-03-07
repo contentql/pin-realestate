@@ -155,14 +155,8 @@ const Properties: CollectionConfig = {
                               type: 'text',
                               label: 'Property Title',
                             },
-
                             {
-                              name: 'grades',
-                              type: 'text',
-                              label: 'grades',
-                            },
-                            {
-                              name: 'Distance',
+                              name: 'distance',
                               type: 'text',
                               label: 'distance',
                             },

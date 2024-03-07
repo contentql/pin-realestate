@@ -26,8 +26,6 @@ export const propertiesRouter = router({
           }
         },
       )
-      // const newProperties = properties.docs.map(
-      //   ({
       //     id
       //     title,
       //     location,
@@ -102,9 +100,9 @@ export const propertiesRouter = router({
             status: ['For rent'],
           },
           Nearby_places: {
-            education: { education: [{}] },
-            medical: { medical: [{}] },
-            transportation: { transportation: [{}] },
+            education: { education: input.educations },
+            medical: { medical: input.medicals },
+            transportation: { transportation: input.transportations },
           },
           amenities: { amenities: input.amenity as any },
           details: {
@@ -127,7 +125,7 @@ export const propertiesRouter = router({
                 baths: Number(input.floorBaths),
                 bedrooms: Number(input.floorBeds),
                 rooms: Number(input.floorRooms),
-                content: input.content,
+                content: 'This is floor content',
                 price: Number(input.floorPrice),
                 size: Number(input.floorSize),
               },
