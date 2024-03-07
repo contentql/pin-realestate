@@ -1,10 +1,9 @@
-import React from 'react'
-import SelectMulitField from './SelectMulitField'
 import Map from './Map'
+import SelectMulitField from './SelectMulitField'
 
-const LocationField = () => {
+const LocationField = ({ register }: any) => {
   return (
-    <form className='form-style1'>
+    <div className='form-style1'>
       <div className='row'>
         <div className='col-sm-12'>
           <div className='mb20'>
@@ -14,18 +13,23 @@ const LocationField = () => {
             <input
               type='text'
               className='form-control'
-              placeholder='Your Name'
+              placeholder='Address'
+              {...register('address')}
             />
           </div>
         </div>
         {/* End col-12 */}
 
-        <SelectMulitField />
+        <SelectMulitField register={register} />
 
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>Zip</label>
-            <input type='text' className='form-control' />
+            <input
+              type='text'
+              className='form-control'
+              {...register('zipcode')}
+            />
           </div>
         </div>
         {/* End col-4 */}
@@ -33,12 +37,13 @@ const LocationField = () => {
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
-              Neighborhood
+              Map location
             </label>
             <input
               type='text'
               className='form-control'
-              placeholder='Neighborhood'
+              placeholder='map location'
+              {...register('mapLocation')}
             />
           </div>
         </div>
@@ -62,7 +67,11 @@ const LocationField = () => {
             <label className='heading-color ff-heading fw600 mb10'>
               Latitude
             </label>
-            <input type='text' className='form-control' />
+            <input
+              type='text'
+              className='form-control'
+              {...register('latitude')}
+            />
           </div>
         </div>
         {/* End .col-sm-6 */}
@@ -72,12 +81,16 @@ const LocationField = () => {
             <label className='heading-color ff-heading fw600 mb10'>
               Longitude
             </label>
-            <input type='text' className='form-control' />
+            <input
+              type='text'
+              className='form-control'
+              {...register('longitude')}
+            />
           </div>
         </div>
       </div>
       {/* End .row */}
-    </form>
+    </div>
   )
 }
 

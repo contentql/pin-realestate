@@ -1,7 +1,6 @@
 'use client'
-import Select from 'react-select'
 
-const PropertyDescription = () => {
+const PropertyDescription = ({ register }: any) => {
   const catergoryOptions = [
     { value: 'Apartments', label: 'Apartments' },
     { value: 'Bungalow', label: 'Bungalow' },
@@ -18,10 +17,8 @@ const PropertyDescription = () => {
     { value: 'Processing', label: 'Processing' },
   ]
   const PropertyStatus = [
-    { value: 'All Cities', label: 'All Cities' },
-    { value: 'Pending', label: 'Pending' },
-    { value: 'Processing', label: 'Processing' },
-    { value: 'Published', label: 'Published' },
+    { value: 'For Rent', label: 'For Rent' },
+    { value: 'For sale', label: 'For sale' },
   ]
 
   const customStyles = {
@@ -40,7 +37,7 @@ const PropertyDescription = () => {
   }
 
   return (
-    <form className='form-style1'>
+    <div className='form-style1'>
       <div className='row'>
         <div className='col-sm-12'>
           <div className='mb20'>
@@ -48,7 +45,8 @@ const PropertyDescription = () => {
             <input
               type='text'
               className='form-control'
-              placeholder='Your Name'
+              placeholder='Name of Your Name'
+              {...register('title')}
             />
           </div>
         </div>
@@ -64,6 +62,7 @@ const PropertyDescription = () => {
               rows={5}
               placeholder='There are many variations of passages.'
               defaultValue={''}
+              {...register('description')}
             />
           </div>
         </div>
@@ -75,22 +74,19 @@ const PropertyDescription = () => {
               Select Category
             </label>
             <div className='location-area'>
-              <Select
-                defaultValue={[catergoryOptions[1]]}
-                name='colors'
-                options={catergoryOptions}
-                styles={customStyles}
-                className='select-custom pl-0'
-                classNamePrefix='select'
-                required
-                isMulti
-              />
+              <select {...register('propertType')}>
+                {catergoryOptions.map((ele, id) => (
+                  <option key={id} value={ele.value}>
+                    {ele.value}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
         {/* End .col-6 */}
 
-        <div className='col-sm-6 col-xl-4'>
+        {/* <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
               Listed in
@@ -108,7 +104,7 @@ const PropertyDescription = () => {
               />
             </div>
           </div>
-        </div>
+        </div> */}
         {/* End .col-6 */}
 
         <div className='col-sm-6 col-xl-4'>
@@ -117,16 +113,13 @@ const PropertyDescription = () => {
               Property Status
             </label>
             <div className='location-area'>
-              <Select
-                defaultValue={[PropertyStatus[1]]}
-                name='colors'
-                options={PropertyStatus}
-                styles={customStyles}
-                className='select-custom pl-0'
-                classNamePrefix='select'
-                required
-                isMulti
-              />
+              <select {...register('propertyStatus')}>
+                {PropertyStatus.map((ele, id) => (
+                  <option key={id} value={ele.value}>
+                    {ele.value}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
@@ -141,12 +134,13 @@ const PropertyDescription = () => {
               type='text'
               className='form-control'
               placeholder='Your Name'
+              {...register('price')}
             />
           </div>
         </div>
         {/* End .col-6 */}
 
-        <div className='col-sm-6 col-xl-4'>
+        {/* <div className='col-sm-6 col-xl-4'>
           <div className='mb30'>
             <label className='heading-color ff-heading fw600 mb10'>
               Yearly Tax Rate
@@ -157,10 +151,10 @@ const PropertyDescription = () => {
               placeholder='Your Name'
             />
           </div>
-        </div>
+        </div> */}
         {/* End .col-6 */}
 
-        <div className='col-sm-6 col-xl-4'>
+        {/* <div className='col-sm-6 col-xl-4'>
           <div className='mb30'>
             <label className='heading-color ff-heading fw600 mb10'>
               After Price Label
@@ -171,10 +165,10 @@ const PropertyDescription = () => {
               placeholder='Your Name'
             />
           </div>
-        </div>
+        </div> */}
         {/* End .col-6 */}
       </div>
-    </form>
+    </div>
   )
 }
 

@@ -24,7 +24,7 @@ const Properties: CollectionConfig = {
             },
 
             {
-              name: 'Description',
+              name: 'description',
               type: 'richText',
               // Pass the Slate editor here and configure it accordingly
               editor: slateEditor({
@@ -314,6 +314,13 @@ const Properties: CollectionConfig = {
                       label: 'Garages',
                     },
                     {
+                      name: 'garagesSize',
+
+                      type: 'number',
+                      required: true,
+                      label: 'Garages area',
+                    },
+                    {
                       name: 'homearea',
 
                       type: 'number',
@@ -325,12 +332,6 @@ const Properties: CollectionConfig = {
                       type: 'number',
                       required: true,
                       label: 'Lot Area',
-                    },
-                    {
-                      name: 'lotdimenstions',
-                      type: 'text',
-                      required: true,
-                      label: 'Lot Dimenstions',
                     },
                   ],
                 },

@@ -1,12 +1,8 @@
 'use client'
-import React from 'react'
-import Select from 'react-select'
 
 const structureTypeOptions = [
-  { value: 'Apartments', label: 'Apartments' },
-  { value: 'Bungalow', label: 'Bungalow' },
-  { value: 'Houses', label: 'Houses' },
-  { value: 'Loft', label: 'Loft' },
+  { value: 'Rented', label: 'Rented' },
+  { value: 'Sold', label: 'Sold' },
 ]
 
 const customStyles = {
@@ -22,24 +18,19 @@ const customStyles = {
   }),
 }
 
-const StructureType = () => {
+const StructureType = ({ register }: any) => {
   return (
     <div className='col-sm-6 col-xl-4'>
       <div className='mb20'>
-        <label className='heading-color ff-heading fw600 mb10'>
-          Structure type
-        </label>
+        <label className='heading-color ff-heading fw600 mb10'>Label</label>
         <div className='location-area'>
-          <Select
-            styles={customStyles}
-            className='select-custom pl-0'
-            classNamePrefix='select'
-            required
-            isMulti
-            defaultValue={[structureTypeOptions[0]]}
-            name='structureType'
-            options={structureTypeOptions}
-          />
+          <select {...register('label')}>
+            {structureTypeOptions.map((ele, id) => (
+              <option key={id} value={ele.value}>
+                {ele.value}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </div>

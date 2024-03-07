@@ -1,5 +1,3 @@
-import React from 'react'
-
 const amenitiesData = {
   column1: [
     { label: 'Attic', defaultChecked: false },
@@ -30,11 +28,11 @@ const amenitiesData = {
   ],
 }
 
-const Amenities = () => {
+const Amenities = ({ register }: any) => {
   return (
     <div className='row'>
       {Object.keys(amenitiesData).map((columnKey, index) => (
-        <div key={index} className='col-sm-6 col-lg-3 col-xxl-2'>
+        <div key={index} className='col-sm-6 col-lg-10 col-xxl-2'>
           <div className='checkbox-style1'>
             {amenitiesData[columnKey as keyof typeof amenitiesData].map(
               (amenity, amenityIndex) => (
@@ -42,6 +40,9 @@ const Amenities = () => {
                   {amenity.label}
                   <input
                     type='checkbox'
+                    id='amenity'
+                    value={amenity.label}
+                    {...register('amenity')}
                     defaultChecked={amenity.defaultChecked}
                   />
                   <span className='checkmark' />
@@ -51,6 +52,7 @@ const Amenities = () => {
           </div>
         </div>
       ))}
+      <button type='submit'>SUBMIT</button>
     </div>
   )
 }

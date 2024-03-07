@@ -1,11 +1,19 @@
-import React from 'react'
-import PropertyDescription from './property-description'
-import UploadMedia from './upload-media'
+'use client'
+import { useForm } from 'react-hook-form'
+import Amenities from './Amenities'
 import LocationField from './LocationField'
 import DetailsFiled from './details-field'
-import Amenities from './Amenities'
+import PropertyDescription from './property-description'
+import UploadMedia from './upload-media'
 
 const AddPropertyTabContent = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+  const onSubmit = (data: any) => {}
   return (
     <>
       <nav>
@@ -74,71 +82,73 @@ const AddPropertyTabContent = () => {
       </nav>
       {/* End nav tabs */}
 
-      <div className='tab-content' id='nav-tabContent'>
-        <div
-          className='tab-pane fade show active'
-          id='nav-item1'
-          role='tabpanel'
-          aria-labelledby='nav-item1-tab'
-        >
-          <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
-            <h4 className='title fz17 mb30'>Property Description</h4>
-            <PropertyDescription />
-          </div>
-        </div>
-        {/* End tab for Property Description */}
-
-        <div
-          className='tab-pane fade'
-          id='nav-item2'
-          role='tabpanel'
-          aria-labelledby='nav-item2-tab'
-        >
-          <UploadMedia />
-        </div>
-        {/* End tab for Upload photos of your property */}
-
-        <div
-          className='tab-pane fade'
-          id='nav-item3'
-          role='tabpanel'
-          aria-labelledby='nav-item3-tab'
-        >
-          <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
-            <h4 className='title fz17 mb30'>Listing Location</h4>
-            <LocationField />
-          </div>
-        </div>
-        {/* End tab for Listing Location */}
-
-        <div
-          className='tab-pane fade'
-          id='nav-item4'
-          role='tabpanel'
-          aria-labelledby='nav-item4-tab'
-        >
-          <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
-            <h4 className='title fz17 mb30'>Listing Details</h4>
-            <DetailsFiled />
-          </div>
-        </div>
-        {/* End tab for Listing Details */}
-
-        <div
-          className='tab-pane fade'
-          id='nav-item5'
-          role='tabpanel'
-          aria-labelledby='nav-item5-tab'
-        >
-          <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
-            <h4 className='title fz17 mb30'>Select Amenities</h4>
-            <div className='row'>
-              <Amenities />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='tab-content' id='nav-tabContent'>
+          <div
+            className='tab-pane fade show active'
+            id='nav-item1'
+            role='tabpanel'
+            aria-labelledby='nav-item1-tab'
+          >
+            <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
+              <h4 className='title fz17 mb30'>Property Description</h4>
+              <PropertyDescription register={register} />
             </div>
           </div>
+          {/* End tab for Property Description */}
+
+          <div
+            className='tab-pane fade'
+            id='nav-item2'
+            role='tabpanel'
+            aria-labelledby='nav-item2-tab'
+          >
+            <UploadMedia register={register} />
+          </div>
+          {/* End tab for Upload photos of your property */}
+
+          <div
+            className='tab-pane fade'
+            id='nav-item3'
+            role='tabpanel'
+            aria-labelledby='nav-item3-tab'
+          >
+            <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
+              <h4 className='title fz17 mb30'>Listing Location</h4>
+              <LocationField register={register} />
+            </div>
+          </div>
+          {/* End tab for Listing Location */}
+
+          <div
+            className='tab-pane fade'
+            id='nav-item4'
+            role='tabpanel'
+            aria-labelledby='nav-item4-tab'
+          >
+            <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
+              <h4 className='title fz17 mb30'>Listing Details</h4>
+              <DetailsFiled register={register} />
+            </div>
+          </div>
+          {/* End tab for Listing Details */}
+
+          <div
+            className='tab-pane fade'
+            id='nav-item5'
+            role='tabpanel'
+            aria-labelledby='nav-item5-tab'
+          >
+            <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
+              <h4 className='title fz17 mb30'>Select Amenities</h4>
+              <div className='row'>
+                <Amenities register={register} />
+              </div>
+            </div>
+          </div>
+          {/* End tab for Select Amenities */}
         </div>
-        {/* End tab for Select Amenities */}
-      </div>
+      </form>
     </>
   )
 }
