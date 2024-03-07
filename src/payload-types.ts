@@ -6,127 +6,177 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardSlider".
+ */
+export type CardSlider =
+  | {
+      imageSrc?: string | Media | null;
+      rooms: number;
+      baths: number;
+      bedrooms: number;
+      price: number;
+      size: number;
+      content: string;
+      id?: string | null;
+    }[]
+  | null;
+
 export interface Config {
   collections: {
-    users: User
-    media: Media
-    properties: Property
-    tags: Tag
-    contact: Contact
-    propertyType: PropertyType
-    'payload-preferences': PayloadPreference
-    'payload-migrations': PayloadMigration
-  }
-  globals: {}
+    users: User;
+    media: Media;
+    properties: Property;
+    tags: Tag;
+    contact: Contact;
+    propertyType: PropertyType;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
+  };
+  globals: {};
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
-  id: string
-  user_name?: string | null
-  roles?: ('admin' | 'user' | 'seller')[] | null
-  phone_number?: string | null
-  first_name?: string | null
-  last_name?: string | null
-  position?: string | null
-  language?: string | null
-  company?: string | null
-  tax_number?: string | null
-  address?: string | null
-  about?: string | null
-  profile_pic?: string | Media | null
-  updatedAt: string
-  createdAt: string
-  email: string
-  resetPasswordToken?: string | null
-  resetPasswordExpiration?: string | null
-  salt?: string | null
-  hash?: string | null
-  _verified?: boolean | null
-  _verificationToken?: string | null
-  loginAttempts?: number | null
-  lockUntil?: string | null
-  password: string | null
+  id: string;
+  user_name?: string | null;
+  roles?: ('admin' | 'user' | 'seller')[] | null;
+  phone_number?: string | null;
+  first_name?: string | null;
+  last_name?: string | null;
+  position?: string | null;
+  language?: string | null;
+  company?: string | null;
+  tax_number?: string | null;
+  address?: string | null;
+  about?: string | null;
+  profile_pic?: string | Media | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  _verified?: boolean | null;
+  _verificationToken?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-  id: string
-  alt?: string | null
-  updatedAt: string
-  createdAt: string
-  url?: string | null
-  filename?: string | null
-  mimeType?: string | null
-  filesize?: number | null
-  width?: number | null
-  height?: number | null
+  id: string;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
   sizes?: {
     square?: {
-      url?: string | null
-      width?: number | null
-      height?: number | null
-      mimeType?: string | null
-      filesize?: number | null
-      filename?: string | null
-    }
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
     sixteenByNineMedium?: {
-      url?: string | null
-      width?: number | null
-      height?: number | null
-      mimeType?: string | null
-      filesize?: number | null
-      filename?: string | null
-    }
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
     thumbnail?: {
-      url?: string | null
-      width?: number | null
-      height?: number | null
-      mimeType?: string | null
-      filesize?: number | null
-      filename?: string | null
-    }
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
     card?: {
-      url?: string | null
-      width?: number | null
-      height?: number | null
-      mimeType?: string | null
-      filesize?: number | null
-      filename?: string | null
-    }
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
     tablet?: {
-      url?: string | null
-      width?: number | null
-      height?: number | null
-      mimeType?: string | null
-      filesize?: number | null
-      filename?: string | null
-    }
-  }
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "properties".
  */
 export interface Property {
-  id: string
+  id: string;
   propertiesDetails: {
-    title?: string | null
-    description?: string | null
-    propertyType?: ('For sale' | 'For rent') | null
-    status?: ('For sale' | 'For rent')[] | null
-    price?: number | null
-  }
+    title?: string | null;
+    description?: string | null;
+    propertyType?: ('For sale' | 'For rent') | null;
+    status?: ('For sale' | 'For rent')[] | null;
+    price?: number | null;
+  };
   location: {
-    location?: Location
-  }
+    location?: Location;
+  };
+  Nearby_places: {
+    education: {
+      education?:
+        | {
+            name?: string | null;
+            grades?: string | null;
+            Distance?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    medical: {
+      medical?:
+        | {
+            name?: string | null;
+            Distance?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    transportation: {
+      transportation?:
+        | {
+            name?: string | null;
+            Distance?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
   details: {
-    details?: Details
-  }
+    details?: Details;
+  };
+  floors: {
+    floors?: CardSlider;
+  };
   amenities: {
     amenities?:
       | (
@@ -152,111 +202,112 @@ export interface Property {
           | 'Laundry'
           | 'Sauna'
         )[]
-      | null
-  }
-  updatedAt: string
-  createdAt: string
+      | null;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Location".
  */
 export interface Location {
-  address?: string | null
-  maplocation?: string | null
-  city?: string | null
-  state?: string | null
-  country?: string | null
-  zipcode?: string | null
+  address?: string | null;
+  maplocation?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zipcode?: string | null;
   /**
    * @minItems 2
    * @maxItems 2
    */
-  locationPoints?: [number, number] | null
+  locationPoints?: [number, number] | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Details".
  */
 export interface Details {
-  label?: ('Rented' | 'Sold') | null
-  yearBuild?: number | null
-  rooms?: number | null
-  baths?: number | null
-  beds?: number | null
-  garages?: number | null
-  garagesSize?: number | null
-  homearea?: number | null
-  lotarea?: number | null
-  material?: ('Wood' | 'Block' | 'Brick' | 'Rock') | null
+  label?: ('Rented' | 'Sold') | null;
+  yearBuild?: number | null;
+  rooms?: number | null;
+  baths?: number | null;
+  beds?: number | null;
+  garages?: number | null;
+  garagesSize?: number | null;
+  homearea?: number | null;
+  lotarea?: number | null;
+  material?: ('Wood' | 'Block' | 'Brick' | 'Rock') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tags".
  */
 export interface Tag {
-  id: string
-  tag?: string | null
-  updatedAt: string
-  createdAt: string
+  id: string;
+  tag?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact".
  */
 export interface Contact {
-  id: string
-  first_name?: string | null
-  last_name?: string | null
-  email?: string | null
-  query?: string | null
-  updatedAt: string
-  createdAt: string
+  id: string;
+  first_name?: string | null;
+  last_name?: string | null;
+  email?: string | null;
+  query?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "propertyType".
  */
 export interface PropertyType {
-  id: string
-  type?: string | null
-  updatedAt: string
-  createdAt: string
+  id: string;
+  type?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string
+  id: string;
   user: {
-    relationTo: 'users'
-    value: string | User
-  }
-  key?: string | null
+    relationTo: 'users';
+    value: string | User;
+  };
+  key?: string | null;
   value?:
     | {
-        [k: string]: unknown
+        [k: string]: unknown;
       }
     | unknown[]
     | string
     | number
     | boolean
-    | null
-  updatedAt: string
-  createdAt: string
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string
-  name?: string | null
-  batch?: number | null
-  updatedAt: string
-  createdAt: string
+  id: string;
+  name?: string | null;
+  batch?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

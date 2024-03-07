@@ -127,6 +127,116 @@ const Properties: CollectionConfig = {
           ],
         },
 
+        //Nearby places
+
+        {
+          name: 'Nearby_places',
+          label: 'Nearby places', // required
+          description: 'This will appear within the tab above the fields.',
+          fields: [
+            {
+              type: 'tabs',
+              tabs: [
+                {
+                  name: 'education',
+                  label: 'education places', // required
+                  description:
+                    'This will appear within the tab above the fields.',
+                  fields: [
+                    {
+                      name: 'education',
+                      type: 'array',
+                      fields: [
+                        {
+                          type: 'row',
+                          fields: [
+                            {
+                              name: 'name',
+                              type: 'text',
+                              label: 'Property Title',
+                            },
+
+                            {
+                              name: 'grades',
+                              type: 'text',
+                              label: 'grades',
+                            },
+                            {
+                              name: 'Distance',
+                              type: 'text',
+                              label: 'distance',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'medical',
+                  label: 'Hospital/medical', // required
+                  description:
+                    'This will appear within the tab above the fields.',
+                  fields: [
+                    {
+                      name: 'medical',
+                      type: 'array',
+                      fields: [
+                        {
+                          type: 'row',
+                          fields: [
+                            {
+                              name: 'name',
+                              type: 'text',
+                              label: 'Hospital/medical name',
+                            },
+
+                            {
+                              name: 'Distance',
+                              type: 'text',
+                              label: 'distance',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'transportation',
+                  label: 'Transportation', // required
+                  description:
+                    'This will appear within the tab above the fields.',
+                  fields: [
+                    {
+                      name: 'transportation',
+                      type: 'array',
+                      fields: [
+                        {
+                          type: 'row',
+                          fields: [
+                            {
+                              name: 'name',
+                              type: 'text',
+                              label: 'tansportion name',
+                            },
+
+                            {
+                              name: 'Distance',
+                              type: 'text',
+                              label: 'distance',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+
         // Details
 
         {
@@ -223,6 +333,83 @@ const Properties: CollectionConfig = {
         },
 
         //Floors
+
+        {
+          name: 'floors',
+          label: 'Floors', // required
+          interfaceName: 'TabTwo', // optional (`name` must be present)
+          fields: [
+            // required
+            {
+              name: 'floors', // required
+              type: 'array', // required
+              label: 'Floors',
+              minRows: 0,
+              maxRows: 100,
+              interfaceName: 'CardSlider', // optional
+              labels: {
+                singular: 'Floor',
+                plural: 'Floors',
+              },
+              fields: [
+                // required
+                {
+                  name: 'imageSrc',
+                  label: 'Floor image',
+                  type: 'upload',
+                  relationTo: 'media',
+                },
+
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'rooms',
+                      type: 'number',
+                      label: 'Rooms',
+                      required: true,
+                    },
+                    {
+                      name: 'baths',
+                      type: 'number',
+                      label: 'Baths',
+                      required: true,
+                    },
+                    {
+                      name: 'bedrooms',
+                      type: 'number',
+                      label: 'Bedrooms',
+                      required: true,
+                    },
+                  ],
+                },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'price',
+                      type: 'number',
+                      label: 'Price',
+                      required: true,
+                    },
+                    {
+                      name: 'size',
+                      type: 'number',
+                      label: 'Size',
+                      required: true,
+                    },
+                  ],
+                },
+                {
+                  name: 'content',
+                  type: 'textarea',
+                  label: 'Content',
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
 
         //Amenities
         {

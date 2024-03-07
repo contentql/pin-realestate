@@ -101,6 +101,11 @@ export const propertiesRouter = router({
             propertyType: 'For rent',
             status: ['For rent'],
           },
+          Nearby_places: {
+            education: { education: [{}] },
+            medical: { medical: [{}] },
+            transportation: { transportation: [{}] },
+          },
           amenities: { amenities: input.amenity as any },
           details: {
             details: {
@@ -115,6 +120,18 @@ export const propertiesRouter = router({
               yearBuild: Number(input.yearBuild),
               label: input.label as Details['label'],
             },
+          },
+          floors: {
+            floors: [
+              {
+                baths: Number(input.floorBaths),
+                bedrooms: Number(input.floorBeds),
+                rooms: Number(input.floorRooms),
+                content: input.content,
+                price: Number(input.floorPrice),
+                size: Number(input.floorSize),
+              },
+            ],
           },
           location: {
             location: {

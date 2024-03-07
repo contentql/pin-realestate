@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-const AmenitySchema = z.array(z.string());
+const AmenitySchema = z.array(z.string())
 
 export const PropertyValidator = z.object({
   City: z.string(),
@@ -27,6 +27,13 @@ export const PropertyValidator = z.object({
   title: z.string(),
   yearBuild: z.string(),
   zipcode: z.string(),
+  floorRooms: z.string(),
+  floorBeds: z.string(),
+  floorBaths: z.string(),
+  floorPrice: z.string(),
+  floorSize: z.string(),
+  content: z.string(),
+  // floorImage: z.string(),
 })
 
 export type TPropertyValidator = z.infer<typeof PropertyValidator>
