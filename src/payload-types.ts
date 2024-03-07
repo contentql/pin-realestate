@@ -146,8 +146,7 @@ export interface Property {
       education?:
         | {
             name?: string | null;
-            grades?: string | null;
-            Distance?: string | null;
+            distance?: string | null;
             id?: string | null;
           }[]
         | null;
