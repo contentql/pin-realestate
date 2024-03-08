@@ -5,17 +5,16 @@ import {
 } from '@/lib/validators/property-router/property-validator'
 import { trpc } from '@/trpc/client'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { ZodError } from 'zod'
 import Amenities from './Amenities'
 import LocationField from './LocationField'
 import DetailsFiled from './details-field'
 import Floors from './floors-field/Floors'
+import OwnerFeilds from './owner-details'
 import PropertyDescription from './property-description'
 import UploadMedia from './upload-media'
-import NearByPlace from './near-by-places'
-import OwnerFeilds from './owner-details'
 
 const AddPropertyTabContent = () => {
   const {
@@ -82,7 +81,7 @@ const AddPropertyTabContent = () => {
 
   const onSubmit = (data: TPropertyValidator, error: any) => {
     console.log('Form Data: ', data)
-    console.log('error', error)
+    console.log('error', errors?.zipcode?.message)
     addProperty(data)
   }
   return (
@@ -262,16 +261,21 @@ const AddPropertyTabContent = () => {
                 <div>
                   <h2>Education</h2>
                   {educationFields.map((field: any, index: number) => (
-                    <div key={field.id}>
+                    <div className='col-sm-4 col-xl-5' key={field.id}>
                       <input
+                        className='form-control mb10'
+                        placeholder='Name of the nearest educational place'
                         {...register(`educations.${index}.name` as const)}
                       />
                       <input
+                        className='form-control mb10 '
+                        placeholder='Distance between places'
                         {...register(`educations.${index}.distance` as const)}
                       />
 
                       <button
                         type='button'
+                        className='ud-btn2 right-center btn-thm btn-thm-border btn-dark  mb10'
                         onClick={() => removeEducation(index)}>
                         Remove
                       </button>
@@ -279,6 +283,7 @@ const AddPropertyTabContent = () => {
                   ))}
                   <button
                     type='button'
+                    className='custom-btn btn-thm3 btn-dark mb10'
                     onClick={() => appendEducation({ name: '', distance: '' })}>
                     Add Education
                   </button>
@@ -287,13 +292,20 @@ const AddPropertyTabContent = () => {
                 <div>
                   <h2>Medical</h2>
                   {medicalFields.map((field: any, index: number) => (
-                    <div key={field.id}>
-                      <input {...register(`medicals.${index}.name` as const)} />
+                    <div className='col-sm-4 col-xl-5' key={field.id}>
                       <input
+                        className='form-control mb10'
+                        placeholder='Name of the nearest hospital place'
+                        {...register(`medicals.${index}.name` as const)}
+                      />
+                      <input
+                        className='form-control mb10'
+                        placeholder='Distance between'
                         {...register(`medicals.${index}.distance` as const)}
                       />
                       <button
                         type='button'
+                        className='ud-btn2 right-center btn-thm mb10'
                         onClick={() => removeMedical(index)}>
                         Remove
                       </button>
@@ -301,6 +313,7 @@ const AddPropertyTabContent = () => {
                   ))}
                   <button
                     type='button'
+                    className='custom-btn btn-thm3 btn-dark mb10'
                     onClick={() =>
                       appendMedical({
                         name: '',
@@ -311,21 +324,26 @@ const AddPropertyTabContent = () => {
                   </button>
                 </div>
 
-                <div>
+                <div className=''>
                   <h2>Transportation</h2>
                   {transportationFields.map((field: any, index: number) => (
-                    <div key={field.id}>
+                    <div key={field.id} className='col-sm-4 col-xl-5'>
                       <input
+                        className='form-control mb10 mt10'
                         {...register(`transportations.${index}.name` as const)}
+                        placeholder='Name of your nearest transport facility'
                       />
                       <input
+                        className='form-control mb10'
                         {...register(
                           `transportations.${index}.distance` as const,
                         )}
+                        placeholder='Distance between'
                       />
 
                       <button
                         type='button'
+                        className='ud-btn2 right-center btn-thm mb10'
                         onClick={() => removeTransportation(index)}>
                         Remove
                       </button>
@@ -333,6 +351,7 @@ const AddPropertyTabContent = () => {
                   ))}
                   <button
                     type='button'
+                    className='custom-btn btn-thm3 btn-dark mb10'
                     onClick={() =>
                       appendTransportation({ name: '', distance: '' })
                     }>

@@ -74,6 +74,27 @@ const Properties: CollectionConfig = {
         //
 
         // Media Details
+        {
+          name: 'Media',
+
+          label: 'property images', // required
+
+          interfaceName: 'TabTwo', // optional (`name` must be present)
+          fields: [
+            // required
+            {
+              name: 'propertyImages', // accessible via tabTwo.numberField
+              type: 'array',
+              fields: [
+                {
+                  type: 'upload',
+                  name: 'image',
+                  relationTo: 'media',
+                },
+              ],
+            },
+          ],
+        },
 
         // Locations Details
         {
@@ -405,19 +426,19 @@ const Properties: CollectionConfig = {
                   type: 'row',
                   fields: [
                     {
-                      name: 'rooms',
+                      name: 'floorRooms',
                       type: 'number',
                       label: 'Rooms',
                       required: true,
                     },
                     {
-                      name: 'baths',
+                      name: 'floorBaths',
                       type: 'number',
                       label: 'Baths',
                       required: true,
                     },
                     {
-                      name: 'bedrooms',
+                      name: 'floorBeds',
                       type: 'number',
                       label: 'Bedrooms',
                       required: true,
@@ -428,13 +449,13 @@ const Properties: CollectionConfig = {
                   type: 'row',
                   fields: [
                     {
-                      name: 'price',
+                      name: 'floorPrice',
                       type: 'number',
                       label: 'Price',
                       required: true,
                     },
                     {
-                      name: 'size',
+                      name: 'floorSize',
                       type: 'number',
                       label: 'Size',
                       required: true,

@@ -105,8 +105,7 @@ const DefaultHeader = () => {
       <header
         className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${
           navbar ? 'sticky slideInDown animated' : ''
-        }`}
-      >
+        }`}>
         <nav className='posr'>
           <div className='container posr menu_bdrt1'>
             <div className='row align-items-center justify-content-between'>
@@ -144,8 +143,7 @@ const DefaultHeader = () => {
                     <a
                       href='/login'
                       className='login-info d-flex align-items-center'
-                      role='button'
-                    >
+                      role='button'>
                       <i className='far fa-user-circle fz16 me-2' />{' '}
                       <span className='d-none d-xl-block'>
                         Login / Register
@@ -154,8 +152,7 @@ const DefaultHeader = () => {
                   )}
                   <Link
                     className='ud-btn btn-white add-property bdrs60 mx-2 mx-xl-4'
-                    href='/dashboard-add-property'
-                  >
+                    href='/dashboard/add-property'>
                     Add Property
                     <i className='fal fa-arrow-right-long' />
                   </Link>
@@ -167,8 +164,7 @@ const DefaultHeader = () => {
                             <a
                               className='btn'
                               href='#'
-                              data-bs-toggle='dropdown'
-                            >
+                              data-bs-toggle='dropdown'>
                               <Image
                                 width={44}
                                 height={44}
@@ -183,8 +179,7 @@ const DefaultHeader = () => {
                                     <p
                                       className={`fz15 fw400 ff-heading ${
                                         sectionIndex === 0 ? 'mb20' : 'mt30'
-                                      }`}
-                                    >
+                                      }`}>
                                       {section.title}
                                     </p>
                                     {section.items.map((item, itemIndex) => (
@@ -195,8 +190,7 @@ const DefaultHeader = () => {
                                             ? '-is-active'
                                             : ''
                                         } `}
-                                        href={item.href}
-                                      >
+                                        href={item.href}>
                                         <i className={`${item.icon} mr10`} />
                                         {item.text}
                                       </Link>
@@ -221,8 +215,7 @@ const DefaultHeader = () => {
                     href='#'
                     data-bs-toggle='offcanvas'
                     data-bs-target='#SidebarPanel'
-                    aria-controls='SidebarPanelLabel'
-                  >
+                    aria-controls='SidebarPanelLabel'>
                     <Image
                       width={25}
                       height={9}
@@ -255,8 +248,7 @@ const DefaultHeader = () => {
           id='loginSignupModal'
           tabIndex={-1}
           aria-labelledby='loginSignupModalLabel'
-          aria-hidden='true'
-        >
+          aria-hidden='true'>
           <div className='modal-dialog  modal-dialog-scrollable modal-dialog-centered'>
             <LoginSignupModal />
           </div>
@@ -269,8 +261,7 @@ const DefaultHeader = () => {
         className='offcanvas offcanvas-end'
         tabIndex={-1}
         id='SidebarPanel'
-        aria-labelledby='SidebarPanelLabel'
-      >
+        aria-labelledby='SidebarPanelLabel'>
         <SidebarPanel />
       </div>
       {/* Sidebar Panel End */}

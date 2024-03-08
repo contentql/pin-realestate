@@ -13,11 +13,11 @@
 export type CardSlider =
   | {
       imageSrc?: string | Media | null;
-      rooms: number;
-      baths: number;
-      bedrooms: number;
-      price: number;
-      size: number;
+      floorRooms: number;
+      floorBaths: number;
+      floorBeds: number;
+      floorPrice: number;
+      floorSize: number;
       content: string;
       id?: string | null;
     }[]
@@ -137,6 +137,14 @@ export interface Property {
     propertyType?: ('For sale' | 'For rent') | null;
     status?: ('For sale' | 'For rent')[] | null;
     price?: number | null;
+  };
+  Media: {
+    propertyImages?:
+      | {
+          image?: string | Media | null;
+          id?: string | null;
+        }[]
+      | null;
   };
   location: {
     location?: Location;

@@ -66,13 +66,42 @@ export const propertiesRouter = router({
       return newProperties
     }),
   },
+
+  getPropertiesAllFields: {
+    list: publicProcedure.query(async () => {
+      // Retrieve users from a datasource, this is an imaginary database
+      const payload = await getPayloadClient()
+
+      const properties = await payload.find({
+        collection: 'properties',
+        depth: 10,
+      })
+      //   const firstPageKeys = [{ name: 'title' }];
+      console.log('all properties', properties.docs.at(0)?.floors.floors)
+      return properties.docs
+    }),
+  },
   byPropertyId: publicProcedure
     .input(TokenValidator)
     .query(async ({ input }) => {
       const payload = await getPayloadClient()
       const { token } = input
 
-      const propertyById = await payload.find({
+      const propertyById = await payload.findByID({
+        collection: 'properties',
+        id: token,
+      })
+
+      return propertyById
+    }),
+  //function for deleting a property
+  deletePropertyId: userProcedure
+    .input(TokenValidator)
+    .query(async ({ input }) => {
+      const payload = await getPayloadClient()
+      const { token } = input
+
+      const propertyById = await payload.delete({
         collection: 'properties',
         where: {
           id: {
@@ -81,8 +110,9 @@ export const propertiesRouter = router({
         },
       })
 
-      return propertyById?.docs[0]
+      return propertyById
     }),
+
   // Function for adding property
   addProperty: userProcedure
     .input(PropertyValidator)
@@ -128,17 +158,10 @@ export const propertiesRouter = router({
             },
           },
           floors: {
-            floors: [
-              {
-                baths: Number(input.floorBaths),
-                bedrooms: Number(input.floorBeds),
-                rooms: Number(input.floorRooms),
-                content: 'This is floor content',
-                price: Number(input.floorPrice),
-                size: Number(input.floorSize),
-              },
-            ],
+            floors: [],
           },
+          Media: {},
+
           location: {
             location: {
               address: input.address,
@@ -154,6 +177,7 @@ export const propertiesRouter = router({
             },
           },
         },
+
         overrideAccess: true,
       })
 
