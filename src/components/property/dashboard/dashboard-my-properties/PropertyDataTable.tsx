@@ -69,24 +69,10 @@ const PropertyDataTable = () => {
   }
 
   const {
-    data: propertiesListData,
+    data: propertyData,
     isLoading,
     refetch: propertiesRefetch,
-  } = trpc.properties.getPropertiesAllFields.list.useQuery()
-
-  const propertyData = propertiesListData?.map(ele => {
-    return {
-      id: ele?.id,
-      title: ele?.propertiesDetails?.title,
-      imageSrc: ele?.floors?.floors?.at(0)?.imageSrc,
-      location: ele?.location?.location?.address,
-      price: ele?.propertiesDetails?.price,
-      datePublished: ele?.createdAt,
-      status: ele?.propertiesDetails?.status,
-    }
-  })
-
-  console.log('All Data', propertiesListData)
+  } = trpc.properties.getPropertiesForMyPropertiesPage.list.useQuery()
 
   return (
     <table className='table-style3 table at-savesearch'>
