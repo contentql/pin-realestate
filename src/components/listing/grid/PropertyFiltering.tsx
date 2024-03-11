@@ -24,8 +24,6 @@ export default function PropertyFiltering() {
   const { data: propertiesListData, isLoading } =
     trpc.properties.getProperties.list.useQuery()
 
-  console.log('Hello', propertiesListData)
-
   useEffect(() => {
     setPageItems(sortedFilteredData.slice((pageNumber - 1) * 8, pageNumber * 8))
     setPageContentTrac([
@@ -194,7 +192,7 @@ export default function PropertyFiltering() {
     if (location != 'All Cities') {
       filteredArrays = [
         ...filteredArrays,
-        refItems.filter(el => el.location.city == location),
+        refItems.filter((el: any) => el.location.city == location),
       ]
     }
 
@@ -227,8 +225,6 @@ export default function PropertyFiltering() {
     const commonItems = refItems.filter(item =>
       filteredArrays.every(array => array.includes(item)),
     )
-
-    console.log('commonItems', commonItems)
 
     setFilteredData(commonItems)
   }, [
@@ -285,8 +281,7 @@ export default function PropertyFiltering() {
             className='offcanvas offcanvas-start p-0'
             tabIndex={-1}
             id='listingSidebarFilter'
-            aria-labelledby='listingSidebarFilterLabel'
-          >
+            aria-labelledby='listingSidebarFilterLabel'>
             <div className='offcanvas-header'>
               <h5 className='offcanvas-title' id='listingSidebarFilterLabel'>
                 Listing Filter
@@ -295,8 +290,7 @@ export default function PropertyFiltering() {
                 type='button'
                 className='btn-close text-reset'
                 data-bs-dismiss='offcanvas'
-                aria-label='Close'
-              ></button>
+                aria-label='Close'></button>
             </div>
             <div className='offcanvas-body p-0'>
               <ListingSidebar filterFunctions={filterFunctions} />

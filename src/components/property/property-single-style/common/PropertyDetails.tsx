@@ -19,7 +19,7 @@ const PropertyDetails = ({ data }: { data: Property }) => {
       },
       {
         label: 'Property Size',
-        value: data?.details?.details?.homearea,
+        value: data?.details?.details?.homearea + ' sqft',
       },
       {
         label: 'Bathrooms',
@@ -37,7 +37,7 @@ const PropertyDetails = ({ data }: { data: Property }) => {
       },
       {
         label: 'Garage Size',
-        value: 'static',
+        value: data?.details?.details?.garagesSize + ' sqft',
       },
       {
         label: 'Year Built',

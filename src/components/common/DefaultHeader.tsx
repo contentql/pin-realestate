@@ -4,10 +4,12 @@ import MainMenu from '@/components/common/MainMenu'
 import LoginSignupModal from '@/components/common/login-signup-modal'
 import SidebarPanel from '@/components/common/sidebar-panel'
 import { useAuth } from '@/providers/Auth'
+import { useMutation } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 const DefaultHeader = () => {
   const [navbar, setNavbar] = useState(false)
@@ -17,8 +19,35 @@ const DefaultHeader = () => {
 
   const { status, logout } = useAuth()
 
+  const {
+    isPending: isLogoutPending,
+    variables: logoutVariables,
+    mutate: logoutMutation,
+  } = useMutation({
+    mutationKey: ['/api/users/logout', 'post'],
+    mutationFn: () => logout(),
+    onSuccess: async () => {
+      router.push('/login')
+    },
+    onError: async err => {
+      if (err.message === 'CONFLICT') {
+        toast.error('User not found.', {
+          autoClose: 3000,
+          onClose: () => {
+            toast.info('Redirecting to login page...', {
+              autoClose: 2000,
+              onClose: () => router.push('/login'),
+            })
+          },
+        })
+      }
+
+      console.error('Something went wrong. Please try again.')
+    },
+  })
+
   const handleLogout = () => {
-    logout()
+    logoutMutation()
   }
 
   const changeBackground = () => {

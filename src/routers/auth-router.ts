@@ -64,8 +64,6 @@ export const authRouter = router({
 
       const payload = await getPayloadClient()
 
-      //console.log('user: ' + input);
-
       try {
         await payload.update({
           collection: 'users',

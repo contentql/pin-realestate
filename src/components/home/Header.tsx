@@ -17,8 +17,6 @@ const Header = () => {
 
   const { status, logout, user } = useAuth()
 
-  console.log('Status: ' + status, user)
-
   const changeBackground = () => {
     if (window.scrollY >= 10) {
       setNavbar(true)

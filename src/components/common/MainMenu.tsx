@@ -15,8 +15,6 @@ const MainMenu = () => {
   const [submenu, setSubmenu] = useState('')
   const [activeLink, setActiveLink] = useState('')
 
-  //console.log('USeRRR', token);
-
   useEffect(() => {
     homeItems.forEach(elm => {
       if (elm.href.split('/')[1] == pathname.split('/')[1]) {

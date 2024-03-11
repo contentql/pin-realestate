@@ -138,7 +138,7 @@ export interface Property {
     status?: ('For sale' | 'For rent')[] | null;
     price?: number | null;
   };
-  Media: {
+  media: {
     propertyImages?:
       | {
           image?: string | Media | null;

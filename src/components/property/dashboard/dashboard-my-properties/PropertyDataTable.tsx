@@ -1,8 +1,11 @@
 'use client'
 import { trpc } from '@/trpc/client'
+import { useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
+import { toast } from 'react-toastify'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
+import { ZodError } from 'zod'
 
 // const propertyData = [
 //   {
@@ -29,43 +32,47 @@ const getStatusStyle = (status: any) => {
   }
 }
 
-const handleDeleteProperty = (id: any) => {
-  console.log('delete property', id)
-}
-
 const PropertyDataTable = () => {
-  //  const { mutate: deleteUser } = useMutation({
-  //    mutationFn: ({ email, password }: { email: string; password: string }) =>
-  //      deleteProp({ email, password }),
-  //    onError: err => {
-  //      if (err?.message === 'Invalid login') {
-  //        toast.error('Account does not exist')
+  const queryClient = useQueryClient()
+  const { mutate: deleteUser } = trpc.properties.deletePropertyId.useMutation({
+    onError: err => {
+      if (err?.message === 'Invalid login') {
+        toast.error('Account does not exist')
 
-  //        return
-  //      }
-  //      // if (err?.message === 'UNAUTHORIZED') {
-  //      //   // in toast
-  //      //   toast.error('E-mail or Password incorrect')
+        return
+      }
+      // if (err?.message === 'UNAUTHORIZED') {
+      //   // in toast
+      //   toast.error('E-mail or Password incorrect')
 
-  //      //   return
-  //      // }
+      //   return
+      // }
 
-  //      if (err instanceof ZodError) {
-  //        // in toast
-  //        console.error(err.issues[0].message)
+      if (err instanceof ZodError) {
+        // in toast
+        console.error(err.issues[0].message)
 
-  //        return
-  //      }
+        return
+      }
 
-  //      console.error('Something went wrong. Please try again.')
-  //    },
-  //    onSuccess: () => {
-  //      toast.success('Deleted succcessfully')
-  //    },
-  //  })
+      console.error('Something went wrong. Please try again.')
+    },
+    onSuccess: () => {
+      toast.success('Deleted succcessfully')
 
-  const { data: propertiesListData, isLoading } =
-    trpc.properties.getPropertiesAllFields.list.useQuery()
+      propertiesRefetch()
+    },
+  })
+
+  const handleDeleteProperty = (id: any) => {
+    deleteUser({ id })
+  }
+
+  const {
+    data: propertiesListData,
+    isLoading,
+    refetch: propertiesRefetch,
+  } = trpc.properties.getPropertiesAllFields.list.useQuery()
 
   const propertyData = propertiesListData?.map(ele => {
     return {

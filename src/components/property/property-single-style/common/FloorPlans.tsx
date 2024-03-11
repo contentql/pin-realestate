@@ -32,14 +32,12 @@ import Image from 'next/image'
 
 const FloorPlans = ({ floorPlanData }: any) => {
   console.log('floorPlans', floorPlanData)
-
   return (
     <div className='accordion' id='accordionExample'>
       {floorPlanData?.map((floorPlan: any, index: any) => (
         <div
           className={`accordion-item ${index === 1 ? 'active' : ''}`}
-          key={floorPlan.id}
-        >
+          key={floorPlan.id}>
           <h2 className='accordion-header' id={`heading${index}`}>
             <button
               className={`accordion-button ${index === 1 ? '' : 'collapsed'}`}
@@ -47,26 +45,25 @@ const FloorPlans = ({ floorPlanData }: any) => {
               data-bs-toggle='collapse'
               data-bs-target={`#collapse${index}`}
               aria-expanded={index === 1 ? 'true' : 'false'}
-              aria-controls={`collapse${index}`}
-            >
+              aria-controls={`collapse${index}`}>
               <span className='w-100 d-md-flex align-items-center'>
-                <span className='mr10-sm'>{floorPlan.title}</span>
+                <span className='mr10-sm'>Floor {index + 1}</span>
                 <span className='ms-auto d-md-flex align-items-center justify-content-end'>
                   <span className='me-2 me-md-4'>
                     <span className='fw600'>Size: </span>
-                    <span className='text'>{floorPlan.size}</span>
+                    <span className='text'>{floorPlan.floorSize}</span>
                   </span>
                   <span className='me-2 me-md-4'>
                     <span className='fw600'>Bedrooms: </span>
-                    <span className='text'>{floorPlan.bedrooms}</span>
+                    <span className='text'>{floorPlan.floorBeds}</span>
                   </span>
                   <span className='me-2 me-md-4'>
                     <span className='fw600'>Bathrooms: </span>
-                    <span className='text'>{floorPlan.bathrooms}</span>
+                    <span className='text'>{floorPlan.floorBaths}</span>
                   </span>
                   <span>
                     <span className='fw600'>Price: </span>
-                    <span className='text'>{floorPlan.price}</span>
+                    <span className='text'>{floorPlan.floorPrice}</span>
                   </span>
                 </span>
               </span>
@@ -78,8 +75,7 @@ const FloorPlans = ({ floorPlanData }: any) => {
               index === 1 ? 'show' : ''
             }`}
             aria-labelledby={`heading${index}`}
-            data-parent='#accordionExample'
-          >
+            data-parent='#accordionExample'>
             <div className='accordion-body text-center'>
               <Image
                 width={736}

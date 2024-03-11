@@ -1,19 +1,10 @@
 import { CollectionConfig } from 'payload/types'
+import { newContactEmail } from './hooks/newContactEmail'
 
 const Contact: CollectionConfig = {
   slug: 'contact',
   hooks: {
-    afterChange: [
-      async ({ doc, operation, req }) => {
-        if (operation === 'create') {
-          req.payload.sendEmail({
-            to: doc.email,
-            from: 'sender@example.com',
-            subject: 'Thanks for signing up!',
-          })
-        }
-      },
-    ],
+    afterChange: [newContactEmail],
   },
   fields: [
     {

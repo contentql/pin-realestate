@@ -17,7 +17,7 @@ import Map from './Map'
 const PropertyGallery = ({
   images,
 }: {
-  images: Property['Media']['propertyImages']
+  images: Property['media']['propertyImages']
 }) => {
   console.log('images: ' + images)
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)

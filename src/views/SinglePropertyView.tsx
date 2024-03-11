@@ -44,7 +44,7 @@ interface PropertyDetails extends Property {
 const PropertyById = ({ params }: { params: any }) => {
   console.log(params)
   const { data: propertiesListData, isLoading } =
-    trpc.properties.byPropertyId.useQuery({ token: params.id })
+    trpc.properties.byPropertyId.useQuery({ id: params.id })
 
   const propertyType =
     propertiesListData?.propertiesDetails.status?.length == 0
@@ -52,9 +52,7 @@ const PropertyById = ({ params }: { params: any }) => {
       : propertiesListData?.propertiesDetails?.status &&
         propertiesListData?.propertiesDetails?.status.join(' and ')
 
-  console.log('In single product: ', propertiesListData?.Media?.propertyImages)
-
-  const media = propertiesListData?.Media?.propertyImages
+  const media = propertiesListData?.media?.propertyImages
   return (
     <>
       {/* Main Header Nav */}

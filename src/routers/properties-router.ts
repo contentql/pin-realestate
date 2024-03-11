@@ -16,13 +16,23 @@ export const propertiesRouter = router({
       const properties = await payload.find({ collection: 'properties' })
       //   const firstPageKeys = [{ name: 'title' }];
       const newProperties = properties.docs.map(
-        ({ id, propertiesDetails, location, details, amenities }: Property) => {
+        ({
+          id,
+          propertiesDetails,
+          location,
+          details,
+          amenities,
+          media,
+          floors,
+        }: Property) => {
           return {
             id,
             propertiesDetails,
             location: location.location,
             details: details.details,
             amenities: amenities.amenities,
+            media: media.propertyImages?.at(0)?.image,
+            floor: floors.floors?.at(0),
           }
         },
       )
@@ -85,11 +95,11 @@ export const propertiesRouter = router({
     .input(TokenValidator)
     .query(async ({ input }) => {
       const payload = await getPayloadClient()
-      const { token } = input
+      const { id } = input
 
       const propertyById = await payload.findByID({
         collection: 'properties',
-        id: token,
+        id: id,
       })
 
       return propertyById
@@ -97,15 +107,15 @@ export const propertiesRouter = router({
   //function for deleting a property
   deletePropertyId: userProcedure
     .input(TokenValidator)
-    .query(async ({ input }) => {
+    .mutation(async ({ input }) => {
       const payload = await getPayloadClient()
-      const { token } = input
+      const { id } = input
 
       const propertyById = await payload.delete({
         collection: 'properties',
         where: {
           id: {
-            equals: token,
+            equals: id,
           },
         },
       })
@@ -160,7 +170,7 @@ export const propertiesRouter = router({
           floors: {
             floors: [],
           },
-          Media: {},
+          media: {},
 
           location: {
             location: {

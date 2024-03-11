@@ -12,7 +12,8 @@ const Properties: CollectionConfig = {
         // Products Details
         {
           name: 'propertiesDetails',
-          label: 'Property Details', // required
+          interfaceName: 'propertiesDetails',
+          label: 'Property details', // required
           description: 'This will appear within the tab above the fields.',
           fields: [
             // required
@@ -75,11 +76,11 @@ const Properties: CollectionConfig = {
 
         // Media Details
         {
-          name: 'Media',
+          name: 'media',
 
-          label: 'property images', // required
+          label: 'Property images', // required
 
-          interfaceName: 'TabTwo', // optional (`name` must be present)
+          interfaceName: 'media', // optional (`name` must be present)
           fields: [
             // required
             {
@@ -100,7 +101,7 @@ const Properties: CollectionConfig = {
         {
           name: 'location',
           label: 'Location', // required
-          interfaceName: 'TabTwo', // optional (`name` must be present)
+          interfaceName: 'location', // optional (`name` must be present)
           fields: [
             // required
             {
@@ -152,6 +153,7 @@ const Properties: CollectionConfig = {
 
         {
           name: 'Nearby_places',
+          interfaceName: 'Nearby_places',
           label: 'Nearby places', // required
           description: 'This will appear within the tab above the fields.',
           fields: [
@@ -257,7 +259,7 @@ const Properties: CollectionConfig = {
         {
           name: 'details',
           label: 'Details', // required
-          interfaceName: 'DDetails', // optional (`name` must be present)
+          interfaceName: 'details', // optional (`name` must be present)
           fields: [
             // required
             {
@@ -351,8 +353,9 @@ const Properties: CollectionConfig = {
 
         {
           name: 'owner',
-          label: 'Owner Details', // required
+          label: 'Owner details', // required
           // optional (`name` must be present)
+          interfaceName: 'owner',
           fields: [
             // required
             {
@@ -399,7 +402,7 @@ const Properties: CollectionConfig = {
         {
           name: 'floors',
           label: 'Floors', // required
-          interfaceName: 'TabTwo', // optional (`name` must be present)
+          interfaceName: 'floors', // optional (`name` must be present)
           fields: [
             // required
             {
@@ -477,7 +480,7 @@ const Properties: CollectionConfig = {
         {
           name: 'amenities',
           label: 'Amenities', // required
-          interfaceName: 'TabTwo', // optional (`name` must be present)
+          interfaceName: 'amenities', // optional (`name` must be present)
           fields: [
             // required
             {
