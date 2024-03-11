@@ -30,6 +30,23 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   left: 140px;
 }
 
+.pagination-bottom {
+  position: absolute;
+  top: 104%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (min-width: 992px) {
+  .pagination-bottom {
+    top: 100%;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
 /* == Table Of Content  == */
 /* Variables */
 /* Mixins */

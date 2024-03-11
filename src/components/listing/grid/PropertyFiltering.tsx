@@ -298,7 +298,7 @@ export default function PropertyFiltering() {
           </div>
           {/* End mobile filter sidebar */}
 
-          <div className='col-lg-8'>
+          <div className='col-lg-8 relative'>
             <div className='row align-items-center mb20'>
               <TopFilterBar
                 pageContentTrac={pageContentTrac}
@@ -314,7 +314,7 @@ export default function PropertyFiltering() {
             </div>
             {/* End .row */}
 
-            <div className='row'>
+            <div className='row pagination-bottom'>
               <PaginationTwo
                 pageCapacity={8}
                 data={sortedFilteredData}
