@@ -33,7 +33,6 @@ export const PropertyValidator = z.object({
   title: z.string(),
   yearBuild: z.string(),
   zipcode: z.string(),
-
   content: z.string(),
   ownerName: z.string(),
   ownerPhoneNumber: z.string(),

@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types'
+import isAdminOrCreatedBy from '../../access/isCreatedBy'
 
 const Properties: CollectionConfig = {
   slug: 'properties',
@@ -516,7 +517,36 @@ const Properties: CollectionConfig = {
         },
       ],
     },
+
+    //user relationships
+    {
+      name: 'createdBy',
+      type: 'relationship',
+      relationTo: 'users',
+      admin: {
+        readOnly: true,
+        position: 'sidebar',
+        condition: data => Boolean(data?.createdBy),
+      },
+    },
   ],
+  hooks: {
+    beforeChange: [
+      ({ req, operation, data }) => {
+        if (operation === 'create') {
+          if (req.user) {
+            data.createdBy = req.user.id
+            return data
+          }
+        }
+      },
+    ],
+  },
+  access: {
+    read: isAdminOrCreatedBy,
+    update: isAdminOrCreatedBy,
+    delete: isAdminOrCreatedBy,
+  },
 }
 
 export default Properties
