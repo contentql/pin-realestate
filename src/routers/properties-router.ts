@@ -36,48 +36,12 @@ export const propertiesRouter = router({
           }
         },
       )
-      //     id
-      //     title,
-      //     location,
-      //     city,
-      //     bed,
-      //     bath,
-      //     forRent,
-      //     sqft,
-      //     propertyType,
-      //     price,
-      //     featured,
-      //     tags,
-      //     features,
-      //     updatedAt,
-      //     createdAt,
-      //   }) => {
-      //     return {
-      //       id: id,
-      //       title: title,
-      //       location: location,
-      //       city: city,
-      //       bed: bed,
-      //       bath: bath,
-      //       forRent: forRent,
-      //       sqft: sqft,
-      //       propertyType: propertyType,
-      //       price: price,
-      //       featured: featured,
-      //       tags: tags,
-      //       features: features,
-      //       updatedAt: updatedAt,
-      //       createdAt: createdAt,
-      //     };
-      //   }
-      // );
 
-      //    ^?
       return newProperties
     }),
   },
 
-  getPropertiesAllFields: {
+  getPropertiesForMyPropertiesPage: {
     list: publicProcedure.query(async () => {
       // Retrieve users from a datasource, this is an imaginary database
       const payload = await getPayloadClient()
@@ -86,9 +50,20 @@ export const propertiesRouter = router({
         collection: 'properties',
         depth: 10,
       })
-      //   const firstPageKeys = [{ name: 'title' }];
+      const propertyData = properties?.docs?.map(ele => {
+        return {
+          id: ele?.id,
+          title: ele?.propertiesDetails?.title,
+          imageSrc: ele?.floors?.floors?.at(0)?.imageSrc,
+          location: ele?.location?.location?.address,
+          price: ele?.propertiesDetails?.price,
+          datePublished: ele?.createdAt,
+          status: ele?.propertiesDetails?.status,
+        }
+      })
+      //const firstPageKeys = [{ name: 'title' }];
       console.log('all properties', properties.docs.at(0)?.floors.floors)
-      return properties.docs
+      return propertyData
     }),
   },
   byPropertyId: publicProcedure
@@ -167,9 +142,7 @@ export const propertiesRouter = router({
               userEmail: input.ownerEmail,
             },
           },
-          floors: {
-            floors: [],
-          },
+          floors: { floors: input.floors as any },
           media: {},
 
           location: {

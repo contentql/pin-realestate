@@ -23,7 +23,7 @@ const FeaturedListings = ({ data, colstyle }: any) => {
                 height={248}
                 style={{ height: '230px' }}
                 className='w-100  cover'
-                src={listing?.media.url}
+                src={listing?.media?.url}
                 alt='listings'
               />
               <div className='sale-sticker-wrap'>

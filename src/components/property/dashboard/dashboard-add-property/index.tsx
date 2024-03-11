@@ -81,9 +81,10 @@ const AddPropertyTabContent = () => {
 
   const onSubmit = (data: TPropertyValidator, error: any) => {
     console.log('Form Data: ', data)
-    console.log('error', errors?.zipcode?.message)
+    console.log('error', errors)
     addProperty(data)
   }
+
   return (
     <>
       <nav>
