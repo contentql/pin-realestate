@@ -73,7 +73,7 @@ export const propertiesRouter = router({
       // );
 
       //    ^?
-      return properties
+      return newProperties
     }),
   },
 
