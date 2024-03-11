@@ -16,6 +16,7 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<TContactFormValidator>({
     resolver: zodResolver(ContactFormValidator),
   })
@@ -44,6 +45,7 @@ const Form = () => {
       console.error('Something went wrong. Please try again.')
     },
     onSuccess: () => {
+      reset()
       toast.success('Thank you for contacting us. our team will reach you!')
     },
   })
