@@ -9,7 +9,8 @@ import {
   LoginCredentialsValidator,
   TLoginCredentialsValidator,
 } from '@/lib/validators/auth-router/login-credentials-validator'
-import { trpc } from '@/trpc/client'
+import { useAuth } from '@/providers/Auth'
+import { useMutation } from '@tanstack/react-query'
 import Link from 'next/link'
 
 const SignIn = () => {
@@ -22,19 +23,23 @@ const SignIn = () => {
     resolver: zodResolver(LoginCredentialsValidator),
   })
 
-  const { mutate: loginUser } = trpc.auth.signIn.useMutation({
+  const { login } = useAuth()
+
+  const { mutate: loginUser } = useMutation({
+    mutationFn: ({ email, password }: { email: string; password: string }) =>
+      login({ email, password }),
     onError: err => {
-      if (err.data?.code === 'NOT_FOUND') {
+      if (err?.message === 'Invalid login') {
         toast.error('Account does not exist')
 
         return
       }
-      if (err.data?.code === 'UNAUTHORIZED') {
-        // in toast
-        toast.error('E-mail or Password incorrect')
+      // if (err?.message === 'UNAUTHORIZED') {
+      //   // in toast
+      //   toast.error('E-mail or Password incorrect')
 
-        return
-      }
+      //   return
+      // }
 
       if (err instanceof ZodError) {
         // in toast

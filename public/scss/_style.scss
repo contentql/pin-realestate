@@ -19,6 +19,17 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 @import url(../css/menu.css);
 @import url(../css/ud-custom-spacing.css);
 
+.flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-center {
+  position: relative;
+  left: 140px;
+}
+
 /* == Table Of Content  == */
 /* Variables */
 /* Mixins */
@@ -6655,6 +6666,24 @@ textarea:focus {
 }
 
 /* All kind Of btns Styles */
+.custom-btn {
+  border-radius: 12px;
+  display: inline-block;
+  font-family: var(--title-font-family);
+  font-weight: 600;
+  font-size: 15px;
+  font-style: normal;
+  letter-spacing: 0em;
+  padding: 5px 20px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  z-index: 0;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
 .ud-btn {
   border-radius: 12px;
   display: inline-block;

@@ -4,10 +4,12 @@ import MainMenu from '@/components/common/MainMenu'
 import LoginSignupModal from '@/components/common/login-signup-modal'
 import SidebarPanel from '@/components/common/sidebar-panel'
 import { useAuth } from '@/providers/Auth'
+import { useMutation } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 const DefaultHeader = () => {
   const [navbar, setNavbar] = useState(false)
@@ -17,8 +19,35 @@ const DefaultHeader = () => {
 
   const { status, logout } = useAuth()
 
+  const {
+    isPending: isLogoutPending,
+    variables: logoutVariables,
+    mutate: logoutMutation,
+  } = useMutation({
+    mutationKey: ['/api/users/logout', 'post'],
+    mutationFn: () => logout(),
+    onSuccess: async () => {
+      router.push('/login')
+    },
+    onError: async err => {
+      if (err.message === 'CONFLICT') {
+        toast.error('User not found.', {
+          autoClose: 3000,
+          onClose: () => {
+            toast.info('Redirecting to login page...', {
+              autoClose: 2000,
+              onClose: () => router.push('/login'),
+            })
+          },
+        })
+      }
+
+      console.error('Something went wrong. Please try again.')
+    },
+  })
+
   const handleLogout = () => {
-    logout()
+    logoutMutation()
   }
 
   const changeBackground = () => {
@@ -105,8 +134,7 @@ const DefaultHeader = () => {
       <header
         className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${
           navbar ? 'sticky slideInDown animated' : ''
-        }`}
-      >
+        }`}>
         <nav className='posr'>
           <div className='container posr menu_bdrt1'>
             <div className='row align-items-center justify-content-between'>
@@ -144,8 +172,7 @@ const DefaultHeader = () => {
                     <a
                       href='/login'
                       className='login-info d-flex align-items-center'
-                      role='button'
-                    >
+                      role='button'>
                       <i className='far fa-user-circle fz16 me-2' />{' '}
                       <span className='d-none d-xl-block'>
                         Login / Register
@@ -154,8 +181,7 @@ const DefaultHeader = () => {
                   )}
                   <Link
                     className='ud-btn btn-white add-property bdrs60 mx-2 mx-xl-4'
-                    href='/dashboard-add-property'
-                  >
+                    href='/dashboard/add-property'>
                     Add Property
                     <i className='fal fa-arrow-right-long' />
                   </Link>
@@ -167,8 +193,7 @@ const DefaultHeader = () => {
                             <a
                               className='btn'
                               href='#'
-                              data-bs-toggle='dropdown'
-                            >
+                              data-bs-toggle='dropdown'>
                               <Image
                                 width={44}
                                 height={44}
@@ -183,8 +208,7 @@ const DefaultHeader = () => {
                                     <p
                                       className={`fz15 fw400 ff-heading ${
                                         sectionIndex === 0 ? 'mb20' : 'mt30'
-                                      }`}
-                                    >
+                                      }`}>
                                       {section.title}
                                     </p>
                                     {section.items.map((item, itemIndex) => (
@@ -195,8 +219,7 @@ const DefaultHeader = () => {
                                             ? '-is-active'
                                             : ''
                                         } `}
-                                        href={item.href}
-                                      >
+                                        href={item.href}>
                                         <i className={`${item.icon} mr10`} />
                                         {item.text}
                                       </Link>
@@ -221,8 +244,7 @@ const DefaultHeader = () => {
                     href='#'
                     data-bs-toggle='offcanvas'
                     data-bs-target='#SidebarPanel'
-                    aria-controls='SidebarPanelLabel'
-                  >
+                    aria-controls='SidebarPanelLabel'>
                     <Image
                       width={25}
                       height={9}
@@ -255,8 +277,7 @@ const DefaultHeader = () => {
           id='loginSignupModal'
           tabIndex={-1}
           aria-labelledby='loginSignupModalLabel'
-          aria-hidden='true'
-        >
+          aria-hidden='true'>
           <div className='modal-dialog  modal-dialog-scrollable modal-dialog-centered'>
             <LoginSignupModal />
           </div>
@@ -269,8 +290,7 @@ const DefaultHeader = () => {
         className='offcanvas offcanvas-end'
         tabIndex={-1}
         id='SidebarPanel'
-        aria-labelledby='SidebarPanelLabel'
-      >
+        aria-labelledby='SidebarPanelLabel'>
         <SidebarPanel />
       </div>
       {/* Sidebar Panel End */}

@@ -17,41 +17,34 @@ import PropertyVideo from '@/components/property/property-single-style/common/Pr
 import ProperytyDescriptions from '@/components/property/property-single-style/common/ProperytyDescriptions'
 import ReviewBoxForm from '@/components/property/property-single-style/common/ReviewBoxForm'
 import VirtualTour360 from '@/components/property/property-single-style/common/VirtualTour360'
-import WalkScore from '@/components/property/property-single-style/common/WalkScore'
 import InfoWithForm from '@/components/property/property-single-style/common/more-info'
 import PropertyViews from '@/components/property/property-single-style/common/property-view'
 import AllReviews from '@/components/property/property-single-style/common/reviews'
 import ContactWithAgent from '@/components/property/property-single-style/sidebar/ContactWithAgent'
 import ScheduleTour from '@/components/property/property-single-style/sidebar/ScheduleTour'
 import PropertyGallery from '@/components/property/property-single-style/single-v6/PropertyGallery'
-import { Property, PropertyType } from '@/payload-types'
+import { Media, Property } from '@/payload-types'
 import { trpc } from '@/trpc/client'
 
 // export const metadata = {
 //   title: 'Property',
 // };
 
-interface PropertyData extends Property {
-  propertiesDetails: {
-    title?: string | null
-    Description?:
+interface PropertyDetails extends Property {
+  Media: {
+    propertyImages?:
       | {
-          [k: string]: unknown
+          image?: Media | null
+          id?: string | null
         }[]
       | null
-    propertyType?: {
-      relationTo: 'propertyType'
-      value: PropertyType
-    } | null
-    status?: ('For sale' | 'For rent')[] | null
-    price?: number | null
   }
 }
 
 const PropertyById = ({ params }: { params: any }) => {
   console.log(params)
   const { data: propertiesListData, isLoading } =
-    trpc.properties.byPropertyId.useQuery({ token: params.id })
+    trpc.properties.byPropertyId.useQuery({ id: params.id })
 
   const propertyType =
     propertiesListData?.propertiesDetails.status?.length == 0
@@ -59,7 +52,7 @@ const PropertyById = ({ params }: { params: any }) => {
       : propertiesListData?.propertiesDetails?.status &&
         propertiesListData?.propertiesDetails?.status.join(' and ')
 
-  console.log('In single product: ', propertiesListData)
+  const media = propertiesListData?.media?.propertyImages
   return (
     <>
       {/* Main Header Nav */}
@@ -80,7 +73,7 @@ const PropertyById = ({ params }: { params: any }) => {
 
           <div className='row wrap'>
             <div className='col-lg-8'>
-              <PropertyGallery id={params.id} />
+              <PropertyGallery images={media} />
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Overview</h4>
                 <div className='row'>
@@ -94,12 +87,14 @@ const PropertyById = ({ params }: { params: any }) => {
 
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Property Description</h4>
-                <ProperytyDescriptions />
+                <ProperytyDescriptions
+                  data={propertiesListData?.propertiesDetails.description}
+                />
                 {/* End property description */}
 
                 <h4 className='title fz17 mb30 mt50'>Property Details</h4>
                 <div className='row'>
-                  <PropertyDetails data={propertiesListData as PropertyData} />
+                  <PropertyDetails data={propertiesListData as Property} />
                 </div>
               </div>
               {/* End .ps-widget */}
@@ -165,12 +160,12 @@ const PropertyById = ({ params }: { params: any }) => {
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>What&apos;s Nearby?</h4>
                 <div className='row'>
-                  <PropertyNearby />
+                  <PropertyNearby data={propertiesListData} />
                 </div>
               </div>
               {/* End .ps-widget */}
 
-              <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
+              {/* <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Walkscore</h4>
                 <div className='row'>
                   <div className='col-md-12'>
@@ -180,7 +175,7 @@ const PropertyById = ({ params }: { params: any }) => {
                     <WalkScore />
                   </div>
                 </div>
-              </div>
+              </div> */}
               {/* End .ps-widget */}
 
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>

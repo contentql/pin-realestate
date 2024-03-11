@@ -10,22 +10,20 @@ const FeaturedListings = ({ data, colstyle }: any) => {
       {data.map((listing: any) => (
         <div
           className={` ${colstyle ? 'col-sm-12' : 'col-sm-6 col-lg-6'}  `}
-          key={listing.id}
-        >
+          key={listing.id}>
           <div
             className={
               colstyle
                 ? 'listing-style1 listCustom listing-type'
                 : 'listing-style1'
-            }
-          >
+            }>
             <div className='list-thumb'>
               <Image
                 width={382}
                 height={248}
                 style={{ height: '230px' }}
                 className='w-100  cover'
-                src={listing?.floors[0].imageSrc?.url}
+                src={listing?.media.url}
                 alt='listings'
               />
               <div className='sale-sticker-wrap'>

@@ -1,20 +1,19 @@
-import React from 'react'
-import MultiSelectField from './MultiSelectField'
 import StructureType from './StructureType'
 
-const DetailsFiled = () => {
+const DetailsFiled = ({ register }: any) => {
   return (
-    <form className='form-style1'>
+    <div className='form-style1'>
       <div className='row'>
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
-              Size in ft (only numbers)
+              Size in sqft (only numbers)
             </label>
             <input
               type='text'
               className='form-control'
-              placeholder='Your Name'
+              placeholder='Homearea size'
+              {...register('homearea')}
             />
           </div>
         </div>
@@ -28,7 +27,8 @@ const DetailsFiled = () => {
             <input
               type='text'
               className='form-control'
-              placeholder='Your Name'
+              placeholder='Lot area size'
+              {...register('lotarea')}
             />
           </div>
         </div>
@@ -40,7 +40,8 @@ const DetailsFiled = () => {
             <input
               type='text'
               className='form-control'
-              placeholder='Your Name'
+              placeholder='Total rooms'
+              {...register('rooms')}
             />
           </div>
         </div>
@@ -54,7 +55,8 @@ const DetailsFiled = () => {
             <input
               type='text'
               className='form-control'
-              placeholder='Your Name'
+              placeholder='Total bedrooms'
+              {...register('beds')}
             />
           </div>
         </div>
@@ -68,13 +70,14 @@ const DetailsFiled = () => {
             <input
               type='text'
               className='form-control'
-              placeholder='Your Name'
+              placeholder='Total bathrooms'
+              {...register('baths')}
             />
           </div>
         </div>
         {/* End .col-4 */}
 
-        <div className='col-sm-6 col-xl-4'>
+        {/* <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
               Custom ID (text)
@@ -85,7 +88,7 @@ const DetailsFiled = () => {
               placeholder='Your Name'
             />
           </div>
-        </div>
+        </div> */}
         {/* End .col-4 */}
 
         <div className='col-sm-6 col-xl-4'>
@@ -96,7 +99,8 @@ const DetailsFiled = () => {
             <input
               type='text'
               className='form-control'
-              placeholder='Your Name'
+              placeholder='Total no of garages'
+              {...register('garages')}
             />
           </div>
         </div>
@@ -111,6 +115,7 @@ const DetailsFiled = () => {
               type='text'
               className='form-control'
               placeholder='Your Name'
+              {...register('garagesSize')}
             />
           </div>
         </div>
@@ -121,26 +126,18 @@ const DetailsFiled = () => {
             <label className='heading-color ff-heading fw600 mb10'>
               Year built (numeric)
             </label>
-            <input type='text' className='form-control' />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Available from (date)
-            </label>
             <input
               type='text'
+              {...register('yearBuild')}
               className='form-control'
-              placeholder='99.aa.yyyy'
             />
           </div>
         </div>
         {/* End .col-4 */}
 
-        <div className='col-sm-6 col-xl-4'>
+        {/* End .col-4 */}
+
+        {/* <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
               Basement
@@ -151,10 +148,10 @@ const DetailsFiled = () => {
               placeholder='Your Name'
             />
           </div>
-        </div>
+        </div> */}
         {/* End .col-4 */}
 
-        <div className='col-sm-6 col-xl-4'>
+        {/* <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
               Extra details
@@ -165,10 +162,10 @@ const DetailsFiled = () => {
               placeholder='Your Name'
             />
           </div>
-        </div>
+        </div> */}
         {/* End .col-4 */}
 
-        <div className='col-sm-6 col-xl-4'>
+        {/* <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
               Roofing
@@ -179,7 +176,7 @@ const DetailsFiled = () => {
               placeholder='Your Name'
             />
           </div>
-        </div>
+        </div> */}
         {/* End .col-4 */}
 
         <div className='col-sm-6 col-xl-4'>
@@ -190,17 +187,18 @@ const DetailsFiled = () => {
             <input
               type='text'
               className='form-control'
-              placeholder='Your Name'
+              placeholder='Material type'
+              {...register('material')}
             />
           </div>
         </div>
         {/* End .col-4 */}
 
-        <StructureType />
+        <StructureType register={register} />
       </div>
       {/* End .row */}
 
-      <div className='row'>
+      {/* <div className='row'>
         <MultiSelectField />
 
         <div className='col-sm-12'>
@@ -215,10 +213,9 @@ const DetailsFiled = () => {
               defaultValue={''}
             />
           </div>
-        </div>
-        {/* End .col-12 */}
-      </div>
-    </form>
+        </div> 
+      </div> */}
+    </div>
   )
 }
 

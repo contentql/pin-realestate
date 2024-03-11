@@ -1,55 +1,23 @@
 'use client'
+import { trpc } from '@/trpc/client'
+import { useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
+import { toast } from 'react-toastify'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
+import { ZodError } from 'zod'
 
-const propertyData = [
-  {
-    id: 1,
-    title: 'Equestrian Family Home',
-    imageSrc: '/images/listings/list-1.jpg',
-    location: 'California City, CA, USA',
-    price: '$14,000/mo',
-    datePublished: 'December 31, 2022',
-    status: 'Pending',
-  },
-  {
-    id: 2,
-    title: 'Luxury villa in Rego Park',
-    imageSrc: '/images/listings/list-2.jpg',
-    location: 'California City, CA, USA',
-    price: '$14,000/mo',
-    datePublished: 'December 31, 2022',
-    status: 'Published',
-  },
-  {
-    id: 3,
-    title: 'Villa on Hollywood Boulevard',
-    imageSrc: '/images/listings/list-3.jpg',
-    location: 'California City, CA, USA',
-    price: '$14,000/mo',
-    datePublished: 'December 31, 2022',
-    status: 'Processing',
-  },
-  {
-    id: 4,
-    title: 'Equestrian Family Home',
-    imageSrc: '/images/listings/list-4.jpg',
-    location: 'California City, CA, USA',
-    price: '$14,000/mo',
-    datePublished: 'December 31, 2022',
-    status: 'Pending',
-  },
-  {
-    id: 5,
-    title: 'Luxury villa in Rego Park',
-    imageSrc: '/images/listings/list-5.jpg',
-    location: 'California City, CA, USA',
-    price: '$14,000/mo',
-    datePublished: 'December 31, 2022',
-    status: 'Published',
-  },
-]
+// const propertyData = [
+//   {
+//     id: 1,
+//     title: 'Equestrian Family Home',
+//     imageSrc: '/images/listings/list-1.jpg',
+//     location: 'California City, CA, USA',
+//     price: '$14,000/mo',
+//     datePublished: 'December 31, 2022',
+//     status: 'Pending',
+//   },
+// ]
 
 const getStatusStyle = (status: any) => {
   switch (status) {
@@ -60,11 +28,66 @@ const getStatusStyle = (status: any) => {
     case 'Processing':
       return 'pending-style style3'
     default:
-      return ''
+      return status
   }
 }
 
 const PropertyDataTable = () => {
+  const queryClient = useQueryClient()
+  const { mutate: deleteUser } = trpc.properties.deletePropertyId.useMutation({
+    onError: err => {
+      if (err?.message === 'Invalid login') {
+        toast.error('Account does not exist')
+
+        return
+      }
+      // if (err?.message === 'UNAUTHORIZED') {
+      //   // in toast
+      //   toast.error('E-mail or Password incorrect')
+
+      //   return
+      // }
+
+      if (err instanceof ZodError) {
+        // in toast
+        console.error(err.issues[0].message)
+
+        return
+      }
+
+      console.error('Something went wrong. Please try again.')
+    },
+    onSuccess: () => {
+      toast.success('Deleted succcessfully')
+
+      propertiesRefetch()
+    },
+  })
+
+  const handleDeleteProperty = (id: any) => {
+    deleteUser({ id })
+  }
+
+  const {
+    data: propertiesListData,
+    isLoading,
+    refetch: propertiesRefetch,
+  } = trpc.properties.getPropertiesAllFields.list.useQuery()
+
+  const propertyData = propertiesListData?.map(ele => {
+    return {
+      id: ele?.id,
+      title: ele?.propertiesDetails?.title,
+      imageSrc: ele?.floors?.floors?.at(0)?.imageSrc,
+      location: ele?.location?.location?.address,
+      price: ele?.propertiesDetails?.price,
+      datePublished: ele?.createdAt,
+      status: ele?.propertiesDetails?.status,
+    }
+  })
+
+  console.log('All Data', propertiesListData)
+
   return (
     <table className='table-style3 table at-savesearch'>
       <thead className='t-head'>
@@ -77,7 +100,7 @@ const PropertyDataTable = () => {
         </tr>
       </thead>
       <tbody className='t-body'>
-        {propertyData.map(property => (
+        {propertyData?.map(property => (
           <tr key={property.id}>
             <th scope='row'>
               <div className='listing-style1 dashboard-style d-xxl-flex align-items-center mb-0'>
@@ -86,7 +109,7 @@ const PropertyDataTable = () => {
                     width={110}
                     height={94}
                     className='w-100'
-                    src={property.imageSrc}
+                    src={'http://localhost:3000/media/download-2.jpg'}
                     alt='property'
                   />
                 </div>
@@ -115,15 +138,16 @@ const PropertyDataTable = () => {
                 <button
                   className='icon'
                   style={{ border: 'none' }}
-                  data-tooltip-id={`edit-${property.id}`}
-                >
+                  data-tooltip-id={`edit-${property.id}`}>
                   <span className='fas fa-pen fa' />
                 </button>
                 <button
                   className='icon'
                   style={{ border: 'none' }}
                   data-tooltip-id={`delete-${property.id}`}
-                >
+                  onClick={() => {
+                    handleDeleteProperty(property.id)
+                  }}>
                   <span className='flaticon-bin' />
                 </button>
 

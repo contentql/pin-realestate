@@ -1,23 +1,6 @@
-import { Property, PropertyType } from '@/payload-types'
+import { Property } from '@/payload-types'
 
-interface PropertyData extends Property {
-  propertiesDetails: {
-    title?: string | null
-    Description?:
-      | {
-          [k: string]: unknown
-        }[]
-      | null
-    propertyType?: {
-      relationTo: 'propertyType'
-      value: PropertyType
-    } | null
-    status?: ('For sale' | 'For rent')[] | null
-    price?: number | null
-  }
-}
-
-const PropertyDetails = ({ data }: { data: PropertyData }) => {
+const PropertyDetails = ({ data }: { data: Property }) => {
   const status =
     data?.propertiesDetails.status?.length == 0
       ? data?.propertiesDetails?.status[0]
@@ -36,7 +19,7 @@ const PropertyDetails = ({ data }: { data: PropertyData }) => {
       },
       {
         label: 'Property Size',
-        value: data?.details?.details?.homearea,
+        value: data?.details?.details?.homearea + ' sqft',
       },
       {
         label: 'Bathrooms',
@@ -54,7 +37,7 @@ const PropertyDetails = ({ data }: { data: PropertyData }) => {
       },
       {
         label: 'Garage Size',
-        value: 'static',
+        value: data?.details?.details?.garagesSize + ' sqft',
       },
       {
         label: 'Year Built',
@@ -62,7 +45,7 @@ const PropertyDetails = ({ data }: { data: PropertyData }) => {
       },
       {
         label: 'Property Type',
-        value: data?.propertiesDetails?.propertyType?.value?.type,
+        value: data?.propertiesDetails?.propertyType,
       },
       {
         label: 'Property Status',
@@ -80,8 +63,7 @@ const PropertyDetails = ({ data }: { data: PropertyData }) => {
           key={columnIndex}
           className={`col-md-6 col-xl-4${
             columnIndex === 1 ? ' offset-xl-2' : ''
-          }`}
-        >
+          }`}>
           {column.map((detail, index) => (
             <div key={index} className='d-flex justify-content-between'>
               <div className='pd-list'>

@@ -1,5 +1,5 @@
 'use client'
-import listings from '@/data/listings'
+import { Property } from '@/payload-types'
 import Image from 'next/image'
 import 'photoswipe/dist/photoswipe.css'
 import { useState } from 'react'
@@ -7,16 +7,22 @@ import { FreeMode, Navigation, Thumbs } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Map from './Map'
 
-const images = [
-  '/images/listings/listing-single-6-1.jpg',
-  '/images/listings/listing-single-6-2.jpg',
-  '/images/listings/listing-single-6-3.jpg',
-  '/images/listings/listing-single-6-4.jpg',
-]
+// const images = [
+//   '/images/listings/listing-single-6-1.jpg',
+//   '/images/listings/listing-single-6-2.jpg',
+//   '/images/listings/listing-single-6-3.jpg',
+//   '/images/listings/listing-single-6-4.jpg',
+// ]
 
-const PropertyGallery = ({ id }: { id: any }) => {
+const PropertyGallery = ({
+  images,
+}: {
+  images: Property['media']['propertyImages']
+}) => {
+  console.log('images: ' + images)
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
-  const data = listings.filter(elm => elm.id == id)[0] || listings[0]
+  const structuredImages = ['http://localhost:3000/media/download-2.jpg']
+  console.log('structuredImages', structuredImages)
 
   return (
     <>
@@ -26,8 +32,7 @@ const PropertyGallery = ({ id }: { id: any }) => {
             <ul
               className='nav nav-pills justify-content-end'
               id='pills-tab2'
-              role='tablist'
-            >
+              role='tablist'>
               <li className='nav-item' role='presentation'>
                 <button
                   className='nav-link active mr10'
@@ -37,8 +42,7 @@ const PropertyGallery = ({ id }: { id: any }) => {
                   type='button'
                   role='tab'
                   aria-controls='pills-home'
-                  aria-selected='true'
-                >
+                  aria-selected='true'>
                   <span className='flaticon-images text-white fz20' />
                 </button>
               </li>
@@ -51,8 +55,7 @@ const PropertyGallery = ({ id }: { id: any }) => {
                   type='button'
                   role='tab'
                   aria-controls='pills-profile'
-                  aria-selected='false'
-                >
+                  aria-selected='false'>
                   <span className='flaticon-map text-white fz20' />
                 </button>
               </li>
@@ -65,8 +68,7 @@ const PropertyGallery = ({ id }: { id: any }) => {
                   type='button'
                   role='tab'
                   aria-controls='pills-contact'
-                  aria-selected='false'
-                >
+                  aria-selected='false'>
                   <span className='flaticon-maps-1 text-white fz20' />
                 </button>
               </li>
@@ -77,14 +79,12 @@ const PropertyGallery = ({ id }: { id: any }) => {
           <div className='ps-v4-hero-tab'>
             <div
               className='tab-content overflow-visible'
-              id='pills-tabContent2'
-            >
+              id='pills-tabContent2'>
               <div
                 className='tab-pane fade show active'
                 id='pills-home'
                 role='tabpanel'
-                aria-labelledby='pills-home-tab'
-              >
+                aria-labelledby='pills-home-tab'>
                 <div className='container p-0'>
                   <div className='row' data-aos='fade-up' data-aos-delay='300'>
                     <div className='col-lg-12'>
@@ -103,12 +103,11 @@ const PropertyGallery = ({ id }: { id: any }) => {
                                 : null,
                           }}
                           modules={[FreeMode, Navigation, Thumbs]}
-                          className='mySwiper2'
-                        >
-                          {images.map((item, i) => (
+                          className='mySwiper2'>
+                          {structuredImages?.map((item, i) => (
                             <SwiperSlide key={i}>
                               <Image
-                                height={736}
+                                height={90}
                                 width={409}
                                 src={item}
                                 alt='gallery'
@@ -128,9 +127,8 @@ const PropertyGallery = ({ id }: { id: any }) => {
                               freeMode={true}
                               watchSlidesProgress={true}
                               modules={[FreeMode, Navigation, Thumbs]}
-                              className='mySwiper mt20'
-                            >
-                              {images.map((item, i) => (
+                              className='mySwiper mt20'>
+                              {structuredImages?.map((item, i) => (
                                 <SwiperSlide key={i}>
                                   <Image
                                     height={90}
@@ -155,8 +153,7 @@ const PropertyGallery = ({ id }: { id: any }) => {
                 className='tab-pane fade'
                 id='pills-profile'
                 role='tabpanel'
-                aria-labelledby='pills-profile-tab'
-              >
+                aria-labelledby='pills-profile-tab'>
                 <Map />
               </div>
               {/* End map type listing */}
@@ -165,8 +162,7 @@ const PropertyGallery = ({ id }: { id: any }) => {
                 className='tab-pane fade'
                 id='pills-contact'
                 role='tabpanel'
-                aria-labelledby='pills-contact-tab'
-              >
+                aria-labelledby='pills-contact-tab'>
                 <iframe
                   className='h510 w-100'
                   src='https://www.google.com/maps/embed?pb=!4v1553797194458!6m8!1m7!1sR4K_5Z2wRHTk9el8KLTh9Q!2m2!1d36.82551718071267!2d-76.34864590837246!3f305.15097!4f0!5f0.7820865974627469'

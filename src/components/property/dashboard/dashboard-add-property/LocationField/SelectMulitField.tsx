@@ -1,8 +1,14 @@
 'use client'
-import React from 'react'
-import Select from 'react-select'
 
-const options = {
+interface Options {
+  countries: string[]
+  cities: string[]
+  additionalCountries: string[]
+}
+
+type Option = 'countries' | 'cities' | 'additionalCountries'
+
+const options: Options = {
   countries: [
     'Belgium',
     'France',
@@ -53,28 +59,24 @@ const customStyles = {
   },
 }
 
-const SelectMultiField = () => {
-  const fieldTitles = ['Country / State', 'City', 'Country']
+const SelectMultiField = ({ register }: any) => {
+  const fieldTitles = ['state', 'City', 'Country']
   return (
     <>
-      {Object.keys(options).map((key, index) => (
+      {Object.keys(options).map((key: string, index: number) => (
         <div className='col-sm-6 col-xl-4' key={index}>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
               {fieldTitles[index]}
             </label>
             <div className='location-area'>
-              <Select
-                styles={customStyles}
-                className='select-custom pl-0'
-                classNamePrefix='select'
-                required
-                isMulti
-                options={options[key as keyof typeof options].map(item => ({
-                  value: item,
-                  label: item,
-                }))}
-              />
+              <select
+                className='form-control'
+                {...register(fieldTitles[index])}>
+                {options[key as Option].map((option: string, index: number) => (
+                  <option key={index}>{option}</option>
+                ))}
+              </select>
             </div>
           </div>
         </div>

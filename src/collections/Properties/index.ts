@@ -1,4 +1,3 @@
-import { slateEditor } from '@payloadcms/richtext-slate'
 import { CollectionConfig } from 'payload/types'
 
 const Properties: CollectionConfig = {
@@ -13,7 +12,8 @@ const Properties: CollectionConfig = {
         // Products Details
         {
           name: 'propertiesDetails',
-          label: 'Property Details', // required
+          interfaceName: 'propertiesDetails',
+          label: 'Property details', // required
           description: 'This will appear within the tab above the fields.',
           fields: [
             // required
@@ -24,35 +24,36 @@ const Properties: CollectionConfig = {
             },
 
             {
-              name: 'Description',
-              type: 'richText',
+              name: 'description',
+              type: 'textarea',
               // Pass the Slate editor here and configure it accordingly
-              editor: slateEditor({
-                admin: {
-                  elements: [
-                    // customize elements allowed in Slate editor here
-                    'h2',
-                    'h3',
-                    'h4',
-                    'link',
-                    'blockquote',
-                  ],
-                  leaves: [
-                    // customize leaves allowed in Slate editor here
-                    'bold',
-                    'italic',
-                  ],
-                },
-              }),
+              // editor: slateEditor({
+              //   admin: {
+              //     elements: [
+              //       // customize elements allowed in Slate editor here
+              //       'h2',
+              //       'h3',
+              //       'h4',
+              //       'link',
+              //       'blockquote',
+              //     ],
+              //     leaves: [
+              //       // customize leaves allowed in Slate editor here
+              //       'bold',
+              //       'italic',
+              //     ],
+              //   },
+              // }),
             },
             {
               type: 'row',
               fields: [
                 {
                   name: 'propertyType',
-                  type: 'relationship',
-                  relationTo: ['propertyType'],
+                  type: 'select',
+                  //relationTo: ['propertyType'],
                   hasMany: false,
+                  options: ['For sale', 'For rent'],
                   label: 'Type',
                 },
                 {
@@ -72,8 +73,87 @@ const Properties: CollectionConfig = {
           ],
         },
         //
+
+        // Media Details
+        {
+          name: 'media',
+
+          label: 'Property images', // required
+
+          interfaceName: 'media', // optional (`name` must be present)
+          fields: [
+            // required
+            {
+              name: 'propertyImages', // accessible via tabTwo.numberField
+              type: 'array',
+              fields: [
+                {
+                  type: 'upload',
+                  name: 'image',
+                  relationTo: 'media',
+                },
+              ],
+            },
+          ],
+        },
+
+        // Locations Details
+        {
+          name: 'location',
+          label: 'Location', // required
+          interfaceName: 'location', // optional (`name` must be present)
+          fields: [
+            // required
+            {
+              name: 'location',
+              type: 'group',
+              interfaceName: 'Location',
+              fields: [
+                {
+                  name: 'address',
+                  type: 'text',
+                },
+                {
+                  name: 'maplocation',
+                  type: 'text',
+                },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'city',
+                      type: 'text',
+                    },
+                    {
+                      name: 'state',
+                      type: 'text',
+                    },
+                    {
+                      name: 'country',
+                      type: 'text',
+                    },
+
+                    {
+                      name: 'zipcode',
+                      type: 'text',
+                    },
+                  ],
+                },
+                {
+                  name: 'locationPoints',
+                  type: 'point',
+                  label: 'Location',
+                },
+              ],
+            },
+          ],
+        },
+
+        //Nearby places
+
         {
           name: 'Nearby_places',
+          interfaceName: 'Nearby_places',
           label: 'Nearby places', // required
           description: 'This will appear within the tab above the fields.',
           fields: [
@@ -98,14 +178,8 @@ const Properties: CollectionConfig = {
                               type: 'text',
                               label: 'Property Title',
                             },
-
                             {
-                              name: 'grades',
-                              type: 'text',
-                              label: 'grades',
-                            },
-                            {
-                              name: 'Distance',
+                              name: 'distance',
                               type: 'text',
                               label: 'distance',
                             },
@@ -179,86 +253,13 @@ const Properties: CollectionConfig = {
             },
           ],
         },
-        // Media Details
-        {
-          name: 'Media',
-
-          label: 'property images', // required
-
-          interfaceName: 'TabTwo', // optional (`name` must be present)
-          fields: [
-            // required
-            {
-              name: 'numberField', // accessible via tabTwo.numberField
-              type: 'number',
-              required: true,
-            },
-          ],
-        },
-        // Locations Details
-        {
-          name: 'location',
-          label: 'Location', // required
-          interfaceName: 'TabTwo', // optional (`name` must be present)
-          fields: [
-            // required
-            {
-              name: 'location',
-              type: 'group',
-              interfaceName: 'Location',
-              fields: [
-                {
-                  name: 'address',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  name: 'maplocation',
-                  type: 'text',
-                  required: true,
-                },
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'city',
-                      type: 'text',
-                      required: true,
-                    },
-                    {
-                      name: 'state',
-                      type: 'text',
-                      required: true,
-                    },
-                    {
-                      name: 'country',
-                      type: 'text',
-                      required: true,
-                    },
-
-                    {
-                      name: 'zipcode',
-                      type: 'text',
-                      required: true,
-                    },
-                  ],
-                },
-                {
-                  name: 'locationPoints',
-                  type: 'point',
-                  label: 'Location',
-                },
-              ],
-            },
-          ],
-        },
 
         // Details
 
         {
           name: 'details',
           label: 'Details', // required
-          interfaceName: 'DDetails', // optional (`name` must be present)
+          interfaceName: 'details', // optional (`name` must be present)
           fields: [
             // required
             {
@@ -279,25 +280,25 @@ const Properties: CollectionConfig = {
                       name: 'yearBuild',
 
                       type: 'number',
-                      required: true,
+
                       label: 'Year Built',
                     },
                     {
                       name: 'rooms',
                       type: 'number',
-                      required: true,
+
                       label: 'Rooms',
                     },
                     {
                       name: 'baths',
                       type: 'number',
-                      required: true,
+
                       label: 'Baths',
                     },
                     {
                       name: 'beds',
                       type: 'number',
-                      required: true,
+
                       label: 'Beds',
                     },
                   ],
@@ -310,37 +311,86 @@ const Properties: CollectionConfig = {
                       name: 'garages',
 
                       type: 'number',
-                      required: true,
+
                       label: 'Garages',
+                    },
+                    {
+                      name: 'garagesSize',
+
+                      type: 'number',
+
+                      label: 'Garages area',
                     },
                     {
                       name: 'homearea',
 
                       type: 'number',
-                      required: true,
+
                       label: 'Home Area',
                     },
                     {
                       name: 'lotarea',
                       type: 'number',
-                      required: true,
+
                       label: 'Lot Area',
-                    },
-                    {
-                      name: 'lotdimenstions',
-                      type: 'text',
-                      required: true,
-                      label: 'Lot Dimenstions',
                     },
                   ],
                 },
                 {
                   name: 'material',
                   type: 'select',
-                  required: true,
+
                   label: 'Material',
                   options: ['Wood', 'Block', 'Brick', 'Rock'],
                   hasMany: false,
+                },
+              ],
+            },
+          ],
+        },
+
+        // User Details
+
+        {
+          name: 'owner',
+          label: 'Owner details', // required
+          // optional (`name` must be present)
+          interfaceName: 'owner',
+          fields: [
+            // required
+            {
+              name: 'userDetails',
+              type: 'group',
+              fields: [
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'userName',
+
+                      type: 'text',
+
+                      label: 'Name',
+                    },
+                    {
+                      name: 'phoneNumber',
+                      type: 'text',
+
+                      label: 'Phone Number',
+                    },
+                    {
+                      name: 'whatsAppNumber',
+                      type: 'text',
+
+                      label: 'Whats App',
+                    },
+                    {
+                      name: 'userEmail',
+                      type: 'text',
+
+                      label: 'Email',
+                    },
+                  ],
                 },
               ],
             },
@@ -352,7 +402,7 @@ const Properties: CollectionConfig = {
         {
           name: 'floors',
           label: 'Floors', // required
-          interfaceName: 'TabTwo', // optional (`name` must be present)
+          interfaceName: 'floors', // optional (`name` must be present)
           fields: [
             // required
             {
@@ -379,19 +429,19 @@ const Properties: CollectionConfig = {
                   type: 'row',
                   fields: [
                     {
-                      name: 'rooms',
+                      name: 'floorRooms',
                       type: 'number',
                       label: 'Rooms',
                       required: true,
                     },
                     {
-                      name: 'baths',
+                      name: 'floorBaths',
                       type: 'number',
                       label: 'Baths',
                       required: true,
                     },
                     {
-                      name: 'bedrooms',
+                      name: 'floorBeds',
                       type: 'number',
                       label: 'Bedrooms',
                       required: true,
@@ -402,13 +452,13 @@ const Properties: CollectionConfig = {
                   type: 'row',
                   fields: [
                     {
-                      name: 'price',
+                      name: 'floorPrice',
                       type: 'number',
                       label: 'Price',
                       required: true,
                     },
                     {
-                      name: 'size',
+                      name: 'floorSize',
                       type: 'number',
                       label: 'Size',
                       required: true,
@@ -425,11 +475,12 @@ const Properties: CollectionConfig = {
             },
           ],
         },
+
         //Amenities
         {
           name: 'amenities',
           label: 'Amenities', // required
-          interfaceName: 'TabTwo', // optional (`name` must be present)
+          interfaceName: 'amenities', // optional (`name` must be present)
           fields: [
             // required
             {
@@ -438,56 +489,27 @@ const Properties: CollectionConfig = {
               hasMany: true,
               label: 'Amenities',
               options: [
+                'Attic',
+                'Basketball court',
                 'Air Conditioning',
-                'Bar',
-                'Bathtub',
-                'Barbeque',
-                'Dryer',
-                'Gym',
                 'Lawn',
-                'Microwave',
                 'Swimming Pool',
+                'Barbeque',
+                'Microwave',
+                'TV Cable',
+                'Dryer',
+                'Outdoor Shower',
                 'Washer',
-                'Wifi',
-              ],
-            },
-          ],
-        },
-        {
-          name: 'facilities',
-          label: 'Facilities', // required
-          interfaceName: 'TabTwo', // optional (`name` must be present)
-          fields: [
-            // required
-
-            {
-              name: 'facilities', // required
-              type: 'array', // required
-              label: 'Facilities',
-              minRows: 2,
-              maxRows: 10,
-              interfaceName: 'CardSlider', // optional
-              labels: {
-                singular: 'Facilitie',
-                plural: 'Facilities',
-              },
-              fields: [
-                // required
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      label: 'Key',
-                    },
-                    {
-                      name: 'value',
-                      type: 'text',
-                      label: 'Value',
-                    },
-                  ],
-                },
+                'Gym',
+                'Ocean view',
+                'Private space',
+                'Lake view',
+                'Wine cellar',
+                'Front yard',
+                'Refrigerator',
+                'WiFi',
+                'Laundry',
+                'Sauna',
               ],
             },
           ],

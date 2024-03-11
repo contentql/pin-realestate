@@ -24,7 +24,7 @@ const StructureType = ({ register }: any) => {
       <div className='mb20'>
         <label className='heading-color ff-heading fw600 mb10'>Label</label>
         <div className='location-area'>
-          <select className='form-control' {...register('label')}>
+          <select {...register('label')}>
             {structureTypeOptions.map((ele, id) => (
               <option key={id} value={ele.value}>
                 {ele.value}
