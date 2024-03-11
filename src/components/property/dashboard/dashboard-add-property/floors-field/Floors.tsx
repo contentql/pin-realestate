@@ -128,8 +128,7 @@ const Floors = ({ register }: any) => {
                 type='file'
                 className='form-control'
                 placeholder='Floor image'
-                value={'/images/123.jpg'}
-                {...register(`floors.${index}.imageSrc` as const)}
+                //{...register(`floors.${index}.imageSrc` as const)}
               />
             </div>
           </div>

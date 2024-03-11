@@ -33,7 +33,9 @@ export const PropertyValidator = z.object({
   title: z.string(),
   yearBuild: z.string(),
   zipcode: z.string(),
+
   content: z.string(),
+
   ownerName: z.string(),
   ownerPhoneNumber: z.string(),
   ownerWhatsApp: z.string(),
@@ -46,7 +48,7 @@ export const PropertyValidator = z.object({
       floorBaths: z.string(),
       floorBeds: z.string(),
       floorRooms: z.string(),
-      //imageSrc: z.any(),
+      // imageSrc: z.string(),
     }),
   ),
   educations: z.array(

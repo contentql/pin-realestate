@@ -19,9 +19,9 @@ const PropertyGallery = ({
 }: {
   images: Property['media']['propertyImages']
 }) => {
-  console.log('images: ' + images)
+  console.log('images: ', { images })
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
-  const structuredImages = ['http://localhost:3000/media/download-2.jpg']
+  const structuredImages = images?.map((ele: any) => ele?.image?.url)
   console.log('structuredImages', structuredImages)
 
   return (
