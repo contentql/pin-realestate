@@ -22,10 +22,11 @@ export default function PropertyFiltering() {
   const [pageContentTrac, setPageContentTrac] = useState<any>([])
 
   const { data: propertiesListData, isLoading } =
-    trpc.properties.getProperties.list.useQuery()
+    trpc.properties.getProperties.list.useQuery({ pageNumber: pageNumber })
 
   useEffect(() => {
-    setPageItems(sortedFilteredData.slice((pageNumber - 1) * 8, pageNumber * 8))
+    // setPageItems(sortedFilteredData.slice((pageNumber - 1) * 8, pageNumber * 8))
+
     setPageContentTrac([
       (pageNumber - 1) * 8 + 1,
       pageNumber * 8,
@@ -132,7 +133,7 @@ export default function PropertyFiltering() {
 
   useEffect(() => {
     if (!propertiesListData) return
-    const refItems = propertiesListData?.filter((elm: any) => {
+    const refItems = propertiesListData?.newProperties.filter((elm: any) => {
       if (listingStatus == 'All') {
         return true
       } else if (listingStatus == 'Rent') {
@@ -239,10 +240,11 @@ export default function PropertyFiltering() {
     categories,
     searchQuery,
     propertiesListData,
+    pageNumber,
   ])
 
   useEffect(() => {
-    setPageNumber(1)
+    // setPageNumber(1)
     if (currentSortingOption == 'Newest') {
       const sorted = [...filteredData].sort(
         (a, b) => a.yearBuilding - b.yearBuilding,
@@ -310,7 +312,7 @@ export default function PropertyFiltering() {
             {/* End TopFilterBar */}
 
             <div className='row mt15'>
-              <FeaturedListings colstyle={colstyle} data={pageItems} />
+              <FeaturedListings colstyle={colstyle} data={sortedFilteredData} />
             </div>
             {/* End .row */}
 
@@ -320,6 +322,7 @@ export default function PropertyFiltering() {
                 data={sortedFilteredData}
                 pageNumber={pageNumber}
                 setPageNumber={setPageNumber}
+                totalData={propertiesListData?.totalProperties}
               />
             </div>
             {/* End .row */}
