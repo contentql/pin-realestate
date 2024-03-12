@@ -1,6 +1,9 @@
 import { Details, Property } from '@/payload-types'
 import { getPayloadClient } from '../get-payload'
-import { TokenValidator } from '../lib/validators/property-router/token-validator'
+import {
+  TokenValidator,
+  PaginationValidator,
+} from '../lib/validators/property-router/token-validator'
 //import { PropertyByIdValidator } from '../lib/validators/property-router/property-id-validator';
 import { PropertyValidator } from '../lib/validators/property-router/property-validator'
 import { publicProcedure, router, userProcedure } from '../trpc/trpc'
@@ -9,36 +12,48 @@ type Status = 'For Sale' | 'For Rent'
 
 export const propertiesRouter = router({
   getProperties: {
-    list: publicProcedure.query(async () => {
-      // Retrieve users from a datasource, this is an imaginary database
-      const payload = await getPayloadClient()
+    list: publicProcedure
+      .input(PaginationValidator)
+      .query(async ({ input }) => {
+        // Retrieve users from a datasource, this is an imaginary database
+        const payload = await getPayloadClient()
 
-      const properties = await payload.find({ collection: 'properties' })
-      //   const firstPageKeys = [{ name: 'title' }];
-      const newProperties = properties.docs.map(
-        ({
-          id,
-          propertiesDetails,
-          location,
-          details,
-          amenities,
-          media,
-          floors,
-        }: Property) => {
-          return {
+        const properties = await payload.find({
+          collection: 'properties',
+          page: input.pageNumber,
+          limit: 2,
+        })
+
+        //   console.log('total', total)
+        //   const firstPageKeys = [{ name: 'title' }];
+        const totalProperties = properties.totalDocs
+        const newProperties = properties.docs.map(
+          ({
             id,
             propertiesDetails,
-            location: location.location,
-            details: details.details,
-            amenities: amenities.amenities,
-            media: media.propertyImages?.at(0)?.image,
-            floor: floors.floors?.at(0),
-          }
-        },
-      )
+            location,
+            details,
+            amenities,
+            media,
+            floors,
+          }: Property) => {
+            return {
+              id,
+              propertiesDetails,
+              location: location.location,
+              details: details.details,
+              amenities: amenities.amenities,
+              media: media.propertyImages?.at(0)?.image,
+              floor: floors.floors?.at(0),
+            }
+          },
+        )
 
-      return newProperties
-    }),
+        return {
+          newProperties: newProperties,
+          totalProperties: totalProperties,
+        }
+      }),
   },
 
   getPropertiesForMyPropertiesPage: {
