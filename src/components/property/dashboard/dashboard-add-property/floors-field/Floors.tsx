@@ -11,6 +11,7 @@ const Floors = ({ register }: any) => {
     control,
     name: 'floors',
   })
+
   return (
     <div className='form-style1'>
       {floorFields.map((field: any, index: number) => (
@@ -128,7 +129,7 @@ const Floors = ({ register }: any) => {
                 type='file'
                 className='form-control'
                 placeholder='Floor image'
-                //{...register(`floors.${index}.imageSrc` as const)}
+                {...register(`floors.${index}.imageSrc` as const)}
               />
             </div>
           </div>
@@ -154,6 +155,7 @@ const Floors = ({ register }: any) => {
             floorBaths: '',
             floorBeds: '',
             floorRooms: '',
+            imageSrc: '',
           })
         }>
         Add Floor
