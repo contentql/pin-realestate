@@ -10,6 +10,7 @@ import PaginationTwo from '../PaginationTwo'
 
 export default function PropertyFiltering() {
   const [filteredData, setFilteredData] = useState<any>([])
+  const [listingStatus, setListingStatus] = useState('All')
 
   const [currentSortingOption, setCurrentSortingOption] = useState('Newest')
 
@@ -21,9 +22,6 @@ export default function PropertyFiltering() {
 
   const [pageContentTrac, setPageContentTrac] = useState<any>([])
 
-  const { data: propertiesListData, isLoading } =
-    trpc.properties.getProperties.list.useQuery({ pageNumber: pageNumber })
-
   useEffect(() => {
     // setPageItems(sortedFilteredData.slice((pageNumber - 1) * 8, pageNumber * 8))
 
@@ -34,7 +32,6 @@ export default function PropertyFiltering() {
     ])
   }, [pageNumber, sortedFilteredData])
 
-  const [listingStatus, setListingStatus] = useState('All')
   const [propertyTypes, setPropertyTypes] = useState<any>([])
   const [priceRange, setPriceRange] = useState([0, 100000])
   const [bedrooms, setBedrooms] = useState(0)
@@ -44,6 +41,13 @@ export default function PropertyFiltering() {
   const [yearBuild, setyearBuild] = useState<any>([])
   const [categories, setCategories] = useState<any>([])
   const [searchQuery, setSearchQuery] = useState('')
+
+  const { data: propertiesListData, isLoading } =
+    trpc.properties.getProperties.list.useQuery({
+      pageNumber: pageNumber,
+      statusFilter: listingStatus,
+      maxPriceLimit: priceRange[1],
+    })
 
   const resetFilter = () => {
     setListingStatus('All')
@@ -136,12 +140,14 @@ export default function PropertyFiltering() {
     const refItems = propertiesListData?.newProperties.filter((elm: any) => {
       if (listingStatus == 'All') {
         return true
-      } else if (listingStatus == 'Rent') {
-        return !elm.propertiesDetails.status.includes('For rent')
-      } else if (listingStatus == 'Buy') {
+      } else if (listingStatus == 'For rent') {
+        return elm.propertiesDetails.status.includes('For rent')
+      } else if (listingStatus == 'For sale') {
         return elm.propertiesDetails.status.includes('For sale')
       }
     })
+
+    console.log('ref', refItems)
 
     let filteredArrays: any[] = []
 
