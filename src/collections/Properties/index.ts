@@ -1,5 +1,9 @@
 import { CollectionConfig } from 'payload/types'
 import isAdminOrCreatedBy from '../../access/isCreatedBy'
+import {
+  NumberField,
+  TelephoneField,
+} from '@nouance/payload-better-fields-plugin'
 
 const Properties: CollectionConfig = {
   slug: 'properties',
@@ -8,67 +12,79 @@ const Properties: CollectionConfig = {
   },
   fields: [
     {
-      type: 'tabs', // required
+      type: 'tabs',
       tabs: [
         // Products Details
         {
-          name: 'propertiesDetails',
-          interfaceName: 'propertiesDetails',
-          label: 'Property details', // required
-          description: 'This will appear within the tab above the fields.',
+          name: '_propertyDetails',
+          interfaceName: 'PropertyDetails',
+          label: 'Property Details', // required
+          description: 'This tab is related to Property Details',
           fields: [
-            // required
             {
               name: 'title',
-              type: 'text',
               label: 'Property Title',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Enter the Property Name',
+                placeholder: 'Enter the Property Name',
+              },
             },
-
             {
               name: 'description',
+              label: 'Property Description',
               type: 'textarea',
-              // Pass the Slate editor here and configure it accordingly
-              // editor: slateEditor({
-              //   admin: {
-              //     elements: [
-              //       // customize elements allowed in Slate editor here
-              //       'h2',
-              //       'h3',
-              //       'h4',
-              //       'link',
-              //       'blockquote',
-              //     ],
-              //     leaves: [
-              //       // customize leaves allowed in Slate editor here
-              //       'bold',
-              //       'italic',
-              //     ],
-              //   },
-              // }),
+              required: true,
+              admin: {
+                description: 'Enter the Property Description',
+                placeholder: 'Enter the Property Description',
+              },
             },
             {
               type: 'row',
               fields: [
                 {
-                  name: 'propertyType',
+                  name: 'type',
+                  label: 'Property Type',
                   type: 'select',
-                  //relationTo: ['propertyType'],
+                  options: ['apartment', 'villa', 'bungalow', 'office'],
                   hasMany: false,
-                  options: ['For sale', 'For rent'],
-                  label: 'Type',
+                  required: true,
+                  admin: {
+                    description: 'Contact the developer team to add new type',
+                  },
                 },
                 {
-                  name: 'status',
+                  name: 'saleType',
+                  label: 'Property Sale Type',
                   type: 'select',
+                  options: ['sale', 'rent'],
                   hasMany: true,
-                  options: ['For sale', 'For rent'],
-                  label: 'status',
+                  required: true,
                 },
-                {
-                  name: 'price',
-                  type: 'number',
-                  label: 'Price',
-                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                ...NumberField(
+                  {
+                    name: 'price',
+                    label: 'Property Price',
+                    required: true,
+                    admin: {
+                      description: 'Enter Price in Dollars',
+                      placeholder: 'Enter Price in Dollars',
+                    },
+                  },
+                  {
+                    prefix: '$ ',
+                    thousandSeparator: ',',
+                    decimalScale: 2,
+                    fixedDecimalScale: true,
+                  },
+                ),
               ],
             },
           ],
@@ -77,21 +93,23 @@ const Properties: CollectionConfig = {
 
         // Media Details
         {
-          name: 'media',
-
-          label: 'Property images', // required
-
-          interfaceName: 'media', // optional (`name` must be present)
+          name: '_assets',
+          label: 'Assets',
+          interfaceName: 'Assets',
           fields: [
-            // required
             {
-              name: 'propertyImages', // accessible via tabTwo.numberField
+              name: 'allMedia',
               type: 'array',
               fields: [
                 {
                   type: 'upload',
-                  name: 'image',
+                  name: 'asset',
+                  label: 'Asset',
                   relationTo: 'media',
+                  admin: {
+                    description:
+                      'You can upload any type of media e.g: images, videos',
+                  },
                 },
               ],
             },
@@ -100,50 +118,46 @@ const Properties: CollectionConfig = {
 
         // Locations Details
         {
-          name: 'location',
-          label: 'Location', // required
-          interfaceName: 'location', // optional (`name` must be present)
+          name: '_location',
+          label: 'Location',
+          interfaceName: 'Location',
           fields: [
-            // required
             {
-              name: 'location',
-              type: 'group',
-              interfaceName: 'Location',
+              name: 'address',
+              label: 'Address',
+              type: 'text',
+              required: true,
+              admin: {
+                description:
+                  'Enter complete address, it is used for locating your asset via google maps',
+              },
+            },
+            {
+              type: 'row',
               fields: [
                 {
-                  name: 'address',
+                  name: 'city',
+                  label: 'City',
                   type: 'text',
+                  required: true,
                 },
                 {
-                  name: 'maplocation',
+                  name: 'state',
+                  label: 'State',
                   type: 'text',
+                  required: true,
                 },
                 {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'city',
-                      type: 'text',
-                    },
-                    {
-                      name: 'state',
-                      type: 'text',
-                    },
-                    {
-                      name: 'country',
-                      type: 'text',
-                    },
-
-                    {
-                      name: 'zipcode',
-                      type: 'text',
-                    },
-                  ],
+                  name: 'country',
+                  label: 'Country',
+                  type: 'text',
+                  required: true,
                 },
                 {
-                  name: 'locationPoints',
-                  type: 'point',
-                  label: 'Location',
+                  name: 'zipcode',
+                  label: 'Zip Code',
+                  type: 'text',
+                  required: true,
                 },
               ],
             },
@@ -152,254 +166,147 @@ const Properties: CollectionConfig = {
 
         //Nearby places
 
+        // Details
         {
-          name: 'Nearby_places',
-          interfaceName: 'Nearby_places',
-          label: 'Nearby places', // required
-          description: 'This will appear within the tab above the fields.',
+          name: '_details',
+          label: 'Details',
+          interfaceName: 'Details',
           fields: [
             {
-              type: 'tabs',
-              tabs: [
+              name: 'available',
+              type: 'checkbox',
+              label: 'Available for Sale?',
+              admin: {
+                description:
+                  'Based upon the availability we will display whether it is in sale or sold status',
+              },
+              required: true,
+            },
+            {
+              type: 'row',
+              fields: [
                 {
-                  name: 'education',
-                  label: 'education places', // required
-                  description:
-                    'This will appear within the tab above the fields.',
-                  fields: [
-                    {
-                      name: 'education',
-                      type: 'array',
-                      fields: [
-                        {
-                          type: 'row',
-                          fields: [
-                            {
-                              name: 'name',
-                              type: 'text',
-                              label: 'Property Title',
-                            },
-                            {
-                              name: 'distance',
-                              type: 'text',
-                              label: 'distance',
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
+                  name: 'yearBuild',
+                  type: 'number',
+                  label: 'Year Built',
+                  required: true,
                 },
                 {
-                  name: 'medical',
-                  label: 'Hospital/medical', // required
-                  description:
-                    'This will appear within the tab above the fields.',
-                  fields: [
-                    {
-                      name: 'medical',
-                      type: 'array',
-                      fields: [
-                        {
-                          type: 'row',
-                          fields: [
-                            {
-                              name: 'name',
-                              type: 'text',
-                              label: 'Hospital/medical name',
-                            },
-
-                            {
-                              name: 'Distance',
-                              type: 'text',
-                              label: 'distance',
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  name: 'transportation',
-                  label: 'Transportation', // required
-                  description:
-                    'This will appear within the tab above the fields.',
-                  fields: [
-                    {
-                      name: 'transportation',
-                      type: 'array',
-                      fields: [
-                        {
-                          type: 'row',
-                          fields: [
-                            {
-                              name: 'name',
-                              type: 'text',
-                              label: 'tansportion name',
-                            },
-
-                            {
-                              name: 'Distance',
-                              type: 'text',
-                              label: 'distance',
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
+                  name: 'rooms',
+                  type: 'number',
+                  label: 'Rooms',
+                  required: true,
                 },
               ],
             },
-          ],
-        },
-
-        // Details
-
-        {
-          name: 'details',
-          label: 'Details', // required
-          interfaceName: 'details', // optional (`name` must be present)
-          fields: [
-            // required
             {
-              name: 'details',
-              type: 'group',
-              interfaceName: 'Details',
+              type: 'row',
               fields: [
                 {
-                  name: 'label',
-                  type: 'select',
-                  options: ['Rented', 'Sold'],
-                  label: 'Label',
+                  name: 'bathrooms',
+                  type: 'number',
+                  label: 'Bath Rooms',
+                  required: true,
                 },
                 {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'yearBuild',
-
-                      type: 'number',
-
-                      label: 'Year Built',
-                    },
-                    {
-                      name: 'rooms',
-                      type: 'number',
-
-                      label: 'Rooms',
-                    },
-                    {
-                      name: 'baths',
-                      type: 'number',
-
-                      label: 'Baths',
-                    },
-                    {
-                      name: 'beds',
-                      type: 'number',
-
-                      label: 'Beds',
-                    },
-                  ],
-                },
-
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'garages',
-
-                      type: 'number',
-
-                      label: 'Garages',
-                    },
-                    {
-                      name: 'garagesSize',
-
-                      type: 'number',
-
-                      label: 'Garages area',
-                    },
-                    {
-                      name: 'homearea',
-
-                      type: 'number',
-
-                      label: 'Home Area',
-                    },
-                    {
-                      name: 'lotarea',
-                      type: 'number',
-
-                      label: 'Lot Area',
-                    },
-                  ],
-                },
-                {
-                  name: 'material',
-                  type: 'select',
-
-                  label: 'Material',
-                  options: ['Wood', 'Block', 'Brick', 'Rock'],
-                  hasMany: false,
+                  name: 'bedrooms',
+                  type: 'number',
+                  label: 'Bed Rooms',
+                  required: true,
                 },
               ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'garages',
+                  type: 'number',
+                  label: 'Garages',
+                  required: true,
+                  defaultValue: 0,
+                },
+                {
+                  name: 'garagesSize',
+                  type: 'number',
+                  label: 'Garages Area',
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'homearea',
+                  type: 'number',
+                  label: 'Home Area',
+                },
+                {
+                  name: 'lotarea',
+                  type: 'number',
+                  label: 'Lot Area',
+                },
+              ],
+            },
+            {
+              name: 'material',
+              type: 'select',
+              label: 'Material',
+              options: ['Wood', 'Block', 'Brick', 'Rock'],
+              hasMany: false,
+              admin: {
+                description:
+                  'select the core material used for the construction',
+              },
             },
           ],
         },
 
         // User Details
-
         {
-          name: 'owner',
-          label: 'Owner details', // required
-          // optional (`name` must be present)
+          name: '_owner',
+          label: 'Owner details',
           interfaceName: 'owner',
           fields: [
-            // required
             {
-              name: 'userDetails',
-              type: 'group',
+              type: 'row',
               fields: [
                 {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'userName',
-
-                      type: 'text',
-
-                      label: 'Name',
-                    },
-                    {
-                      name: 'phoneNumber',
-                      type: 'text',
-
-                      label: 'Phone Number',
-                    },
-                    {
-                      name: 'whatsAppNumber',
-                      type: 'text',
-
-                      label: 'Whats App',
-                    },
-                    {
-                      name: 'userEmail',
-                      type: 'text',
-
-                      label: 'Email',
-                    },
-                  ],
+                  name: 'name',
+                  type: 'text',
+                  label: 'Owner Name',
+                  required: true,
                 },
+                {
+                  name: 'email',
+                  type: 'email',
+                  label: 'Owner Email',
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                ...TelephoneField({
+                  name: 'mobileNumber',
+                  label: 'Owner Mobile Number',
+                  admin: {
+                    placeholder: '+1 2133 734 253',
+                  },
+                }),
+                ...TelephoneField({
+                  name: 'whatsAppNumber',
+                  label: "Owner's WhatsApp Number",
+                  admin: {
+                    placeholder: '+1 2133 734 253',
+                  },
+                }),
               ],
             },
           ],
         },
 
         //Floors
-
         {
           name: 'floors',
           label: 'Floors', // required
@@ -552,3 +459,111 @@ const Properties: CollectionConfig = {
 }
 
 export default Properties
+
+/*
+
+Near By Places
+ {
+          name: 'Nearby_places',
+          interfaceName: 'Nearby_places',
+          label: 'Nearby places', // required
+          description: 'This will appear within the tab above the fields.',
+          fields: [
+            {
+              type: 'tabs',
+              tabs: [
+                {
+                  name: 'education',
+                  label: 'education places', // required
+                  description:
+                    'This will appear within the tab above the fields.',
+                  fields: [
+                    {
+                      name: 'education',
+                      type: 'array',
+                      fields: [
+                        {
+                          type: 'row',
+                          fields: [
+                            {
+                              name: 'name',
+                              type: 'text',
+                              label: 'Property Title',
+                            },
+                            {
+                              name: 'distance',
+                              type: 'text',
+                              label: 'distance',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'medical',
+                  label: 'Hospital/medical', // required
+                  description:
+                    'This will appear within the tab above the fields.',
+                  fields: [
+                    {
+                      name: 'medical',
+                      type: 'array',
+                      fields: [
+                        {
+                          type: 'row',
+                          fields: [
+                            {
+                              name: 'name',
+                              type: 'text',
+                              label: 'Hospital/medical name',
+                            },
+
+                            {
+                              name: 'Distance',
+                              type: 'text',
+                              label: 'distance',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'transportation',
+                  label: 'Transportation', // required
+                  description:
+                    'This will appear within the tab above the fields.',
+                  fields: [
+                    {
+                      name: 'transportation',
+                      type: 'array',
+                      fields: [
+                        {
+                          type: 'row',
+                          fields: [
+                            {
+                              name: 'name',
+                              type: 'text',
+                              label: 'tansportion name',
+                            },
+
+                            {
+                              name: 'Distance',
+                              type: 'text',
+                              label: 'distance',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+
+*/
