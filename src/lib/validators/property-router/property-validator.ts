@@ -45,7 +45,8 @@ export const PropertyValidator = z.object({
       floorBaths: z.string(),
       floorBeds: z.string(),
       floorRooms: z.string(),
-      // imageSrc: z.string(),
+      imageSrc: z.any(),
+      image: z.any(),
     }),
   ),
   educations: z.array(

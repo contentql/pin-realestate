@@ -4,7 +4,9 @@ import {
   TPropertyValidator,
 } from '@/lib/validators/property-router/property-validator'
 import { trpc } from '@/trpc/client'
+import uploadMedia from '@/utilis/uploadMedia'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { ZodError } from 'zod'
@@ -17,6 +19,8 @@ import PropertyDescription from './property-description'
 import UploadMedia from './upload-media'
 
 const AddPropertyTabContent = () => {
+  const [files, setFiles] = useState<FileList | null>(null)
+
   const {
     register,
     handleSubmit,
@@ -79,10 +83,20 @@ const AddPropertyTabContent = () => {
     },
   })
 
-  const onSubmit = (data: TPropertyValidator, error: any) => {
-    console.log('Form Data: ', data)
+  const onSubmit = async (data: TPropertyValidator, error: any) => {
+    const doc = await uploadMedia(data.floors.at(0)?.imageSrc)
+
+    if (doc?.id) {
+      const dummyData = {
+        ...data,
+        floors: [...data.floors],
+      }
+      dummyData.floors[0].imageSrc = doc.id
+      console.log('Form Data: ', dummyData)
+      await addProperty(dummyData)
+    }
+
     console.log('error', errors)
-    addProperty(data)
   }
 
   return (
@@ -235,7 +249,7 @@ const AddPropertyTabContent = () => {
             aria-labelledby='nav-item6-tab'>
             <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
               <h4 className='title fz17 mb30'>Listing Details</h4>
-              <Floors register={register} />
+              <Floors setFiles={setFiles} register={register} />
             </div>
           </div>
 
