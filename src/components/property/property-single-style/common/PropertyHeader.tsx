@@ -4,19 +4,19 @@ import { Property } from '@/payload-types'
 
 const PropertyHeader = ({ data }: { data: Property }) => {
   const propertyType =
-    data?.propertiesDetails.status?.length == 0
-      ? data?.propertiesDetails?.status
-      : data?.propertiesDetails?.status &&
-        data?.propertiesDetails?.status.join(' and ')
+    data?._propertyDetails.saleType?.length == 0
+      ? data?._propertyDetails.saleType[0]
+      : data?._propertyDetails.saleType &&
+        data?._propertyDetails.saleType.join(' and ')
 
   return (
     <>
       <div className='col-lg-8'>
         <div className='single-property-content mb30-md'>
-          <h2 className='sp-lg-title'>{data?.propertiesDetails?.title}</h2>
+          <h2 className='sp-lg-title'>{data?._propertyDetails?.title}</h2>
           <div className='pd-meta mb15 d-md-flex align-items-center'>
             <p className='text fz15 mb-0 bdrr1 pr5 bdrrn-sm'>
-              {data?.location?.location?.address}
+              {data?._location?.address}
             </p>
             <a
               className='ff-heading text-thm fz15 bdrr1 pr10 ml0-sm ml10 bdrrn-sm'
@@ -27,7 +27,7 @@ const PropertyHeader = ({ data }: { data: Property }) => {
             <div className='ff-heading bdrr1 fz15 pr10 ml10 ml0-sm bdrrn-sm'>
               <i className='far fa-clock pe-2' />
               {Number(new Date().getFullYear()) -
-                Number(data?.details?.details?.yearBuild)}{' '}
+                Number(data?._details?.yearBuild)}{' '}
               years ago
             </div>
             <a className='ff-heading ml10 ml0-sm fz15' href='#'>
@@ -38,15 +38,15 @@ const PropertyHeader = ({ data }: { data: Property }) => {
           <div className='property-meta d-flex align-items-center'>
             <a className='text fz15' href='#'>
               <i className='flaticon-bed pe-2 align-text-top' />
-              {data?.details?.details?.beds} bed
+              {data?._details?.bedrooms} bed
             </a>
             <a className='text ml20 fz15' href='#'>
               <i className='flaticon-shower pe-2 align-text-top' />
-              {data?.details?.details?.baths} bath
+              {data?._details?.bathrooms} bath
             </a>
             <a className='text ml20 fz15' href='#'>
               <i className='flaticon-expand pe-2 align-text-top' />
-              {data?.details?.details?.homearea} sqft
+              {data?._details?.homearea} sqft
             </a>
           </div>
         </div>
@@ -70,12 +70,12 @@ const PropertyHeader = ({ data }: { data: Property }) => {
                 <span className='flaticon-printer' />
               </a>
             </div>
-            <h3 className='price mb-0'>{data?.propertiesDetails?.price}</h3>
+            <h3 className='price mb-0'>{data?._propertyDetails?.price}</h3>
             <p className='text space fz15'>
               $
               {(
-                Number(data?.propertiesDetails?.price) /
-                Number(data?.details?.details?.homearea)
+                Number(data?._propertyDetails?.price) /
+                Number(data?._details?.homearea)
               ).toFixed(2)}
               /sq ft
             </p>

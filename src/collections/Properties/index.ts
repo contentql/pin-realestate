@@ -1,9 +1,9 @@
-import { CollectionConfig } from 'payload/types'
-import isAdminOrCreatedBy from '../../access/isCreatedBy'
 import {
   NumberField,
   TelephoneField,
 } from '@nouance/payload-better-fields-plugin'
+import { CollectionConfig } from 'payload/types'
+import isAdminOrCreatedBy from '../../access/isCreatedBy'
 
 const Properties: CollectionConfig = {
   slug: 'properties',
@@ -411,15 +411,15 @@ const Properties: CollectionConfig = {
 
         //Amenities
         {
-          name: 'amenities',
+          name: '_amenities',
           label: 'Amenities', // required
           fields: [
             // required
             {
               name: 'amenities',
               type: 'select',
-              hasMany: true,
               label: 'Amenities',
+              hasMany: true,
               options: [
                 'Attic',
                 'Basketball court',
@@ -443,6 +443,7 @@ const Properties: CollectionConfig = {
                 'Laundry',
                 'Sauna',
               ],
+              required: true,
             },
           ],
         },

@@ -1,10 +1,10 @@
-import { Details } from '@/payload-types'
+import { Property } from '@/payload-types'
 
 const OverView = ({
   data,
   propertyType,
 }: {
-  data: Details
+  data: Property['_details']
   propertyType: string
 }) => {
   console.log('Data: ' + data)
@@ -13,12 +13,12 @@ const OverView = ({
     {
       icon: 'flaticon-bed',
       label: 'Bedroom',
-      value: data?.beds,
+      value: data?.bedrooms,
     },
     {
       icon: 'flaticon-shower',
       label: 'Bath',
-      value: data?.baths,
+      value: data?.bathrooms,
     },
     {
       icon: 'flaticon-event',
@@ -49,8 +49,7 @@ const OverView = ({
       {overviewData.map((item, index) => (
         <div
           key={index}
-          className={`col-sm-6 col-lg-4 ${item.xs ? 'mb25-xs' : 'mb25'}`}
-        >
+          className={`col-sm-6 col-lg-4 ${item.xs ? 'mb25-xs' : 'mb25'}`}>
           <div className='overview-element d-flex align-items-center'>
             <span className={`icon ${item.icon}`} />
             <div className='ml15'>

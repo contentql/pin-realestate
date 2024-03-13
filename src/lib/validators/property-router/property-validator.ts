@@ -20,7 +20,7 @@ export const PropertyValidator = z.object({
   garages: z.string(),
   garagesSize: z.string(),
   homearea: z.string(),
-  label: z.string(),
+  label: z.boolean(),
   latitude: z.string(),
   longitude: z.string(),
   lotarea: z.string(),

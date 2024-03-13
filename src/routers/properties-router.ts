@@ -1,8 +1,8 @@
-import { Details, Property } from '@/payload-types'
+import { Property } from '@/payload-types'
 import { getPayloadClient } from '../get-payload'
 import {
-  TokenValidator,
   PaginationValidator,
+  TokenValidator,
 } from '../lib/validators/property-router/token-validator'
 //import { PropertyByIdValidator } from '../lib/validators/property-router/property-id-validator';
 import { PropertyValidator } from '../lib/validators/property-router/property-validator'
@@ -32,18 +32,18 @@ export const propertiesRouter = router({
           page: pageNumber,
           limit: 2,
           where: {
-            'propertiesDetails.status': {
+            '_propertyDetails.saleType': {
               contains: statusFilter === 'All' ? '' : statusFilter,
             },
             and: [
               {
-                'propertiesDetails.price': {
+                '_propertyDetails.price': {
                   less_than: maxPriceLimit,
                 },
-                'details.details.baths': {
+                '_details.bathrooms': {
                   greater_than_equal: bathrooms,
                 },
-                'details.details.beds': {
+                '_details.bedrooms': {
                   greater_than_equal: bedRooms,
                 },
                 // 'location.location': {
@@ -60,21 +60,21 @@ export const propertiesRouter = router({
         const newProperties = properties.docs.map(
           ({
             id,
-            propertiesDetails,
-            location,
-            details,
+            _propertyDetails,
+            _location,
+            _details,
             amenities,
-            media,
-            floors,
+            _assets,
+            _floors,
           }: Property) => {
             return {
               id,
-              propertiesDetails,
-              location: location.location,
-              details: details.details,
-              amenities: amenities.amenities,
-              media: media.propertyImages?.at(0)?.image,
-              floor: floors.floors?.at(0),
+              _propertyDetails,
+              location: _location,
+              details: _details,
+              amenities: amenities?.amenities,
+              media: _assets?.allMedia?.at(0)?.asset,
+              floor: _floors?.floors?.at(0),
             }
           },
         )
@@ -98,16 +98,16 @@ export const propertiesRouter = router({
       const propertyData = properties?.docs?.map(ele => {
         return {
           id: ele?.id,
-          title: ele?.propertiesDetails?.title,
-          imageSrc: ele?.floors?.floors?.at(0)?.imageSrc,
-          location: ele?.location?.location?.address,
-          price: ele?.propertiesDetails?.price,
+          title: ele?._propertyDetails?.title,
+          imageSrc: ele?._floors?.floors?.at(0)?.floorImage,
+          location: ele?._location?.address,
+          price: ele?._propertyDetails?.price,
           datePublished: ele?.createdAt,
-          status: ele?.propertiesDetails?.status,
+          status: ele?._propertyDetails?.saleType,
         }
       })
       //const firstPageKeys = [{ name: 'title' }];
-      console.log('all properties', properties.docs.at(0)?.floors.floors)
+      console.log('all properties', properties.docs.at(0)?._floors?.floors)
       return propertyData
     }),
   },
@@ -152,63 +152,54 @@ export const propertiesRouter = router({
       const newProperty = await payload.create({
         collection: 'properties',
         data: {
-          propertiesDetails: {
+          _propertyDetails: {
             title: input.title,
             description: input.description,
             price: Number(input.price),
-            propertyType: 'For rent',
-            status: ['For rent'],
+            saleType: 'For rent' as any,
+            type: input.propertType as any,
           },
-          Nearby_places: {
-            education: { education: input.educations },
-            medical: { medical: input.medicals },
-            transportation: { transportation: input.transportations },
-          },
+
           amenities: { amenities: input.amenity as any },
-          details: {
-            details: {
-              baths: Number(input.baths),
-              beds: Number(input.beds),
-              garages: Number(input.garages),
-              garagesSize: Number(input.garagesSize),
-              homearea: Number(input.homearea),
-              lotarea: Number(input.lotarea),
-              material: input.material as Details['material'],
-              rooms: Number(input.rooms),
-              yearBuild: Number(input.yearBuild),
-              label: input.label as Details['label'],
-            },
+          _details: {
+            bathrooms: Number(input.baths),
+            bedrooms: Number(input.beds),
+            garages: Number(input.garages),
+            garagesSize: Number(input.garagesSize),
+            homearea: Number(input.homearea),
+            lotarea: Number(input.lotarea),
+            material: input.material as Property['_details']['material'],
+            rooms: Number(input.rooms),
+            yearBuild: Number(input.yearBuild),
+            available: input.label,
           },
-          owner: {
-            userDetails: {
-              userName: input.ownerName,
-              phoneNumber: input.ownerPhoneNumber,
-              whatsAppNumber: input.ownerWhatsApp,
-              userEmail: input.ownerEmail,
-            },
+          _owner: {
+            name: input.ownerName,
+            mobileNumber: input.ownerPhoneNumber,
+            whatsAppNumber: input.ownerWhatsApp,
+            email: input.ownerEmail,
           },
-          floors: { floors: input.floors as any },
-          media: {},
+          _floors: { floors: input.floors as any },
 
-          location: {
-            location: {
-              address: input.address,
-              city: input.City,
-              state: input.state,
-              country: input.Country,
-              zipcode: input.zipcode,
-              maplocation: input.mapLocation,
-              locationPoints: [
-                Number(input.longitude),
-                Number(input.latitude),
-              ] as [number, number],
-            },
+          _location: {
+            address: input.address,
+            city: input.City,
+            state: input.state,
+            country: input.Country,
+            zipcode: input.zipcode,
           },
+          _assets: {},
         },
-
-        overrideAccess: true,
       })
 
       return newProperty
     }),
 })
+
+/*
+Nearby_places: {
+            education: { education: input.educations },
+            medical: { medical: input.medicals },
+            transportation: { transportation: input.transportations },
+          },
+ */

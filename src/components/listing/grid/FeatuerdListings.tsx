@@ -27,8 +27,8 @@ const FeaturedListings = ({ data, colstyle }: any) => {
                 alt='listings'
               />
               <div className='sale-sticker-wrap'>
-                {!listing.propertiesDetails.status.map(
-                  (l: any) => l === 'For rent',
+                {!listing._propertyDetails.saleType.map(
+                  (l: any) => l === 'rent',
                 ) && (
                   <div className='list-tag fz12'>
                     <span className='flaticon-electricity me-2' />
@@ -38,23 +38,24 @@ const FeaturedListings = ({ data, colstyle }: any) => {
               </div>
 
               <div className='list-price'>
-                {listing.propertiesDetails.price} / <span>mo</span>
+                {listing._propertyDetails.price} / <span>mo</span>
               </div>
             </div>
             <div className='list-content'>
               <h6 className='list-title'>
                 <Link href={`/property/${listing.id}`}>
-                  {listing.propertiesDetails.title}
+                  {listing._propertyDetails.title}
                 </Link>
               </h6>
               <p className='list-text'>{listing.location.city}</p>
               <div className='list-meta d-flex align-items-center'>
                 <a href='#'>
-                  <span className='flaticon-bed' /> {listing.details.beds} bed
+                  <span className='flaticon-bed' /> {listing.details.bedrooms}{' '}
+                  bed
                 </a>
                 <a href='#'>
-                  <span className='flaticon-shower' /> {listing.details.baths}{' '}
-                  bath
+                  <span className='flaticon-shower' />{' '}
+                  {listing.details.bathrooms} bath
                 </a>
                 <a href='#'>
                   <span className='flaticon-expand' />{' '}
