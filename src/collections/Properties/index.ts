@@ -337,7 +337,7 @@ const Properties: CollectionConfig = {
 
         //Floors
         {
-          name: 'floors',
+          name: '_floors',
           label: 'Floors',
           fields: [
             {
