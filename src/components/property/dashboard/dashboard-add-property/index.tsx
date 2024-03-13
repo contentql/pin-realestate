@@ -84,18 +84,19 @@ const AddPropertyTabContent = () => {
   })
 
   const onSubmit = async (data: TPropertyValidator, error: any) => {
-    const res = await uploadMedia(data.floors.at(0)?.imageSrc)
+    const doc = await uploadMedia(data.floors.at(0)?.imageSrc)
 
-    // data = {
-    //   ...data,
-    //   floors:[...data.floors,imageSrc:res?.doc?.id]
-    //  }
+    if (doc?.id) {
+      const dummyData = {
+        ...data,
+        floors: [...data.floors],
+      }
+      dummyData.floors[0].imageSrc = doc.id
+      console.log('Form Data: ', dummyData)
+      await addProperty(dummyData)
+    }
 
-    //data.floors.at(0).imageSrc=res.doc
-
-    console.log('Form Data: ', data)
     console.log('error', errors)
-    addProperty(data)
   }
 
   return (
