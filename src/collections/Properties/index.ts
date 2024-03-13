@@ -147,6 +147,11 @@ const Properties: CollectionConfig = {
                   type: 'text',
                   required: true,
                 },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
                 {
                   name: 'country',
                   label: 'Country',
@@ -190,12 +195,18 @@ const Properties: CollectionConfig = {
                   type: 'number',
                   label: 'Year Built',
                   required: true,
+                  admin: {
+                    description: 'Enter the Year Built',
+                  },
                 },
                 {
                   name: 'rooms',
                   type: 'number',
                   label: 'Rooms',
                   required: true,
+                  admin: {
+                    description: 'Enter the number of Rooms',
+                  },
                 },
               ],
             },
@@ -207,12 +218,18 @@ const Properties: CollectionConfig = {
                   type: 'number',
                   label: 'Bath Rooms',
                   required: true,
+                  admin: {
+                    description: 'Enter the number of Bathrooms',
+                  },
                 },
                 {
                   name: 'bedrooms',
                   type: 'number',
                   label: 'Bed Rooms',
                   required: true,
+                  admin: {
+                    description: 'Enter the number of Bedrooms',
+                  },
                 },
               ],
             },
@@ -225,11 +242,17 @@ const Properties: CollectionConfig = {
                   label: 'Garages',
                   required: true,
                   defaultValue: 0,
+                  admin: {
+                    description: 'Enter the number of Garages',
+                  },
                 },
                 {
                   name: 'garagesSize',
                   type: 'number',
                   label: 'Garages Area',
+                  admin: {
+                    description: 'Enter the size of Garages',
+                  },
                 },
               ],
             },
@@ -240,11 +263,17 @@ const Properties: CollectionConfig = {
                   name: 'homearea',
                   type: 'number',
                   label: 'Home Area',
+                  admin: {
+                    description: 'Enter the size of Home Area',
+                  },
                 },
                 {
                   name: 'lotarea',
                   type: 'number',
                   label: 'Lot Area',
+                  admin: {
+                    description: 'Enter the size of Lot Area',
+                  },
                 },
               ],
             },
@@ -309,26 +338,22 @@ const Properties: CollectionConfig = {
         //Floors
         {
           name: 'floors',
-          label: 'Floors', // required
-          interfaceName: 'floors', // optional (`name` must be present)
+          label: 'Floors',
           fields: [
-            // required
             {
-              name: 'floors', // required
-              type: 'array', // required
+              name: 'floors',
+              type: 'array',
               label: 'Floors',
               minRows: 0,
               maxRows: 100,
-              interfaceName: 'CardSlider', // optional
               labels: {
                 singular: 'Floor',
                 plural: 'Floors',
               },
               fields: [
-                // required
                 {
-                  name: 'imageSrc',
-                  label: 'Floor image',
+                  name: 'floorImage',
+                  label: 'Floor Image',
                   type: 'upload',
                   relationTo: 'media',
                 },
@@ -345,13 +370,13 @@ const Properties: CollectionConfig = {
                     {
                       name: 'floorBaths',
                       type: 'number',
-                      label: 'Baths',
+                      label: 'Bath Rooms',
                       required: true,
                     },
                     {
                       name: 'floorBeds',
                       type: 'number',
-                      label: 'Bedrooms',
+                      label: 'Bed Rooms',
                       required: true,
                     },
                   ],
@@ -362,21 +387,21 @@ const Properties: CollectionConfig = {
                     {
                       name: 'floorPrice',
                       type: 'number',
-                      label: 'Price',
+                      label: 'Floor Price',
                       required: true,
                     },
                     {
                       name: 'floorSize',
                       type: 'number',
-                      label: 'Size',
+                      label: 'Floor Size',
                       required: true,
                     },
                   ],
                 },
                 {
-                  name: 'content',
+                  name: 'floorDescription',
                   type: 'textarea',
-                  label: 'Content',
+                  label: 'Floor Description',
                   required: true,
                 },
               ],
@@ -388,7 +413,6 @@ const Properties: CollectionConfig = {
         {
           name: 'amenities',
           label: 'Amenities', // required
-          interfaceName: 'amenities', // optional (`name` must be present)
           fields: [
             // required
             {
