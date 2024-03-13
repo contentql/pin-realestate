@@ -114,7 +114,7 @@ const Floors = ({ register }: any) => {
                 type='text'
                 className='form-control'
                 placeholder='Add additional details about property'
-                {...register(`floors.${index}.content` as const)}
+                {...register(`floors.${index}.floorDescription` as const)}
               />
             </div>
           </div>
@@ -129,7 +129,7 @@ const Floors = ({ register }: any) => {
                 type='file'
                 className='form-control'
                 placeholder='Floor image'
-                {...register(`floors.${index}.imageSrc` as const)}
+                {...register(`floors.${index}.floorImage` as const)}
               />
             </div>
           </div>
@@ -149,7 +149,7 @@ const Floors = ({ register }: any) => {
         className='custom-btn btn-thm3 btn-dark mb10'
         onClick={() =>
           appendFloor({
-            content: '',
+            floorDescription: '',
             floorSize: '',
             floorPrice: '',
             floorBaths: '',

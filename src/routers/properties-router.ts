@@ -63,7 +63,7 @@ export const propertiesRouter = router({
             _propertyDetails,
             _location,
             _details,
-            amenities,
+            _amenities,
             _assets,
             _floors,
           }: Property) => {
@@ -72,7 +72,7 @@ export const propertiesRouter = router({
               _propertyDetails,
               location: _location,
               details: _details,
-              amenities: amenities?.amenities,
+              amenities: _amenities?.amenities,
               media: _assets?.allMedia?.at(0)?.asset,
               floor: _floors?.floors?.at(0),
             }
@@ -147,6 +147,7 @@ export const propertiesRouter = router({
   addProperty: userProcedure
     .input(PropertyValidator)
     .mutation(async ({ input }) => {
+      console.log('input:', input)
       const payload = await getPayloadClient()
 
       const newProperty = await payload.create({
@@ -156,11 +157,11 @@ export const propertiesRouter = router({
             title: input.title,
             description: input.description,
             price: Number(input.price),
-            saleType: 'For rent' as any,
-            type: input.propertType as any,
+            saleType: [input.propertySaleType] as any,
+            type: input.propertType as Property['_propertyDetails']['type'],
           },
 
-          amenities: { amenities: input.amenity as any },
+          _amenities: { amenities: input.amenity as any },
           _details: {
             bathrooms: Number(input.baths),
             bedrooms: Number(input.beds),

@@ -6,8 +6,8 @@ import {
 import { trpc } from '@/trpc/client'
 import uploadMedia from '@/utilis/uploadMedia'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { ZodError } from 'zod'
 import Amenities from './Amenities'
@@ -28,31 +28,6 @@ const AddPropertyTabContent = () => {
     formState: { errors },
   } = useForm<TPropertyValidator>({
     resolver: zodResolver(PropertyValidator),
-  })
-
-  const {
-    fields: educationFields,
-    append: appendEducation,
-    remove: removeEducation,
-  } = useFieldArray({
-    control,
-    name: 'educations',
-  })
-  const {
-    fields: medicalFields,
-    append: appendMedical,
-    remove: removeMedical,
-  } = useFieldArray({
-    control,
-    name: 'medicals',
-  })
-  const {
-    fields: transportationFields,
-    append: appendTransportation,
-    remove: removeTransportation,
-  } = useFieldArray({
-    control,
-    name: 'transportations',
   })
 
   const { mutate: addProperty } = trpc.properties.addProperty.useMutation({
@@ -83,15 +58,20 @@ const AddPropertyTabContent = () => {
     },
   })
 
+  useEffect(() => {
+    console.log('Error loading', errors)
+  }, [errors])
+
   const onSubmit = async (data: TPropertyValidator, error: any) => {
-    const doc = await uploadMedia(data.floors.at(0)?.imageSrc)
+    console.log('onSubmit', data)
+    const doc = await uploadMedia(data.floors.at(0)?.floorImage)
 
     if (doc?.id) {
       const dummyData = {
         ...data,
         floors: [...data.floors],
       }
-      dummyData.floors[0].imageSrc = doc.id
+      dummyData.floors[0].floorImage = doc.id
       console.log('Form Data: ', dummyData)
       await addProperty(dummyData)
     }
@@ -169,7 +149,7 @@ const AddPropertyTabContent = () => {
             aria-selected='false'>
             5. Owner Details
           </button>
-          <button
+          {/* <button
             className='nav-link fw600'
             id='nav-item7-tab'
             data-bs-toggle='tab'
@@ -179,17 +159,17 @@ const AddPropertyTabContent = () => {
             aria-controls='nav-item7'
             aria-selected='false'>
             6. Nearby Places
-          </button>
+          </button> */}
           <button
             className='nav-link fw600'
-            id='nav-item5-tab'
+            id='nav-item9-tab'
             data-bs-toggle='tab'
-            data-bs-target='#nav-item5'
+            data-bs-target='#nav-item9'
             type='button'
             role='tab'
-            aria-controls='nav-item5'
+            aria-controls='nav-item9'
             aria-selected='false'>
-            7. Amenities
+            6. Amenities
           </button>
         </div>
       </nav>
@@ -265,7 +245,7 @@ const AddPropertyTabContent = () => {
           </div>
 
           {/* Start tab for Near Places Details */}
-          <div
+          {/* <div
             className='tab-pane fade'
             id='nav-item7'
             role='tabpanel'
@@ -375,13 +355,13 @@ const AddPropertyTabContent = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div
             className='tab-pane fade'
-            id='nav-item5'
+            id='nav-item9'
             role='tabpanel'
-            aria-labelledby='nav-item5-tab'>
+            aria-labelledby='nav-item9-tab'>
             <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
               <h4 className='title fz17 mb30'>Select Amenities</h4>
               <div className='row'>

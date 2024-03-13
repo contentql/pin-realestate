@@ -1,5 +1,5 @@
 'use client'
-import { Property } from '@/payload-types'
+import { Media, Property } from '@/payload-types'
 import Image from 'next/image'
 import 'photoswipe/dist/photoswipe.css'
 import { useState } from 'react'
@@ -19,9 +19,9 @@ const PropertyGallery = ({
 }: {
   images: Property['_assets']['allMedia']
 }) => {
-  console.log('images: ', { images })
+  console.log('images: ', images?.at(0)?.asset)
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
-  const structuredImages = images?.map((ele: any) => ele?.image?.url)
+  const structuredImages = images?.map(ele => (ele?.asset as Media)?.url)
   console.log('structuredImages', structuredImages)
 
   return (
