@@ -364,19 +364,19 @@ const Properties: CollectionConfig = {
                     {
                       name: 'floorRooms',
                       type: 'number',
-                      label: 'Rooms',
+                      label: 'Floor Rooms',
                       required: true,
                     },
                     {
                       name: 'floorBaths',
                       type: 'number',
-                      label: 'Bath Rooms',
+                      label: 'Floor Bath',
                       required: true,
                     },
                     {
                       name: 'floorBeds',
                       type: 'number',
-                      label: 'Bed Rooms',
+                      label: 'Floor Bed',
                       required: true,
                     },
                   ],
