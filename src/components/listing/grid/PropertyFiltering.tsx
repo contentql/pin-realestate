@@ -10,6 +10,7 @@ import PaginationTwo from '../PaginationTwo'
 
 export default function PropertyFiltering() {
   const [filteredData, setFilteredData] = useState<any>([])
+  const [listingStatus, setListingStatus] = useState('All')
 
   const [currentSortingOption, setCurrentSortingOption] = useState('Newest')
 
@@ -21,9 +22,6 @@ export default function PropertyFiltering() {
 
   const [pageContentTrac, setPageContentTrac] = useState<any>([])
 
-  const { data: propertiesListData, isLoading } =
-    trpc.properties.getProperties.list.useQuery({ pageNumber: pageNumber })
-
   useEffect(() => {
     // setPageItems(sortedFilteredData.slice((pageNumber - 1) * 8, pageNumber * 8))
 
@@ -34,23 +32,32 @@ export default function PropertyFiltering() {
     ])
   }, [pageNumber, sortedFilteredData])
 
-  const [listingStatus, setListingStatus] = useState('All')
   const [propertyTypes, setPropertyTypes] = useState<any>([])
   const [priceRange, setPriceRange] = useState([0, 100000])
   const [bedrooms, setBedrooms] = useState(0)
-  const [bathroms, setBathroms] = useState(0)
+  const [bathrooms, setBathrooms] = useState(0)
   const [location, setLocation] = useState('All Cities')
   const [squirefeet, setSquirefeet] = useState([])
   const [yearBuild, setyearBuild] = useState<any>([])
   const [categories, setCategories] = useState<any>([])
   const [searchQuery, setSearchQuery] = useState('')
 
+  const { data: propertiesListData, isLoading } =
+    trpc.properties.getProperties.list.useQuery({
+      pageNumber: pageNumber,
+      statusFilter: listingStatus,
+      maxPriceLimit: priceRange[1],
+      bedRooms: bedrooms,
+      bathrooms: bathrooms,
+      location: location,
+    })
+
   const resetFilter = () => {
     setListingStatus('All')
     setPropertyTypes([])
     setPriceRange([0, 100000])
     setBedrooms(0)
-    setBathroms(0)
+    setBathrooms(0)
     setLocation('All Cities')
     setSquirefeet([])
     setyearBuild([0, 2050])
@@ -83,7 +90,7 @@ export default function PropertyFiltering() {
     setBedrooms(elm)
   }
   const handlebathroms = (elm: any) => {
-    setBathroms(elm)
+    setBathrooms(elm)
   }
   const handlelocation = (elm: any) => {
     console.log(elm)
@@ -122,7 +129,7 @@ export default function PropertyFiltering() {
     resetFilter,
 
     bedrooms,
-    bathroms,
+    bathrooms,
     location,
     squirefeet,
     yearBuild,
@@ -136,12 +143,14 @@ export default function PropertyFiltering() {
     const refItems = propertiesListData?.newProperties.filter((elm: any) => {
       if (listingStatus == 'All') {
         return true
-      } else if (listingStatus == 'Rent') {
-        return !elm.propertiesDetails.status.includes('For rent')
-      } else if (listingStatus == 'Buy') {
+      } else if (listingStatus == 'For rent') {
+        return elm.propertiesDetails.status.includes('For rent')
+      } else if (listingStatus == 'For sale') {
         return elm.propertiesDetails.status.includes('For sale')
       }
     })
+
+    console.log('ref', refItems)
 
     let filteredArrays: any[] = []
 
@@ -159,7 +168,7 @@ export default function PropertyFiltering() {
     ]
     filteredArrays = [
       ...filteredArrays,
-      refItems.filter((el: any) => el.details.baths >= bathroms),
+      refItems.filter((el: any) => el.details.baths >= bathrooms),
     ]
     filteredArrays = [
       ...filteredArrays,
@@ -233,7 +242,7 @@ export default function PropertyFiltering() {
     propertyTypes,
     priceRange,
     bedrooms,
-    bathroms,
+    bathrooms,
     location,
     squirefeet,
     yearBuild,

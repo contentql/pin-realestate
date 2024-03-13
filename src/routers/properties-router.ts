@@ -15,13 +15,43 @@ export const propertiesRouter = router({
     list: publicProcedure
       .input(PaginationValidator)
       .query(async ({ input }) => {
+        const {
+          pageNumber,
+          statusFilter,
+          maxPriceLimit,
+          bedRooms,
+          bathrooms,
+          location,
+        } = input
+        console.log('location', location)
         // Retrieve users from a datasource, this is an imaginary database
         const payload = await getPayloadClient()
 
         const properties = await payload.find({
           collection: 'properties',
-          page: input.pageNumber,
+          page: pageNumber,
           limit: 2,
+          where: {
+            'propertiesDetails.status': {
+              contains: statusFilter === 'All' ? '' : statusFilter,
+            },
+            and: [
+              {
+                'propertiesDetails.price': {
+                  less_than: maxPriceLimit,
+                },
+                'details.details.baths': {
+                  greater_than_equal: bathrooms,
+                },
+                'details.details.beds': {
+                  greater_than_equal: bedRooms,
+                },
+                // 'location.location': {
+                //   contains: location === 'All Cities' ? '' : location,
+                // },
+              },
+            ],
+          },
         })
 
         //   console.log('total', total)

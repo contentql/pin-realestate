@@ -1,5 +1,11 @@
 'use client'
 
+const StatusMapping: any = {
+  All: 'All',
+  Buy: 'For sale',
+  Rent: 'For rent',
+}
+
 const ListingStatus = ({ filterFunctions }: any) => {
   const options = [
     { id: 'flexRadioDefault3', label: 'All', defaultChecked: true },
@@ -12,13 +18,16 @@ const ListingStatus = ({ filterFunctions }: any) => {
       {options.map(option => (
         <div
           className='form-check d-flex align-items-center mb10'
-          key={option.id}
-        >
+          key={option.id}>
           <input
             className='form-check-input'
             type='radio'
-            checked={filterFunctions?.listingStatus == option.label}
-            onChange={() => filterFunctions.handlelistingStatus(option.label)}
+            checked={
+              filterFunctions?.listingStatus == StatusMapping[option.label]
+            }
+            onChange={() =>
+              filterFunctions.handlelistingStatus(StatusMapping[option.label])
+            }
           />
           <label className='form-check-label' htmlFor={option.id}>
             {option.label}
