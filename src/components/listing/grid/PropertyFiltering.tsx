@@ -35,7 +35,7 @@ export default function PropertyFiltering() {
   const [propertyTypes, setPropertyTypes] = useState<any>([])
   const [priceRange, setPriceRange] = useState([0, 100000])
   const [bedrooms, setBedrooms] = useState(0)
-  const [bathroms, setBathroms] = useState(0)
+  const [bathrooms, setBathrooms] = useState(0)
   const [location, setLocation] = useState('All Cities')
   const [squirefeet, setSquirefeet] = useState([])
   const [yearBuild, setyearBuild] = useState<any>([])
@@ -47,6 +47,9 @@ export default function PropertyFiltering() {
       pageNumber: pageNumber,
       statusFilter: listingStatus,
       maxPriceLimit: priceRange[1],
+      bedRooms: bedrooms,
+      bathrooms: bathrooms,
+      location: location,
     })
 
   const resetFilter = () => {
@@ -54,7 +57,7 @@ export default function PropertyFiltering() {
     setPropertyTypes([])
     setPriceRange([0, 100000])
     setBedrooms(0)
-    setBathroms(0)
+    setBathrooms(0)
     setLocation('All Cities')
     setSquirefeet([])
     setyearBuild([0, 2050])
@@ -87,7 +90,7 @@ export default function PropertyFiltering() {
     setBedrooms(elm)
   }
   const handlebathroms = (elm: any) => {
-    setBathroms(elm)
+    setBathrooms(elm)
   }
   const handlelocation = (elm: any) => {
     console.log(elm)
@@ -126,7 +129,7 @@ export default function PropertyFiltering() {
     resetFilter,
 
     bedrooms,
-    bathroms,
+    bathrooms,
     location,
     squirefeet,
     yearBuild,
@@ -165,7 +168,7 @@ export default function PropertyFiltering() {
     ]
     filteredArrays = [
       ...filteredArrays,
-      refItems.filter((el: any) => el.details.baths >= bathroms),
+      refItems.filter((el: any) => el.details.baths >= bathrooms),
     ]
     filteredArrays = [
       ...filteredArrays,
@@ -239,7 +242,7 @@ export default function PropertyFiltering() {
     propertyTypes,
     priceRange,
     bedrooms,
-    bathroms,
+    bathrooms,
     location,
     squirefeet,
     yearBuild,
