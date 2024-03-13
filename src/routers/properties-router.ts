@@ -32,18 +32,18 @@ export const propertiesRouter = router({
           page: pageNumber,
           limit: 2,
           where: {
-            'propertiesDetails.status': {
+            '_propertyDetails.saleType': {
               contains: statusFilter === 'All' ? '' : statusFilter,
             },
             and: [
               {
-                'propertiesDetails.price': {
+                '_propertyDetails.price': {
                   less_than: maxPriceLimit,
                 },
-                'details.details.baths': {
+                '_details.bathrooms': {
                   greater_than_equal: bathrooms,
                 },
-                'details.details.beds': {
+                '_details.bedrooms': {
                   greater_than_equal: bedRooms,
                 },
                 // 'location.location': {
