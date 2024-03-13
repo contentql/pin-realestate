@@ -42,12 +42,12 @@ const PropertyById = ({ params }: { params: any }) => {
     trpc.properties.byPropertyId.useQuery({ id: params.id })
 
   const propertyType =
-    propertiesListData?.propertiesDetails.status?.length == 0
-      ? propertiesListData?.propertiesDetails?.status[0]
-      : propertiesListData?.propertiesDetails?.status &&
-        propertiesListData?.propertiesDetails?.status.join(' and ')
+    propertiesListData?._propertyDetails.saleType?.length == 0
+      ? propertiesListData?._propertyDetails?.saleType[0]
+      : propertiesListData?._propertyDetails?.saleType &&
+        propertiesListData?._propertyDetails?.saleType.join(' and ')
 
-  const media = propertiesListData?.media?.propertyImages
+  const media = propertiesListData?._assets?.allMedia
   return (
     <>
       {/* Main Header Nav */}
@@ -73,7 +73,7 @@ const PropertyById = ({ params }: { params: any }) => {
                 <h4 className='title fz17 mb30'>Overview</h4>
                 <div className='row'>
                   <OverView
-                    data={propertiesListData?.details?.details!}
+                    data={propertiesListData?._details!}
                     propertyType={propertyType!}
                   />
                 </div>
@@ -83,7 +83,7 @@ const PropertyById = ({ params }: { params: any }) => {
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Property Description</h4>
                 <ProperytyDescriptions
-                  data={propertiesListData?.propertiesDetails.description}
+                  data={propertiesListData?._propertyDetails?.description}
                 />
                 {/* End property description */}
 
@@ -97,7 +97,7 @@ const PropertyById = ({ params }: { params: any }) => {
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30 mt30'>Address</h4>
                 <div className='row'>
-                  <PropertyAddress address={propertiesListData?.location} />
+                  <PropertyAddress address={propertiesListData?._location} />
                 </div>
               </div>
               {/* End .ps-widget */}
@@ -128,7 +128,7 @@ const PropertyById = ({ params }: { params: any }) => {
                   <div className='col-md-12'>
                     <div className='accordion-style1 style2'>
                       <FloorPlans
-                        floorPlanData={propertiesListData?.floors?.floors}
+                        floorPlanData={propertiesListData?._floors?.floors}
                       />
                     </div>
                   </div>
