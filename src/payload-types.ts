@@ -280,32 +280,30 @@ export interface Property {
         }[]
       | null;
   };
-  amenities: {
-    amenities?:
-      | (
-          | 'Attic'
-          | 'Basketball court'
-          | 'Air Conditioning'
-          | 'Lawn'
-          | 'Swimming Pool'
-          | 'Barbeque'
-          | 'Microwave'
-          | 'TV Cable'
-          | 'Dryer'
-          | 'Outdoor Shower'
-          | 'Washer'
-          | 'Gym'
-          | 'Ocean view'
-          | 'Private space'
-          | 'Lake view'
-          | 'Wine cellar'
-          | 'Front yard'
-          | 'Refrigerator'
-          | 'WiFi'
-          | 'Laundry'
-          | 'Sauna'
-        )[]
-      | null;
+  _amenities: {
+    amenities: (
+      | 'Attic'
+      | 'Basketball court'
+      | 'Air Conditioning'
+      | 'Lawn'
+      | 'Swimming Pool'
+      | 'Barbeque'
+      | 'Microwave'
+      | 'TV Cable'
+      | 'Dryer'
+      | 'Outdoor Shower'
+      | 'Washer'
+      | 'Gym'
+      | 'Ocean view'
+      | 'Private space'
+      | 'Lake view'
+      | 'Wine cellar'
+      | 'Front yard'
+      | 'Refrigerator'
+      | 'WiFi'
+      | 'Laundry'
+      | 'Sauna'
+    )[];
   };
   createdBy?: (string | null) | User;
   updatedAt: string;

@@ -77,20 +77,6 @@ const DetailsFiled = ({ register }: any) => {
         </div>
         {/* End .col-4 */}
 
-        {/* <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Custom ID (text)
-            </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Your Name'
-            />
-          </div>
-        </div> */}
-        {/* End .col-4 */}
-
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
@@ -135,50 +121,6 @@ const DetailsFiled = ({ register }: any) => {
         </div>
         {/* End .col-4 */}
 
-        {/* End .col-4 */}
-
-        {/* <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Basement
-            </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Your Name'
-            />
-          </div>
-        </div> */}
-        {/* End .col-4 */}
-
-        {/* <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Extra details
-            </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Your Name'
-            />
-          </div>
-        </div> */}
-        {/* End .col-4 */}
-
-        {/* <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Roofing
-            </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Your Name'
-            />
-          </div>
-        </div> */}
-        {/* End .col-4 */}
-
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
@@ -197,24 +139,6 @@ const DetailsFiled = ({ register }: any) => {
         <StructureType register={register} />
       </div>
       {/* End .row */}
-
-      {/* <div className='row'>
-        <MultiSelectField />
-
-        <div className='col-sm-12'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Owner/ Agent nots (not visible on front end)
-            </label>
-            <textarea
-              cols={30}
-              rows={5}
-              placeholder='There are many variations of passages.'
-              defaultValue={''}
-            />
-          </div>
-        </div> 
-      </div> */}
     </div>
   )
 }

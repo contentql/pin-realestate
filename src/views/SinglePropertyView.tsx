@@ -47,6 +47,8 @@ const PropertyById = ({ params }: { params: any }) => {
       : propertiesListData?._propertyDetails?.saleType &&
         propertiesListData?._propertyDetails?.saleType.join(' and ')
 
+  console.log('property', propertiesListData)
+
   const media = propertiesListData?._assets?.allMedia
   return (
     <>
@@ -107,7 +109,7 @@ const PropertyById = ({ params }: { params: any }) => {
                 <div className='row'>
                   <PropertyFeaturesAminites
                     featuresAmenitiesData={
-                      propertiesListData?.amenities?.amenities
+                      propertiesListData?._amenities?.amenities
                     }
                   />
                 </div>

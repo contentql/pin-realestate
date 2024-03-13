@@ -2,13 +2,10 @@
 
 const PropertyDescription = ({ register }: any) => {
   const catergoryOptions = [
-    { value: 'Apartments', label: 'Apartments' },
-    { value: 'Bungalow', label: 'Bungalow' },
-    { value: 'Houses', label: 'Houses' },
-    { value: 'Loft', label: 'Loft' },
-    { value: 'Office', label: 'Office' },
-    { value: 'Townhome', label: 'Townhome' },
-    { value: 'Villa', label: 'Villa' },
+    { value: 'apartment', label: 'Apartments' },
+    { value: 'bungalow', label: 'Bungalow' },
+    { value: 'office', label: 'Office' },
+    { value: 'villa', label: 'Villa' },
   ]
   const listedIn = [
     { value: 'All Listing', label: 'All Listing' },
@@ -17,8 +14,8 @@ const PropertyDescription = ({ register }: any) => {
     { value: 'Processing', label: 'Processing' },
   ]
   const PropertyStatus = [
-    { value: 'For Rent', label: 'For Rent' },
-    { value: 'For sale', label: 'For sale' },
+    { value: 'rent', label: 'For Rent' },
+    { value: 'sale', label: 'For sale' },
   ]
 
   const customStyles = {
@@ -71,13 +68,13 @@ const PropertyDescription = ({ register }: any) => {
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
-              Select Category
+              Property Type
             </label>
             <div className='location-area'>
               <select className='form-control' {...register('propertType')}>
                 {catergoryOptions.map((ele, id) => (
                   <option key={id} value={ele.value}>
-                    {ele.value}
+                    {ele.label}
                   </option>
                 ))}
               </select>
@@ -110,13 +107,15 @@ const PropertyDescription = ({ register }: any) => {
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
-              Property Status
+              Property Sale Type
             </label>
             <div className='location-area'>
-              <select className='form-control' {...register('propertyStatus')}>
+              <select
+                className='form-control'
+                {...register('propertySaleType')}>
                 {PropertyStatus.map((ele, id) => (
                   <option key={id} value={ele.value}>
-                    {ele.value}
+                    {ele.label}
                   </option>
                 ))}
               </select>
