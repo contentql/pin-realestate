@@ -59,9 +59,12 @@ const AddPropertyTabContent = () => {
     },
   })
 
-  useEffect(() => {}, [errors])
+  useEffect(() => {
+    console.log('Errors: ', errors)
+  }, [errors])
 
   const onSubmit = async (data: TPropertyValidator, error: any) => {
+    console.log('onSubmit', data)
     const doc = await uploadMedia(data.floors.at(0)?.floorImage)
 
     if (doc?.id) {
@@ -237,7 +240,7 @@ const AddPropertyTabContent = () => {
             aria-labelledby='nav-item8-tab'>
             <div className='ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative'>
               <h4 className='title fz17 mb30'>Listing Details</h4>
-              <OwnerFeilds register={register} />
+              <OwnerFeilds control={control} register={register} />
             </div>
           </div>
 

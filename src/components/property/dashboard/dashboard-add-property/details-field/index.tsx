@@ -1,6 +1,12 @@
 import StructureType from './StructureType'
 
 const DetailsFiled = ({ register }: any) => {
+  const materialOptions = [
+    { value: 'Wood', label: 'Wood' },
+    { value: 'Block', label: 'Block' },
+    { value: 'Brick', label: 'Brick' },
+    { value: 'Rock', label: 'Rock' },
+  ]
   return (
     <div className='form-style1'>
       <div className='row'>
@@ -126,12 +132,15 @@ const DetailsFiled = ({ register }: any) => {
             <label className='heading-color ff-heading fw600 mb10'>
               Exterior Material
             </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Material type'
-              {...register('material')}
-            />
+            <div className='location-area'>
+              <select className='form-control' {...register('material')}>
+                {materialOptions.map((ele, id) => (
+                  <option key={id} value={ele.value}>
+                    {ele.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
         {/* End .col-4 */}
