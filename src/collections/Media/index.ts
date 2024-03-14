@@ -84,7 +84,7 @@ export const Media: CollectionConfig = {
         name: 'featuredPropertyImage',
         width: 570,
         height: 646,
-        position: 'center',
+        crop: 'center',
       },
       {
         name: 'agentImage',

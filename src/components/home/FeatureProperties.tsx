@@ -1,4 +1,6 @@
 'use client'
+import { Media } from '@/payload-types'
+import { trpc } from '@/trpc/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navigation, Pagination } from 'swiper'
@@ -57,6 +59,10 @@ const properties = [
 ]
 
 const FeatureProperties = () => {
+  const { data: propertiesListData, isLoading } =
+    trpc.properties.getPropertiesForMyPropertiesPage.list.useQuery()
+
+  console.log('List properties', propertiesListData)
   return (
     <>
       <Swiper
@@ -70,9 +76,8 @@ const FeatureProperties = () => {
           el: '.featurePro_pagination__active',
           clickable: true,
         }}
-        slidesPerView={1}
-      >
-        {properties.map(property => (
+        slidesPerView={1}>
+        {propertiesListData?.map(property => (
           <SwiperSlide key={property.id}>
             <div className='item'>
               <div className='listing-style11'>
@@ -81,35 +86,35 @@ const FeatureProperties = () => {
                     <div className='list-content mb30-md col-md-8 col-lg-6 col-xl-5 p-xl-0'>
                       <div className='d-flex mb30'>
                         <div className='list-tag fz12 mr20'>
-                          {property.featured && (
+                          {property?.status?.length - 1 && (
                             <span className='flaticon-electricity me-2' />
                           )}
-                          {property.featured && 'FEATURED'}
+                          {property?.status?.length - 1 && 'FEATURED'}
                         </div>
                         <div className='list-tag2 fz12'>{property.status}</div>
                       </div>
                       <h4 className='list-title'>
-                        <Link href='/map'>{property.title}</Link>
+                        <Link href={'/property/' + property?.id}>
+                          {property.title}
+                        </Link>
                       </h4>
                       <p className='list-text fz15'>{property.location}</p>
                       <div className='list-meta d-block d-sm-flex align-items-center mt30 mb40'>
                         <a
                           className='d-flex mb-2 mb-sm-0 align-items-center'
-                          href='#'
-                        >
+                          href='#'>
                           <span className='flaticon-bed' />
-                          {property.bed}
+                          {property?.details?.bedrooms}
                         </a>
                         <a
                           className='d-flex mb-2 mb-sm-0 align-items-center'
-                          href='#'
-                        >
+                          href='#'>
                           <span className='flaticon-shower' />
-                          {property.bath}
+                          {property?.details?.bathrooms}
                         </a>
                         <a className='d-flex align-items-center' href='#'>
                           <span className='flaticon-expand' />
-                          {property.sqft}
+                          {property?.details?.homearea}
                         </a>
                       </div>
                       {/* End list-meta */}
@@ -122,7 +127,7 @@ const FeatureProperties = () => {
                             </p>
                             <h6 className='info-phone'>
                               <a href='tel:+012305094502'>
-                                +(0) 123 050 945 02
+                                +(0) 123 050 945 01
                               </a>
                             </h6>
                           </div>
@@ -181,7 +186,10 @@ const FeatureProperties = () => {
                         width={560}
                         height={610}
                         className='img-1 cover w-100 h-00'
-                        src={property.imageSrc}
+                        src={
+                          (property?.media?.allMedia?.at(0)?.asset as Media)
+                            ?.url as string
+                        }
                         alt='property image'
                       />
                     </div>

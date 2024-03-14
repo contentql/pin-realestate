@@ -96,7 +96,11 @@ const PropertyById = ({ params }: { params: any }) => {
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30 mt30'>Address</h4>
                 <div className='row'>
-                  <PropertyAddress address={propertiesListData?._location} />
+                  <PropertyAddress
+                    address={
+                      propertiesListData?._location as Property['_location']
+                    }
+                  />
                 </div>
               </div>
               {/* End .ps-widget */}
@@ -127,7 +131,10 @@ const PropertyById = ({ params }: { params: any }) => {
                   <div className='col-md-12'>
                     <div className='accordion-style1 style2'>
                       <FloorPlans
-                        floorPlanData={propertiesListData?._floors?.floors}
+                        floorPlanData={
+                          propertiesListData?._floors
+                            ?.floors as Property['_floors']['floors']
+                        }
                       />
                     </div>
                   </div>
@@ -197,7 +204,9 @@ const PropertyById = ({ params }: { params: any }) => {
 
               <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                 <h4 className='title fz17 mb30'>Get More Information</h4>
-                <InfoWithForm />
+                <InfoWithForm
+                  owner={propertiesListData?._owner as Property['_owner']}
+                />
               </div>
               {/* End .ps-widget */}
 
@@ -231,7 +240,9 @@ const PropertyById = ({ params }: { params: any }) => {
                 <div className='agen-personal-info position-relative bgc-white default-box-shadow1 bdrs12 p30 mt30'>
                   <div className='widget-wrapper mb-0'>
                     <h6 className='title fz17 mb30'>Get More Information</h6>
-                    <ContactWithAgent />
+                    <ContactWithAgent
+                      owner={propertiesListData?._owner as Property['_owner']}
+                    />
                   </div>
                 </div>
               </div>

@@ -104,6 +104,8 @@ export const propertiesRouter = router({
           price: ele?._propertyDetails?.price,
           datePublished: ele?.createdAt,
           status: ele?._propertyDetails?.saleType,
+          media: ele?._assets,
+          details: ele?._details,
         }
       })
       return propertyData

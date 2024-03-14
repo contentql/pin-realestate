@@ -10,10 +10,6 @@ const PropertyDetails = ({ data }: { data: Property }) => {
   const columns = [
     [
       {
-        label: 'Property ID',
-        value: data?.id,
-      },
-      {
         label: 'Price',
         value: data?._propertyDetails?.price,
       },
@@ -29,12 +25,12 @@ const PropertyDetails = ({ data }: { data: Property }) => {
         label: 'Bedrooms',
         value: data?._details?.bedrooms,
       },
-    ],
-    [
       {
         label: 'Garage',
         value: data?._details?.garages,
       },
+    ],
+    [
       {
         label: 'Garage Size',
         value: data?._details?.garagesSize + ' sqft',

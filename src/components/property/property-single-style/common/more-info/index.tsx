@@ -1,8 +1,9 @@
 'use client'
+import { Property } from '@/payload-types'
 import Select from 'react-select'
 import SingleAgentInfo from './SingleAgentInfo'
 
-const InfoWithForm = () => {
+const InfoWithForm = ({ owner }: { owner: Property['_owner'] }) => {
   const inqueryType = [
     { value: 'Engineer', label: 'Engineer' },
     { value: 'Doctor', label: 'Doctor' },
@@ -28,7 +29,7 @@ const InfoWithForm = () => {
 
   return (
     <>
-      <SingleAgentInfo />
+      <SingleAgentInfo owner={owner as Property['_owner']} />
 
       <div className='row'>
         <div className='col-md-12'>
