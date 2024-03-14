@@ -20,6 +20,7 @@ import UploadMedia from './upload-media'
 
 const AddPropertyTabContent = () => {
   const [files, setFiles] = useState<FileList | null>(null)
+  const [assets, setAssets] = useState([])
 
   const {
     register,
@@ -67,6 +68,7 @@ const AddPropertyTabContent = () => {
       const dummyData = {
         ...data,
         floors: [...data.floors],
+        assets,
       }
       dummyData.floors[0].floorImage = doc.id
 
@@ -189,7 +191,7 @@ const AddPropertyTabContent = () => {
             id='nav-item2'
             role='tabpanel'
             aria-labelledby='nav-item2-tab'>
-            <UploadMedia register={register} />
+            <UploadMedia register={register} setAssets={setAssets} />
           </div>
           {/* End tab for Upload photos of your property */}
 

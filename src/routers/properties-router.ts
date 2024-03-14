@@ -186,7 +186,9 @@ export const propertiesRouter = router({
             country: input.Country,
             zipcode: input.zipcode,
           },
-          _assets: {},
+          _assets: {
+            allMedia: input.assets,
+          },
         },
       })
 

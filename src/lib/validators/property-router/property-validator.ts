@@ -67,6 +67,7 @@ export const PropertyValidator = z.object({
   //   }),
 
   // floorImage: z.string(),
+  assets: z.any(),
 })
 
 export type TPropertyValidator = z.infer<typeof PropertyValidator>
