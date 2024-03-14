@@ -19,10 +19,8 @@ const PropertyGallery = ({
 }: {
   images: Property['_assets']['allMedia']
 }) => {
-  console.log('images: ', images?.at(0)?.asset)
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
   const structuredImages = images?.map(ele => (ele?.asset as Media)?.url)
-  console.log('structuredImages', structuredImages)
 
   return (
     <>

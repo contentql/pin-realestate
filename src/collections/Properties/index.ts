@@ -465,8 +465,6 @@ const Properties: CollectionConfig = {
   hooks: {
     beforeChange: [
       ({ req, operation, data }) => {
-        console.log('test', req, operation, data)
-
         if (operation === 'create') {
           if (req.user) {
             data.createdBy = req.user.id

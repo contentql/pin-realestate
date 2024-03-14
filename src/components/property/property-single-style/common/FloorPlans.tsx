@@ -31,7 +31,6 @@ import Image from 'next/image'
 // ];
 
 const FloorPlans = ({ floorPlanData }: any) => {
-  console.log('floorPlans', floorPlanData)
   return (
     <div className='accordion' id='accordionExample'>
       {floorPlanData?.map((floorPlan: any, index: any) => (

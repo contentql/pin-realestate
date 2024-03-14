@@ -54,8 +54,6 @@ const PropertyDetails = ({ data }: { data: Property }) => {
     ],
   ]
 
-  console.log('Details: ', columns)
-
   return (
     <div className='row'>
       {columns.map((column, columnIndex) => (

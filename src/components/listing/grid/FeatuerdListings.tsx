@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const FeaturedListings = ({ data, colstyle }: any) => {
-  console.log('datadata', data)
   return (
     <>
       {data.map((listing: any) => (

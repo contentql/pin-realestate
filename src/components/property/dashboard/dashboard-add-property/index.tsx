@@ -58,12 +58,9 @@ const AddPropertyTabContent = () => {
     },
   })
 
-  useEffect(() => {
-    console.log('Error loading', errors)
-  }, [errors])
+  useEffect(() => {}, [errors])
 
   const onSubmit = async (data: TPropertyValidator, error: any) => {
-    console.log('onSubmit', data)
     const doc = await uploadMedia(data.floors.at(0)?.floorImage)
 
     if (doc?.id) {
@@ -72,11 +69,9 @@ const AddPropertyTabContent = () => {
         floors: [...data.floors],
       }
       dummyData.floors[0].floorImage = doc.id
-      console.log('Form Data: ', dummyData)
+
       await addProperty(dummyData)
     }
-
-    console.log('error', errors)
   }
 
   return (

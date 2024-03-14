@@ -37,7 +37,6 @@ interface PropertyDetails extends Property {
 }
 
 const PropertyById = ({ params }: { params: any }) => {
-  console.log(params)
   const { data: propertiesListData, isLoading } =
     trpc.properties.byPropertyId.useQuery({ id: params.id })
 
@@ -46,8 +45,6 @@ const PropertyById = ({ params }: { params: any }) => {
       ? propertiesListData?._propertyDetails?.saleType[0]
       : propertiesListData?._propertyDetails?.saleType &&
         propertiesListData?._propertyDetails?.saleType.join(' and ')
-
-  console.log('property', propertiesListData)
 
   const media = propertiesListData?._assets?.allMedia
   return (

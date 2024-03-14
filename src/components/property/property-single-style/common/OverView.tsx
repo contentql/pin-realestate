@@ -7,7 +7,6 @@ const OverView = ({
   data: Property['_details']
   propertyType: string
 }) => {
-  console.log('Data: ' + data)
   //const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   const overviewData = [
     {

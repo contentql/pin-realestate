@@ -23,7 +23,7 @@ export const propertiesRouter = router({
           bathrooms,
           location,
         } = input
-        console.log('location', location)
+
         // Retrieve users from a datasource, this is an imaginary database
         const payload = await getPayloadClient()
 
@@ -106,8 +106,6 @@ export const propertiesRouter = router({
           status: ele?._propertyDetails?.saleType,
         }
       })
-      //const firstPageKeys = [{ name: 'title' }];
-      console.log('all properties', properties.docs.at(0)?._floors?.floors)
       return propertyData
     }),
   },
@@ -147,7 +145,6 @@ export const propertiesRouter = router({
   addProperty: userProcedure
     .input(PropertyValidator)
     .mutation(async ({ input }) => {
-      console.log('input:', input)
       const payload = await getPayloadClient()
 
       const newProperty = await payload.create({

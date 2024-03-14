@@ -52,7 +52,6 @@ const Forgot = () => {
   })
 
   const onSubmit = ({ email }: TForgotEmailValidator) => {
-    //console.log('triggered onSubmit', email);
     forgotPassword({ email })
   }
   return (

@@ -23,7 +23,7 @@ async function uploadMedia(files: FileList | null): Promise<Media | undefined> {
     }
 
     const { doc }: { doc: Media } = await response.json()
-    console.log('Upload successful', doc)
+
     // Handle success, e.g., showing redirecting
 
     return doc

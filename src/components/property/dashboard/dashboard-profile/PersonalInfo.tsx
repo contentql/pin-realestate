@@ -18,7 +18,6 @@ const PersonalInfo = () => {
   })
 
   useEffect(() => {
-    console.log('email:', user?.email!)
     setValue('user_name', user?.user_name!)
     setValue('email', user?.email!)
     user?.phone_number
@@ -67,7 +66,6 @@ const PersonalInfo = () => {
   })
 
   const onSubmit = (data: TUserProfileValidator) => {
-    console.log('onSubmit', data)
     updateUserData(data)
   }
 

@@ -84,7 +84,6 @@ export default function PropertyFilteringMapFour() {
     setBathroms(elm)
   }
   const handlelocation = (elm: any) => {
-    console.log(elm)
     setLocation(elm)
   }
   const handlesquirefeet = (elm: any) => {
@@ -264,8 +263,7 @@ export default function PropertyFilteringMapFour() {
         className='offcanvas offcanvas-start p-0'
         tabIndex={-1}
         id='listingSidebarFilter'
-        aria-labelledby='listingSidebarFilterLabel'
-      >
+        aria-labelledby='listingSidebarFilterLabel'>
         <div className='offcanvas-header'>
           <h5 className='offcanvas-title' id='listingSidebarFilterLabel'>
             Listing Filter
@@ -274,8 +272,7 @@ export default function PropertyFilteringMapFour() {
             type='button'
             className='btn-close text-reset'
             data-bs-dismiss='offcanvas'
-            aria-label='Close'
-          ></button>
+            aria-label='Close'></button>
         </div>
         <div className='offcanvas-body p-0'>
           <ListingSidebar filterFunctions={filterFunctions} />
@@ -325,8 +322,7 @@ export default function PropertyFilteringMapFour() {
                   href='#listingSidebarFilter'
                   role='button'
                   aria-controls='listingSidebarFilter'
-                  className='filter-btn-left mobile-filter-btn map-page bgc-dark text-white d-block'
-                >
+                  className='filter-btn-left mobile-filter-btn map-page bgc-dark text-white d-block'>
                   <span className='flaticon-settings'></span> Show Filter
                 </a>
                 <div className=' map-canvas half_style'>

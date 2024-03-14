@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import TopFilter from './TopFilter'
-import PaginationTwo from '../listing/PaginationTwo'
 import { agencyData } from '@/data/agency'
+import { useEffect, useState } from 'react'
+import PaginationTwo from '../listing/PaginationTwo'
+import TopFilter from './TopFilter'
 import AllAgents from './agency/AllAgency'
 
 export default function FilteringAgency() {
@@ -55,7 +55,6 @@ export default function FilteringAgency() {
   }
 
   const handlelocation = (elm: any) => {
-    console.log(elm)
     setLocation(elm)
   }
 

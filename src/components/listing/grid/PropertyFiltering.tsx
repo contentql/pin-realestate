@@ -93,7 +93,6 @@ export default function PropertyFiltering() {
     setBathrooms(elm)
   }
   const handlelocation = (elm: any) => {
-    console.log(elm)
     setLocation(elm)
   }
   const handlesquirefeet = (elm: any) => {
@@ -150,11 +149,7 @@ export default function PropertyFiltering() {
       }
     })
 
-    console.log('ref', refItems)
-
     let filteredArrays: any[] = []
-
-    console.log('refItems', refItems) // working
 
     if (propertyTypes.length > 0) {
       const filtered = refItems.filter((elm: any) =>
@@ -235,7 +230,6 @@ export default function PropertyFiltering() {
     const commonItems = refItems.filter(item =>
       filteredArrays.every(array => array.includes(item)),
     )
-    console.log('commonItems', commonItems, filteredArrays)
 
     setFilteredData(commonItems)
   }, [
