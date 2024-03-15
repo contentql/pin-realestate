@@ -146,10 +146,13 @@ export const propertiesRouter = router({
   // Function for adding property
   addProperty: userProcedure
     .input(PropertyValidator)
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       const payload = await getPayloadClient()
 
+      const { user } = ctx
+
       const newProperty = await payload.create({
+        user: user,
         collection: 'properties',
         data: {
           _propertyDetails: {

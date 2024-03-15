@@ -1,5 +1,6 @@
 import { TRPCError } from '@trpc/server'
 
+import { Media } from '@/payload-types'
 import { getPayloadClient } from '../get-payload'
 import { AuthCredentialsValidator } from '../lib/validators/auth-router/account-credentials-validator'
 import { ForgotEmailValidator } from '../lib/validators/auth-router/forgot-email-validator'
@@ -60,15 +61,17 @@ export const authRouter = router({
         position,
         address,
         about,
+        profile_pic,
       } = input
 
       const payload = await getPayloadClient()
 
       try {
-        await payload.update({
+        const res = await payload.update({
           collection: 'users',
           id: user.id,
           data: {
+            email: user.email,
             user_name: user_name,
             first_name: first_name,
             last_name: last_name,
@@ -79,11 +82,20 @@ export const authRouter = router({
             position: position,
             address: address,
             about: about,
+            profile_pic: profile_pic
+              ? profile_pic
+              : (user.profile_pic as Media).id,
           },
         })
 
-        return { succuss: true }
+        await payload.delete({
+          collection: 'media',
+          id: (ctx.user.profile_pic as Media).id as string,
+        })
+
+        return { succuss: res }
       } catch (err) {
+        console.error(err)
         throw new TRPCError({ code: 'UNAUTHORIZED' })
       }
     }),

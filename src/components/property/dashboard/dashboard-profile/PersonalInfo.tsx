@@ -1,25 +1,14 @@
 'use client'
-import {
-  TUserProfileValidator,
-  UserProfileValidator,
-} from '@/lib/validators/auth-router/user-profile-validator'
 import { useAuth } from '@/providers/Auth'
-import { trpc } from '@/trpc/client'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
-import { ZodError } from 'zod'
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ register }: any) => {
   const { user } = useAuth()
-  const { register, handleSubmit, setValue } = useForm<TUserProfileValidator>({
-    resolver: zodResolver(UserProfileValidator),
-  })
+  const { setValue } = useForm()
 
   useEffect(() => {
     setValue('user_name', user?.user_name!)
-    setValue('email', user?.email!)
     user?.phone_number
       ? setValue('phone_number', user?.phone_number)
       : setValue('phone_number', '')
@@ -43,34 +32,8 @@ const PersonalInfo = () => {
       : setValue('tax_number', '')
   }, [user])
 
-  const { mutate: updateUserData } = trpc.auth.updateUserData.useMutation({
-    onError: err => {
-      if (err.data?.code === 'NOT_FOUND') {
-        toast.error('Account does not exist')
-
-        return
-      }
-
-      if (err instanceof ZodError) {
-        // in toast
-        console.error(err.issues[0].message)
-
-        return
-      }
-
-      console.error('Something went wrong. Please try again.')
-    },
-    onSuccess: () => {
-      toast.success('Details updated')
-    },
-  })
-
-  const onSubmit = (data: TUserProfileValidator) => {
-    updateUserData(data)
-  }
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='form-style1'>
+    <div className='form-style1'>
       <div className='row'>
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
@@ -255,7 +218,7 @@ const PersonalInfo = () => {
         </div>
         {/* End .col */}
       </div>
-    </form>
+    </div>
   )
 }
 
