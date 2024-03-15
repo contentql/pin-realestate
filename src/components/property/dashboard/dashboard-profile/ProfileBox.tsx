@@ -47,7 +47,7 @@ const ProfileBox = ({ register, setUploadedImage, uploadedImage }: any) => {
           <input
             type='file'
             accept='image/jpeg,image/png'
-            onChange={handleUpload}
+            {...register('profile_pic')}
             style={{ display: 'none' }}
           />
           <div className='ud-btn btn-white2 mb30'>
