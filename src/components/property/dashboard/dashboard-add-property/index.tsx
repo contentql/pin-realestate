@@ -6,7 +6,7 @@ import {
 import { trpc } from '@/trpc/client'
 import uploadMedia from '@/utilis/uploadMedia'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { ZodError } from 'zod'
@@ -59,12 +59,7 @@ const AddPropertyTabContent = () => {
     },
   })
 
-  useEffect(() => {
-    console.log('Errors: ', errors)
-  }, [errors])
-
   const onSubmit = async (data: TPropertyValidator, error: any) => {
-    console.log('onSubmit', data)
     const doc = await uploadMedia(data.floors.at(0)?.floorImage)
 
     if (doc?.id) {

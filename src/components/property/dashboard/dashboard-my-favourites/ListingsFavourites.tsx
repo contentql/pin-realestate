@@ -37,8 +37,7 @@ const ListingsFavourites = () => {
                   title='Delete Item'
                   onClick={() => handleDeleteListing(listing.id)}
                   style={{ border: 'none' }}
-                  data-tooltip-id={`delete-${listing.id}`}
-                >
+                  data-tooltip-id={`delete-${listing.id}`}>
                   <span className='fas fa-trash-can'></span>
                 </button>
 
@@ -54,7 +53,9 @@ const ListingsFavourites = () => {
               </div>
               <div className='list-content'>
                 <h6 className='list-title'>
-                  <Link href={`/property/${listing.id}`}>{listing.title}</Link>
+                  <Link href={`/properties/${listing.id}`}>
+                    {listing.title}
+                  </Link>
                 </h6>
                 <p className='list-text'>{listing.location}</p>
                 <div className='list-meta d-flex align-items-center'>
