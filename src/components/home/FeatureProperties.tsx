@@ -94,7 +94,7 @@ const FeatureProperties = () => {
                         <div className='list-tag2 fz12'>{property.status}</div>
                       </div>
                       <h4 className='list-title'>
-                        <Link href={'/property/' + property?.id}>
+                        <Link href={'/properties/' + property?.id}>
                           {property.title}
                         </Link>
                       </h4>

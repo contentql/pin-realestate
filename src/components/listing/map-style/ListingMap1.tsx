@@ -11,7 +11,6 @@ import { useMemo, useState } from 'react'
 import listings from '@/data/listings'
 import Image from 'next/image'
 import Link from 'next/link'
-import cluster from 'cluster'
 
 const option = {
   zoomControl: true,
@@ -198,10 +197,7 @@ export default function ListingMap1() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM',
   })
-  const center = useMemo(
-    () => ({ lat: 27.411201277163975, lng: -96.12394824867293 }),
-    [],
-  )
+  const center = useMemo(() => ({ lat: 18.3092, lng: 83.8933 }), [])
 
   // add long & lat
   const locationHandler = (location: any) => {
@@ -222,8 +218,7 @@ export default function ListingMap1() {
           mapContainerStyle={containerStyle}
           center={center}
           zoom={4}
-          options={option}
-        >
+          options={option}>
           <MarkerClusterer>
             {/* @ts-expect-error TODO: */}
             {clusterer => {
@@ -248,8 +243,7 @@ export default function ListingMap1() {
                 lat: getLocation.lat,
                 lng: getLocation.long,
               }}
-              onCloseClick={closeCardHandler}
-            >
+              onCloseClick={closeCardHandler}>
               <div>
                 <div className='listing-style1'>
                   <div className='list-thumb'>
@@ -275,7 +269,7 @@ export default function ListingMap1() {
                   </div>
                   <div className='list-content'>
                     <h6 className='list-title'>
-                      <Link href={`/property/${getLocation.id}`}>
+                      <Link href={`/properties/${getLocation.id}`}>
                         {getLocation.title}
                       </Link>
                     </h6>

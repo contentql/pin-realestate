@@ -14,7 +14,7 @@ import { useAuth } from '@/providers/Auth'
 import { trpc } from '@/trpc/client'
 import uploadMedia from '@/utilis/uploadMedia'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { ZodError } from 'zod'
@@ -35,10 +35,6 @@ const DashboardMyProfileView = () => {
   })
 
   const [uploadedImage, setUploadedImage] = useState<any>()
-
-  useEffect(() => {
-    console.log('User profile validator:', errors)
-  }, [errors])
 
   const { mutate: updateUserData } = trpc.auth.updateUserData.useMutation({
     onError: err => {
@@ -65,8 +61,6 @@ const DashboardMyProfileView = () => {
   })
 
   const onSubmit = async (data: TUserProfileValidator) => {
-    console.log('onSubmit', !!data.profile_pic)
-    console.log('Image', uploadedImage)
     try {
       if (uploadedImage !== undefined) {
         const doc = await uploadMedia(uploadedImage)

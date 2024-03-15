@@ -42,7 +42,7 @@ const FeaturedListings = ({ data, colstyle }: any) => {
             </div>
             <div className='list-content'>
               <h6 className='list-title'>
-                <Link href={`/property/${listing.id}`}>
+                <Link href={`/properties/${listing.id}`}>
                   {listing._propertyDetails.title}
                 </Link>
               </h6>

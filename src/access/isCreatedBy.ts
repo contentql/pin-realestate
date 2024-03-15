@@ -2,7 +2,6 @@ import { User } from '@/payload-types'
 import { Access } from 'payload/config'
 
 const isAdminOrCreatedBy: Access<any, User> = ({ req: { user } }) => {
-  console.log('user', user)
   if (user && user.roles?.includes('admin')) {
     return true
   }

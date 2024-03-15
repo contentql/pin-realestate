@@ -7,7 +7,7 @@ const ProfileBox = ({ register, setUploadedImage, uploadedImage }: any) => {
   const [previewImage, setPreviewImage] = useState<any>()
   const handleUpload = (event: any) => {
     const file = event.target.files[0]
-    console.log(`Uploading:`, event.target.files)
+    //console.log(`Uploading:`, event.target.files)
     setUploadedImage(event.target.files)
     if (file) {
       const reader = new FileReader()
