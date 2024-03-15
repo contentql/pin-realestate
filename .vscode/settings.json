@@ -5,9 +5,11 @@
     "hookform",
     "nextjs",
     "nixpacks",
+    "nouance",
     "payloadcms",
     "realestate",
     "tanstack",
-    "trpc"
+    "trpc",
+    "zipcode"
   ]
 }

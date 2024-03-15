@@ -3,7 +3,6 @@ import { Media } from '@/payload-types'
 async function uploadMedia(files: FileList | null): Promise<Media | undefined> {
   const formData = new FormData()
   if (!files) {
-    alert('Please select a file first.')
     return undefined
   }
 
@@ -23,7 +22,7 @@ async function uploadMedia(files: FileList | null): Promise<Media | undefined> {
     }
 
     const { doc }: { doc: Media } = await response.json()
-    console.log('Upload successful', doc)
+
     // Handle success, e.g., showing redirecting
 
     return doc

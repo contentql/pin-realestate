@@ -55,7 +55,6 @@ const Form = () => {
     last_name,
     query,
   }: TContactFormValidator) => {
-    console.log(`onSubmit:`, first_name, last_name, query)
     newContact({ first_name, last_name, query })
   }
 

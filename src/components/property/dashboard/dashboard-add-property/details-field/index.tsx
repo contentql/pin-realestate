@@ -1,6 +1,12 @@
 import StructureType from './StructureType'
 
 const DetailsFiled = ({ register }: any) => {
+  const materialOptions = [
+    { value: 'Wood', label: 'Wood' },
+    { value: 'Block', label: 'Block' },
+    { value: 'Brick', label: 'Brick' },
+    { value: 'Rock', label: 'Rock' },
+  ]
   return (
     <div className='form-style1'>
       <div className='row'>
@@ -77,20 +83,6 @@ const DetailsFiled = ({ register }: any) => {
         </div>
         {/* End .col-4 */}
 
-        {/* <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Custom ID (text)
-            </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Your Name'
-            />
-          </div>
-        </div> */}
-        {/* End .col-4 */}
-
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
@@ -135,61 +127,20 @@ const DetailsFiled = ({ register }: any) => {
         </div>
         {/* End .col-4 */}
 
-        {/* End .col-4 */}
-
-        {/* <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Basement
-            </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Your Name'
-            />
-          </div>
-        </div> */}
-        {/* End .col-4 */}
-
-        {/* <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Extra details
-            </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Your Name'
-            />
-          </div>
-        </div> */}
-        {/* End .col-4 */}
-
-        {/* <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Roofing
-            </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Your Name'
-            />
-          </div>
-        </div> */}
-        {/* End .col-4 */}
-
         <div className='col-sm-6 col-xl-4'>
           <div className='mb20'>
             <label className='heading-color ff-heading fw600 mb10'>
               Exterior Material
             </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Material type'
-              {...register('material')}
-            />
+            <div className='location-area'>
+              <select className='form-control' {...register('material')}>
+                {materialOptions.map((ele, id) => (
+                  <option key={id} value={ele.value}>
+                    {ele.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
         {/* End .col-4 */}
@@ -197,24 +148,6 @@ const DetailsFiled = ({ register }: any) => {
         <StructureType register={register} />
       </div>
       {/* End .row */}
-
-      {/* <div className='row'>
-        <MultiSelectField />
-
-        <div className='col-sm-12'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Owner/ Agent nots (not visible on front end)
-            </label>
-            <textarea
-              cols={30}
-              rows={5}
-              placeholder='There are many variations of passages.'
-              defaultValue={''}
-            />
-          </div>
-        </div> 
-      </div> */}
     </div>
   )
 }

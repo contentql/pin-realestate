@@ -2,6 +2,8 @@
 
 import MainMenu from '@/components/common/MainMenu'
 import SidebarPanel from '@/components/common/sidebar-panel'
+import { Media } from '@/payload-types'
+import { useAuth } from '@/providers/Auth'
 import { logout } from '@/query/auth/logout'
 import { useMutation } from '@tanstack/react-query'
 import Image from 'next/image'
@@ -10,6 +12,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 
 const DashboardHeader = () => {
+  const { user } = useAuth()
   const router = useRouter()
   const pathname = usePathname()
 
@@ -129,8 +132,7 @@ const DashboardHeader = () => {
                     href='#'
                     data-bs-toggle='offcanvas'
                     data-bs-target='#SidebarPanel'
-                    aria-controls='SidebarPanelLabel'
-                  >
+                    aria-controls='SidebarPanelLabel'>
                     <Image
                       width={25}
                       height={9}
@@ -172,7 +174,12 @@ const DashboardHeader = () => {
                           <Image
                             width={44}
                             height={44}
-                            src='/images/resource/user.png'
+                            src={
+                              (user?.profile_pic as Media)?.sizes
+                                ?.userProfileCircleImage?.url ||
+                              '/images/resource/user.png'
+                            }
+                            style={{ borderRadius: '50%' }}
                             alt='user.png'
                           />
                         </a>
@@ -183,8 +190,7 @@ const DashboardHeader = () => {
                                 <p
                                   className={`fz15 fw400 ff-heading ${
                                     sectionIndex === 0 ? 'mb20' : 'mt30'
-                                  }`}
-                                >
+                                  }`}>
                                   {section.title}
                                 </p>
                                 {section.items.map((item, itemIndex) => (
@@ -193,8 +199,7 @@ const DashboardHeader = () => {
                                     className={`dropdown-item ${
                                       pathname == item.href ? '-is-active' : ''
                                     } `}
-                                    href={item.href}
-                                  >
+                                    href={item.href}>
                                     <i className={`${item.icon} mr10`} />
                                     {item.text}
                                   </Link>
@@ -227,8 +232,7 @@ const DashboardHeader = () => {
       <div
         className='offcanvas offcanvas-end'
         id='SidebarPanel'
-        aria-labelledby='SidebarPanelLabel'
-      >
+        aria-labelledby='SidebarPanelLabel'>
         <SidebarPanel />
       </div>
       {/* Sidebar Panel End */}

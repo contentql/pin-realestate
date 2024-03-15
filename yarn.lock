@@ -1421,6 +1421,18 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.2.tgz#d9fae00a2d5cb40f92cfe64b47ad749fbc38f917"
   integrity sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==
 
+"@iconify/react@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-4.1.1.tgz#da1bf03cdca9427f07cf22cf5b63fa8f02db4722"
+  integrity sha512-jed14EjvKjee8mc0eoscGxlg7mSQRkwQG3iX3cPBCO7UlOjz0DtlvTqxqEcHUJGh+z1VJ31Yhu5B9PxfO0zbdg==
+  dependencies:
+    "@iconify/types" "^2.0.0"
+
+"@iconify/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+  integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"
@@ -1601,6 +1613,18 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@nouance/payload-better-fields-plugin@^1.3.5":
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@nouance/payload-better-fields-plugin/-/payload-better-fields-plugin-1.3.5.tgz#2f4e7472aaed675777b1a3a3677c9887ea258b09"
+  integrity sha512-BGD/mlwVEYTqZ30ioRK56peOPXdj/gEAWJrQOTmtjEmz3Obwgly/0ECqEPS4+ksl7iddv7bH4t515sXOz5b3TA==
+  dependencies:
+    colord "^2.9.3"
+    react-colorful "^5.6.1"
+    react-number-format "^5.3.1"
+    react-phone-number-input "^3.3.7"
+    slugify "^1.6.6"
+    validate-color "^2.2.4"
+
 "@one-ini/wasm@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@one-ini/wasm/-/wasm-0.1.1.tgz#6013659736c9dbfccc96e8a9c2b3de317df39323"
@@ -1671,6 +1695,11 @@
     "@aws-sdk/lib-storage" "^3.267.0"
     amazon-cognito-identity-js "^6.1.2"
     nodemailer "6.9.8"
+
+"@payloadcms/plugin-seo@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@payloadcms/plugin-seo/-/plugin-seo-2.2.1.tgz#12b65af75d140403546b034c8738fc022c5ec0a5"
+  integrity sha512-EqC+98oAwH0qlqVM/X7/zvKKAvWuHAGj8zzcwNGJN/Q7tIh9NB5isKSxeIXI8e9QxuRzCnR2MVBi0Q/I0SKZTQ==
 
 "@payloadcms/richtext-slate@^1.4.0":
   version "1.4.0"
@@ -3991,6 +4020,11 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
+country-flag-icons@^1.5.4:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/country-flag-icons/-/country-flag-icons-1.5.9.tgz#5ee10d9c8c1dcfb031724121b2adecdf166996cd"
+  integrity sha512-9jrjv2w7kRbqNtdtMdK2j3gmDIZzd5l9L2pZiQjF9J0mUcB+NKIGDNADTDHBEp8EQtjOkCOcciJGGSOpERdXPQ==
+
 countup.js@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/countup.js/-/countup.js-2.8.0.tgz#64951f2df3ede28839413d654d8fef28251c32a8"
@@ -6022,6 +6056,13 @@ ini@^1.3.4, ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
+input-format@^0.3.9:
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/input-format/-/input-format-0.3.9.tgz#d287b5082aeaa9c01e37ff599a2988d090003054"
+  integrity sha512-99Gew2huiuYpNsyZoucauy5OT3oXEoWUeINGES4SlU74eFxbtYqNO+yEP6uKFhfB0UKTvq4gOC+6/3Oskru+IQ==
+  dependencies:
+    prop-types "^15.8.1"
+
 internal-slot@^1.0.4, internal-slot@^1.0.5, internal-slot@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/internal-slot/-/internal-slot-1.0.7.tgz#c06dcca3ed874249881007b0a5523b172a190802"
@@ -6650,6 +6691,11 @@ levn@^0.4.1:
   dependencies:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
+
+libphonenumber-js@^1.10.53:
+  version "1.10.58"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.58.tgz#2015877bd47fd3d32d9fbfcedd75df35be230c9a"
+  integrity sha512-53A0IpJFL9LdHbpeatwizf8KSwPICrqn9H0g3Y7WQ+Jgeu9cQ4Ew3WrRtrLBu/CX2lXd5+rgT01/tGlkbkzOjw==
 
 lilconfig@^3.1.1:
   version "3.1.1"
@@ -8569,6 +8615,11 @@ react-animate-height@2.1.2:
     classnames "^2.2.5"
     prop-types "^15.6.1"
 
+react-colorful@^5.6.1:
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.6.1.tgz#7dc2aed2d7c72fac89694e834d179e32f3da563b"
+  integrity sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==
+
 react-countup@^6.4.2:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/react-countup/-/react-countup-6.5.0.tgz#2671035ec5012ed8db097a79d08fa6f193e139d3"
@@ -8672,10 +8723,28 @@ react-modal-video@^2.0.1:
     react-transition-group "^4.4.2"
     stringify "^5.2.0"
 
+react-number-format@^5.3.1:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-5.3.3.tgz#5e2c47769533f7bcbaa222d367f3bcf3263be602"
+  integrity sha512-maGHWmOvwYzyeRIpL0YC6drWqYaX6iFqjisdJXpZ+HzEtSEJsL6nqw4azTpF5Sm6SAvwUeAr7JY924Ebqq8EdA==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-onclickoutside@^6.12.2:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.13.0.tgz#e165ea4e5157f3da94f4376a3ab3e22a565f4ffc"
   integrity sha512-ty8So6tcUpIb+ZE+1HAhbLROvAIJYyJe/1vRrrcmW+jLsaM+/powDRqxzo6hSh9CuRZGSL1Q8mvcF5WRD93a0A==
+
+react-phone-number-input@^3.3.7, react-phone-number-input@^3.3.9:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/react-phone-number-input/-/react-phone-number-input-3.3.9.tgz#b1af9a74a811afb5d5411e5e21b82b668e2311de"
+  integrity sha512-TKK8VoFWR9RfPi90j/3Rr6j/S9V8/eovqUgNNNSyD0+WtaeLTlJVWb8DD7P57eZqkLv303sL8JMiZoExwKICxw==
+  dependencies:
+    classnames "^2.3.1"
+    country-flag-icons "^1.5.4"
+    input-format "^0.3.9"
+    libphonenumber-js "^1.10.53"
+    prop-types "^15.8.1"
 
 react-photoswipe-gallery@^2.2.7:
   version "2.2.7"
@@ -9429,6 +9498,11 @@ slate@0.91.4:
     immer "^9.0.6"
     is-plain-object "^5.0.0"
     tiny-warning "^1.0.3"
+
+slugify@^1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.6.6.tgz#2d4ac0eacb47add6af9e04d3be79319cbcc7924b"
+  integrity sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==
 
 smart-buffer@^4.2.0:
   version "4.2.0"
@@ -10218,6 +10292,11 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+validate-color@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/validate-color/-/validate-color-2.2.4.tgz#77acf863458cd637ee944f604932512f6cbe6103"
+  integrity sha512-Znolz+b6CwW6eBXYld7MFM3O7funcdyRfjKC/X9hqYV/0VcC5LB/L45mff7m3dIn9wdGdNOAQ/fybNuD5P/HDw==
 
 value-equal@^1.0.1:
   version "1.0.1"

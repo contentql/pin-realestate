@@ -1,5 +1,5 @@
 'use client'
-import { Property } from '@/payload-types'
+import { Media, Property } from '@/payload-types'
 import Image from 'next/image'
 import 'photoswipe/dist/photoswipe.css'
 import { useState } from 'react'
@@ -17,12 +17,10 @@ import Map from './Map'
 const PropertyGallery = ({
   images,
 }: {
-  images: Property['media']['propertyImages']
+  images: Property['_assets']['allMedia']
 }) => {
-  console.log('images: ', { images })
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
-  const structuredImages = images?.map((ele: any) => ele?.image?.url)
-  console.log('structuredImages', structuredImages)
+  const structuredImages = images?.map(ele => (ele?.asset as Media)?.url)
 
   return (
     <>
@@ -104,7 +102,7 @@ const PropertyGallery = ({
                           }}
                           modules={[FreeMode, Navigation, Thumbs]}
                           className='mySwiper2'>
-                          {structuredImages?.map((item, i) => (
+                          {structuredImages?.map((item: any, i: any) => (
                             <SwiperSlide key={i}>
                               <Image
                                 height={90}
@@ -128,7 +126,7 @@ const PropertyGallery = ({
                               watchSlidesProgress={true}
                               modules={[FreeMode, Navigation, Thumbs]}
                               className='mySwiper mt20'>
-                              {structuredImages?.map((item, i) => (
+                              {structuredImages?.map((item: any, i: any) => (
                                 <SwiperSlide key={i}>
                                   <Image
                                     height={90}

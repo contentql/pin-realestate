@@ -9,6 +9,7 @@ export const Media: CollectionConfig = {
   slug: 'media',
   access: {
     read: () => true,
+    delete: () => true,
   },
   hooks: {
     afterRead: [
@@ -60,6 +61,91 @@ export const Media: CollectionConfig = {
         // and calculate a height automatically.
         height: undefined,
         position: 'centre',
+      },
+      {
+        name: 'userProfileCircleImage',
+        width: 44,
+        height: 44,
+        position: 'center',
+      },
+      {
+        name: 'userTestimonialImage',
+        width: 70,
+        height: 71,
+        position: 'center',
+      },
+      {
+        name: 'propertyImage',
+        width: 370,
+        height: 240,
+        position: 'center',
+      },
+
+      {
+        name: 'featuredPropertyImage',
+        width: 570,
+        height: 646,
+        crop: 'center',
+      },
+      {
+        name: 'agentImage',
+        width: 210,
+        height: 240,
+        position: 'center',
+      },
+      {
+        name: 'aboutHeroImage',
+        width: 1920,
+        height: 450,
+        position: 'center',
+      },
+      {
+        name: 'aboutImage',
+        width: 1170,
+        height: 500,
+        position: 'center',
+      },
+      {
+        name: 'aboutLearnMoreImage',
+        width: 685,
+        height: 720,
+        position: 'center',
+      },
+      {
+        name: 'myPropertyImage',
+        width: 280,
+        height: 240,
+        position: 'center',
+      },
+      {
+        name: 'propertyGalleryImage',
+        width: 1170,
+        height: 650,
+        position: 'center',
+      },
+      {
+        name: 'floorImage',
+        width: 490,
+        height: 362,
+        position: 'center',
+      },
+      {
+        name: 'propertyAgentImage',
+        width: 210,
+        height: 210,
+        position: 'center',
+      },
+      {
+        name: 'userPropertyReviewImage',
+        width: 60,
+        height: 60,
+        position: 'center',
+      },
+      {
+        name: 'reviewPropertyImage',
+        width: 110,
+        height: 90,
+        position: 'center',
       },
     ],
     focalPoint: false,

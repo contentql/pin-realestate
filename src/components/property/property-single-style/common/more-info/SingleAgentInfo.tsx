@@ -1,12 +1,12 @@
-import React from 'react'
+import { Property } from '@/payload-types'
 import Image from 'next/image'
 
-const SingleAgentInfo = () => {
+const SingleAgentInfo = ({ owner }: { owner: Property['_owner'] }) => {
   const agentData = {
     id: 1,
-    name: 'Arlene McCoy',
-    phoneNumbers: ['(920) 012-3421', '(920) 012-4390'],
-    socialMedia: ['facebook', 'twitter', 'instagram', 'linkedin'],
+    name: owner?.name,
+    phoneNumbers: [owner?.mobileNumber, owner?.whatsAppNumber],
+    socialMedia: ['whatsapp'],
   }
 
   return (

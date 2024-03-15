@@ -1,13 +1,15 @@
 'use client'
+import uploadMedia from '@/utilis/uploadMedia'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 
-const UploadPhotoGallery = () => {
+const UploadPhotoGallery = ({ register, setAssets }: any) => {
   const [uploadedImages, setUploadedImages] = useState<string[]>([])
+
   const fileInputRef = useRef(null)
 
-  const handleUpload = (files: any) => {
+  const handleUpload = async (files: any) => {
     const newImages = [...uploadedImages]
 
     for (const file of files) {
@@ -17,6 +19,13 @@ const UploadPhotoGallery = () => {
         setUploadedImages(newImages)
       }
       reader.readAsDataURL(file)
+    }
+
+    try {
+      const doc = await uploadMedia(files)
+      setAssets((prev: any) => [...prev, { asset: doc?.id }])
+    } catch (error) {
+      console.log(error)
     }
   }
 

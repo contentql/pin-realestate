@@ -7,15 +7,13 @@ const FeaturedListings = ({ data, colstyle }: any) => {
       {data.map((listing: any) => (
         <div
           className={` ${colstyle ? 'col-sm-12' : 'col-sm-6'}  `}
-          key={listing.id}
-        >
+          key={listing.id}>
           <div
             className={
               colstyle
                 ? 'listing-style7 listCustom listing-type'
                 : 'listing-style7'
-            }
-          >
+            }>
             <div className='list-thumb'>
               <Image
                 width={382}
@@ -48,7 +46,7 @@ const FeaturedListings = ({ data, colstyle }: any) => {
             </div>
             <div className='list-content'>
               <h6 className='list-title'>
-                <Link href={`/property/${listing.id}`}>{listing.title}</Link>
+                <Link href={`/properties/${listing.id}`}>{listing.title}</Link>
               </h6>
 
               <div className='d-flex justify-content-between align-items-center'>

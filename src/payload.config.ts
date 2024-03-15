@@ -1,6 +1,7 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage'
+import seoPlugin from '@payloadcms/plugin-seo'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import dotenv from 'dotenv'
 import path from 'path'
@@ -12,6 +13,12 @@ import PropertyType from './collections/PropertyType'
 import Tags from './collections/Tags'
 import Users from './collections/Users'
 import { s3StorageAdapter } from './plugins/s3'
+import {
+  generateDescription,
+  generateImage,
+  generateTitle,
+  generateURL,
+} from './utilis/seo'
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -53,6 +60,14 @@ export default buildConfig({
           adapter: s3StorageAdapter,
         },
       },
+    }),
+    seoPlugin({
+      collections: ['properties'],
+      uploadsCollection: 'media',
+      generateTitle: generateTitle,
+      generateDescription: generateDescription,
+      generateImage: generateImage,
+      generateURL: generateURL,
     }),
   ],
   typescript: {

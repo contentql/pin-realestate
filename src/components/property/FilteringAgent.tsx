@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { agentsData } from '@/data/agents'
+import { useEffect, useState } from 'react'
+import PaginationTwo from '../listing/PaginationTwo'
 import TopFilter from './TopFilter'
 import AllAgents from './agents/AllAgents'
-import { agentsData } from '@/data/agents'
-import PaginationTwo from '../listing/PaginationTwo'
 export default function FilteringAgent() {
   const [filteredData, setFilteredData] = useState<any>([])
   const [currentSortingOption, setCurrentSortingOption] =
@@ -47,7 +47,6 @@ export default function FilteringAgent() {
   }
 
   const handlelocation = (elm: any) => {
-    console.log(elm)
     setLocation(elm)
   }
 
@@ -112,8 +111,7 @@ export default function FilteringAgent() {
         <div
           className='row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5'
           data-aos='fade-up'
-          data-aos-delay='100'
-        >
+          data-aos-delay='100'>
           <AllAgents data={pageItems} />
         </div>
         {/* End .row */}

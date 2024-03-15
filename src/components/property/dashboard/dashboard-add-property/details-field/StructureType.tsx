@@ -1,10 +1,5 @@
 'use client'
 
-const structureTypeOptions = [
-  { value: 'Rented', label: 'Rented' },
-  { value: 'Sold', label: 'Sold' },
-]
-
 const customStyles = {
   option: (styles: any, { isFocused, isSelected, isHovered }: any) => ({
     ...styles,
@@ -23,15 +18,11 @@ const StructureType = ({ register }: any) => {
     <div className='col-sm-6 col-xl-4'>
       <div className='mb20'>
         <label className='heading-color ff-heading fw600 mb10'>Label</label>
-        <div className='location-area'>
-          <select className='form-control' {...register('label')}>
-            {structureTypeOptions.map((ele, id) => (
-              <option key={id} value={ele.value}>
-                {ele.value}
-              </option>
-            ))}
-          </select>
-        </div>
+        <label className='custom_checkbox'>
+          Available for sale
+          <input type='checkbox' id='amenity' {...register('label')} />
+          <span className='checkmark' />
+        </label>
       </div>
     </div>
   )

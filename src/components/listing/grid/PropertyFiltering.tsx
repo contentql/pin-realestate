@@ -93,7 +93,6 @@ export default function PropertyFiltering() {
     setBathrooms(elm)
   }
   const handlelocation = (elm: any) => {
-    console.log(elm)
     setLocation(elm)
   }
   const handlesquirefeet = (elm: any) => {
@@ -144,31 +143,27 @@ export default function PropertyFiltering() {
       if (listingStatus == 'All') {
         return true
       } else if (listingStatus == 'For rent') {
-        return elm.propertiesDetails.status.includes('For rent')
+        return elm._propertyDetails.saleType.includes('rent')
       } else if (listingStatus == 'For sale') {
-        return elm.propertiesDetails.status.includes('For sale')
+        return elm._propertyDetails.saleType.includes('sale')
       }
     })
 
-    console.log('ref', refItems)
-
     let filteredArrays: any[] = []
-
-    console.log('refItems', refItems) // working
 
     if (propertyTypes.length > 0) {
       const filtered = refItems.filter((elm: any) =>
-        propertyTypes.includes(elm.propertiesDetails.propertyType.value.type),
+        propertyTypes.includes(elm._propertyDetails.type),
       )
       filteredArrays = [...filteredArrays, filtered]
     }
     filteredArrays = [
       ...filteredArrays,
-      refItems.filter((el: any) => el.details.beds >= bedrooms),
+      refItems.filter((el: any) => el.details.bedrooms >= bedrooms),
     ]
     filteredArrays = [
       ...filteredArrays,
-      refItems.filter((el: any) => el.details.baths >= bathrooms),
+      refItems.filter((el: any) => el.details.bathrooms >= bathrooms),
     ]
     filteredArrays = [
       ...filteredArrays,
@@ -180,7 +175,7 @@ export default function PropertyFiltering() {
           el.location.address
             .toLocaleLowerCase()
             .includes(searchQuery.toLocaleLowerCase()) ||
-          el.propertiesDetails.title
+          el._propertyDetails.title
             .toLocaleLowerCase()
             .includes(searchQuery.toLocaleLowerCase()) ||
           el.amenities
@@ -209,8 +204,8 @@ export default function PropertyFiltering() {
     if (priceRange.length > 0) {
       const filtered = refItems.filter(
         (elm: any) =>
-          Number(elm.propertiesDetails.price) >= priceRange[0] &&
-          Number(elm.propertiesDetails.price) <= priceRange[1],
+          Number(elm._propertyDetails.price) >= priceRange[0] &&
+          Number(elm._propertyDetails.price) <= priceRange[1],
       )
       filteredArrays = [...filteredArrays, filtered]
     }

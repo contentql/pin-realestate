@@ -2,7 +2,7 @@
 
 import listings from '@/data/listings'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ListingItems from '../ListingItems'
 export default function ListingItemsContainer({ data }: any) {
   const [currentCategory, setCurrentCategory] = useState('All')
@@ -39,15 +39,13 @@ export default function ListingItemsContainer({ data }: any) {
           <ul
             className='nav nav-pills justify-content-start justify-content-sm-end'
             id='pills-tab'
-            role='tablist'
-          >
+            role='tablist'>
             <li className='nav-item' role='presentation'>
               <button
                 className={
                   currentCategory == 'All' ? 'nav-link active' : 'nav-link'
                 }
-                onClick={() => setCurrentCategory('All')}
-              >
+                onClick={() => setCurrentCategory('All')}>
                 All
               </button>
             </li>
@@ -56,8 +54,7 @@ export default function ListingItemsContainer({ data }: any) {
                 className={
                   currentCategory == 'rent' ? 'nav-link active' : 'nav-link'
                 }
-                onClick={() => setCurrentCategory('rent')}
-              >
+                onClick={() => setCurrentCategory('rent')}>
                 For Rent
               </button>
             </li>
@@ -68,8 +65,7 @@ export default function ListingItemsContainer({ data }: any) {
                     ? 'nav-link me-0 active'
                     : 'nav-link me-0'
                 }
-                onClick={() => setCurrentCategory('sale')}
-              >
+                onClick={() => setCurrentCategory('sale')}>
                 For Sale
               </button>
             </li>
@@ -84,8 +80,7 @@ export default function ListingItemsContainer({ data }: any) {
             className='tab-pane fade show active'
             id='pills-home'
             role='tabpanel'
-            aria-labelledby='pills-home-tab'
-          >
+            aria-labelledby='pills-home-tab'>
             <div className='row'>
               <ListingItems data={pageData} />
             </div>
@@ -97,7 +92,7 @@ export default function ListingItemsContainer({ data }: any) {
         {/* End tab-content */}
 
         <div className='d-grid pb30 bdrb1'>
-          <Link href='/property/4' className='ud-btn btn-white2'>
+          <Link href='/properties/4' className='ud-btn btn-white2'>
             Show all 134 property
             <i className='fal fa-arrow-right-long' />
           </Link>

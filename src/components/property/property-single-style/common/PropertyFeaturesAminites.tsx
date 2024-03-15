@@ -1,14 +1,10 @@
 const PropertyFeaturesAminites = ({ featuresAmenitiesData }: any) => {
-  //console.log('In Amentites', featuresAmenitiesData);
-
   const result = Array.from(
     {
       length: Math.ceil(featuresAmenitiesData?.length / 4),
     },
     (_, index) => featuresAmenitiesData?.slice(index * 4, (index + 1) * 4),
   )
-
-  //console.log('Result: ' + result);
 
   return (
     <>

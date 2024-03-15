@@ -1,3 +1,7 @@
+import {
+  NumberField,
+  TelephoneField,
+} from '@nouance/payload-better-fields-plugin'
 import { CollectionConfig } from 'payload/types'
 import isAdminOrCreatedBy from '../../access/isCreatedBy'
 
@@ -8,67 +12,79 @@ const Properties: CollectionConfig = {
   },
   fields: [
     {
-      type: 'tabs', // required
+      type: 'tabs',
       tabs: [
         // Products Details
         {
-          name: 'propertiesDetails',
-          interfaceName: 'propertiesDetails',
-          label: 'Property details', // required
-          description: 'This will appear within the tab above the fields.',
+          name: '_propertyDetails',
+          interfaceName: 'PropertyDetails',
+          label: 'Property Details', // required
+          description: 'This tab is related to Property Details',
           fields: [
-            // required
             {
               name: 'title',
-              type: 'text',
               label: 'Property Title',
+              type: 'text',
+              required: true,
+              admin: {
+                description: 'Enter the Property Name',
+                placeholder: 'Enter the Property Name',
+              },
             },
-
             {
               name: 'description',
+              label: 'Property Description',
               type: 'textarea',
-              // Pass the Slate editor here and configure it accordingly
-              // editor: slateEditor({
-              //   admin: {
-              //     elements: [
-              //       // customize elements allowed in Slate editor here
-              //       'h2',
-              //       'h3',
-              //       'h4',
-              //       'link',
-              //       'blockquote',
-              //     ],
-              //     leaves: [
-              //       // customize leaves allowed in Slate editor here
-              //       'bold',
-              //       'italic',
-              //     ],
-              //   },
-              // }),
+              required: true,
+              admin: {
+                description: 'Enter the Property Description',
+                placeholder: 'Enter the Property Description',
+              },
             },
             {
               type: 'row',
               fields: [
                 {
-                  name: 'propertyType',
+                  name: 'type',
+                  label: 'Property Type',
                   type: 'select',
-                  //relationTo: ['propertyType'],
+                  options: ['apartment', 'villa', 'bungalow', 'office'],
                   hasMany: false,
-                  options: ['For sale', 'For rent'],
-                  label: 'Type',
+                  required: true,
+                  admin: {
+                    description: 'Contact the developer team to add new type',
+                  },
                 },
                 {
-                  name: 'status',
+                  name: 'saleType',
+                  label: 'Property Sale Type',
                   type: 'select',
+                  options: ['sale', 'rent'],
                   hasMany: true,
-                  options: ['For sale', 'For rent'],
-                  label: 'status',
+                  required: true,
                 },
-                {
-                  name: 'price',
-                  type: 'number',
-                  label: 'Price',
-                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                ...NumberField(
+                  {
+                    name: 'price',
+                    label: 'Property Price',
+                    required: true,
+                    admin: {
+                      description: 'Enter Price in Dollars',
+                      placeholder: 'Enter Price in Dollars',
+                    },
+                  },
+                  {
+                    prefix: '$ ',
+                    thousandSeparator: ',',
+                    decimalScale: 2,
+                    fixedDecimalScale: true,
+                  },
+                ),
               ],
             },
           ],
@@ -77,21 +93,23 @@ const Properties: CollectionConfig = {
 
         // Media Details
         {
-          name: 'media',
-
-          label: 'Property images', // required
-
-          interfaceName: 'media', // optional (`name` must be present)
+          name: '_assets',
+          label: 'Assets',
+          interfaceName: 'Assets',
           fields: [
-            // required
             {
-              name: 'propertyImages', // accessible via tabTwo.numberField
+              name: 'allMedia',
               type: 'array',
               fields: [
                 {
                   type: 'upload',
-                  name: 'image',
+                  name: 'asset',
+                  label: 'Asset',
                   relationTo: 'media',
+                  admin: {
+                    description:
+                      'You can upload any type of media e.g: images, videos',
+                  },
                 },
               ],
             },
@@ -100,50 +118,51 @@ const Properties: CollectionConfig = {
 
         // Locations Details
         {
-          name: 'location',
-          label: 'Location', // required
-          interfaceName: 'location', // optional (`name` must be present)
+          name: '_location',
+          label: 'Location',
+          interfaceName: 'Location',
           fields: [
-            // required
             {
-              name: 'location',
-              type: 'group',
-              interfaceName: 'Location',
+              name: 'address',
+              label: 'Address',
+              type: 'text',
+              required: true,
+              admin: {
+                description:
+                  'Enter complete address, it is used for locating your asset via google maps',
+              },
+            },
+            {
+              type: 'row',
               fields: [
                 {
-                  name: 'address',
+                  name: 'city',
+                  label: 'City',
                   type: 'text',
+                  required: true,
                 },
                 {
-                  name: 'maplocation',
+                  name: 'state',
+                  label: 'State',
                   type: 'text',
+                  required: true,
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'country',
+                  label: 'Country',
+                  type: 'text',
+                  required: true,
                 },
                 {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'city',
-                      type: 'text',
-                    },
-                    {
-                      name: 'state',
-                      type: 'text',
-                    },
-                    {
-                      name: 'country',
-                      type: 'text',
-                    },
-
-                    {
-                      name: 'zipcode',
-                      type: 'text',
-                    },
-                  ],
-                },
-                {
-                  name: 'locationPoints',
-                  type: 'point',
-                  label: 'Location',
+                  name: 'zipcode',
+                  label: 'Zip Code',
+                  type: 'text',
+                  required: true,
                 },
               ],
             },
@@ -152,7 +171,322 @@ const Properties: CollectionConfig = {
 
         //Nearby places
 
+        // Details
         {
+          name: '_details',
+          label: 'Details',
+          interfaceName: 'Details',
+          fields: [
+            {
+              name: 'available',
+              type: 'checkbox',
+              label: 'Available for Sale?',
+              admin: {
+                description:
+                  'Based upon the availability we will display whether it is in sale or sold status',
+              },
+              required: true,
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'yearBuild',
+                  type: 'number',
+                  label: 'Year Built',
+                  required: true,
+                  admin: {
+                    description: 'Enter the Year Built',
+                  },
+                },
+                {
+                  name: 'rooms',
+                  type: 'number',
+                  label: 'Rooms',
+                  required: true,
+                  admin: {
+                    description: 'Enter the number of Rooms',
+                  },
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'bathrooms',
+                  type: 'number',
+                  label: 'Bath Rooms',
+                  required: true,
+                  admin: {
+                    description: 'Enter the number of Bathrooms',
+                  },
+                },
+                {
+                  name: 'bedrooms',
+                  type: 'number',
+                  label: 'Bed Rooms',
+                  required: true,
+                  admin: {
+                    description: 'Enter the number of Bedrooms',
+                  },
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'garages',
+                  type: 'number',
+                  label: 'Garages',
+                  required: true,
+                  defaultValue: 0,
+                  admin: {
+                    description: 'Enter the number of Garages',
+                  },
+                },
+                {
+                  name: 'garagesSize',
+                  type: 'number',
+                  label: 'Garages Area',
+                  admin: {
+                    description: 'Enter the size of Garages',
+                  },
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'homearea',
+                  type: 'number',
+                  label: 'Home Area',
+                  admin: {
+                    description: 'Enter the size of Home Area',
+                  },
+                },
+                {
+                  name: 'lotarea',
+                  type: 'number',
+                  label: 'Lot Area',
+                  admin: {
+                    description: 'Enter the size of Lot Area',
+                  },
+                },
+              ],
+            },
+            {
+              name: 'material',
+              type: 'select',
+              label: 'Material',
+              options: ['Wood', 'Block', 'Brick', 'Rock'],
+              hasMany: false,
+              admin: {
+                description:
+                  'select the core material used for the construction',
+              },
+            },
+          ],
+        },
+
+        // User Details
+        {
+          name: '_owner',
+          label: 'Owner details',
+          interfaceName: 'owner',
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'name',
+                  type: 'text',
+                  label: 'Owner Name',
+                  required: true,
+                },
+                {
+                  name: 'email',
+                  type: 'email',
+                  label: 'Owner Email',
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                ...TelephoneField({
+                  name: 'mobileNumber',
+                  label: 'Owner Mobile Number',
+                  admin: {
+                    placeholder: '+1 2133 734 253',
+                  },
+                }),
+                ...TelephoneField({
+                  name: 'whatsAppNumber',
+                  label: "Owner's WhatsApp Number",
+                  admin: {
+                    placeholder: '+1 2133 734 253',
+                  },
+                }),
+              ],
+            },
+          ],
+        },
+
+        //Floors
+        {
+          name: '_floors',
+          label: 'Floors',
+          fields: [
+            {
+              name: 'floors',
+              type: 'array',
+              label: 'Floors',
+              minRows: 0,
+              maxRows: 100,
+              labels: {
+                singular: 'Floor',
+                plural: 'Floors',
+              },
+              fields: [
+                {
+                  name: 'floorImage',
+                  label: 'Floor Image',
+                  type: 'upload',
+                  relationTo: 'media',
+                },
+
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'floorRooms',
+                      type: 'number',
+                      label: 'Floor Rooms',
+                      required: true,
+                    },
+                    {
+                      name: 'floorBaths',
+                      type: 'number',
+                      label: 'Floor Bath',
+                      required: true,
+                    },
+                    {
+                      name: 'floorBeds',
+                      type: 'number',
+                      label: 'Floor Bed',
+                      required: true,
+                    },
+                  ],
+                },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'floorPrice',
+                      type: 'number',
+                      label: 'Floor Price',
+                      required: true,
+                    },
+                    {
+                      name: 'floorSize',
+                      type: 'number',
+                      label: 'Floor Size',
+                      required: true,
+                    },
+                  ],
+                },
+                {
+                  name: 'floorDescription',
+                  type: 'textarea',
+                  label: 'Floor Description',
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+
+        //Amenities
+        {
+          name: '_amenities',
+          label: 'Amenities', // required
+          fields: [
+            // required
+            {
+              name: 'amenities',
+              type: 'select',
+              label: 'Amenities',
+              hasMany: true,
+              options: [
+                'Attic',
+                'Basketball court',
+                'Air Conditioning',
+                'Lawn',
+                'Swimming Pool',
+                'Barbeque',
+                'Microwave',
+                'TV Cable',
+                'Dryer',
+                'Outdoor Shower',
+                'Washer',
+                'Gym',
+                'Ocean view',
+                'Private space',
+                'Lake view',
+                'Wine cellar',
+                'Front yard',
+                'Refrigerator',
+                'WiFi',
+                'Laundry',
+                'Sauna',
+              ],
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+
+    //user relationships
+    {
+      name: 'createdBy',
+      type: 'relationship',
+      relationTo: 'users',
+      admin: {
+        readOnly: true,
+        position: 'sidebar',
+        condition: data => Boolean(data?.createdBy),
+      },
+    },
+  ],
+  hooks: {
+    beforeChange: [
+      ({ req, operation, data }) => {
+        if (operation === 'create') {
+          if (req.user) {
+            data.createdBy = req.user.id
+            return data
+          }
+        }
+      },
+    ],
+  },
+  access: {
+    read: isAdminOrCreatedBy,
+    update: isAdminOrCreatedBy,
+    delete: isAdminOrCreatedBy,
+  },
+}
+
+export default Properties
+
+/*
+
+Near By Places
+ {
           name: 'Nearby_places',
           interfaceName: 'Nearby_places',
           label: 'Nearby places', // required
@@ -255,300 +589,4 @@ const Properties: CollectionConfig = {
           ],
         },
 
-        // Details
-
-        {
-          name: 'details',
-          label: 'Details', // required
-          interfaceName: 'details', // optional (`name` must be present)
-          fields: [
-            // required
-            {
-              name: 'details',
-              type: 'group',
-              interfaceName: 'Details',
-              fields: [
-                {
-                  name: 'label',
-                  type: 'select',
-                  options: ['Rented', 'Sold'],
-                  label: 'Label',
-                },
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'yearBuild',
-
-                      type: 'number',
-
-                      label: 'Year Built',
-                    },
-                    {
-                      name: 'rooms',
-                      type: 'number',
-
-                      label: 'Rooms',
-                    },
-                    {
-                      name: 'baths',
-                      type: 'number',
-
-                      label: 'Baths',
-                    },
-                    {
-                      name: 'beds',
-                      type: 'number',
-
-                      label: 'Beds',
-                    },
-                  ],
-                },
-
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'garages',
-
-                      type: 'number',
-
-                      label: 'Garages',
-                    },
-                    {
-                      name: 'garagesSize',
-
-                      type: 'number',
-
-                      label: 'Garages area',
-                    },
-                    {
-                      name: 'homearea',
-
-                      type: 'number',
-
-                      label: 'Home Area',
-                    },
-                    {
-                      name: 'lotarea',
-                      type: 'number',
-
-                      label: 'Lot Area',
-                    },
-                  ],
-                },
-                {
-                  name: 'material',
-                  type: 'select',
-
-                  label: 'Material',
-                  options: ['Wood', 'Block', 'Brick', 'Rock'],
-                  hasMany: false,
-                },
-              ],
-            },
-          ],
-        },
-
-        // User Details
-
-        {
-          name: 'owner',
-          label: 'Owner details', // required
-          // optional (`name` must be present)
-          interfaceName: 'owner',
-          fields: [
-            // required
-            {
-              name: 'userDetails',
-              type: 'group',
-              fields: [
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'userName',
-
-                      type: 'text',
-
-                      label: 'Name',
-                    },
-                    {
-                      name: 'phoneNumber',
-                      type: 'text',
-
-                      label: 'Phone Number',
-                    },
-                    {
-                      name: 'whatsAppNumber',
-                      type: 'text',
-
-                      label: 'Whats App',
-                    },
-                    {
-                      name: 'userEmail',
-                      type: 'text',
-
-                      label: 'Email',
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-
-        //Floors
-
-        {
-          name: 'floors',
-          label: 'Floors', // required
-          interfaceName: 'floors', // optional (`name` must be present)
-          fields: [
-            // required
-            {
-              name: 'floors', // required
-              type: 'array', // required
-              label: 'Floors',
-              minRows: 0,
-              maxRows: 100,
-              interfaceName: 'CardSlider', // optional
-              labels: {
-                singular: 'Floor',
-                plural: 'Floors',
-              },
-              fields: [
-                // required
-                {
-                  name: 'imageSrc',
-                  label: 'Floor image',
-                  type: 'upload',
-                  relationTo: 'media',
-                },
-
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'floorRooms',
-                      type: 'number',
-                      label: 'Rooms',
-                      required: true,
-                    },
-                    {
-                      name: 'floorBaths',
-                      type: 'number',
-                      label: 'Baths',
-                      required: true,
-                    },
-                    {
-                      name: 'floorBeds',
-                      type: 'number',
-                      label: 'Bedrooms',
-                      required: true,
-                    },
-                  ],
-                },
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'floorPrice',
-                      type: 'number',
-                      label: 'Price',
-                      required: true,
-                    },
-                    {
-                      name: 'floorSize',
-                      type: 'number',
-                      label: 'Size',
-                      required: true,
-                    },
-                  ],
-                },
-                {
-                  name: 'content',
-                  type: 'textarea',
-                  label: 'Content',
-                  required: true,
-                },
-              ],
-            },
-          ],
-        },
-
-        //Amenities
-        {
-          name: 'amenities',
-          label: 'Amenities', // required
-          interfaceName: 'amenities', // optional (`name` must be present)
-          fields: [
-            // required
-            {
-              name: 'amenities',
-              type: 'select',
-              hasMany: true,
-              label: 'Amenities',
-              options: [
-                'Attic',
-                'Basketball court',
-                'Air Conditioning',
-                'Lawn',
-                'Swimming Pool',
-                'Barbeque',
-                'Microwave',
-                'TV Cable',
-                'Dryer',
-                'Outdoor Shower',
-                'Washer',
-                'Gym',
-                'Ocean view',
-                'Private space',
-                'Lake view',
-                'Wine cellar',
-                'Front yard',
-                'Refrigerator',
-                'WiFi',
-                'Laundry',
-                'Sauna',
-              ],
-            },
-          ],
-        },
-      ],
-    },
-
-    //user relationships
-    {
-      name: 'createdBy',
-      type: 'relationship',
-      relationTo: 'users',
-      admin: {
-        readOnly: true,
-        position: 'sidebar',
-        condition: data => Boolean(data?.createdBy),
-      },
-    },
-  ],
-  hooks: {
-    beforeChange: [
-      ({ req, operation, data }) => {
-        console.log('test', req, operation, data)
-
-        if (operation === 'create') {
-          if (req.user) {
-            data.createdBy = req.user.id
-            return data
-          }
-        }
-      },
-    ],
-  },
-  access: {
-    read: isAdminOrCreatedBy,
-    update: isAdminOrCreatedBy,
-    delete: isAdminOrCreatedBy,
-  },
-}
-
-export default Properties
+*/

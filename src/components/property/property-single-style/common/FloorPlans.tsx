@@ -1,3 +1,4 @@
+import { Media, Property } from '@/payload-types'
 import Image from 'next/image'
 
 // const floorPlanData = [
@@ -30,11 +31,14 @@ import Image from 'next/image'
 //   },
 // ];
 
-const FloorPlans = ({ floorPlanData }: any) => {
-  console.log('floorPlans', floorPlanData)
+const FloorPlans = ({
+  floorPlanData,
+}: {
+  floorPlanData: Property['_floors']['floors']
+}) => {
   return (
     <div className='accordion' id='accordionExample'>
-      {floorPlanData?.map((floorPlan: any, index: any) => (
+      {floorPlanData?.map((floorPlan, index: number) => (
         <div
           className={`accordion-item ${index === 1 ? 'active' : ''}`}
           key={floorPlan.id}>
@@ -81,8 +85,11 @@ const FloorPlans = ({ floorPlanData }: any) => {
                 width={736}
                 height={544}
                 className='w-100 h-100 cover'
-                src={floorPlan?.imageSrc?.url}
-                alt={floorPlan?.imageSrc?.alt}
+                src={
+                  (floorPlan?.floorImage as Media)?.sizes?.floorImage
+                    ?.url as string
+                }
+                alt={(floorPlan?.floorImage as Media)?.alt as string}
               />
             </div>
           </div>

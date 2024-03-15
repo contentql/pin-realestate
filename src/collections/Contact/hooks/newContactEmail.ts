@@ -7,7 +7,6 @@ export const newContactEmail: CollectionAfterChangeHook = async ({
   doc,
   req,
 }) => {
-  // console.log('docas', doc)
   if (operation === OPERATION) {
     req.payload.sendEmail({
       to: doc.email,

@@ -20,7 +20,7 @@ export const PropertyValidator = z.object({
   garages: z.string(),
   garagesSize: z.string(),
   homearea: z.string(),
-  label: z.string(),
+  label: z.boolean(),
   latitude: z.string(),
   longitude: z.string(),
   lotarea: z.string(),
@@ -28,7 +28,7 @@ export const PropertyValidator = z.object({
   material: z.string(),
   price: z.string(),
   propertType: z.string(),
-  propertyStatus: z.string(),
+  propertySaleType: z.string(),
   rooms: z.string(),
   title: z.string(),
   yearBuild: z.string(),
@@ -39,35 +39,35 @@ export const PropertyValidator = z.object({
   ownerEmail: z.string(),
   floors: z.array(
     z.object({
-      content: z.string(),
+      floorDescription: z.string(),
       floorSize: z.string(),
       floorPrice: z.string(),
       floorBaths: z.string(),
       floorBeds: z.string(),
       floorRooms: z.string(),
-      imageSrc: z.any(),
-      image: z.any(),
+      floorImage: z.any(),
     }),
   ),
-  educations: z.array(
-    z.object({
-      name: z.string(),
-      distance: z.string(),
-    }),
-  ),
-  medicals: z.array(
-    z.object({
-      name: z.string(),
-      distance: z.string(),
-    }),
-  ),
-  transportations: z.array(
-    z.object({
-      name: z.string(),
-      distance: z.string(),
-    }),
-  ),
+  // educations: z.array(
+  //   z.object({
+  //     name: z.string(),
+  //     distance: z.string(),
+  //   }),
+  // ),
+  // medicals: z.array(
+  //   z.object({
+  //     name: z.string(),
+  //     distance: z.string(),
+  //   }),
+  // ),
+  // transportations: z.array(
+  //   z.object({
+  //     name: z.string(),
+  //     distance: z.string(),
+  //   }),
+
   // floorImage: z.string(),
+  assets: z.any(),
 })
 
 export type TPropertyValidator = z.infer<typeof PropertyValidator>

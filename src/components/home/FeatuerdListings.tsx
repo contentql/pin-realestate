@@ -1,5 +1,6 @@
 'use client'
-import listings from '@/data/listings'
+import { Media } from '@/payload-types'
+import { trpc } from '@/trpc/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navigation, Pagination } from 'swiper'
@@ -7,6 +8,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.min.css'
 
 const FeaturedListings = () => {
+  const { data: propertiesListData, isLoading } =
+    trpc.properties.getPropertiesForMyPropertiesPage.list.useQuery()
+
+  //console.log('Loading properties', propertiesListData)
   return (
     <>
       <Swiper
@@ -35,9 +40,8 @@ const FeaturedListings = () => {
           1200: {
             slidesPerView: 3,
           },
-        }}
-      >
-        {listings.slice(0, 5).map((listing: any) => (
+        }}>
+        {propertiesListData?.slice(0, 5).map(listing => (
           <SwiperSlide key={listing.id}>
             <div className='item'>
               <div className='listing-style1'>
@@ -46,11 +50,14 @@ const FeaturedListings = () => {
                     width={382}
                     height={248}
                     className='w-100 h-100 cover'
-                    src={listing.image}
+                    src={
+                      (listing?.media?.allMedia?.at(0)?.asset as Media)
+                        ?.url as string
+                    }
                     alt='listings'
                   />
                   <div className='sale-sticker-wrap'>
-                    {listing.forRent && (
+                    {listing?.status?.length - 1 && (
                       <div className='list-tag rounded-0 fz12'>
                         <span className='flaticon-electricity' />
                         FEATURED
@@ -58,34 +65,37 @@ const FeaturedListings = () => {
                     )}
                   </div>
                   <div className='list-price'>
-                    {listing.price} / <span>mo</span>
+                    {listing?.price} / <span>mo</span>
                   </div>
                 </div>
                 <div className='list-content'>
                   <h6 className='list-title'>
-                    <Link href={`/property/${listing.id}`}>
-                      {listing.title}
+                    <Link href={`/properties/${listing.id}`}>
+                      {listing?.title}
                     </Link>
                   </h6>
-                  <p className='list-text'>{listing.location}</p>
+                  <p className='list-text'>{listing?.location}</p>
                   <div className='list-meta d-flex align-items-center'>
-                    <span className='flaticon-bed' /> {listing.bed} bed
-                    <span className='flaticon-shower' /> {listing.bath} bath
-                    <span className='flaticon-expand' /> {listing.sqft} sqft
+                    <span className='flaticon-bed' />{' '}
+                    {listing?.details?.bedrooms} bed
+                    <span className='flaticon-shower' />{' '}
+                    {listing?.details?.bathrooms} bath
+                    <span className='flaticon-expand' />{' '}
+                    {listing?.details?.homearea} sqft
                   </div>
                   <hr className='mt-2 mb-2' />
                   <div className='list-meta2 d-flex justify-content-between align-items-center'>
                     <span className='for-what'>For Rent</span>
                     <div className='icons d-flex align-items-center'>
-                      <a href='#'>
+                      <div className='mr10'>
                         <span className='flaticon-fullscreen' />
-                      </a>
-                      <a href='#'>
+                      </div>
+                      <div className='mr10'>
                         <span className='flaticon-new-tab' />
-                      </a>
-                      <a href='#'>
+                      </div>
+                      <div className='mr10'>
                         <span className='flaticon-like' />
-                      </a>
+                      </div>
                     </div>
                   </div>
                 </div>

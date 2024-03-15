@@ -6,23 +6,6 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardSlider".
- */
-export type CardSlider =
-  | {
-      imageSrc?: string | Media | null;
-      floorRooms: number;
-      floorBaths: number;
-      floorBeds: number;
-      floorPrice: number;
-      floorSize: number;
-      content: string;
-      id?: string | null;
-    }[]
-  | null;
-
 export interface Config {
   collections: {
     users: User;
@@ -123,6 +106,118 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
+    userProfileCircleImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    userTestimonialImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    propertyImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    featuredPropertyImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    agentImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    aboutHeroImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    aboutImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    aboutLearnMoreImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    myPropertyImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    propertyGalleryImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    floorImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    propertyAgentImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    userPropertyReviewImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    reviewPropertyImage?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
   };
 }
 /**
@@ -131,129 +226,88 @@ export interface Media {
  */
 export interface Property {
   id: string;
-  propertiesDetails: {
-    title?: string | null;
-    description?: string | null;
-    propertyType?: ('For sale' | 'For rent') | null;
-    status?: ('For sale' | 'For rent')[] | null;
-    price?: number | null;
+  _propertyDetails: {
+    title: string;
+    description: string;
+    type: 'apartment' | 'villa' | 'bungalow' | 'office';
+    saleType: ('sale' | 'rent')[];
+    price: number;
   };
-  media: {
-    propertyImages?:
+  _assets: {
+    allMedia?:
       | {
-          image?: string | Media | null;
+          asset?: string | Media | null;
           id?: string | null;
         }[]
       | null;
   };
-  location: {
-    location?: Location;
+  _location: {
+    address: string;
+    city: string;
+    state: string;
+    country: string;
+    zipcode: string;
   };
-  Nearby_places: {
-    education: {
-      education?:
-        | {
-            name?: string | null;
-            distance?: string | null;
-            id?: string | null;
-          }[]
-        | null;
-    };
-    medical: {
-      medical?:
-        | {
-            name?: string | null;
-            Distance?: string | null;
-            id?: string | null;
-          }[]
-        | null;
-    };
-    transportation: {
-      transportation?:
-        | {
-            name?: string | null;
-            Distance?: string | null;
-            id?: string | null;
-          }[]
-        | null;
-    };
+  _details: {
+    available: boolean;
+    yearBuild: number;
+    rooms: number;
+    bathrooms: number;
+    bedrooms: number;
+    garages: number;
+    garagesSize?: number | null;
+    homearea?: number | null;
+    lotarea?: number | null;
+    material?: ('Wood' | 'Block' | 'Brick' | 'Rock') | null;
   };
-  details: {
-    details?: Details;
+  _owner: {
+    name: string;
+    email?: string | null;
+    mobileNumber?: string | null;
+    whatsAppNumber?: string | null;
   };
-  owner: {
-    userDetails?: {
-      userName?: string | null;
-      phoneNumber?: string | null;
-      whatsAppNumber?: string | null;
-      userEmail?: string | null;
-    };
-  };
-  floors: {
-    floors?: CardSlider;
-  };
-  amenities: {
-    amenities?:
-      | (
-          | 'Attic'
-          | 'Basketball court'
-          | 'Air Conditioning'
-          | 'Lawn'
-          | 'Swimming Pool'
-          | 'Barbeque'
-          | 'Microwave'
-          | 'TV Cable'
-          | 'Dryer'
-          | 'Outdoor Shower'
-          | 'Washer'
-          | 'Gym'
-          | 'Ocean view'
-          | 'Private space'
-          | 'Lake view'
-          | 'Wine cellar'
-          | 'Front yard'
-          | 'Refrigerator'
-          | 'WiFi'
-          | 'Laundry'
-          | 'Sauna'
-        )[]
+  _floors: {
+    floors?:
+      | {
+          floorImage?: string | Media | null;
+          floorRooms: number;
+          floorBaths: number;
+          floorBeds: number;
+          floorPrice: number;
+          floorSize: number;
+          floorDescription: string;
+          id?: string | null;
+        }[]
       | null;
   };
+  _amenities: {
+    amenities: (
+      | 'Attic'
+      | 'Basketball court'
+      | 'Air Conditioning'
+      | 'Lawn'
+      | 'Swimming Pool'
+      | 'Barbeque'
+      | 'Microwave'
+      | 'TV Cable'
+      | 'Dryer'
+      | 'Outdoor Shower'
+      | 'Washer'
+      | 'Gym'
+      | 'Ocean view'
+      | 'Private space'
+      | 'Lake view'
+      | 'Wine cellar'
+      | 'Front yard'
+      | 'Refrigerator'
+      | 'WiFi'
+      | 'Laundry'
+      | 'Sauna'
+    )[];
+  };
+  createdBy?: (string | null) | User;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Location".
- */
-export interface Location {
-  address?: string | null;
-  maplocation?: string | null;
-  city?: string | null;
-  state?: string | null;
-  country?: string | null;
-  zipcode?: string | null;
-  /**
-   * @minItems 2
-   * @maxItems 2
-   */
-  locationPoints?: [number, number] | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Details".
- */
-export interface Details {
-  label?: ('Rented' | 'Sold') | null;
-  yearBuild?: number | null;
-  rooms?: number | null;
-  baths?: number | null;
-  beds?: number | null;
-  garages?: number | null;
-  garagesSize?: number | null;
-  homearea?: number | null;
-  lotarea?: number | null;
-  material?: ('Wood' | 'Block' | 'Brick' | 'Rock') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

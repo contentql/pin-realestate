@@ -1,9 +1,11 @@
-const PropertyAddress = ({ address }: any) => {
+import { Property } from '@/payload-types'
+
+const PropertyAddress = ({ address }: { address: Property['_location'] }) => {
   console.log('PropertyAddress', address)
   const truncatedAddress =
-    address?.location?.address && address?.location?.address.length > 50
-      ? `${address?.location?.address.substring(0, 50)}...`
-      : address?.location?.address
+    address?.address && address?.address.length > 50
+      ? `${address?.address.substring(0, 50)}...`
+      : address?.address
 
   return (
     <>
@@ -16,8 +18,8 @@ const PropertyAddress = ({ address }: any) => {
           </div>
           <div className='pd-list'>
             <p className='text mb10'>{truncatedAddress}</p>
-            <p className='text mb10'>{address?.location?.city}</p>
-            <p className='text mb-0'>{address?.location?.country}</p>
+            <p className='text mb10'>{address?.city}</p>
+            <p className='text mb-0'>{address?.country}</p>
           </div>
         </div>
       </div>
@@ -28,9 +30,9 @@ const PropertyAddress = ({ address }: any) => {
         <iframe
           className='position-relative bdrs12 mt30 h250'
           loading='lazy'
-          src={`https://maps.google.com/maps?q=${address?.location?.address}&t=m&z=14&output=embed&iwloc=near`}
-          title={address?.location?.address}
-          aria-label={address?.location?.address}
+          src={`https://maps.google.com/maps?q=${address?.address}&t=m&z=14&output=embed&iwloc=near`}
+          title={address?.address}
+          aria-label={address?.address}
         />
       </div>
       {/* End col */}

@@ -2,50 +2,46 @@ import { Property } from '@/payload-types'
 
 const PropertyDetails = ({ data }: { data: Property }) => {
   const status =
-    data?.propertiesDetails.status?.length == 0
-      ? data?.propertiesDetails?.status[0]
-      : data?.propertiesDetails?.status &&
-        data?.propertiesDetails?.status.join(' and ')
+    data?._propertyDetails.saleType?.length == 0
+      ? data?._propertyDetails.saleType[0]
+      : data?._propertyDetails.saleType &&
+        data?._propertyDetails.saleType.join(' and ')
 
   const columns = [
     [
       {
-        label: 'Property ID',
-        value: data?.id,
-      },
-      {
         label: 'Price',
-        value: data?.propertiesDetails?.price,
+        value: data?._propertyDetails?.price,
       },
       {
         label: 'Property Size',
-        value: data?.details?.details?.homearea + ' sqft',
+        value: data?._details?.homearea + ' sqft',
       },
       {
         label: 'Bathrooms',
-        value: data?.details?.details?.baths,
+        value: data?._details?.bathrooms,
       },
       {
         label: 'Bedrooms',
-        value: data?.details?.details?.beds,
+        value: data?._details?.bedrooms,
+      },
+      {
+        label: 'Garage',
+        value: data?._details?.garages,
       },
     ],
     [
       {
-        label: 'Garage',
-        value: data?.details?.details?.garages,
-      },
-      {
         label: 'Garage Size',
-        value: data?.details?.details?.garagesSize + ' sqft',
+        value: data?._details?.garagesSize + ' sqft',
       },
       {
         label: 'Year Built',
-        value: data?.details?.details?.yearBuild,
+        value: data?._details?.yearBuild,
       },
       {
         label: 'Property Type',
-        value: data?.propertiesDetails?.propertyType,
+        value: data?._propertyDetails?.type,
       },
       {
         label: 'Property Status',
@@ -53,8 +49,6 @@ const PropertyDetails = ({ data }: { data: Property }) => {
       },
     ],
   ]
-
-  console.log('Details: ', columns)
 
   return (
     <div className='row'>
