@@ -67,7 +67,7 @@ export const authRouter = router({
       const payload = await getPayloadClient()
 
       try {
-        await payload.update({
+        const res = await payload.update({
           collection: 'users',
           id: user.id,
           data: {
@@ -88,12 +88,12 @@ export const authRouter = router({
           },
         })
 
-        // await payload.delete({
-        //   collection: 'media',
-        //   id: (ctx.user.profile_pic as Media).id,
-        // })
+        await payload.delete({
+          collection: 'media',
+          id: (ctx.user.profile_pic as Media).id as string,
+        })
 
-        return { succuss: true }
+        return { succuss: res }
       } catch (err) {
         console.error(err)
         throw new TRPCError({ code: 'UNAUTHORIZED' })

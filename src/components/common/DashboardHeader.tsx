@@ -2,15 +2,17 @@
 
 import MainMenu from '@/components/common/MainMenu'
 import SidebarPanel from '@/components/common/sidebar-panel'
+import { Media } from '@/payload-types'
+import { useAuth } from '@/providers/Auth'
 import { logout } from '@/query/auth/logout'
 import { useMutation } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import UserImage from '/public/images/resource/user.png'
 
 const DashboardHeader = () => {
+  const { user } = useAuth()
   const router = useRouter()
   const pathname = usePathname()
 
@@ -172,7 +174,12 @@ const DashboardHeader = () => {
                           <Image
                             width={44}
                             height={44}
-                            src={UserImage}
+                            src={
+                              (user?.profile_pic as Media)?.sizes
+                                ?.userProfileCircleImage?.url ||
+                              '/images/resource/user.png'
+                            }
+                            style={{ borderRadius: '50%' }}
                             alt='user.png'
                           />
                         </a>

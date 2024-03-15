@@ -3,7 +3,6 @@ import { Media } from '@/payload-types'
 async function uploadMedia(files: FileList | null): Promise<Media | undefined> {
   const formData = new FormData()
   if (!files) {
-    alert('Please select a file first.')
     return undefined
   }
 

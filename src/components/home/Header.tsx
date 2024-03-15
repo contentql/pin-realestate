@@ -3,6 +3,7 @@
 import MainMenu from '@/components/common/MainMenu'
 import LoginSignupModal from '@/components/common/login-signup-modal'
 import SidebarPanel from '@/components/common/sidebar-panel'
+import { Media } from '@/payload-types'
 import { useAuth } from '@/providers/Auth'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -158,7 +159,12 @@ const Header = () => {
                                 <Image
                                   width={44}
                                   height={44}
-                                  src='/images/resource/user.png'
+                                  src={
+                                    (user?.profile_pic as Media)?.sizes
+                                      ?.userProfileCircleImage?.url ||
+                                    '/images/resource/user.png'
+                                  }
+                                  style={{ borderRadius: '50%' }}
                                   alt='user.png'
                                 />
                               </a>

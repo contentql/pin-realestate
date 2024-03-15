@@ -3,15 +3,16 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 
-const ProfileBox = ({ register }: any) => {
-  const [uploadedImage, setUploadedImage] = useState(null)
-
+const ProfileBox = ({ register, setUploadedImage, uploadedImage }: any) => {
+  const [previewImage, setPreviewImage] = useState<any>()
   const handleUpload = (event: any) => {
     const file = event.target.files[0]
+    console.log(`Uploading:`, event.target.files)
+    setUploadedImage(event.target.files)
     if (file) {
       const reader = new FileReader()
       reader.onload = (e: any) => {
-        setUploadedImage(e.target.result)
+        setPreviewImage(e.target.result)
       }
       reader.readAsDataURL(file)
     }
@@ -24,15 +25,16 @@ const ProfileBox = ({ register }: any) => {
           width={240}
           height={220}
           className='w-100 cover h-100'
-          src={uploadedImage || '/images/listings/profile-1.jpg'}
+          src={previewImage || '/images/listings/profile-1.jpg'}
           alt='profile avatar'
         />
 
         <button
           className='tag-del'
+          type='button'
           style={{ border: 'none' }}
           data-tooltip-id='profile_del'
-          onClick={() => setUploadedImage(null)}>
+          onClick={() => setPreviewImage(null)}>
           <span className='fas fa-trash-can' />
         </button>
 
@@ -45,7 +47,7 @@ const ProfileBox = ({ register }: any) => {
           <input
             type='file'
             accept='image/jpeg,image/png'
-            {...register('profile_pic')}
+            onChange={handleUpload}
             style={{ display: 'none' }}
           />
           <div className='ud-btn btn-white2 mb30'>

@@ -10,10 +10,11 @@ import {
   TUserProfileValidator,
   UserProfileValidator,
 } from '@/lib/validators/auth-router/user-profile-validator'
+import { useAuth } from '@/providers/Auth'
 import { trpc } from '@/trpc/client'
 import uploadMedia from '@/utilis/uploadMedia'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { ZodError } from 'zod'
@@ -23,6 +24,7 @@ export const metadata = {
 }
 
 const DashboardMyProfileView = () => {
+  const { setUser } = useAuth()
   const {
     register,
     handleSubmit,
@@ -31,6 +33,8 @@ const DashboardMyProfileView = () => {
   } = useForm<TUserProfileValidator>({
     resolver: zodResolver(UserProfileValidator),
   })
+
+  const [uploadedImage, setUploadedImage] = useState<any>()
 
   useEffect(() => {
     console.log('User profile validator:', errors)
@@ -53,16 +57,19 @@ const DashboardMyProfileView = () => {
 
       console.error('Something went wrong. Please try again.')
     },
-    onSuccess: () => {
+    onSuccess: data => {
+      setUploadedImage(null)
+      setUser(data.succuss)
       toast.success('Details updated')
     },
   })
 
   const onSubmit = async (data: TUserProfileValidator) => {
     console.log('onSubmit', !!data.profile_pic)
+    console.log('Image', uploadedImage)
     try {
-      if (data.profile_pic !== undefined) {
-        const doc = await uploadMedia(data.profile_pic)
+      if (uploadedImage !== undefined) {
+        const doc = await uploadMedia(uploadedImage)
         data.profile_pic = doc?.id
       }
 
@@ -111,7 +118,11 @@ const DashboardMyProfileView = () => {
                   <div className='col-xl-12'>
                     <div className='ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative'>
                       <div className='col-xl-7'>
-                        <ProfileBox register={register} />
+                        <ProfileBox
+                          register={register}
+                          uploadedImage={uploadedImage}
+                          setUploadedImage={setUploadedImage}
+                        />
                       </div>
                       {/* End ProfileBox */}
 
