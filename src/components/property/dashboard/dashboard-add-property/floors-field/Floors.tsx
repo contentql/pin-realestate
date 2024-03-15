@@ -15,7 +15,7 @@ const Floors = ({ register }: any) => {
   return (
     <div className='form-style1'>
       {floorFields.map((field: any, index: number) => (
-        <div key={field.id} className='row'>
+        <div key={field.id} className='row relative'>
           <div className='col-sm-6 col-xl-4'>
             <div className='mb20'>
               <label className='heading-color ff-heading fw600 mb10'>
@@ -134,10 +134,10 @@ const Floors = ({ register }: any) => {
             </div>
           </div>
           {/* End .col-4 */}
-          <div className='col-sm-4 col-xl-5'>
+          <div className='col-sm-4 col-xl-5 right-corner mb10'>
             <button
               type='button'
-              className='ud-btn2 right-center btn-thm btn-thm-border btn-dark  mb10'
+              className='custom-btn btn-thm3 btn-dark '
               onClick={() => removeFloor(index)}>
               Remove
             </button>

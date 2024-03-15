@@ -1,9 +1,9 @@
 'use client'
-import { Tooltip as ReactTooltip } from 'react-tooltip'
-import React, { useState } from 'react'
 import Image from 'next/image'
+import { useState } from 'react'
+import { Tooltip as ReactTooltip } from 'react-tooltip'
 
-const ProfileBox = () => {
+const ProfileBox = ({ register }: any) => {
   const [uploadedImage, setUploadedImage] = useState(null)
 
   const handleUpload = (event: any) => {
@@ -32,8 +32,7 @@ const ProfileBox = () => {
           className='tag-del'
           style={{ border: 'none' }}
           data-tooltip-id='profile_del'
-          onClick={() => setUploadedImage(null)}
-        >
+          onClick={() => setUploadedImage(null)}>
           <span className='fas fa-trash-can' />
         </button>
 
@@ -46,7 +45,7 @@ const ProfileBox = () => {
           <input
             type='file'
             accept='image/jpeg,image/png'
-            onChange={handleUpload}
+            {...register('profile_pic')}
             style={{ display: 'none' }}
           />
           <div className='ud-btn btn-white2 mb30'>
