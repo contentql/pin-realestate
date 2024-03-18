@@ -106,8 +106,7 @@ const Header = () => {
       <header
         className={`header-nav nav-homepage-style at-home5 main-menu  ${
           navbar ? 'sticky slideInDown animated' : ''
-        }`}
-      >
+        }`}>
         <nav className='posr'>
           <div className='container posr menu_bdrt1'>
             <div className='row align-items-center justify-content-between'>
@@ -145,8 +144,7 @@ const Header = () => {
                     <>
                       <Link
                         className='ud-btn add-property menu-btn bdrs12 mx-2 mx-xl-4'
-                        href='/dashboard/add-property'
-                      >
+                        href='/dashboard/add-property'>
                         Add Property
                         <i className='fal fa-arrow-right-long' />
                       </Link>
@@ -157,8 +155,7 @@ const Header = () => {
                               <a
                                 className='btn'
                                 href='#'
-                                data-bs-toggle='dropdown'
-                              >
+                                data-bs-toggle='dropdown'>
                                 <Image
                                   width={44}
                                   height={44}
@@ -178,8 +175,7 @@ const Header = () => {
                                       <p
                                         className={`fz15 fw400 ff-heading ${
                                           sectionIndex === 0 ? 'mb20' : 'mt30'
-                                        }`}
-                                      >
+                                        }`}>
                                         {section.title}
                                       </p>
                                       {section.items.map((item, itemIndex) => (
@@ -190,8 +186,7 @@ const Header = () => {
                                               ? '-is-active'
                                               : ''
                                           } `}
-                                          href={item.href}
-                                        >
+                                          href={item.href}>
                                           <i className={`${item.icon} mr10`} />
                                           {item.text}
                                         </Link>
@@ -215,14 +210,13 @@ const Header = () => {
                     <a
                       href='/login'
                       className='login-info d-flex align-items-center mr30'
-                      role='button'
-                    >
+                      role='button'>
                       <i className='far fa-user-circle fz16 me-2' />{' '}
                       <span>Login / register</span>
                     </a>
                   )}
 
-                  <a
+                  {/* <a
                     className='sidemenu-btn filter-btn-right'
                     href='#'
                     data-bs-toggle='offcanvas'
@@ -244,7 +238,7 @@ const Header = () => {
                       src='/images/icon/nav-icon-dark.svg'
                       alt='humberger menu'
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
               {/* End .col-auto */}
@@ -262,8 +256,7 @@ const Header = () => {
           id='loginSignupModal'
           tabIndex={-1}
           aria-labelledby='loginSignupModalLabel'
-          aria-hidden='true'
-        >
+          aria-hidden='true'>
           <div className='modal-dialog  modal-dialog-scrollable modal-dialog-centered'>
             <LoginSignupModal />
           </div>
@@ -276,8 +269,7 @@ const Header = () => {
         className='offcanvas offcanvas-end'
         tabIndex={-1}
         id='SidebarPanel'
-        aria-labelledby='SidebarPanelLabel'
-      >
+        aria-labelledby='SidebarPanelLabel'>
         <SidebarPanel />
       </div>
       {/* Sidebar Panel End */}

@@ -135,8 +135,7 @@ const DefaultHeader = () => {
       <header
         className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${
           navbar ? 'sticky slideInDown animated' : ''
-        }`}
-      >
+        }`}>
         <nav className='posr'>
           <div className='container posr menu_bdrt1'>
             <div className='row align-items-center justify-content-between'>
@@ -170,94 +169,93 @@ const DefaultHeader = () => {
 
               <div className='col-auto'>
                 <div className='d-flex align-items-center'>
-                  {status === 'loggedOut' && (
+                  {status !== 'loggedIn' ? (
                     <a
                       href='/login'
                       className='login-info d-flex align-items-center'
-                      role='button'
-                    >
+                      role='button'>
                       <i className='far fa-user-circle fz16 me-2' />{' '}
                       <span className='d-none d-xl-block'>
                         Login / Register
                       </span>
                     </a>
-                  )}
-                  <Link
-                    className='ud-btn btn-white add-property bdrs60 mx-2 mx-xl-4'
-                    href='/dashboard/add-property'
-                  >
-                    Add Property
-                    <i className='fal fa-arrow-right-long' />
-                  </Link>
-                  <>
-                    <div className='mr10 text-center text-lg-end header_right_widgets'>
-                      <ul className='mb0 d-flex justify-content-center justify-content-sm-end p-0'>
-                        <li className=' user_setting'>
-                          <div className='dropdown'>
-                            <a
-                              className='btn'
-                              href='#'
-                              data-bs-toggle='dropdown'
-                            >
-                              <Image
-                                width={44}
-                                height={44}
-                                src={
-                                  (user?.profile_pic as Media)?.sizes
-                                    ?.userProfileCircleImage?.url ||
-                                  '/images/resource/user.png'
-                                }
-                                style={{ borderRadius: '50%' }}
-                                alt='user.png'
-                              />
-                            </a>
-                            <div className='dropdown-menu'>
-                              <div className='user_setting_content'>
-                                {menuItems.map((section, sectionIndex) => (
-                                  <div key={sectionIndex}>
-                                    <p
-                                      className={`fz15 fw400 ff-heading ${
-                                        sectionIndex === 0 ? 'mb20' : 'mt30'
-                                      }`}
-                                    >
-                                      {section.title}
-                                    </p>
-                                    {section.items.map((item, itemIndex) => (
-                                      <Link
-                                        key={itemIndex}
-                                        className={`dropdown-item ${
-                                          pathname == item.href
-                                            ? '-is-active'
-                                            : ''
-                                        } `}
-                                        href={item.href}
-                                      >
-                                        <i className={`${item.icon} mr10`} />
-                                        {item.text}
-                                      </Link>
+                  ) : (
+                    <>
+                      <Link
+                        className='ud-btn btn-white add-property bdrs60 mx-2 mx-xl-4'
+                        href='/dashboard/add-property'>
+                        Add Property
+                        <i className='fal fa-arrow-right-long' />
+                      </Link>
+                      <>
+                        <div className='mr10 text-center text-lg-end header_right_widgets'>
+                          <ul className='mb0 d-flex justify-content-center justify-content-sm-end p-0'>
+                            <li className=' user_setting'>
+                              <div className='dropdown'>
+                                <div className='btn' data-bs-toggle='dropdown'>
+                                  <Image
+                                    width={44}
+                                    height={44}
+                                    src={
+                                      ((user?.profile_pic as Media)?.sizes
+                                        ?.userProfileCircleImage
+                                        ?.url as string) ||
+                                      '/images/resource/user.png'
+                                    }
+                                    style={{ borderRadius: '50%' }}
+                                    alt='user.png'
+                                  />
+                                </div>
+                                <div className='dropdown-menu'>
+                                  <div className='user_setting_content'>
+                                    {menuItems.map((section, sectionIndex) => (
+                                      <div key={sectionIndex}>
+                                        <p
+                                          className={`fz15 fw400 ff-heading ${
+                                            sectionIndex === 0 ? 'mb20' : 'mt30'
+                                          }`}>
+                                          {section.title}
+                                        </p>
+                                        {section.items.map(
+                                          (item, itemIndex) => (
+                                            <Link
+                                              key={itemIndex}
+                                              className={`dropdown-item ${
+                                                pathname == item.href
+                                                  ? '-is-active'
+                                                  : ''
+                                              } `}
+                                              href={item.href}>
+                                              <i
+                                                className={`${item.icon} mr10`}
+                                              />
+                                              {item.text}
+                                            </Link>
+                                          ),
+                                        )}
+                                      </div>
                                     ))}
+                                    <div onClick={handleLogout}>
+                                      <Link className='dropdown-item' href='#'>
+                                        <i className='flaticon-logout mr10' />
+                                        Logouttt
+                                      </Link>
+                                    </div>
                                   </div>
-                                ))}
-                                <div onClick={handleLogout}>
-                                  <Link className='dropdown-item' href='#'>
-                                    <i className='flaticon-logout mr10' />
-                                    Logout
-                                  </Link>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </>
-                  <a
+                            </li>
+                          </ul>
+                        </div>
+                      </>
+                    </>
+                  )}
+                  {/* <a
                     className='sidemenu-btn filter-btn-right'
                     href='#'
                     data-bs-toggle='offcanvas'
                     data-bs-target='#SidebarPanel'
-                    aria-controls='SidebarPanelLabel'
-                  >
+                    aria-controls='SidebarPanelLabel'>
                     <Image
                       width={25}
                       height={9}
@@ -272,7 +270,7 @@ const DefaultHeader = () => {
                       src='/images/dark-nav-icon.svg'
                       alt='humberger menu'
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
               {/* End .col-auto */}
@@ -290,8 +288,7 @@ const DefaultHeader = () => {
           id='loginSignupModal'
           tabIndex={-1}
           aria-labelledby='loginSignupModalLabel'
-          aria-hidden='true'
-        >
+          aria-hidden='true'>
           <div className='modal-dialog  modal-dialog-scrollable modal-dialog-centered'>
             <LoginSignupModal />
           </div>
@@ -304,8 +301,7 @@ const DefaultHeader = () => {
         className='offcanvas offcanvas-end'
         tabIndex={-1}
         id='SidebarPanel'
-        aria-labelledby='SidebarPanelLabel'
-      >
+        aria-labelledby='SidebarPanelLabel'>
         <SidebarPanel />
       </div>
       {/* Sidebar Panel End */}

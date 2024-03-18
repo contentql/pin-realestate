@@ -12,6 +12,8 @@ import Properties from './collections/Properties'
 import PropertyType from './collections/PropertyType'
 import Tags from './collections/Tags'
 import Users from './collections/Users'
+import Icon from './components/payload-icons/Icon'
+import Logo from './components/payload-icons/Logo'
 import { s3StorageAdapter } from './plugins/s3'
 import {
   generateDescription,
@@ -45,6 +47,14 @@ export default buildConfig({
     },
     meta: {
       titleSuffix: '- ContentQL',
+      favicon: '/images/apple-touch-icon-60x60.png',
+      ogImage: '/images/apple-touch-icon-60x60.png',
+    },
+    components: {
+      graphics: {
+        Logo: Logo,
+        Icon: Icon,
+      },
     },
   },
   rateLimit: {
@@ -69,6 +79,7 @@ export default buildConfig({
       generateDescription: generateDescription,
       generateImage: generateImage,
       generateURL: generateURL,
+      tabbedUI: true,
     }),
   ],
   typescript: {
