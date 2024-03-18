@@ -306,6 +306,11 @@ export interface Property {
     )[];
   };
   createdBy?: (string | null) | User;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: string | Media | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
