@@ -218,7 +218,8 @@ export default function ListingMap1() {
           mapContainerStyle={containerStyle}
           center={center}
           zoom={4}
-          options={option}>
+          options={option}
+        >
           <MarkerClusterer>
             {/* @ts-expect-error TODO: */}
             {clusterer => {
@@ -243,7 +244,8 @@ export default function ListingMap1() {
                 lat: getLocation.lat,
                 lng: getLocation.long,
               }}
-              onCloseClick={closeCardHandler}>
+              onCloseClick={closeCardHandler}
+            >
               <div>
                 <div className='listing-style1'>
                   <div className='list-thumb'>

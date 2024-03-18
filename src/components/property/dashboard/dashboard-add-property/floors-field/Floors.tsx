@@ -138,7 +138,8 @@ const Floors = ({ register }: any) => {
             <button
               type='button'
               className='custom-btn btn-thm3 btn-dark '
-              onClick={() => removeFloor(index)}>
+              onClick={() => removeFloor(index)}
+            >
               Remove
             </button>
           </div>
@@ -157,7 +158,8 @@ const Floors = ({ register }: any) => {
             floorRooms: '',
             imageSrc: '',
           })
-        }>
+        }
+      >
         Add Floor
       </button>
       {/* End .row */}

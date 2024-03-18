@@ -112,7 +112,8 @@ const PropertyDescription = ({ register }: any) => {
             <div className='location-area'>
               <select
                 className='form-control'
-                {...register('propertySaleType')}>
+                {...register('propertySaleType')}
+              >
                 {PropertyStatus.map((ele, id) => (
                   <option key={id} value={ele.value}>
                     {ele.label}

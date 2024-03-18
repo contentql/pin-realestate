@@ -34,7 +34,8 @@ const ProfileBox = ({ register, setUploadedImage, uploadedImage }: any) => {
           type='button'
           style={{ border: 'none' }}
           data-tooltip-id='profile_del'
-          onClick={() => setPreviewImage(null)}>
+          onClick={() => setPreviewImage(null)}
+        >
           <span className='fas fa-trash-can' />
         </button>
 

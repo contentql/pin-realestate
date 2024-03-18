@@ -124,7 +124,8 @@ const PropertyDataTable = () => {
                 <button
                   className='icon'
                   style={{ border: 'none' }}
-                  data-tooltip-id={`edit-${property.id}`}>
+                  data-tooltip-id={`edit-${property.id}`}
+                >
                   <span className='fas fa-pen fa' />
                 </button>
                 <button
@@ -133,7 +134,8 @@ const PropertyDataTable = () => {
                   data-tooltip-id={`delete-${property.id}`}
                   onClick={() => {
                     handleDeleteProperty(property.id)
-                  }}>
+                  }}
+                >
                   <span className='flaticon-bin' />
                 </button>
 

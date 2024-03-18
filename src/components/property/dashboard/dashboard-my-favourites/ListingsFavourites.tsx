@@ -37,7 +37,8 @@ const ListingsFavourites = () => {
                   title='Delete Item'
                   onClick={() => handleDeleteListing(listing.id)}
                   style={{ border: 'none' }}
-                  data-tooltip-id={`delete-${listing.id}`}>
+                  data-tooltip-id={`delete-${listing.id}`}
+                >
                   <span className='fas fa-trash-can'></span>
                 </button>
 

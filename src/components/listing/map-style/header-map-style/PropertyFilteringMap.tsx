@@ -269,7 +269,8 @@ export default function PropertyFilteringMap() {
             id='advanceSeachModal'
             tabIndex={-1}
             aria-labelledby='advanceSeachModalLabel'
-            aria-hidden='true'>
+            aria-hidden='true'
+          >
             <AdvanceFilterModal filterFunctions={filterFunctions} />
           </div>
         </div>
@@ -319,7 +320,8 @@ export default function PropertyFilteringMap() {
                   data-bs-toggle='offcanvas'
                   href='#listingSidebarFilter'
                   role='button'
-                  aria-controls='listingSidebarFilter'>
+                  aria-controls='listingSidebarFilter'
+                >
                   <span className='flaticon-settings' /> Filter
                 </a>
               </div>

@@ -20,7 +20,8 @@ const PropertyHeader = ({ data }: { data: Property }) => {
             </p>
             <a
               className='ff-heading text-thm fz15 bdrr1 pr10 ml0-sm ml10 bdrrn-sm'
-              href='#'>
+              href='#'
+            >
               <i className='fas fa-circle fz10 pe-2' />
               {propertyType}
             </a>
