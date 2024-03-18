@@ -72,7 +72,8 @@ const SelectMultiField = ({ register }: any) => {
             <div className='location-area'>
               <select
                 className='form-control'
-                {...register(fieldTitles[index])}>
+                {...register(fieldTitles[index])}
+              >
                 {options[key as Option].map((option: string, index: number) => (
                   <option key={index}>{option}</option>
                 ))}

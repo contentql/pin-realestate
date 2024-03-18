@@ -111,7 +111,8 @@ export default function FilteringAgent() {
         <div
           className='row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5'
           data-aos='fade-up'
-          data-aos-delay='100'>
+          data-aos-delay='100'
+        >
           <AllAgents data={pageItems} />
         </div>
         {/* End .row */}

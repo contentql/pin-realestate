@@ -40,7 +40,8 @@ const FeaturedListings = () => {
           1200: {
             slidesPerView: 3,
           },
-        }}>
+        }}
+      >
         {propertiesListData?.slice(0, 5).map(listing => (
           <SwiperSlide key={listing.id}>
             <div className='item'>

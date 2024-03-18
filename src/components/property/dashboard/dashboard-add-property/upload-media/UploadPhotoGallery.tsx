@@ -55,7 +55,8 @@ const UploadPhotoGallery = ({ register, setAssets }: any) => {
       <div
         className='upload-img position-relative overflow-hidden bdrs12 text-center mb30 px-2'
         onDrop={handleDrop}
-        onDragOver={handleDragOver}>
+        onDragOver={handleDragOver}
+      >
         <div className='icon mb30'>
           <span className='flaticon-upload' />
         </div>
@@ -95,7 +96,8 @@ const UploadPhotoGallery = ({ register, setAssets }: any) => {
                 title='Delete Image'
                 onClick={() => handleDelete(index)}
                 type='button'
-                data-tooltip-id={`delete-${index}`}>
+                data-tooltip-id={`delete-${index}`}
+              >
                 <span className='fas fa-trash-can' />
               </button>
 

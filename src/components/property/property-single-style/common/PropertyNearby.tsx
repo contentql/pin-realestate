@@ -70,7 +70,8 @@ const PropertyNearby = ({ data }: { data: any }) => {
                 type='button'
                 role='tab'
                 aria-controls={`nav-item${index + 1}`}
-                aria-selected={index === 0 ? 'true' : 'false'}>
+                aria-selected={index === 0 ? 'true' : 'false'}
+              >
                 {tab.title}
               </button>
             ))}
@@ -87,11 +88,13 @@ const PropertyNearby = ({ data }: { data: any }) => {
               }`}
               id={`nav-item${index + 1}`}
               role='tabpanel'
-              aria-labelledby={`nav-item${index + 1}-tab`}>
+              aria-labelledby={`nav-item${index + 1}-tab`}
+            >
               {tab.details.map((detail: any, detailIndex) => (
                 <div
                   key={detailIndex}
-                  className='nearby d-sm-flex align-items-center mb20'>
+                  className='nearby d-sm-flex align-items-center mb20'
+                >
                   <div className='rating dark-color mr15 ms-1 mt10-xs mb10-xs'>
                     <span className='fw600 fz14'>{detail.rating}</span>
                     <span className='text fz14'>/10</span>
