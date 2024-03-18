@@ -32,6 +32,7 @@ export default buildConfig({
   },
   admin: {
     user: Users.slug,
+    css: path.resolve(__dirname, 'themes/cql/index.scss'),
     bundler: webpackBundler(),
     webpack: (config: any) => {
       config.resolve.fallback = {
