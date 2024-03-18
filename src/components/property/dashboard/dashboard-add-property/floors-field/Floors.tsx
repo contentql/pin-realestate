@@ -91,19 +91,7 @@ const Floors = ({ register }: any) => {
           </div>
           {/* End .col-4 */}
 
-          {/* <div className='col-sm-6 col-xl-4'>
-          <div className='mb20'>
-            <label className='heading-color ff-heading fw600 mb10'>
-              Custom ID (text)
-            </label>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Your Name'
-            />
-          </div>
-        </div> */}
-          {/* End .col-4 */}
+ 
 
           <div className='col-sm-6 col-xl-4'>
             <div className='mb20'>

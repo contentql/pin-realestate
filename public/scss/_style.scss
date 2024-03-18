@@ -125,13 +125,6 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   left: 140px;
 }
 
-.right-corner {
-  position: absolute;
-  top: 0px;
-  left: 85%;
-  //bottom: 90px;
-}
-
 .pagination-bottom {
   position: absolute;
   top: 104%;
@@ -147,6 +140,20 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 
 .relative {
   position: relative;
+
+  .right-corner {
+    position: absolute;
+    top: -10%;
+    right: -29%;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .right-corner {
+      position: absolute;
+      top: -10%;
+      right: -58%;
+    }
+  }
 }
 
 /* == Table Of Content  == */
