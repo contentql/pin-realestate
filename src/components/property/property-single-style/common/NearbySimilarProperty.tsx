@@ -34,7 +34,8 @@ const NearbySimilarProperty = () => {
           1200: {
             slidesPerView: 3,
           },
-        }}>
+        }}
+      >
         {listings.slice(0, 5).map(listing => (
           <SwiperSlide key={listing.id}>
             <div className='item'>

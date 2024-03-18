@@ -18,7 +18,8 @@ const ListingStatus = ({ filterFunctions }: any) => {
       {options.map(option => (
         <div
           className='form-check d-flex align-items-center mb10'
-          key={option.id}>
+          key={option.id}
+        >
           <input
             className='form-check-input'
             type='radio'

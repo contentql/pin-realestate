@@ -41,7 +41,8 @@ const FloorPlans = ({
       {floorPlanData?.map((floorPlan, index: number) => (
         <div
           className={`accordion-item ${index === 1 ? 'active' : ''}`}
-          key={floorPlan.id}>
+          key={floorPlan.id}
+        >
           <h2 className='accordion-header' id={`heading${index}`}>
             <button
               className={`accordion-button ${index === 1 ? '' : 'collapsed'}`}
@@ -49,7 +50,8 @@ const FloorPlans = ({
               data-bs-toggle='collapse'
               data-bs-target={`#collapse${index}`}
               aria-expanded={index === 1 ? 'true' : 'false'}
-              aria-controls={`collapse${index}`}>
+              aria-controls={`collapse${index}`}
+            >
               <span className='w-100 d-md-flex align-items-center'>
                 <span className='mr10-sm'>Floor {index + 1}</span>
                 <span className='ms-auto d-md-flex align-items-center justify-content-end'>
@@ -79,7 +81,8 @@ const FloorPlans = ({
               index === 1 ? 'show' : ''
             }`}
             aria-labelledby={`heading${index}`}
-            data-parent='#accordionExample'>
+            data-parent='#accordionExample'
+          >
             <div className='accordion-body text-center'>
               <Image
                 width={736}

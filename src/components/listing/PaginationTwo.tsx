@@ -29,7 +29,8 @@ const PaginationTwo = ({
         </li>
         <li
           // onClick={() => setPageNumber(1)}
-          className={pageNumber ? 'active page-item' : 'page-item'}>
+          className={pageNumber ? 'active page-item' : 'page-item'}
+        >
           <span className='page-link pointer'>{pageNumber}</span>
         </li>
 

@@ -216,12 +216,13 @@ const Header = () => {
                     </a>
                   )}
 
-                  <a
+                  {/* <a
                     className='sidemenu-btn filter-btn-right'
                     href='#'
                     data-bs-toggle='offcanvas'
                     data-bs-target='#SidebarPanel'
-                    aria-controls='SidebarPanelLabel'>
+                    aria-controls='SidebarPanelLabel'
+                  >
                     <Image
                       width={25}
                       height={9}
@@ -237,7 +238,7 @@ const Header = () => {
                       src='/images/icon/nav-icon-dark.svg'
                       alt='humberger menu'
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
               {/* End .col-auto */}
