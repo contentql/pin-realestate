@@ -25,16 +25,7 @@ import { trpc } from '@/trpc/client'
 //   title: 'Property',
 // };
 
-interface PropertyDetails extends Property {
-  Media: {
-    propertyImages?:
-      | {
-          image?: Media | null
-          id?: string | null
-        }[]
-      | null
-  }
-}
+
 
 const PropertyById = ({ params }: { params: any }) => {
   const { data: propertiesListData, isLoading } =

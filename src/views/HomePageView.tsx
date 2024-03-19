@@ -12,6 +12,7 @@ import Footer from '@/components/home/footer'
 import Hero from '@/components/home/hero'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 const Home = () => {
   return (
@@ -123,7 +124,9 @@ const Home = () => {
           <div className='row'>
             <div className='col-lg-12' data-aos='fade-up' data-aos-delay='200'>
               <div className='feature-listing-slider'>
+                <Suspense fallback={<h1>Loading...</h1>}>
                 <FeaturedListings />
+                </Suspense>
               </div>
             </div>
           </div>

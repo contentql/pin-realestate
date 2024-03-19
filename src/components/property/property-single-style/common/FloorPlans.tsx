@@ -36,6 +36,7 @@ const FloorPlans = ({
 }: {
   floorPlanData: Property['_floors']['floors']
 }) => {
+  console.log("floors",floorPlanData);
   return (
     <div className='accordion' id='accordionExample'>
       {floorPlanData?.map((floorPlan, index: number) => (
@@ -89,8 +90,7 @@ const FloorPlans = ({
                 height={544}
                 className='w-100 h-100 cover'
                 src={
-                  (floorPlan?.floorImage as Media)?.sizes?.floorImage
-                    ?.url as string
+                  (floorPlan?.floorImage as Media)?.url as string
                 }
                 alt={(floorPlan?.floorImage as Media)?.alt as string}
               />

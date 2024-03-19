@@ -24,7 +24,6 @@ export const propertiesRouter = router({
           location,
         } = input
 
-        // Retrieve users from a datasource, this is an imaginary database
         const payload = await getPayloadClient()
 
         const properties = await payload.find({
