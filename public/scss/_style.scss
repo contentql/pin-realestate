@@ -20,6 +20,12 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 @import url(../css/ud-custom-spacing.css);
 
 //loading styles
+//loader
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .loader {
   width: 175px;
@@ -28,12 +34,12 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
   margin: auto;
   background-image: radial-gradient(
       circle 25px at 25px 25px,
-      #e0cece 100%,
+      #48cae4 100%,
       transparent 0
     ),
-    radial-gradient(circle 50px at 50px 50px, #e0cece 100%, transparent 0),
-    radial-gradient(circle 25px at 25px 25px, #e0cece 100%, transparent 0),
-    linear-gradient(#e0cece 50px, transparent 0);
+    radial-gradient(circle 50px at 50px 50px, #48cae4 100%, transparent 0),
+    radial-gradient(circle 25px at 25px 25px, #48cae4 100%, transparent 0),
+    linear-gradient(#48cae4 50px, transparent 0);
   background-size:
     50px 50px,
     100px 76px,

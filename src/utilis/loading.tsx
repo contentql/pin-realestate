@@ -1,6 +1,6 @@
 function Loading() {
   return (
-    <div>
+    <div className='center'>
       <span className='loader'></span>
     </div>
   )

@@ -1,73 +1,128 @@
 'use client'
-import listings from '@/data/listings'
+import { Media, Property } from '@/payload-types'
+import { trpc } from '@/trpc/client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { toast } from 'react-toastify'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 
 const ListingsFavourites = () => {
-  const [favoriteListings, setFavoriteListings] = useState(listings.slice(0, 8))
+  const {
+    data: wishlistData,
+    isLoading,
+    refetch: propertiesRefetch,
+  } = trpc.wishlist.getWishlistProperty.useQuery()
+
+  const { mutate: deleteProperty } =
+    trpc.wishlist.deleteWishlistPropertyId.useMutation({
+      onError: err => {
+        if (err?.message === 'Invalid login') {
+          toast.error('Account does not exist')
+          return
+        }
+        console.error('Something went wrong. Please try again.')
+      },
+      onSuccess: () => {
+        toast.success('Deleted succcessfully')
+
+        propertiesRefetch()
+      },
+    })
 
   const handleDeleteListing = (id: any) => {
-    const updatedListings = favoriteListings.filter(
-      listing => listing.id !== id,
-    )
-    setFavoriteListings(updatedListings)
+    deleteProperty({ id: id })
   }
 
   return (
     <>
-      {favoriteListings.length === 0 ? (
-        <h3>No items available.</h3>
+      {wishlistData?.length === 0 ? (
+        <h3>No items available</h3>
       ) : (
-        favoriteListings.map(listing => (
-          <div className='col-md-6 col-lg-4 col-xl-3' key={listing.id}>
+        wishlistData?.map((listing, index) => (
+          <div className='col-md-6 col-lg-4 col-xl-3' key={listing?.id}>
             <div className='listing-style1 style2'>
               <div className='list-thumb'>
                 <Image
                   width={382}
                   height={248}
                   className='w-100 h-100 cover'
-                  src={listing.image}
+                  src={
+                    (
+                      (
+                        listing?.wishlistProperties?.value as Property
+                      )?._assets?.allMedia?.at(0)?.asset as Media
+                    )?.url as string
+                  }
                   alt='listings'
                 />
 
                 <button
                   className='tag-del'
                   title='Delete Item'
-                  onClick={() => handleDeleteListing(listing.id)}
+                  onClick={() =>
+                    handleDeleteListing(
+                      (listing?.wishlistProperties?.value as Property)?.id,
+                    )
+                  }
                   style={{ border: 'none' }}
-                  data-tooltip-id={`delete-${listing.id}`}
-                >
+                  data-tooltip-id={`delete-${(listing?.wishlistProperties?.value as Property)?.id}`}>
                   <span className='fas fa-trash-can'></span>
                 </button>
 
                 <ReactTooltip
-                  id={`delete-${listing.id}`}
+                  id={`delete-${(listing?.wishlistProperties?.value as Property)?.id}`}
                   place='left'
                   content='Delete'
                 />
 
                 <div className='list-price'>
-                  {listing.price} / <span>mo</span>
+                  {
+                    (listing?.wishlistProperties?.value as Property)
+                      ._propertyDetails?.price
+                  }{' '}
+                  / <span>mo</span>
                 </div>
               </div>
               <div className='list-content'>
                 <h6 className='list-title'>
-                  <Link href={`/properties/${listing.id}`}>
-                    {listing.title}
+                  <Link
+                    href={`/properties/${(listing?.wishlistProperties?.value as Property)?.id}`}>
+                    {
+                      (listing?.wishlistProperties?.value as Property)
+                        ?._propertyDetails?.title
+                    }
                   </Link>
                 </h6>
-                <p className='list-text'>{listing.location}</p>
+                <p className='list-text'>
+                  {
+                    (listing?.wishlistProperties?.value as Property)?._location
+                      ?.address
+                  }
+                </p>
                 <div className='list-meta d-flex align-items-center'>
                   <a href='#'>
-                    <span className='flaticon-bed' /> {listing.bed} bed
+                    <span className='flaticon-bed' />{' '}
+                    {
+                      (listing?.wishlistProperties?.value as Property)?._details
+                        ?.bedrooms
+                    }{' '}
+                    bed
                   </a>
                   <a href='#'>
-                    <span className='flaticon-shower' /> {listing.bath} bath
+                    <span className='flaticon-shower' />{' '}
+                    {
+                      (listing?.wishlistProperties?.value as Property)?._details
+                        ?.bathrooms
+                    }{' '}
+                    bath
                   </a>
                   <a href='#'>
-                    <span className='flaticon-expand' /> {listing.sqft} sqft
+                    <span className='flaticon-expand' />{' '}
+                    {
+                      (listing?.wishlistProperties?.value as Property)?._details
+                        ?.homearea
+                    }{' '}
+                    sqft
                   </a>
                 </div>
                 <hr className='mt-2 mb-2' />
@@ -79,9 +134,6 @@ const ListingsFavourites = () => {
                     </a>
                     <a href='#'>
                       <span className='flaticon-new-tab' />
-                    </a>
-                    <a href='#'>
-                      <span className='flaticon-like' />
                     </a>
                   </div>
                 </div>

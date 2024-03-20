@@ -1,4 +1,5 @@
 'use client'
+import { Media } from '@/payload-types'
 import { trpc } from '@/trpc/client'
 import { useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
@@ -72,7 +73,9 @@ const PropertyDataTable = () => {
     data: propertyData,
     isLoading,
     refetch: propertiesRefetch,
-  } = trpc.properties.getPropertiesForMyPropertiesPage.list.useQuery()
+  } = trpc.properties.getUserProperties.list.useQuery()
+
+  console.log('my-properties', propertyData)
 
   return (
     <table className='table-style3 table at-savesearch'>
@@ -95,57 +98,64 @@ const PropertyDataTable = () => {
                     width={110}
                     height={94}
                     className='w-100'
-                    src={'http://localhost:3000/media/download-2.jpg'}
+                    src={
+                      (property?._assets?.allMedia?.at(0)?.asset as Media)
+                        ?.url as string
+                    }
                     alt='property'
                   />
                 </div>
                 <div className='list-content py-0 p-0 mt-2 mt-xxl-0 ps-xxl-4'>
                   <div className='h6 list-title'>
                     <Link href={`/properties/${property.id}`}>
-                      {property.title}
+                      {property?._propertyDetails?.title}
                     </Link>
                   </div>
-                  <p className='list-text mb-0'>{property.location}</p>
+                  <p className='list-text mb-0'>
+                    {property?._location?.address}
+                  </p>
                   <div className='list-price'>
-                    <a href='#'>{property.price}</a>
+                    <a href='#'>{property?._propertyDetails?.price}</a>
                   </div>
                 </div>
               </div>
             </th>
-            <td className='vam'>{property.datePublished}</td>
+            <td className='vam'>{property?._details?.yearBuild}</td>
             <td className='vam'>
-              <span className={getStatusStyle(property.status)}>
-                {property.status}
+              <span
+                className={getStatusStyle(
+                  property?._propertyDetails?.saleType,
+                )}>
+                {property?._propertyDetails?.saleType}
               </span>
             </td>
-            <td className='vam'>{property.datePublished}</td>
+            <td className='vam'>{property?._details?.yearBuild}</td>
             <td className='vam'>
               <div className='d-flex'>
                 <button
                   className='icon'
                   style={{ border: 'none' }}
-                  data-tooltip-id={`edit-${property.id}`}
-                >
+                  data-tooltip-id={`edit-${property?.id}`}>
                   <span className='fas fa-pen fa' />
                 </button>
                 <button
                   className='icon'
                   style={{ border: 'none' }}
-                  data-tooltip-id={`delete-${property.id}`}
+                  data-tooltip-id={`delete-${property?.id}`}
                   onClick={() => {
-                    handleDeleteProperty(property.id)
-                  }}
-                >
+                    handleDeleteProperty(property?.id)
+                  }}>
                   <span className='flaticon-bin' />
                 </button>
 
                 <ReactTooltip
-                  id={`edit-${property.id}`}
+                  id={`edit-${property?.id}`}
                   place='top'
                   content='Edi'
                 />
+
                 <ReactTooltip
-                  id={`delete-${property.id}`}
+                  id={`delete-${property?.id}`}
                   place='top'
                   content='Delete'
                 />

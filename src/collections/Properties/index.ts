@@ -8,7 +8,7 @@ import isAdminOrCreatedBy from '../../access/isCreatedBy'
 const Properties: CollectionConfig = {
   slug: 'properties',
   admin: {
-    useAsTitle: 'title',
+    useAsTitle: '_propertyDetails.title',
   },
   fields: [
     {
