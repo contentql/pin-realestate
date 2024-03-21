@@ -475,7 +475,7 @@ const Properties: CollectionConfig = {
     ],
   },
   access: {
-    read: isAdminOrCreatedBy,
+    // read: isAdminOrCreatedBy,
     update: isAdminOrCreatedBy,
     delete: isAdminOrCreatedBy,
   },
