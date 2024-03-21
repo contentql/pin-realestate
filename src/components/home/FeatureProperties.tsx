@@ -76,8 +76,7 @@ const FeatureProperties = () => {
           el: '.featurePro_pagination__active',
           clickable: true,
         }}
-        slidesPerView={1}
-      >
+        slidesPerView={1}>
         {propertiesListData?.map(property => (
           <SwiperSlide key={property.id}>
             <div className='item'>
@@ -100,18 +99,16 @@ const FeatureProperties = () => {
                         </Link>
                       </h4>
                       <p className='list-text fz15'>{property.location}</p>
-                      <div className='list-meta d-block d-sm-flex align-items-center mt30 mb40'>
+                      <div className='flex-row list-meta d-sm-flex mt30 mb40'>
                         <a
                           className='d-flex mb-2 mb-sm-0 align-items-center'
-                          href='#'
-                        >
+                          href='#'>
                           <span className='flaticon-bed' />
                           {property?.details?.bedrooms}
                         </a>
                         <a
                           className='d-flex mb-2 mb-sm-0 align-items-center'
-                          href='#'
-                        >
+                          href='#'>
                           <span className='flaticon-shower' />
                           {property?.details?.bathrooms}
                         </a>

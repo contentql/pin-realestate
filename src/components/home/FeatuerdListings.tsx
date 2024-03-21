@@ -40,8 +40,7 @@ const FeaturedListings = () => {
           1200: {
             slidesPerView: 3,
           },
-        }}
-      >
+        }}>
         {propertiesListData?.slice(0, 5).map(listing => (
           <SwiperSlide key={listing.id}>
             <div className='item'>
@@ -58,7 +57,7 @@ const FeaturedListings = () => {
                     alt='listings'
                   />
                   <div className='sale-sticker-wrap'>
-                    {listing?.status?.length - 1 && (
+                    {listing?.status && (
                       <div className='list-tag rounded-0 fz12'>
                         <span className='flaticon-electricity' />
                         FEATURED
