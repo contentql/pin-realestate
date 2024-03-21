@@ -1,12 +1,14 @@
 'use client'
 
 import { Property } from '@/payload-types'
+import { useAuth } from '@/providers/Auth'
 import { trpc } from '@/trpc/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
 
 const FeaturedListings = ({ data, colstyle }: any) => {
+  const { status } = useAuth()
   const { mutate: wishlistAddProperty, isPending } =
     trpc.wishlist.wishlistAddProperty.useMutation({
       onError: err => {
@@ -31,28 +33,10 @@ const FeaturedListings = ({ data, colstyle }: any) => {
       },
     })
 
-  const {
-    data: wishlistData,
-    isLoading,
-    refetch: propertiesRefetch,
-  } = trpc.wishlist.getWishlistProperty.useQuery()
-
-  const temp = wishlistData?.map(
-    ele => (ele.wishlistProperties?.value as Property)?.id,
-  )
-  console.log('wishlist', temp)
-
-  const handleClick = async (listing: any) => {
-    const item = {
-      id: listing.id,
-    }
-
-    await wishlistAddProperty(item)
-  }
-
-  const { mutate: deleteProperty } =
-    trpc.wishlist.deleteWishlistPropertyId.useMutation({
+  const { mutate: wishlistUpdateProperty } =
+    trpc.wishlist.wishlistUpdateProperty.useMutation({
       onError: err => {
+        console.log('error', err)
         if (err?.message === 'Invalid login') {
           toast.error('Account does not exist')
           return
@@ -61,14 +45,55 @@ const FeaturedListings = ({ data, colstyle }: any) => {
       },
       onSuccess: () => {
         propertiesRefetch()
-        toast.success('Deleted succcessfully')
-
-        propertiesRefetch()
+        console.log('Success')
       },
     })
 
-  const deleteWishlistProperty = (id: any) => {
-    deleteProperty({ id: id })
+  const {
+    data: totalData,
+    isLoading,
+    refetch: propertiesRefetch,
+  } = trpc.wishlist.getWishlistProperty.useQuery()
+
+  const wishlistData = totalData?.docs
+  const totalDocs = totalData?.totalDocs
+  const wishlistId = wishlistData?.at(0)?.id
+
+  const temp = wishlistData
+    ?.at(0)
+    ?.wishlistProperties?.map(ele => (ele.value as Property).id)
+  console.log('wishlist123', wishlistId)
+
+  const handleClick = async (listing: any) => {
+    totalDocs === 0
+      ? wishlistAddProperty({ id: listing.id })
+      : wishlistUpdateProperty({ id: listing.id, wishlistId: wishlistId })
+  }
+
+  const { mutate: deleteProperty } =
+    trpc.wishlist.deleteWishlistPropertyId.useMutation({
+      onError: err => {
+        console.error('Something went wrong. Please try again.')
+      },
+      onSuccess: () => {
+        propertiesRefetch()
+        toast.success('Deleted succcessfully')
+      },
+    })
+
+  const deleteWishlistProperty = (id: string) => {
+    const temp = wishlistData
+      ?.at(0)
+      ?.wishlistProperties?.filter(ele => id !== (ele?.value as Property)?.id)
+      ?.map(ele => {
+        return { relationTo: 'properties', value: (ele?.value as Property)?.id }
+      })
+    console.log('Temp property', temp)
+    deleteProperty({
+      id: id,
+      wishlistId: wishlistData?.at(0)?.id,
+      updatedData: temp,
+    })
   }
 
   return (

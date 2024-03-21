@@ -354,10 +354,12 @@ export interface PropertyType {
  */
 export interface Wishlist {
   id: string;
-  wishlistProperties?: {
-    relationTo: 'properties';
-    value: string | Property;
-  } | null;
+  wishlistProperties?:
+    | {
+        relationTo: 'properties';
+        value: string | Property;
+      }[]
+    | null;
   user?: {
     relationTo: 'users';
     value: string | User;

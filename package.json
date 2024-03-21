@@ -74,6 +74,7 @@
     "recharts": "2.2.0",
     "sass": "^1.63.4",
     "swiper": "^8.4.7",
+    "usehooks-ts": "^3.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {

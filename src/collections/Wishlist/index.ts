@@ -13,6 +13,7 @@ const Wishlist: CollectionConfig = {
       label: 'Wishlist Properties',
       type: 'relationship',
       relationTo: ['properties'],
+      hasMany: true,
     },
     {
       name: 'user',
