@@ -11,6 +11,7 @@ export const wishlistRouter = router({
     const propertyById = await payload.find({
       collection: 'wishlist',
       user,
+      overrideAccess: false,
       depth: 10,
     })
 
