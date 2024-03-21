@@ -4,7 +4,8 @@ export const metadata = {
   title: 'Home page',
 }
 
-function HomePage() {
+const HomePage=async ()=> {
+
   return (
     <div>
       <Home />

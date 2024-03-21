@@ -21,6 +21,7 @@ import {
   generateTitle,
   generateURL,
 } from './utilis/seo'
+import Wishlist from './collections/Wishlist'
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -28,7 +29,7 @@ dotenv.config({
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL!,
-  collections: [Users, Media, Properties, Tags, Contact, PropertyType],
+  collections: [Users, Media, Properties, Tags, Contact, PropertyType,Wishlist],
   routes: {
     admin: '/admin',
   },

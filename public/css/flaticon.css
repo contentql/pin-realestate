@@ -83,6 +83,9 @@ span[class*=' flaticon-']:before {
 .flaticon-electricity:before {
   content: '\f113';
 }
+.flaticon-clipboard::before {
+  content: '\1F4CB';
+}
 .flaticon-call:before {
   content: '\f114';
 }

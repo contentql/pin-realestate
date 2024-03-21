@@ -3,7 +3,7 @@ import { isParentActive } from '@/utilis/isMenuActive'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { Menu, MenuItem, Sidebar, SubMenu } from 'react-pro-sidebar'
+import { Menu, MenuItem, Sidebar } from 'react-pro-sidebar'
 
 const ProSidebarContent = () => {
   const path = usePathname()
@@ -12,12 +12,14 @@ const ProSidebarContent = () => {
     <Sidebar width='100%' backgroundColor='#fff' className='my-custom-class'>
       <Menu>
         {mobileMenuItems.map((item: any, index: any) => (
-          <SubMenu
+          <MenuItem
             key={index}
             className={isParentActive(item.subMenu, path) ? 'active' : ''}
-            label={item.label}
-          >
-            {item.subMenu.map((subItem: any, subIndex: any) =>
+            component={<Link href={item?.path} />}>
+            {item?.label}
+          </MenuItem>
+
+          /* {item.subMenu.map((subItem: any, subIndex: any) =>
               subItem.subMenu ? (
                 <SubMenu
                   key={subIndex}
@@ -53,8 +55,8 @@ const ProSidebarContent = () => {
                   {subItem.label}
                 </MenuItem>
               ),
-            )}
-          </SubMenu>
+            )} */
+          // </SubMenu>
         ))}
       </Menu>
     </Sidebar>

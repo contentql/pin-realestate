@@ -1,6 +1,7 @@
 const mobileMenuItems = [
   {
     label: 'Home',
+    path: '/',
     subMenu: [
       { path: '/home-v1', label: 'Home v1' },
       { path: '/home-v2', label: 'Home v2' },
@@ -15,7 +16,8 @@ const mobileMenuItems = [
     ],
   },
   {
-    label: 'Listings',
+    label: 'Properties',
+    path: '/properties',
     subMenu: [
       {
         label: 'Grid View',
@@ -37,7 +39,6 @@ const mobileMenuItems = [
         ],
       },
       {
-        label: 'Map Style',
         subMenu: [
           {
             label: 'Header Map Style',
@@ -59,7 +60,8 @@ const mobileMenuItems = [
     ],
   },
   {
-    label: 'Property',
+    label: 'About',
+    path: '/about',
     subMenu: [
       {
         label: 'Agents',
@@ -89,7 +91,8 @@ const mobileMenuItems = [
     ],
   },
   {
-    label: 'Dashboard',
+    label: 'Contact us',
+    path: '/contact',
     subMenu: [
       { label: 'Dashboard Home', path: '/dashboard/home' },
       { label: 'Message', path: '/dashboard/message' },
@@ -100,30 +103,6 @@ const mobileMenuItems = [
       { label: 'Reviews', path: '/dashboard/reviews' },
       { label: 'My Package', path: '/dashboard/my-package' },
       { label: 'My Profile', path: '/dashboard/my-profile' },
-    ],
-  },
-  {
-    label: 'Blog',
-    subMenu: [
-      { path: '/blog-list-v1', label: 'Blog List V1' },
-      { path: '/blog-list-v2', label: 'Blog List V2' },
-      { path: '/blog-list-v3', label: 'Blog List V3' },
-      { path: '/blogs/2', label: 'Blog Single' },
-    ],
-  },
-
-  {
-    label: 'Pages',
-    subMenu: [
-      { path: '/about', label: 'About' },
-      { path: '/contact', label: 'Contact' },
-      { path: '/compare', label: 'Compate' },
-      { path: '/pricing', label: 'Pricing' },
-      { path: '/faq', label: 'Faq' },
-      { path: '/login', label: 'Login' },
-      { path: '/register', label: 'Register' },
-      { path: '/404', label: '404' },
-      { path: '/invoice', label: 'Invoice' },
     ],
   },
 ]

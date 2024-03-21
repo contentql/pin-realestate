@@ -238,7 +238,7 @@ const DefaultHeader = () => {
                                     <div onClick={handleLogout}>
                                       <Link className='dropdown-item' href='#'>
                                         <i className='flaticon-logout mr10' />
-                                        Logouttt
+                                        Logout
                                       </Link>
                                     </div>
                                   </div>

@@ -24,7 +24,6 @@ export const propertiesRouter = router({
           location,
         } = input
 
-        // Retrieve users from a datasource, this is an imaginary database
         const payload = await getPayloadClient()
 
         const properties = await payload.find({
@@ -111,6 +110,40 @@ export const propertiesRouter = router({
       return propertyData
     }),
   },
+
+  getUserProperties: {
+    list: userProcedure.query(async ({ ctx }) => {
+      // Retrieve users from a datasource, this is an imaginary database
+      const payload = await getPayloadClient()
+
+      const { user } = ctx
+
+      const properties = await payload.find({
+        collection: 'properties',
+        depth: 10,
+        where: {
+          createdBy: {
+            equals: user.id,
+          },
+        },
+      })
+      const propertyData = properties?.docs?.map(ele => {
+        return {
+          id: ele?.id,
+          title: ele?._propertyDetails?.title,
+          imageSrc: ele?._floors?.floors?.at(0)?.floorImage,
+          location: ele?._location?.address,
+          price: ele?._propertyDetails?.price,
+          datePublished: ele?.createdAt,
+          status: ele?._propertyDetails?.saleType,
+          media: ele?._assets,
+          details: ele?._details,
+        }
+      })
+      return properties.docs
+    }),
+  },
+
   byPropertyId: publicProcedure
     .input(TokenValidator)
     .query(async ({ input }) => {
