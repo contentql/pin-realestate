@@ -60,7 +60,9 @@ const FeaturedListings = () => {
                     {listing?.status && (
                       <div className='list-tag rounded-0 fz12'>
                         <span className='flaticon-electricity' />
-                        FEATURED
+                        {listing?.status?.length === 1
+                          ? listing?.status
+                          : listing?.status?.join(' and ')}
                       </div>
                     )}
                   </div>

@@ -6,6 +6,8 @@ import FeaturedListings from './FeatuerdListings'
 import TopFilterBar from './TopFilterBar'
 
 import { trpc } from '@/trpc/client'
+import Image from 'next/image'
+import Link from 'next/link'
 import PaginationTwo from '../PaginationTwo'
 
 export default function PropertyFiltering() {
@@ -277,9 +279,13 @@ export default function PropertyFiltering() {
     <section className='pt0 pb90 bgc-f7'>
       <div className='container'>
         <div className='row gx-xl-5'>
-          <div className='col-lg-4 d-none d-lg-block'>
-            <ListingSidebar filterFunctions={filterFunctions} />
-          </div>
+          {propertiesListData?.totalProperties !== 0 ? (
+            <div className='col-lg-4 d-none d-lg-block'>
+              <ListingSidebar filterFunctions={filterFunctions} />
+            </div>
+          ) : (
+            ''
+          )}
           {/* End .col-lg-4 */}
 
           {/* start mobile filter sidebar */}
@@ -287,8 +293,7 @@ export default function PropertyFiltering() {
             className='offcanvas offcanvas-start p-0'
             tabIndex={-1}
             id='listingSidebarFilter'
-            aria-labelledby='listingSidebarFilterLabel'
-          >
+            aria-labelledby='listingSidebarFilterLabel'>
             <div className='offcanvas-header'>
               <h5 className='offcanvas-title' id='listingSidebarFilterLabel'>
                 Listing Filter
@@ -297,8 +302,7 @@ export default function PropertyFiltering() {
                 type='button'
                 className='btn-close text-reset'
                 data-bs-dismiss='offcanvas'
-                aria-label='Close'
-              ></button>
+                aria-label='Close'></button>
             </div>
             <div className='offcanvas-body p-0'>
               <ListingSidebar filterFunctions={filterFunctions} />
@@ -317,20 +321,46 @@ export default function PropertyFiltering() {
             </div>
             {/* End TopFilterBar */}
 
-            <div className='row mt15'>
-              <FeaturedListings colstyle={colstyle} data={sortedFilteredData} />
-            </div>
+            {propertiesListData?.totalProperties !== 0 ? (
+              <div className='row mt15'>
+                <FeaturedListings
+                  colstyle={colstyle}
+                  data={sortedFilteredData}
+                />
+              </div>
+            ) : (
+              <>
+                <div className='image-center'>
+                  <Image
+                    src={`/images/temp.png`}
+                    alt='No properties'
+                    height={500}
+                    width={500}
+                  />
+                </div>
+                <Link
+                  className='image-center'
+                  style={{ fontSize: '20px' }}
+                  href='/'>
+                  Go back to home page
+                </Link>
+              </>
+            )}
             {/* End .row */}
 
-            <div className='row pagination-bottom'>
-              <PaginationTwo
-                pageCapacity={8}
-                data={sortedFilteredData}
-                pageNumber={pageNumber}
-                setPageNumber={setPageNumber}
-                totalData={propertiesListData?.totalProperties}
-              />
-            </div>
+            {propertiesListData?.totalProperties !== 0 ? (
+              <div className='row pagination-bottom'>
+                <PaginationTwo
+                  pageCapacity={8}
+                  data={sortedFilteredData}
+                  pageNumber={pageNumber}
+                  setPageNumber={setPageNumber}
+                  totalData={propertiesListData?.totalProperties}
+                />
+              </div>
+            ) : (
+              ''
+            )}
             {/* End .row */}
           </div>
           {/* End .col-lg-8 */}
